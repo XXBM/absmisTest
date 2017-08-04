@@ -56,6 +56,7 @@ public class Project {
     @javax.persistence.Column(nullable = false)
     protected String construction;
 
+
     @javax.persistence.ManyToOne
     @javax.persistence.JoinColumn(nullable = false)
     protected RealEstateEn realEstateEn;
