@@ -2,8 +2,8 @@ package com.absmis.domain.enterprise;
 
 import com.absmis.domain.authority.User;
 
+import javax.persistence.DiscriminatorValue;
 import java.util.Set;
-
 
 
 /**
@@ -12,7 +12,8 @@ import java.util.Set;
  * @generated
  */
  
-@javax.persistence.Entity 
+@javax.persistence.Entity
+@DiscriminatorValue("EstateOwner")
 public class EstateOwner extends User
 {
 	 

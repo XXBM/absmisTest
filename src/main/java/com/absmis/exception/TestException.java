@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class TestException {
     @RequestMapping("/testJson")
-    public  String testJson() throws JsonException{
+    public  String testJson() throws JsonException {
         throw new JsonException("json发送失败！");
     }
     @RequestMapping("/test404")

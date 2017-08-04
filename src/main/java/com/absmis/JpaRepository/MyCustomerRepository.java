@@ -18,7 +18,7 @@ import java.io.Serializable;
  */
 public class MyCustomerRepository<T,ID extends Serializable>
         extends SimpleJpaRepository<T,ID>
-        implements MyRepository<T,ID>{
+        implements MyRepository<T,ID> {
 
     private final EntityManager em;
 

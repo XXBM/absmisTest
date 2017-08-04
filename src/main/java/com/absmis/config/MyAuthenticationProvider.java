@@ -21,10 +21,8 @@ import java.util.Collection;
 
 @Component
 public class MyAuthenticationProvider implements AuthenticationProvider {
-
     @Autowired
-    private CustomUserDetailsService userService;
-
+    CustomUserDetailsService customUserDetailsService;
     /**
      * 自定义验证方式
      */
@@ -32,22 +30,17 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
         String password = (String) authentication.getCredentials();
-        //password = Utils.makeMD5(password);
-        CustomUserDetails user = (CustomUserDetails) userService.loadUserByUsername(username);
-
+        CustomUserDetails user = (CustomUserDetails) customUserDetailsService.loadUserByUsername(username);
         if (user == null) {
             throw new BadCredentialsException(" 用户不存在");
         }
-
         //加密过程在这里体现
         if (!password.equals(user.getPassword())) {
             throw new BadCredentialsException("密码错误");
         }
-
         Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
         return new UsernamePasswordAuthenticationToken(user, password, authorities);
     }
-
     @Override
     public boolean supports(Class<?> arg0) {
         return true;

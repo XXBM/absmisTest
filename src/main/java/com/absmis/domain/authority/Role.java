@@ -3,7 +3,6 @@ package com.absmis.domain.authority;
 import java.util.Set;
 
 
-
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->

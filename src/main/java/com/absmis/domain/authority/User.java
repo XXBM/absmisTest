@@ -2,6 +2,7 @@ package com.absmis.domain.authority;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,22 +14,25 @@ import java.util.Date;
  * @generated
  */
 
-@javax.persistence.Entity
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type",discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue("Enterprise")
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
-    @javax.persistence.Id
-    @javax.persistence.Column(nullable = false)
+    @Id
+    @Column(nullable = false)
     protected Long id;
-    @javax.persistence.Column(nullable = false)
+    @Column(nullable = false)
     protected String username;
-    @javax.persistence.Column(nullable = false)
+    @Column(nullable = false)
     protected String password;
-    @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     protected Date lastLogin;
-    @javax.persistence.Column(nullable = false)
+    @Column(nullable = false)
     protected int loginCounter;
-    @javax.persistence.ManyToOne
+    @ManyToOne
     protected Role role;
     public User() {
         super();

@@ -77,7 +77,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .successForwardUrl("/index1")
+                .successForwardUrl("/index")
 //                登录失败转发
                 //.failureForwardUrl("/login?error=true")
                 .usernameParameter("username").passwordParameter("password")
@@ -121,8 +121,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("admin").password("s3cr3t").roles("ADMIN", "READER");
         //将验证过程交给自定义验证工具
         auth.authenticationProvider(myAuthenticationProvider());
-
     }
-
-
 }

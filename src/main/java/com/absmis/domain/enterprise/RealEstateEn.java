@@ -4,7 +4,6 @@ import javax.persistence.DiscriminatorValue;
 import java.util.Set;
 
 
-
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->

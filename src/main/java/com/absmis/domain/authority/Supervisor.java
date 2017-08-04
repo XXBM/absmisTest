@@ -1,6 +1,8 @@
 package com.absmis.domain.authority;
 
 
+import javax.persistence.DiscriminatorValue;
+
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
@@ -9,6 +11,7 @@ package com.absmis.domain.authority;
  */
 
 @javax.persistence.Entity
+@DiscriminatorValue("Supervisor")
 public class Supervisor extends User {
 
     public Supervisor() {
