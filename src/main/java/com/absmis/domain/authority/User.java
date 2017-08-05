@@ -21,7 +21,7 @@ import java.util.Date;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @DynamicInsert(true)
 @DynamicUpdate(true)
-public abstract class User{
+public class User{
     @Id
     @Column(nullable = false)
     protected Long id;
