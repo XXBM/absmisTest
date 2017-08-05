@@ -8,7 +8,7 @@ package com.absmis.domain.enterprise;
  */
  
 @javax.persistence.Entity 
-public class ComponentEn extends Enterprise
+public class ComponentEn extends Organization
 {
 
 	private Double prebuiltConcrete;

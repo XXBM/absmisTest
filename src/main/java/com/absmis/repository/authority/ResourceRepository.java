@@ -9,6 +9,5 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-
-public interface ResourceRepository extends MyRepository<Resource,Integer> {
+public interface ResourceRepository extends MyRepository<Resource,Long> {
 }

@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface RoleAssResourceRepository extends MyRepository<RoleAssResource, Integer> {
+public interface RoleAssResourceRepository extends MyRepository<RoleAssResource, Long> {
 }

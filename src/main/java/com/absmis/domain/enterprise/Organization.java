@@ -1,6 +1,7 @@
 package com.absmis.domain.enterprise;
 
 
+import com.absmis.domain.authority.User;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -16,7 +17,7 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 @DynamicInsert(true)
 @DynamicUpdate(true)
-public abstract class Enterprise {
+public abstract class Organization extends User {
 
 
     @javax.persistence.Column(nullable = false)
@@ -69,12 +70,7 @@ public abstract class Enterprise {
     protected String postalCode;
 
 
-
-    @javax.persistence.Id
-    @javax.persistence.Column(nullable = false)
-    protected Long id;
-
-    public Enterprise() {
+    public Organization() {
         super();
     }
 
@@ -166,12 +162,5 @@ public abstract class Enterprise {
         this.postalCode = postalCode;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }
 

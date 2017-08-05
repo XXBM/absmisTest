@@ -8,7 +8,7 @@ package com.absmis.domain.enterprise;
  */
  
 @javax.persistence.Entity 
-public class SubUnitEn extends Enterprise
+public class SubUnitEn extends Organization
 {
 
 	private Double integralWall;

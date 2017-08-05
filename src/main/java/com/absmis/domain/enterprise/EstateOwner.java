@@ -1,8 +1,5 @@
 package com.absmis.domain.enterprise;
 
-import com.absmis.domain.authority.User;
-
-import javax.persistence.DiscriminatorValue;
 import java.util.Set;
 
 
@@ -13,8 +10,7 @@ import java.util.Set;
  */
  
 @javax.persistence.Entity
-@DiscriminatorValue("EstateOwner")
-public class EstateOwner extends User
+public class EstateOwner extends Organization
 {
 	 
 	@javax.persistence.OneToMany(mappedBy = "estateOwner") 

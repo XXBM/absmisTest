@@ -25,10 +25,6 @@ public class Role
 
 	 
 	@javax.persistence.OneToMany(mappedBy = "role") 
-	protected Set<User> user;
-
-	 
-	@javax.persistence.OneToMany(mappedBy = "role") 
 	protected Set<RoleAssResource> roleAssResource;
 
 
@@ -58,14 +54,6 @@ public class Role
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public Set<User> getUser() {
-		return user;
-	}
-
-	public void setUser(Set<User> user) {
-		this.user = user;
 	}
 
 	public Set<RoleAssResource> getRoleAssResource() {

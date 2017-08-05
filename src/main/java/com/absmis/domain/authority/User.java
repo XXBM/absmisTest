@@ -1,9 +1,10 @@
 package com.absmis.domain.authority;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 
@@ -13,13 +14,14 @@ import java.util.Date;
  *
  * @generated
  */
-
+//@MappedSuperclass
+//@DynamicInsert(true)
+//@DynamicUpdate(true)
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "type",discriminatorType = DiscriminatorType.STRING)
-@DiscriminatorValue("Enterprise")
-public class User implements Serializable {
-    private static final long serialVersionUID = 1L;
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@DynamicInsert(true)
+@DynamicUpdate(true)
+public abstract class User{
     @Id
     @Column(nullable = false)
     protected Long id;
@@ -33,9 +35,14 @@ public class User implements Serializable {
     @Column(nullable = false)
     protected int loginCounter;
     @ManyToOne
+    @JoinColumn(name = "role_id")
     protected Role role;
     public User() {
         super();
+    }
+    public User(Long id) {
+
+       this.id=id;
     }
     public User(User user) {
         this.id = user.id;

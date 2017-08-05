@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public interface RoleRepository extends MyRepository<Role,Integer> {
+public interface RoleRepository extends MyRepository<Role,Long> {
 
 }
