@@ -7,8 +7,6 @@ import {
     Switch
 } from 'react-router-dom';
 const FormItem = Form.Item;
-
-
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -49,7 +47,6 @@ class Login extends React.Component {
         console.log(' form: ', data);
         //此处提交表单,但是这里还需要刷新页面下面的表格，这个还不知道怎么刷新
     }
-
     render() {
         const { getFieldDecorator } = this.props.form;
         return (

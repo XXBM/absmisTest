@@ -13,6 +13,6 @@ public class MenuController {
     @RequestMapping("/index")
     public String index() {
         System.out.print("controller");
-        return "login";
+        return "index";
     }
 }

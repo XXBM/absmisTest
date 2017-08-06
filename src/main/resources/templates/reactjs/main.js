@@ -15,8 +15,8 @@ ReactDOM.render(
     (
         <HashRouter>
             <div>
-                <Route path="/loginPage" component={Login} />
-                <Route path="/indexPage" component={Index} />
+                <Route path="/loginPage" component={Login}/>
+                <Route path="/indexPage" component={Index}/>
             </div>
         </HashRouter>
     )

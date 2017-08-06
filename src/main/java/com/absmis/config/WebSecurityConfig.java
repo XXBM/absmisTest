@@ -33,21 +33,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public MyAuthenticationProvider myAuthenticationProvider() {
         return new MyAuthenticationProvider();
     }
-
-//    @Bean
-//    public AjaxAwareAuthenticationEntryPoint ajaxAwareAuthenticationEntryPoint(){
-//        AjaxAwareAuthenticationEntryPoint point = new AjaxAwareAuthenticationEntryPoint("/login");
-//        return point;
-//    }
-
     @Autowired
     private UserDetailsService userDetailsService;
-
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordencoder());
     }
-
     @Bean(name = "passwordEncoder")
     public PasswordEncoder passwordencoder() {
         return new BCryptPasswordEncoder(4);
