@@ -14,14 +14,11 @@ import java.util.Date;
  *
  * @generated
  */
-//@MappedSuperclass
-//@DynamicInsert(true)
-//@DynamicUpdate(true)
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @DynamicInsert(true)
 @DynamicUpdate(true)
-public class User{
+public abstract class User{
     @Id
     @Column(nullable = false)
     protected Long id;
