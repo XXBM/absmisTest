@@ -2,9 +2,11 @@ package com.absmis.domain.enterprise;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.persistence.Embedded;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.util.Calendar;
+import java.util.Set;
 
 
 /**
@@ -74,6 +76,14 @@ public class Project {
     @ManyToOne
     @JoinColumn(name = "projectState_id")
     private ProjectState projectState;
+
+    @Embedded
+    private ProjectIndustrialization projectIndustrialization;
+    @Embedded
+    private Schedule schedule;
+
+    @javax.persistence.OneToMany(mappedBy = "project")
+    protected Set<UnitEngineering> unitEngineering;
 
     public Project() {
         super();
@@ -181,6 +191,46 @@ public class Project {
 
     public void setEstateOwner(EstateOwner estateOwner) {
         this.estateOwner = estateOwner;
+    }
+
+    public ProjectCategory getProjectCategory() {
+        return projectCategory;
+    }
+
+    public void setProjectCategory(ProjectCategory projectCategory) {
+        this.projectCategory = projectCategory;
+    }
+
+    public ProjectState getProjectState() {
+        return projectState;
+    }
+
+    public Set<UnitEngineering> getUnitEngineering() {
+        return unitEngineering;
+    }
+
+    public void setUnitEngineering(Set<UnitEngineering> unitEngineering) {
+        this.unitEngineering = unitEngineering;
+    }
+
+    public void setProjectState(ProjectState projectState) {
+        this.projectState = projectState;
+    }
+
+    public ProjectIndustrialization getProjectIndustrialization() {
+        return projectIndustrialization;
+    }
+
+    public void setProjectIndustrialization(ProjectIndustrialization projectIndustrialization) {
+        this.projectIndustrialization = projectIndustrialization;
+    }
+
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
     }
 }
 
