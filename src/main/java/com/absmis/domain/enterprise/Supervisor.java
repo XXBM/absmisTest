@@ -1,5 +1,7 @@
-package com.absmis.domain.authority;
+package com.absmis.domain.enterprise;
 
+
+import com.absmis.domain.authority.User;
 
 /**
  * <!-- begin-user-doc -->

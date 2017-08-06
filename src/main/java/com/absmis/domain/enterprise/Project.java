@@ -2,6 +2,8 @@ package com.absmis.domain.enterprise;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.util.Calendar;
 
 
@@ -65,6 +67,13 @@ public class Project {
     @javax.persistence.JoinColumn(nullable = false)
     protected EstateOwner estateOwner;
 
+    @ManyToOne
+    @JoinColumn(name = "projectCategory_id")
+    private ProjectCategory projectCategory;
+
+    @ManyToOne
+    @JoinColumn(name = "projectState_id")
+    private ProjectState projectState;
 
     public Project() {
         super();
