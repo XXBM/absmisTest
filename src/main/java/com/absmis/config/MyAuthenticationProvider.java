@@ -30,6 +30,9 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
         String password = (String) authentication.getCredentials();
+
+        System.out.println("jjjjj");
+        System.out.println(username+password);
         CustomUserDetails user = (CustomUserDetails) customUserDetailsService.loadUserByUsername(username);
         if (user == null) {
             throw new BadCredentialsException(" 用户不存在");
