@@ -1,93 +1,34 @@
 package com.absmis.domain.enterprise;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.Set;
+
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
- * @generated
+ *
+ * @generated Industrialization
  */
- 
-@javax.persistence.Entity 
-public class SubUnitEn extends Organization
-{
 
-	private Double integralWall;
+@javax.persistence.Entity
+public class SubUnitEn extends Organization {
 
+    public SubUnitEn() {
+        super();
+    }
 
-	private Double integrativeExternalWall;
+    @JsonIgnore
+    @javax.persistence.OneToMany(mappedBy = "subUnitEn")
+    protected Set<SubUnitEnIndustrialization> subUnitEnIndustrializations;
 
-	private Double prebuiltStairs;
+    public Set<SubUnitEnIndustrialization> getSubUnitEnIndustrializations() {
+        return subUnitEnIndustrializations;
+    }
 
-
-	private Double integralKitchen;
-
-
-	private Double integralToilet;
-
-
-	private Double integralInteriorDecoration;
-
-
-	private Double structuralInsulatedDecorateIntegration;
-
-	public SubUnitEn(){
-		super();
-	}
-
-	public Double getIntegralWall() {
-		return integralWall;
-	}
-
-	public void setIntegralWall(Double integralWall) {
-		this.integralWall = integralWall;
-	}
-
-	public Double getIntegrativeExternalWall() {
-		return integrativeExternalWall;
-	}
-
-	public void setIntegrativeExternalWall(Double integrativeExternalWall) {
-		this.integrativeExternalWall = integrativeExternalWall;
-	}
-
-	public Double getPrebuiltStairs() {
-		return prebuiltStairs;
-	}
-
-	public void setPrebuiltStairs(Double prebuiltStairs) {
-		this.prebuiltStairs = prebuiltStairs;
-	}
-
-	public Double getIntegralKitchen() {
-		return integralKitchen;
-	}
-
-	public void setIntegralKitchen(Double integralKitchen) {
-		this.integralKitchen = integralKitchen;
-	}
-
-	public Double getIntegralToilet() {
-		return integralToilet;
-	}
-
-	public void setIntegralToilet(Double integralToilet) {
-		this.integralToilet = integralToilet;
-	}
-
-	public Double getIntegralInteriorDecoration() {
-		return integralInteriorDecoration;
-	}
-
-	public void setIntegralInteriorDecoration(Double integralInteriorDecoration) {
-		this.integralInteriorDecoration = integralInteriorDecoration;
-	}
-
-	public Double getStructuralInsulatedDecorateIntegration() {
-		return structuralInsulatedDecorateIntegration;
-	}
-
-	public void setStructuralInsulatedDecorateIntegration(Double structuralInsulatedDecorateIntegration) {
-		this.structuralInsulatedDecorateIntegration = structuralInsulatedDecorateIntegration;
-	}
+    public void setSubUnitEnIndustrializations(Set<SubUnitEnIndustrialization> subUnitEnIndustrializations) {
+        this.subUnitEnIndustrializations = subUnitEnIndustrializations;
+    }
 }
 

@@ -49,14 +49,15 @@ public class Project {
 
 
 
+    //??
     @javax.persistence.Column(nullable = false)
     protected String builder;
 
-
-
+    //??
     @javax.persistence.Column(nullable = false)
     protected String designer;
 
+    //??
     @javax.persistence.Column(nullable = false)
     protected String construction;
 

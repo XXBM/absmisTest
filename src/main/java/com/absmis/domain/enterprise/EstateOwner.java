@@ -12,7 +12,6 @@ import java.util.Set;
 @javax.persistence.Entity
 public class EstateOwner extends Organization
 {
-	 
 	@javax.persistence.OneToMany(mappedBy = "estateOwner") 
 	protected Set<Project> project;
 	public EstateOwner(){

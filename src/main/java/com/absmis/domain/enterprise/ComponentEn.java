@@ -1,60 +1,35 @@
 package com.absmis.domain.enterprise;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.Set;
+
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
  * @generated
+ * Industrialization
  */
  
 @javax.persistence.Entity 
 public class ComponentEn extends Organization
 {
 
-	private Double prebuiltConcrete;
-
-	private Double prebuiltSteel;
-
-
-	private Double prebuiltTimber;
-
-	private Double prebuiltOther;
-
+	@JsonIgnore
+	@javax.persistence.OneToMany(mappedBy = "componentEn")
+	private Set<ComponentEnIndustrialization> componentEnIndustrializations;
 
 	public ComponentEn(){
 		super();
 	}
 
-	public Double getPrebuiltConcrete() {
-		return prebuiltConcrete;
+	public Set<ComponentEnIndustrialization> getComponentEnIndustrializations() {
+		return componentEnIndustrializations;
 	}
 
-	public void setPrebuiltConcrete(Double prebuiltConcrete) {
-		this.prebuiltConcrete = prebuiltConcrete;
-	}
-
-	public Double getPrebuiltSteel() {
-		return prebuiltSteel;
-	}
-
-	public void setPrebuiltSteel(Double prebuiltSteel) {
-		this.prebuiltSteel = prebuiltSteel;
-	}
-
-	public Double getPrebuiltTimber() {
-		return prebuiltTimber;
-	}
-
-	public void setPrebuiltTimber(Double prebuiltTimber) {
-		this.prebuiltTimber = prebuiltTimber;
-	}
-
-	public Double getPrebuiltOther() {
-		return prebuiltOther;
-	}
-
-	public void setPrebuiltOther(double prebuiltOther) {
-		this.prebuiltOther = prebuiltOther;
+	public void setComponentEnIndustrializations(Set<ComponentEnIndustrialization> componentEnIndustrializations) {
+		this.componentEnIndustrializations = componentEnIndustrializations;
 	}
 }
 

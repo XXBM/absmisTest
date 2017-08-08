@@ -11,8 +11,8 @@ import javax.persistence.Embeddable;
  * <!--  end-user-doc  -->
  *
  * @generated
+ *
  */
-
 @Embeddable
 @DynamicInsert(true)
 @DynamicUpdate(true)

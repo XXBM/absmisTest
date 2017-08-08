@@ -1,50 +1,35 @@
 package com.absmis.domain.enterprise;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.Set;
+
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
- * @generated
+ *
+ * @generated Industrialization
  */
- 
-@javax.persistence.Entity 
-public class MachineryEn extends Organization
-{
 
-	private Double integralWall;
+@javax.persistence.Entity
+public class MachineryEn extends Organization {
 
 
-	private Double specialTransportEquipment;
+    @JsonIgnore
+    @javax.persistence.OneToMany(mappedBy = "machineryEn")
+    protected Set<MachineryEnIndustrialization> machineryEnIndustrializations;
 
+    public MachineryEn() {
+        super();
+    }
 
-	private Double specialConstructionEquipment;
+    public Set<MachineryEnIndustrialization> getMachineryEnIndustrializations() {
+        return machineryEnIndustrializations;
+    }
 
-	public MachineryEn(){
-		super();
-	}
-
-	public Double getIntegralWall() {
-		return integralWall;
-	}
-
-	public void setIntegralWall(Double integralWall) {
-		this.integralWall = integralWall;
-	}
-
-	public Double getSpecialTransportEquipment() {
-		return specialTransportEquipment;
-	}
-
-	public void setSpecialTransportEquipment(Double specialTransportEquipment) {
-		this.specialTransportEquipment = specialTransportEquipment;
-	}
-
-	public Double getSpecialConstructionEquipment() {
-		return specialConstructionEquipment;
-	}
-
-	public void setSpecialConstructionEquipment(double specialConstructionEquipment) {
-		this.specialConstructionEquipment = specialConstructionEquipment;
-	}
+    public void setMachineryEnIndustrializations(Set<MachineryEnIndustrialization> machineryEnIndustrializations) {
+        this.machineryEnIndustrializations = machineryEnIndustrializations;
+    }
 }
 

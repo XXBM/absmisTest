@@ -10,10 +10,14 @@ import javax.persistence.MappedSuperclass;
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
- *
  * @generated
+ *
+ * 企业与企业产业化信息
+ * 项目与项目产业化信息
+ * 单位工程与单位工程产业化信息
+ * 项目与项目进度信息
+ *
  */
-
 @MappedSuperclass
 @DynamicInsert(true)
 @DynamicUpdate(true)

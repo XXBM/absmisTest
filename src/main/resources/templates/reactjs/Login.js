@@ -44,6 +44,8 @@ class Login extends React.Component {
             }
         });
         let data = this.props.form.getFieldsValue();
+        console.log(e+"*****");
+        console.log(e[0]+"*---*");
         console.log(' form: ', data);
         //此处提交表单,但是这里还需要刷新页面下面的表格，这个还不知道怎么刷新
     }

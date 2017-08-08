@@ -1,11 +1,16 @@
 package com.absmis.domain.enterprise;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
+ *
+ * ConstructionEnIndustrialization
  *
  * @generated
  */
@@ -15,9 +20,10 @@ import javax.persistence.*;
 @DiscriminatorValue("ConstructionEn")
 public abstract class ConstructionEn extends Organization {
     protected Double cumulant;
-    protected Double currentConcrete;
-    protected Double currentSteel;
-    protected Double currentTimber;
+    @JsonIgnore
+    @javax.persistence.OneToMany(mappedBy = "constructionEn")
+    protected Set<ConstructionEnIndustrialization> componentEnIndustrializations;
+
     public ConstructionEn() {
         super();
     }
@@ -30,28 +36,12 @@ public abstract class ConstructionEn extends Organization {
         this.cumulant = cumulant;
     }
 
-    public Double getCurrentConcrete() {
-        return currentConcrete;
+    public Set<ConstructionEnIndustrialization> getComponentEnIndustrializations() {
+        return componentEnIndustrializations;
     }
 
-    public void setCurrentConcrete(Double currentConcrete) {
-        this.currentConcrete = currentConcrete;
-    }
-
-    public Double getCurrentSteel() {
-        return currentSteel;
-    }
-
-    public void setCurrentSteel(Double currentSteel) {
-        this.currentSteel = currentSteel;
-    }
-
-    public Double getCurrentTimber() {
-        return currentTimber;
-    }
-
-    public void setCurrentTimber(double currentTimber) {
-        this.currentTimber = currentTimber;
+    public void setComponentEnIndustrializations(Set<ConstructionEnIndustrialization> componentEnIndustrializations) {
+        this.componentEnIndustrializations = componentEnIndustrializations;
     }
 
     abstract String getQualificationDes();

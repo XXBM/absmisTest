@@ -36,9 +36,9 @@ public class ProjectIndustrialization
 	protected Double wallShadowArea;
 
 
-	 
-
 	protected Double constructionArea;
+
+	//应用建筑产业化技术内容
 
 
 	public ProjectIndustrialization(){
