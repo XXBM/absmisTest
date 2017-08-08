@@ -5,6 +5,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 
@@ -18,7 +19,7 @@ import java.util.Date;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @DynamicInsert(true)
 @DynamicUpdate(true)
-public abstract class User{
+public abstract class User implements Serializable {
     @Id
     @Column(nullable = false)
     protected Long id;
