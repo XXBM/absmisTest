@@ -1,6 +1,11 @@
 package com.absmis.domain.authority;
 
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 
@@ -13,27 +18,32 @@ import java.util.Set;
 
 @javax.persistence.Entity
 public class Resource implements Serializable {
-
-
     @javax.persistence.Id
     @javax.persistence.Column(nullable = false)
-    protected Long id;
+    private Long id;
+    private String text;
+    private String no;
+    /**
+     * 菜单路径
+     */
+    private String url;
+    /**
+     * 自关联
+     * 子类
+     */
 
-
-
-    @javax.persistence.Column(nullable = false)
-    protected String no;
-
-
-
-    @javax.persistence.Column(nullable = false)
-    protected String description;
-
-
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
+    private List<Resource> children;
+    /**
+     * JPA的自关联
+     * 父类
+     */
+    @ManyToOne
+    @JoinColumn(name = "parent_id")
+    private Resource parent;
 
     @javax.persistence.OneToMany(mappedBy = "resource")
-    protected Set<RoleAssResource> roleAssResource;
-
+    private Set<RoleAssResource> roleAssResource;
 
     public Resource() {
         super();
@@ -55,12 +65,36 @@ public class Resource implements Serializable {
         this.no = no;
     }
 
-    public String getDescription() {
-        return description;
+    public String getText() {
+        return text;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public List<Resource> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Resource> children) {
+        this.children = children;
+    }
+
+    public Resource getParent() {
+        return parent;
+    }
+
+    public void setParent(Resource parent) {
+        this.parent = parent;
     }
 
     public Set<RoleAssResource> getRoleAssResource() {

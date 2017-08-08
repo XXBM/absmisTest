@@ -3,54 +3,56 @@ package com.absmis.domain.enterprise;
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
- *     项目类别
+ * 项目类别
+ *
  * @generated
  */
- 
-@javax.persistence.Entity 
-public class ProjectCategory
-{
-	 
-	@javax.persistence.Id 
-	@javax.persistence.Column(nullable = false) 
-	protected Long id;
 
-	@javax.persistence.Column(nullable = false) 
-	protected String no;
+@javax.persistence.Entity
+public class ProjectCategory {
 
-	 
-	@javax.persistence.Column(nullable = false) 
-	protected String description;
+    @javax.persistence.Id
+    @javax.persistence.Column(nullable = false)
+    protected Long id;
 
-	public ProjectCategory(){
-		super();
-	}
-	public ProjectCategory(Long id){
-		this.id = id;
-	}
-	public Long getId() {
-		return id;
-	}
+    @javax.persistence.Column(nullable = false)
+    protected String no;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
 
-	public String getNo() {
-		return no;
-	}
+    @javax.persistence.Column(nullable = false)
+    protected String description;
 
-	public void setNo(String no) {
-		this.no = no;
-	}
+    public ProjectCategory() {
+        super();
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public ProjectCategory(Long id) {
+        this.id = id;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNo() {
+        return no;
+    }
+
+    public void setNo(String no) {
+        this.no = no;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
 }
 
