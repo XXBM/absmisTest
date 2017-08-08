@@ -1,5 +1,6 @@
 package com.absmis.domain.authority;
 
+import java.io.Serializable;
 import java.util.Set;
 
 
@@ -11,7 +12,7 @@ import java.util.Set;
  */
 
 @javax.persistence.Entity
-public class Resource {
+public class Resource implements Serializable {
 
 
     @javax.persistence.Id

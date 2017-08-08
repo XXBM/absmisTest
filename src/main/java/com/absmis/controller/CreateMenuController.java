@@ -6,8 +6,6 @@ import com.absmis.domain.authority.RoleAssResource;
 import com.absmis.domain.authority.User;
 import com.absmis.service.authority.RoleService;
 import com.absmis.service.authority.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +20,6 @@ import java.util.List;
  */
 @RestController
 public class CreateMenuController {
-    final Logger logger = LoggerFactory.getLogger(CreateMenuController.class);
     @Autowired
     private UserService userService;
     @Autowired
@@ -39,5 +36,4 @@ public class CreateMenuController {
         }
         return resources;
     }
-
 }

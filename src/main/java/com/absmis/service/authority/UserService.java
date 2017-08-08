@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class UserService extends BasicService<User,Integer> {
+public class UserService extends BasicService<User,Long> {
     @Autowired
     UserRepository userRepository;
 
