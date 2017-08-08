@@ -6,6 +6,7 @@ import com.absmis.domain.authority.User;
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
+ *     业务管理员
  *
  * @generated
  */

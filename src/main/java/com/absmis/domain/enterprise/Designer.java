@@ -6,6 +6,7 @@ import javax.persistence.DiscriminatorValue;
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
+ *     设计单位
  *
  * @generated
  */
@@ -14,11 +15,12 @@ import javax.persistence.DiscriminatorValue;
 @DiscriminatorValue("Designer")
 public class Designer extends ConstructionEn {
 
+    //资质证书编号
     @javax.persistence.Column(nullable = false)
-    protected String qualificationNo;
-
+    private String qualificationNo;
+    //资质
     @javax.persistence.Column(nullable = false)
-    protected String qualificationDes;
+    private String qualificationDes;
 
     public Designer() {
         super();

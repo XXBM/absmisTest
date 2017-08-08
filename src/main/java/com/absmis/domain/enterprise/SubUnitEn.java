@@ -8,8 +8,9 @@ import java.util.Set;
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
+ *     部品企业
  *
- * @generated Industrialization
+ * @generated
  */
 
 @javax.persistence.Entity
@@ -19,6 +20,7 @@ public class SubUnitEn extends Organization {
         super();
     }
 
+    //建筑产业化信息
     @JsonIgnore
     @javax.persistence.OneToMany(mappedBy = "subUnitEn")
     protected Set<SubUnitEnIndustrialization> subUnitEnIndustrializations;

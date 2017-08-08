@@ -17,21 +17,17 @@ public class SubUnitEnIndustrialization {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    //整体墙板
     private Double integralWall;
-
-
+    //结构保温装饰一体化外墙
     private Double integrativeExternalWall;
-
+    //预制楼梯
     private Double prebuiltStairs;
-
-
+    //整体厨房
     private Double integralKitchen;
-
-
+    //整体卫生间
     private Double integralToilet;
-
-
+    //整体内装体系
     private Double integralInteriorDecoration;
 
     @javax.persistence.ManyToOne

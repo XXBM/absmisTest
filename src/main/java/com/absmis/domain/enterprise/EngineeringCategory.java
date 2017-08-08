@@ -3,55 +3,55 @@ package com.absmis.domain.enterprise;
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
+ *
+ *     单位工程类别
+ *
  * @generated
  */
- 
-@javax.persistence.Entity 
-public class EngineeringCategory
-{
 
-	 
-	@javax.persistence.Id 
-	@javax.persistence.Column(nullable = false) 
-	protected Long id;
+@javax.persistence.Entity
+public class EngineeringCategory {
 
 
-	 
-	@javax.persistence.Column(nullable = false) 
-	protected String no;
+    @javax.persistence.Id
+    @javax.persistence.Column(nullable = false)
+    protected Long id;
 
 
-	 
-	@javax.persistence.Column(nullable = false) 
-	protected String description;
+    @javax.persistence.Column(nullable = false)
+    protected String no;
 
 
-	public EngineeringCategory(){
-		super();
-	}
+    @javax.persistence.Column(nullable = false)
+    protected String description;
 
-	public Long getId() {
-		return id;
-	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public EngineeringCategory() {
+        super();
+    }
 
-	public String getNo() {
-		return no;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setNo(String no) {
-		this.no = no;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getNo() {
+        return no;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setNo(String no) {
+        this.no = no;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
 

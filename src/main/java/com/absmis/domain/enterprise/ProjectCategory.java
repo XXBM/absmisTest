@@ -3,6 +3,7 @@ package com.absmis.domain.enterprise;
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
+ *     项目类别
  * @generated
  */
  

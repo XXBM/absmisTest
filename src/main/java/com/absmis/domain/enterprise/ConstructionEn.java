@@ -10,7 +10,7 @@ import java.util.Set;
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
  *
- * ConstructionEnIndustrialization
+ * 传统企业抽象
  *
  * @generated
  */
@@ -19,7 +19,9 @@ import java.util.Set;
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("ConstructionEn")
 public abstract class ConstructionEn extends Organization {
+    //本单位从事装配式建筑当前累计
     protected Double cumulant;
+    //建筑产业化信息
     @JsonIgnore
     @javax.persistence.OneToMany(mappedBy = "constructionEn")
     protected Set<ConstructionEnIndustrialization> componentEnIndustrializations;

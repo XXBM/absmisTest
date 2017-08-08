@@ -17,13 +17,11 @@ public class MachineryEnIndustrialization {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    //预制混凝土生产设备
     private Double integralWall;
-
-
+    //专用运输设备
     private Double specialTransportEquipment;
-
-
+    // 专用施工设备
     private Double specialConstructionEquipment;
 
     @javax.persistence.ManyToOne

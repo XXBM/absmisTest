@@ -16,9 +16,12 @@ public class ConstructionEnIndustrialization {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    protected Double addNewConcrete;
-    protected Double addNewSteel;
-    protected Double addNewTimber;
+    //新增装配式混凝土结构建筑的数量
+    private Double addNewConcrete;
+    //新增装配式钢结构建筑的数量
+    private Double addNewSteel;
+    // 新增装配式木建筑的数量
+    private Double addNewTimber;
 
 
     @javax.persistence.ManyToOne

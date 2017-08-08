@@ -9,13 +9,15 @@ import java.util.Set;
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
  *
- * @generated Industrialization
+ *     机具设备企业
+ *
+ * @generated
  */
 
 @javax.persistence.Entity
 public class MachineryEn extends Organization {
 
-
+    //建筑产业化信息
     @JsonIgnore
     @javax.persistence.OneToMany(mappedBy = "machineryEn")
     protected Set<MachineryEnIndustrialization> machineryEnIndustrializations;

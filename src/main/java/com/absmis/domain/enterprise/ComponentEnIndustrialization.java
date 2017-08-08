@@ -7,7 +7,7 @@ import javax.persistence.*;
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
  *
- * ConstructionEnIndustrialization
+ * 构件企业
  *
  * @generated
  */
@@ -16,20 +16,20 @@ public class ComponentEnIndustrialization {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Double cumulant;
-    private Double currentConcrete;
-    private Double currentSteel;
-    private Double currentTimber;
+    //预制装配混凝土结构
+    private Double prebuiltConcrete;
+    //钢结构
+    private Double prebuiltSteel;
+    //木结构
+    private Double prebuiltTimber;
+    //其他结构的构件
+    private Double prebuiltOther;
 
     @javax.persistence.ManyToOne
     @JoinColumn(name = "componentEn_id")
     private ComponentEn componentEn;
     public ComponentEnIndustrialization() {
         super();
-    }
-
-    public Double getCumulant() {
-        return cumulant;
     }
 
     public Long getId() {
@@ -40,36 +40,36 @@ public class ComponentEnIndustrialization {
         this.id = id;
     }
 
-    public void setCumulant(Double cumulant) {
-        this.cumulant = cumulant;
+    public Double getPrebuiltConcrete() {
+        return prebuiltConcrete;
     }
 
-    public Double getCurrentConcrete() {
-        return currentConcrete;
+    public void setPrebuiltConcrete(Double prebuiltConcrete) {
+        this.prebuiltConcrete = prebuiltConcrete;
     }
 
-    public void setCurrentConcrete(Double currentConcrete) {
-        this.currentConcrete = currentConcrete;
+    public Double getPrebuiltSteel() {
+        return prebuiltSteel;
     }
 
-    public Double getCurrentSteel() {
-        return currentSteel;
+    public void setPrebuiltSteel(Double prebuiltSteel) {
+        this.prebuiltSteel = prebuiltSteel;
     }
 
-    public void setCurrentSteel(Double currentSteel) {
-        this.currentSteel = currentSteel;
+    public Double getPrebuiltTimber() {
+        return prebuiltTimber;
     }
 
-    public Double getCurrentTimber() {
-        return currentTimber;
+    public void setPrebuiltTimber(Double prebuiltTimber) {
+        this.prebuiltTimber = prebuiltTimber;
     }
 
-    public void setCurrentTimber(double currentTimber) {
-        this.currentTimber = currentTimber;
+    public Double getPrebuiltOther() {
+        return prebuiltOther;
     }
 
-    public void setCurrentTimber(Double currentTimber) {
-        this.currentTimber = currentTimber;
+    public void setPrebuiltOther(Double prebuiltOther) {
+        this.prebuiltOther = prebuiltOther;
     }
 
     public ComponentEn getComponentEn() {

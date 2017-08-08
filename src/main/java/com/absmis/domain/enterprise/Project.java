@@ -12,77 +12,66 @@ import java.util.Set;
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
- *
+ *  项目
  * @generated
  */
 
 @javax.persistence.Entity
 public class Project {
-
     @javax.persistence.Id
     @javax.persistence.Column(nullable = false)
     protected Long id;
-
-
     @javax.persistence.Column(nullable = false)
+    //项目名称
     protected String name;
-
+    //项目填报时间
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     protected Calendar fillTime;
-
-
-
+    //项目建设地点
     @javax.persistence.Column(nullable = false)
     protected String site;
-
-
+    //用地规划许可证号
     @javax.persistence.Column(nullable = false)
     protected String licenseNo;
-
-
+    //单位工程数量
     protected Double unitEngineeringNum;
-
+    //总建筑面积
     protected Double totalConstructionArea;
-
+    //地上建筑面积
     protected Double overgroundConstructionArea;
-
-
-
-    //??
+    //施工单位
     @javax.persistence.Column(nullable = false)
     protected String builder;
-
-    //??
+    //设计单位
     @javax.persistence.Column(nullable = false)
     protected String designer;
-
-    //??
+    //建设单位
     @javax.persistence.Column(nullable = false)
     protected String construction;
-
-
+    //房地产企业
     @javax.persistence.ManyToOne
     @javax.persistence.JoinColumn(nullable = false)
     protected RealEstateEn realEstateEn;
-
+    //建设单位
     @javax.persistence.ManyToOne
     @javax.persistence.JoinColumn(nullable = false)
     protected EstateOwner estateOwner;
-
+    //项目类别
     @ManyToOne
     @JoinColumn(name = "projectCategory_id")
     private ProjectCategory projectCategory;
-
+    //项目状态
     @ManyToOne
     @JoinColumn(name = "projectState_id")
     private ProjectState projectState;
-
+    //项目产业化信息
     @Embedded
     private ProjectIndustrialization projectIndustrialization;
+    //项目计划信息
     @Embedded
     private Schedule schedule;
-
+    //单位工程
     @javax.persistence.OneToMany(mappedBy = "project")
     protected Set<UnitEngineering> unitEngineering;
 
