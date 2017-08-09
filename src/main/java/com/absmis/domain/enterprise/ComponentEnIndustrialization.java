@@ -16,14 +16,35 @@ public class ComponentEnIndustrialization {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    /*生产条数*/
     //预制装配混凝土结构
-    private Double prebuiltConcrete;
+    private Double prebuiltConcreteNum;
     //钢结构
-    private Double prebuiltSteel;
+    private Double prebuiltSteelNum;
     //木结构
-    private Double prebuiltTimber;
+    private Double prebuiltTimberNum;
     //其他结构的构件
-    private Double prebuiltOther;
+    private Double prebuiltOtherNum;
+
+    /*生产能力*/
+    //预制装配混凝土结构
+    private Double prebuiltConcreteAbility;
+    //钢结构
+    private Double prebuiltSteelAbility;
+    //木结构
+    private Double prebuiltTimberAbility;
+    //其他结构的构件
+    private Double prebuiltOtherAbility;
+
+    /*应用规模*/
+    //预制装配混凝土结构
+    private Double prebuiltConcreteScale;
+    //钢结构
+    private Double prebuiltSteelScale;
+    //木结构
+    private Double prebuiltTimberScale;
+    //其他结构的构件
+    private Double prebuiltOtherScale;
 
     @javax.persistence.ManyToOne
     @JoinColumn(name = "componentEn_id")
@@ -40,36 +61,100 @@ public class ComponentEnIndustrialization {
         this.id = id;
     }
 
-    public Double getPrebuiltConcrete() {
-        return prebuiltConcrete;
+    public Double getPrebuiltConcreteNum() {
+        return prebuiltConcreteNum;
     }
 
-    public void setPrebuiltConcrete(Double prebuiltConcrete) {
-        this.prebuiltConcrete = prebuiltConcrete;
+    public void setPrebuiltConcreteNum(Double prebuiltConcreteNum) {
+        this.prebuiltConcreteNum = prebuiltConcreteNum;
     }
 
-    public Double getPrebuiltSteel() {
-        return prebuiltSteel;
+    public Double getPrebuiltSteelNum() {
+        return prebuiltSteelNum;
     }
 
-    public void setPrebuiltSteel(Double prebuiltSteel) {
-        this.prebuiltSteel = prebuiltSteel;
+    public void setPrebuiltSteelNum(Double prebuiltSteelNum) {
+        this.prebuiltSteelNum = prebuiltSteelNum;
     }
 
-    public Double getPrebuiltTimber() {
-        return prebuiltTimber;
+    public Double getPrebuiltTimberNum() {
+        return prebuiltTimberNum;
     }
 
-    public void setPrebuiltTimber(Double prebuiltTimber) {
-        this.prebuiltTimber = prebuiltTimber;
+    public void setPrebuiltTimberNum(Double prebuiltTimberNum) {
+        this.prebuiltTimberNum = prebuiltTimberNum;
     }
 
-    public Double getPrebuiltOther() {
-        return prebuiltOther;
+    public Double getPrebuiltOtherNum() {
+        return prebuiltOtherNum;
     }
 
-    public void setPrebuiltOther(Double prebuiltOther) {
-        this.prebuiltOther = prebuiltOther;
+    public void setPrebuiltOtherNum(Double prebuiltOtherNum) {
+        this.prebuiltOtherNum = prebuiltOtherNum;
+    }
+
+    public Double getPrebuiltConcreteAbility() {
+        return prebuiltConcreteAbility;
+    }
+
+    public void setPrebuiltConcreteAbility(Double prebuiltConcreteAbility) {
+        this.prebuiltConcreteAbility = prebuiltConcreteAbility;
+    }
+
+    public Double getPrebuiltSteelAbility() {
+        return prebuiltSteelAbility;
+    }
+
+    public void setPrebuiltSteelAbility(Double prebuiltSteelAbility) {
+        this.prebuiltSteelAbility = prebuiltSteelAbility;
+    }
+
+    public Double getPrebuiltTimberAbility() {
+        return prebuiltTimberAbility;
+    }
+
+    public void setPrebuiltTimberAbility(Double prebuiltTimberAbility) {
+        this.prebuiltTimberAbility = prebuiltTimberAbility;
+    }
+
+    public Double getPrebuiltOtherAbility() {
+        return prebuiltOtherAbility;
+    }
+
+    public void setPrebuiltOtherAbility(Double prebuiltOtherAbility) {
+        this.prebuiltOtherAbility = prebuiltOtherAbility;
+    }
+
+    public Double getPrebuiltConcreteScale() {
+        return prebuiltConcreteScale;
+    }
+
+    public void setPrebuiltConcreteScale(Double prebuiltConcreteScale) {
+        this.prebuiltConcreteScale = prebuiltConcreteScale;
+    }
+
+    public Double getPrebuiltSteelScale() {
+        return prebuiltSteelScale;
+    }
+
+    public void setPrebuiltSteelScale(Double prebuiltSteelScale) {
+        this.prebuiltSteelScale = prebuiltSteelScale;
+    }
+
+    public Double getPrebuiltTimberScale() {
+        return prebuiltTimberScale;
+    }
+
+    public void setPrebuiltTimberScale(Double prebuiltTimberScale) {
+        this.prebuiltTimberScale = prebuiltTimberScale;
+    }
+
+    public Double getPrebuiltOtherScale() {
+        return prebuiltOtherScale;
+    }
+
+    public void setPrebuiltOtherScale(Double prebuiltOtherScale) {
+        this.prebuiltOtherScale = prebuiltOtherScale;
     }
 
     public ComponentEn getComponentEn() {

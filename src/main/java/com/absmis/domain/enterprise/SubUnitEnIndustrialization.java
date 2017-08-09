@@ -17,18 +17,47 @@ public class SubUnitEnIndustrialization {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    /*生产条数*/
     //整体墙板
-    private Double integralWall;
+    private Double integralWallNum;
     //结构保温装饰一体化外墙
-    private Double integrativeExternalWall;
+    private Double integrativeExternalWallNum;
     //预制楼梯
-    private Double prebuiltStairs;
+    private Double prebuiltStairsNum;
     //整体厨房
-    private Double integralKitchen;
+    private Double integralKitchenNum;
     //整体卫生间
-    private Double integralToilet;
+    private Double integralToiletNum;
     //整体内装体系
-    private Double integralInteriorDecoration;
+    private Double integralInteriorDecorationNum;
+
+    /*生产能力*/
+    //整体墙板
+    private Double integralWallAbility;
+    //结构保温装饰一体化外墙
+    private Double integrativeExternalWallAbility;
+    //预制楼梯
+    private Double prebuiltStairsAbility;
+    //整体厨房
+    private Double integralKitchenAbility;
+    //整体卫生间
+    private Double integralToiletAbility;
+    //整体内装体系
+    private Double integralInteriorDecorationAbility;
+
+    /*应用规模*/
+    //整体墙板
+    private Double integralWallScale;
+    //结构保温装饰一体化外墙
+    private Double integrativeExternalWallScale;
+    //预制楼梯
+    private Double prebuiltStairsScale;
+    //整体厨房
+    private Double integralKitchenScale;
+    //整体卫生间
+    private Double integralToiletScale;
+    //整体内装体系
+    private Double integralInteriorDecorationScale;
 
     @javax.persistence.ManyToOne
     @javax.persistence.JoinColumn(nullable = false)
@@ -48,52 +77,148 @@ public class SubUnitEnIndustrialization {
         super();
     }
 
-    public Double getIntegralWall() {
-        return integralWall;
+    public Double getIntegralWallNum() {
+        return integralWallNum;
     }
 
-    public void setIntegralWall(Double integralWall) {
-        this.integralWall = integralWall;
+    public void setIntegralWallNum(Double integralWallNum) {
+        this.integralWallNum = integralWallNum;
     }
 
-    public Double getIntegrativeExternalWall() {
-        return integrativeExternalWall;
+    public Double getIntegrativeExternalWallNum() {
+        return integrativeExternalWallNum;
     }
 
-    public void setIntegrativeExternalWall(Double integrativeExternalWall) {
-        this.integrativeExternalWall = integrativeExternalWall;
+    public void setIntegrativeExternalWallNum(Double integrativeExternalWallNum) {
+        this.integrativeExternalWallNum = integrativeExternalWallNum;
     }
 
-    public Double getPrebuiltStairs() {
-        return prebuiltStairs;
+    public Double getPrebuiltStairsNum() {
+        return prebuiltStairsNum;
     }
 
-    public void setPrebuiltStairs(Double prebuiltStairs) {
-        this.prebuiltStairs = prebuiltStairs;
+    public void setPrebuiltStairsNum(Double prebuiltStairsNum) {
+        this.prebuiltStairsNum = prebuiltStairsNum;
     }
 
-    public Double getIntegralKitchen() {
-        return integralKitchen;
+    public Double getIntegralKitchenNum() {
+        return integralKitchenNum;
     }
 
-    public void setIntegralKitchen(Double integralKitchen) {
-        this.integralKitchen = integralKitchen;
+    public void setIntegralKitchenNum(Double integralKitchenNum) {
+        this.integralKitchenNum = integralKitchenNum;
     }
 
-    public Double getIntegralToilet() {
-        return integralToilet;
+    public Double getIntegralToiletNum() {
+        return integralToiletNum;
     }
 
-    public void setIntegralToilet(Double integralToilet) {
-        this.integralToilet = integralToilet;
+    public void setIntegralToiletNum(Double integralToiletNum) {
+        this.integralToiletNum = integralToiletNum;
     }
 
-    public Double getIntegralInteriorDecoration() {
-        return integralInteriorDecoration;
+    public Double getIntegralInteriorDecorationNum() {
+        return integralInteriorDecorationNum;
     }
 
-    public void setIntegralInteriorDecoration(Double integralInteriorDecoration) {
-        this.integralInteriorDecoration = integralInteriorDecoration;
+    public void setIntegralInteriorDecorationNum(Double integralInteriorDecorationNum) {
+        this.integralInteriorDecorationNum = integralInteriorDecorationNum;
+    }
+
+    public Double getIntegralWallAbility() {
+        return integralWallAbility;
+    }
+
+    public void setIntegralWallAbility(Double integralWallAbility) {
+        this.integralWallAbility = integralWallAbility;
+    }
+
+    public Double getIntegrativeExternalWallAbility() {
+        return integrativeExternalWallAbility;
+    }
+
+    public void setIntegrativeExternalWallAbility(Double integrativeExternalWallAbility) {
+        this.integrativeExternalWallAbility = integrativeExternalWallAbility;
+    }
+
+    public Double getPrebuiltStairsAbility() {
+        return prebuiltStairsAbility;
+    }
+
+    public void setPrebuiltStairsAbility(Double prebuiltStairsAbility) {
+        this.prebuiltStairsAbility = prebuiltStairsAbility;
+    }
+
+    public Double getIntegralKitchenAbility() {
+        return integralKitchenAbility;
+    }
+
+    public void setIntegralKitchenAbility(Double integralKitchenAbility) {
+        this.integralKitchenAbility = integralKitchenAbility;
+    }
+
+    public Double getIntegralToiletAbility() {
+        return integralToiletAbility;
+    }
+
+    public void setIntegralToiletAbility(Double integralToiletAbility) {
+        this.integralToiletAbility = integralToiletAbility;
+    }
+
+    public Double getIntegralInteriorDecorationAbility() {
+        return integralInteriorDecorationAbility;
+    }
+
+    public void setIntegralInteriorDecorationAbility(Double integralInteriorDecorationAbility) {
+        this.integralInteriorDecorationAbility = integralInteriorDecorationAbility;
+    }
+
+    public Double getIntegralWallScale() {
+        return integralWallScale;
+    }
+
+    public void setIntegralWallScale(Double integralWallScale) {
+        this.integralWallScale = integralWallScale;
+    }
+
+    public Double getIntegrativeExternalWallScale() {
+        return integrativeExternalWallScale;
+    }
+
+    public void setIntegrativeExternalWallScale(Double integrativeExternalWallScale) {
+        this.integrativeExternalWallScale = integrativeExternalWallScale;
+    }
+
+    public Double getPrebuiltStairsScale() {
+        return prebuiltStairsScale;
+    }
+
+    public void setPrebuiltStairsScale(Double prebuiltStairsScale) {
+        this.prebuiltStairsScale = prebuiltStairsScale;
+    }
+
+    public Double getIntegralKitchenScale() {
+        return integralKitchenScale;
+    }
+
+    public void setIntegralKitchenScale(Double integralKitchenScale) {
+        this.integralKitchenScale = integralKitchenScale;
+    }
+
+    public Double getIntegralToiletScale() {
+        return integralToiletScale;
+    }
+
+    public void setIntegralToiletScale(Double integralToiletScale) {
+        this.integralToiletScale = integralToiletScale;
+    }
+
+    public Double getIntegralInteriorDecorationScale() {
+        return integralInteriorDecorationScale;
+    }
+
+    public void setIntegralInteriorDecorationScale(Double integralInteriorDecorationScale) {
+        this.integralInteriorDecorationScale = integralInteriorDecorationScale;
     }
 
     public Double getStructuralInsulatedDecorateIntegration() {

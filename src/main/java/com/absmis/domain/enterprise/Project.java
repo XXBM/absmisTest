@@ -70,7 +70,7 @@ public class Project {
     //项目产业化信息
     @Embedded
     private ProjectIndustrialization projectIndustrialization;
-    //TODO 项目计划信息
+    //项目计划信息
     @Embedded
     private Schedule schedule;
     //单位工程
