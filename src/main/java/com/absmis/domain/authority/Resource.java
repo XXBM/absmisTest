@@ -1,5 +1,7 @@
 package com.absmis.domain.authority;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.Set;
 
@@ -22,6 +24,7 @@ public class Resource implements Serializable {
      * 菜单路径
      */
     private String url;
+    @JsonIgnore
     @javax.persistence.OneToMany(mappedBy = "resource")
     private Set<RoleAssResource> roleAssResource;
 

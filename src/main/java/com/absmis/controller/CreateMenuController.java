@@ -28,12 +28,16 @@ public class CreateMenuController {
     public List<Resource> treelist() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User storedUser = userService.findByUsername(username);
+        System.out.println("------"+username);
         Role role = roleService.findOne(storedUser.getRole().getId());
+        System.out.println("------"+role.getDescription());
         List<RoleAssResource> roleAssResources = role.getRoleAssResource();
+        System.out.println("------"+roleAssResources.size());
         List<Resource> resources = new ArrayList<>();
         for (RoleAssResource roleAssResource : roleAssResources) {
            resources.add(roleAssResource.getResource());
         }
+        System.out.println("------"+resources.size());
         return resources;
     }
 }
