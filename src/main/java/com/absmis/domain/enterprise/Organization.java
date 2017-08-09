@@ -18,27 +18,16 @@ import javax.persistence.MappedSuperclass;
 @DynamicInsert(true)
 @DynamicUpdate(true)
 public abstract class Organization extends User {
-    @javax.persistence.Column(nullable = false)
     protected String creditCode;
-    @javax.persistence.Column(nullable = false)
     protected String organizationCode;
-    @javax.persistence.Column(nullable = false)
     protected String name;
-    @javax.persistence.Column(nullable = false)
     protected String city;
-    @javax.persistence.Column(nullable = false)
     protected String legalRepresentative;
-    @javax.persistence.Column(nullable = false)
     protected String contactPerson;
-    @javax.persistence.Column(nullable = false)
     protected String idNumber;
-    @javax.persistence.Column(nullable = false)
     protected String phoneNumber;
-    @javax.persistence.Column(nullable = false)
     protected String officePhone;
-    @javax.persistence.Column(nullable = false)
     protected String mailingAddress;
-    @javax.persistence.Column(nullable = false)
     protected String postalCode;
     public Organization() {
         super();
