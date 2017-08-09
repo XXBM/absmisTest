@@ -16,7 +16,7 @@ public class EstateOwner extends Organization {
 
     //项目
     @javax.persistence.OneToMany(mappedBy = "estateOwner")
-    protected Set<Project> project;
+    private Set<Project> project;
 
     public EstateOwner() {
         super();

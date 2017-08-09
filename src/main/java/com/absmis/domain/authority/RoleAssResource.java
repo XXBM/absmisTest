@@ -1,6 +1,8 @@
 package com.absmis.domain.authority;
 
 
+import javax.persistence.JoinColumn;
+
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
@@ -11,17 +13,13 @@ package com.absmis.domain.authority;
 @javax.persistence.Entity
 public class RoleAssResource {
     @javax.persistence.Id
-    @javax.persistence.Column(nullable = false)
-    protected Long id;
-
+    private Long id;
+    @JoinColumn(name = "role_id")
     @javax.persistence.ManyToOne
-    @javax.persistence.JoinColumn(nullable = false)
-    protected Role role;
-
-
+    private Role role;
+    @JoinColumn(name = "resource_id")
     @javax.persistence.ManyToOne
-    @javax.persistence.JoinColumn(nullable = false)
-    protected Resource resource;
+    private Resource resource;
 
     public RoleAssResource() {
         super();

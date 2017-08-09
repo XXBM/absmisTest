@@ -61,8 +61,8 @@ public class SubUnitEnIndustrialization {
 
 
     @javax.persistence.ManyToOne
-    @javax.persistence.JoinColumn(nullable = false)
-    protected SubUnitEn subUnitEn;
+    @javax.persistence.JoinColumn(name = "subUnitEn_id")
+    private SubUnitEn subUnitEn;
 
     public Long getId() {
         return id;

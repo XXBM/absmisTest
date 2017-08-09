@@ -15,14 +15,11 @@ import java.util.List;
 public class Role implements Serializable {
 
     @javax.persistence.Id
-    @javax.persistence.Column(nullable = false)
-    protected Long id;
-    @javax.persistence.Column(nullable = false)
-    protected String no;
-    @javax.persistence.Column(nullable = false)
-    protected String description;
+    private Long id;
+    private String no;
+    private String description;
     @javax.persistence.OneToMany(mappedBy = "role")
-    protected List<RoleAssResource> roleAssResource;
+    private List<RoleAssResource> roleAssResource;
 
 
     public Role() {

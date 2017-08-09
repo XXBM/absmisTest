@@ -13,15 +13,9 @@ package com.absmis.domain.enterprise;
 public class ProjectCategory {
 
     @javax.persistence.Id
-    @javax.persistence.Column(nullable = false)
-    protected Long id;
-
-    @javax.persistence.Column(nullable = false)
-    protected String no;
-
-
-    @javax.persistence.Column(nullable = false)
-    protected String description;
+    private Long id;
+    private String no;
+    private String description;
 
     public ProjectCategory() {
         super();

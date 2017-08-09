@@ -1,5 +1,7 @@
 package com.absmis.domain.enterprise;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.DiscriminatorValue;
 import java.util.Set;
 
@@ -16,16 +18,15 @@ import java.util.Set;
 @DiscriminatorValue("RealEstateEn")
 public class RealEstateEn extends ConstructionEn {
 	 //资质证书编号
-    @javax.persistence.Column(nullable = false)
-    protected String qualificationNo;
+    private String qualificationNo;
     //资质
-    @javax.persistence.Column(nullable = false)
-    protected String qualificationDes;
+    private String qualificationDes;
 
 
     //项目
+    @JsonIgnore
     @javax.persistence.OneToMany(mappedBy = "realEstateEn")
-    protected Set<Project> project;
+    private Set<Project> project;
 
     public RealEstateEn() {
         super();

@@ -13,14 +13,11 @@ public class ApplicationStructureType {
 
 
     @javax.persistence.Id
-    @javax.persistence.Column(nullable = false)
-    protected Long id;
+    private Long id;
 
-    @javax.persistence.Column(nullable = false)
-    protected String no;
+    private String no;
 
-    @javax.persistence.Column(nullable = false)
-    protected String description;
+    private String description;
 
     public ApplicationStructureType() {
         super();

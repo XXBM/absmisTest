@@ -1,6 +1,7 @@
 package com.absmis.domain.enterprise;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Embedded;
 import javax.persistence.JoinColumn;
@@ -19,44 +20,37 @@ import java.util.Set;
 @javax.persistence.Entity
 public class Project {
     @javax.persistence.Id
-    @javax.persistence.Column(nullable = false)
-    protected Long id;
-    @javax.persistence.Column(nullable = false)
+    private Long id;
     //项目名称
-    protected String name;
+    private String name;
     //项目填报时间
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
-    protected Calendar fillTime;
+    private Calendar fillTime;
     //项目建设地点
-    @javax.persistence.Column(nullable = false)
-    protected String site;
+    private String site;
     //用地规划许可证号
-    @javax.persistence.Column(nullable = false)
-    protected String licenseNo;
+    private String licenseNo;
     //单位工程数量
-    protected Double unitEngineeringNum;
+    private Double unitEngineeringNum;
     //总建筑面积
-    protected Double totalConstructionArea;
+    private Double totalConstructionArea;
     //地上建筑面积
-    protected Double overgroundConstructionArea;
+    private Double overgroundConstructionArea;
     //施工单位
-    @javax.persistence.Column(nullable = false)
-    protected String builder;
+    private String builder;
     //设计单位
-    @javax.persistence.Column(nullable = false)
-    protected String designer;
+    private String designer;
     //建设单位
-    @javax.persistence.Column(nullable = false)
-    protected String construction;
+    private String construction;
     //房地产企业
     @javax.persistence.ManyToOne
-    @javax.persistence.JoinColumn(nullable = false)
-    protected RealEstateEn realEstateEn;
+    @javax.persistence.JoinColumn(name = "realEstateEn_id")
+    private RealEstateEn realEstateEn;
     //建设单位
     @javax.persistence.ManyToOne
-    @javax.persistence.JoinColumn(nullable = false)
-    protected EstateOwner estateOwner;
+    @javax.persistence.JoinColumn(name = "estateOwner_id")
+    private EstateOwner estateOwner;
     //项目类别
     @ManyToOne
     @JoinColumn(name = "projectCategory_id")
@@ -75,8 +69,9 @@ public class Project {
     @Embedded
     private Schedule schedule;
     //单位工程
+    @JsonIgnore
     @javax.persistence.OneToMany(mappedBy = "project")
-    protected Set<UnitEngineering> unitEngineering;
+    private Set<UnitEngineering> unitEngineering;
 
     public Project() {
         super();

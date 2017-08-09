@@ -27,46 +27,32 @@ public class Schedule {
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     private Date endTime;
     //取得土地使用权开始时间
-    @javax.persistence.Column(nullable = false)
     private String landUseRightStart;
     //取得土地使用权结束时间
-    @javax.persistence.Column(nullable = false)
     private String landUseRightEnd;
     //建设用地规划许可证开始时间
-    @javax.persistence.Column(nullable = false)
     private String constructionLicenseStart;
     //建设用地规划许可证结束时间
-    @javax.persistence.Column(nullable = false)
     private String constructionLicenseEnd;
     //建设工程规划许可证开始时间
-    @javax.persistence.Column(nullable = false)
     private String engineeringLicenseStart;
     //建设工程规划许可证结束时间
-    @javax.persistence.Column(nullable = false)
     private String engineeringLicenseEnd;
     //组织工程招标及工程施工开始时间
-    @javax.persistence.Column(nullable = false)
     private String tenderStart;
     //组织工程招标及工程施工结束时间
-    @javax.persistence.Column(nullable = false)
     private String tenderEnd;
     //项目综合验收开始时间
-    @javax.persistence.Column(nullable = false)
     private String comprehensiveInspectionAndAcceptanceStart;
     //项目综合验收结束时间
-    @javax.persistence.Column(nullable = false)
     private String comprehensiveInspectionAndAcceptanceEnd;
     //项目交付使用开始时间
-    @javax.persistence.Column(nullable = false)
     private String deliveryStart;
     //项目交付使用结束时间
-    @javax.persistence.Column(nullable = false)
     private String deliveryEnd;
     //施工图设计及审查开始时间
-    @javax.persistence.Column(nullable = false)
     private String constructionDrawingStart;
     //施工图设计及审查结束时间
-    @javax.persistence.Column(nullable = false)
     private String constructionDrawingEnd;
 
     public Schedule() {

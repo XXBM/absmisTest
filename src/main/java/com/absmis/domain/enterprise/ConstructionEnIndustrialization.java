@@ -25,8 +25,8 @@ public class ConstructionEnIndustrialization {
 
 
     @javax.persistence.ManyToOne
-    @javax.persistence.JoinColumn(nullable = false)
-    protected ConstructionEn constructionEn;
+    @javax.persistence.JoinColumn(name = "constructionEn_id")
+    private ConstructionEn constructionEn;
     public ConstructionEnIndustrialization() {
         super();
     }

@@ -12,9 +12,9 @@ public class StructureForm
 {
 
 	@javax.persistence.Id
-	protected Long id;
-	protected String no;
-	protected String description;
+	private Long id;
+	private String no;
+	private String description;
 
 
 	public StructureForm(){

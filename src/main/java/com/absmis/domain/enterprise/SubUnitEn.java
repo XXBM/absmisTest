@@ -24,7 +24,7 @@ public class SubUnitEn extends Organization {
     //建筑产业化信息
     @JsonIgnore
     @javax.persistence.OneToMany(mappedBy = "subUnitEn")
-    protected Set<SubUnitEnIndustrialization> subUnitEnIndustrializations;
+    private Set<SubUnitEnIndustrialization> subUnitEnIndustrializations;
 
     public Set<SubUnitEnIndustrialization> getSubUnitEnIndustrializations() {
         return subUnitEnIndustrializations;

@@ -20,17 +20,17 @@ import javax.persistence.Embedded;
 @DynamicUpdate(true)
 public class ProjectIndustrialization {
     //应用产业化技术的建筑面积
-    protected Double industrializedTechnologyArea;
+    private Double industrializedTechnologyArea;
     //落实产业化技术的面积比例
-    protected Double industrializedTechnologyAreaRatio;
+    private Double industrializedTechnologyAreaRatio;
     //建筑单体装配率（≥45%）
-    protected Double unitAssemblyRate;
+    private Double unitAssemblyRate;
     //建筑外墙采用预制墙体的比例（≥60%）
-    protected Double wall;
+    private Double wall;
     //各单体预制外墙水平投影总面积
-    protected Double wallShadowArea;
+    private Double wallShadowArea;
     //不纳入地上容积率的建筑面积
-    protected Double constructionArea;
+    private Double constructionArea;
     //TODO 应用建筑产业化技术内容
     @Embedded
     private ApplicationTechnology applicationTechnology;

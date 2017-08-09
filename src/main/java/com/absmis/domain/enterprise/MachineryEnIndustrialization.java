@@ -26,8 +26,8 @@ public class MachineryEnIndustrialization {
     private Double specialConstructionEquipment;
 
     @javax.persistence.ManyToOne
-    @javax.persistence.JoinColumn(nullable = false)
-    protected MachineryEn machineryEn;
+    @javax.persistence.JoinColumn(name = "machineryEn_id")
+    private MachineryEn machineryEn;
 
     public MachineryEnIndustrialization() {
         super();

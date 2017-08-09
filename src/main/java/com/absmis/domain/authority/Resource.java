@@ -16,7 +16,6 @@ import java.util.Set;
 @javax.persistence.Entity
 public class Resource implements Serializable {
     @javax.persistence.Id
-    @javax.persistence.Column(nullable = false)
     private Long id;
     private String text;
     private String no;

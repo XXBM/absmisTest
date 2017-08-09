@@ -21,23 +21,21 @@ import javax.persistence.JoinColumn;
 public class EngineeringIndustrialization {
 
     //单体装配率
-    protected Double unitAssemblyRate;
+    private Double unitAssemblyRate;
     //外墙预制比例应用产业化技术的建筑面积
-    protected Double exteriorWallArea;
+    private Double exteriorWallArea;
     //预制外墙水平投影面积
-    protected Double wallShadowArea;
+    private Double wallShadowArea;
     //不纳入地上容积率的建筑面积
-    protected Double conArea;
+    private Double conArea;
     //应用结构类型
     @javax.persistence.ManyToOne
     @JoinColumn(name = "structureForm_id")
-    protected ApplicationStructureType applicationStructureType;
+    private ApplicationStructureType applicationStructureType;
     // 应用构件部品
-    @javax.persistence.Column(nullable = false)
-    protected String subUnit;
+    private String subUnit;
     //应用楼层范围
-    @javax.persistence.Column(nullable = false)
-    protected String floorScope;
+    private String floorScope;
     public EngineeringIndustrialization() {
         super();
     }

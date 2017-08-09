@@ -21,7 +21,7 @@ public class MachineryEn extends Organization {
     //建筑产业化信息
     @JsonIgnore
     @javax.persistence.OneToMany(mappedBy = "machineryEn")
-    protected Set<MachineryEnIndustrialization> machineryEnIndustrializations;
+    private Set<MachineryEnIndustrialization> machineryEnIndustrializations;
 
     public MachineryEn() {
         super();

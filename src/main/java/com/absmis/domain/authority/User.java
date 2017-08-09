@@ -21,16 +21,12 @@ import java.util.Date;
 @DynamicUpdate(true)
 public abstract class User implements Serializable {
     @Id
-    @Column(nullable = false)
     protected Long id;
-    @Column(nullable = false)
     protected String username;
-    @Column(nullable = false)
     protected String password;
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     protected Date lastLogin;
-    @Column(nullable = false)
     protected int loginCounter;
     @ManyToOne
     @JoinColumn(name = "role_id")
