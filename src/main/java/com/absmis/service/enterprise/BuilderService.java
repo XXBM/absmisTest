@@ -23,8 +23,8 @@ public class BuilderService extends BasicService<Builder, Long> {
     }
 
     /*修改*/
-    public void updateBuilder(Builder componentEn){
-        this.builderRepository.saveAndFlush(componentEn);}
+    public void updateBuilder(Builder builder){
+        this.builderRepository.saveAndFlush(builder);}
 
     /*findById*/
     public Builder findById(Long id){

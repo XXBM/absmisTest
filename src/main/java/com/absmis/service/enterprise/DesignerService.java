@@ -23,8 +23,8 @@ public class DesignerService extends BasicService<Designer, Long> {
     }
 
     /*修改*/
-    public void updateDesigner(Designer componentEn){
-        this.designerRepository.saveAndFlush(componentEn);}
+    public void updateDesigner(Designer designer){
+        this.designerRepository.saveAndFlush(designer);}
 
     /*findById*/
     public Designer findById(Long id){
