@@ -47,7 +47,7 @@ public abstract class ConstructionEn extends Organization {
         this.componentEnIndustrializations = componentEnIndustrializations;
     }
 
-    abstract String getQualificationDes();
+    abstract String getQualification();
 
 }
 

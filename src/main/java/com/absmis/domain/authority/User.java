@@ -21,6 +21,7 @@ import java.util.Date;
 @DynamicUpdate(true)
 public abstract class User implements Serializable {
     @Id
+    @GeneratedValue(strategy=GenerationType.TABLE)
     protected Long id;
     protected String username;
     protected String password;

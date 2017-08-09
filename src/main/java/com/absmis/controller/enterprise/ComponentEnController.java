@@ -40,7 +40,7 @@ public class ComponentEnController {
 
 
     //实现分页
-    @RequestMapping(value = "/displayAll", method = RequestMethod.GET)
+    @RequestMapping(value = "/displayAllComponentEn", method = RequestMethod.GET)
     public Map<String, java.lang.Object> findAllComponentEn(@RequestParam(value = "page") Integer page, @RequestParam(value = "rows") Integer size)throws Exception {
         Page<ComponentEn> list = this.componentEnService.findAllT(new PageRequest(page - 1, size));
         Map<String, java.lang.Object> map = new HashMap<String, java.lang.Object>();

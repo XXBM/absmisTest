@@ -2,6 +2,8 @@ package com.absmis.domain.enterprise;
 
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,15 +16,23 @@ import javax.persistence.DiscriminatorValue;
 @javax.persistence.Entity
 @DiscriminatorValue("Designer")
 public class Designer extends ConstructionEn {
-
-
     //资质证书编号
+    @javax.persistence.Column(nullable = false)
     private String qualificationNo;
     //资质
-    private String qualificationDes;
+//    @javax.persistence.Column(nullable = false)
+//    private String qualificationDes;
+    @JoinColumn(name = "designerCertification_id")
+    @ManyToOne
+    private DesignerCertification designerCertification;
 
     public Designer() {
         super();
+    }
+
+    @Override
+    String getQualification() {
+        return null;
     }
 
     public String getQualificationNo() {
@@ -33,12 +43,12 @@ public class Designer extends ConstructionEn {
         this.qualificationNo = qualificationNo;
     }
 
-    public String getQualificationDes() {
-        return qualificationDes;
+    public DesignerCertification getDesignerCertification() {
+        return designerCertification;
     }
 
-    public void setQualificationDes(String qualificationDes) {
-        this.qualificationDes = qualificationDes;
+    public void setDesignerCertification(DesignerCertification designerCertification) {
+        this.designerCertification = designerCertification;
     }
 }
 

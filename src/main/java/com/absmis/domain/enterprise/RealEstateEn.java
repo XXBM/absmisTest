@@ -32,6 +32,11 @@ public class RealEstateEn extends ConstructionEn {
         super();
     }
 
+    @Override
+    String getQualification() {
+        return null;
+    }
+
     public String getQualificationNo() {
         return qualificationNo;
     }
