@@ -1,11 +1,6 @@
 package com.absmis.domain.authority;
 
-import javax.persistence.CascadeType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Set;
 
 
@@ -27,21 +22,6 @@ public class Resource implements Serializable {
      * 菜单路径
      */
     private String url;
-    /**
-     * 自关联
-     * 子类
-     */
-
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
-    private List<Resource> children;
-    /**
-     * JPA的自关联
-     * 父类
-     */
-    @ManyToOne
-    @JoinColumn(name = "parent_id")
-    private Resource parent;
-
     @javax.persistence.OneToMany(mappedBy = "resource")
     private Set<RoleAssResource> roleAssResource;
 
@@ -79,22 +59,6 @@ public class Resource implements Serializable {
 
     public void setUrl(String url) {
         this.url = url;
-    }
-
-    public List<Resource> getChildren() {
-        return children;
-    }
-
-    public void setChildren(List<Resource> children) {
-        this.children = children;
-    }
-
-    public Resource getParent() {
-        return parent;
-    }
-
-    public void setParent(Resource parent) {
-        this.parent = parent;
     }
 
     public Set<RoleAssResource> getRoleAssResource() {

@@ -28,7 +28,7 @@ public class UnitEngineering {
     protected Double overgroundNum;
     //工程类别
     protected String engineeringCategory;
-    //工程结构形式
+    //单位工程结构形式
     @javax.persistence.ManyToOne
     @JoinColumn(name = "structure_id")
     private StructureForm structureForm;
