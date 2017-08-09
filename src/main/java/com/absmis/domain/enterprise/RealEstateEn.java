@@ -3,6 +3,8 @@ package com.absmis.domain.enterprise;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.util.Set;
 
 
@@ -20,9 +22,10 @@ public class RealEstateEn extends ConstructionEn {
 	 //资质证书编号
     private String qualificationNo;
     //资质
-    private String qualificationDes;
-
-
+    //private String qualificationDes;
+    @JoinColumn(name = "estateEnCertification_id")
+    @ManyToOne
+    private RealEstateEnCertification estateEnCertification;
     //项目
     @JsonIgnore
     @javax.persistence.OneToMany(mappedBy = "realEstateEn")
@@ -45,12 +48,12 @@ public class RealEstateEn extends ConstructionEn {
         this.qualificationNo = qualificationNo;
     }
 
-    public String getQualificationDes() {
-        return qualificationDes;
+    public RealEstateEnCertification getEstateEnCertification() {
+        return estateEnCertification;
     }
 
-    public void setQualificationDes(String qualificationDes) {
-        this.qualificationDes = qualificationDes;
+    public void setEstateEnCertification(RealEstateEnCertification estateEnCertification) {
+        this.estateEnCertification = estateEnCertification;
     }
 
     public Set<Project> getProject() {

@@ -2,6 +2,8 @@ package com.absmis.domain.enterprise;
 
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,7 +19,11 @@ public class Builder extends ConstructionEn {
     //资质证书编号
     private String qualificationNo;
     //资质
-    private String qualificationDes;
+    //private String qualificationDes;
+
+    @JoinColumn(name = "builderCertification_id")
+    @ManyToOne
+    private BuilderCertification builderCertification;
 
 
     public Builder() {
@@ -37,12 +43,12 @@ public class Builder extends ConstructionEn {
         this.qualificationNo = qualificationNo;
     }
 
-    public String getQualificationDes() {
-        return qualificationDes;
+    public BuilderCertification getBuilderCertification() {
+        return builderCertification;
     }
 
-    public void setQualificationDes(String qualificationDes) {
-        this.qualificationDes = qualificationDes;
+    public void setBuilderCertification(BuilderCertification builderCertification) {
+        this.builderCertification = builderCertification;
     }
 }
 
