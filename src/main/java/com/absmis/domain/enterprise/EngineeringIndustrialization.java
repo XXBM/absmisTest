@@ -5,6 +5,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,8 +28,9 @@ public class EngineeringIndustrialization {
     //不纳入地上容积率的建筑面积
     protected Double conArea;
     //应用结构类型
-    @javax.persistence.Column(nullable = false)
-    protected String component;
+    @javax.persistence.ManyToOne
+    @JoinColumn(name = "structureForm_id")
+    protected ApplicationStructureType applicationStructureType;
     // 应用构件部品
     @javax.persistence.Column(nullable = false)
     protected String subUnit;
@@ -71,12 +73,12 @@ public class EngineeringIndustrialization {
         this.conArea = conArea;
     }
 
-    public String getComponent() {
-        return component;
+    public ApplicationStructureType getApplicationStructureType() {
+        return applicationStructureType;
     }
 
-    public void setComponent(String component) {
-        this.component = component;
+    public void setApplicationStructureType(ApplicationStructureType applicationStructureType) {
+        this.applicationStructureType = applicationStructureType;
     }
 
     public String getSubUnit() {

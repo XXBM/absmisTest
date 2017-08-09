@@ -65,10 +65,12 @@ public class Project {
     @ManyToOne
     @JoinColumn(name = "projectState_id")
     private ProjectState projectState;
+    //TODO 结构形式
+
     //项目产业化信息
     @Embedded
     private ProjectIndustrialization projectIndustrialization;
-    //项目计划信息
+    //TODO 项目计划信息
     @Embedded
     private Schedule schedule;
     //单位工程

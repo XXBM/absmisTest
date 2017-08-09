@@ -3,30 +3,25 @@ package com.absmis.domain.enterprise;
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
- *
- *     单位工程类别
+ *     单位工程产业化信息应用结构类型
  *
  * @generated
  */
 
 @javax.persistence.Entity
-public class EngineeringCategory {
-
+public class ApplicationStructureType {
 
     @javax.persistence.Id
     @javax.persistence.Column(nullable = false)
     protected Long id;
 
-
     @javax.persistence.Column(nullable = false)
     protected String no;
-
 
     @javax.persistence.Column(nullable = false)
     protected String description;
 
-
-    public EngineeringCategory() {
+    public ApplicationStructureType() {
         super();
     }
 
@@ -53,5 +48,6 @@ public class EngineeringCategory {
     public void setDescription(String description) {
         this.description = description;
     }
+
 }
 

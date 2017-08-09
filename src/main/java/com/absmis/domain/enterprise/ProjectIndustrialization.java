@@ -30,7 +30,7 @@ public class ProjectIndustrialization {
     protected Double wallShadowArea;
     //不纳入地上容积率的建筑面积
     protected Double constructionArea;
-    //应用建筑产业化技术内容
+    //TODO 应用建筑产业化技术内容
     public ProjectIndustrialization() {
         super();
     }

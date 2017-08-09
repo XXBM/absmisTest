@@ -67,7 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login1")
+                .loginPage("/login")
                 .successForwardUrl("/index")
 //                登录失败转发
                 //.failureForwardUrl("/login?error=true")

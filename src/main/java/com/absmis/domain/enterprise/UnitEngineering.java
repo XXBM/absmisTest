@@ -27,11 +27,9 @@ public class UnitEngineering {
     //地下层数
     protected Double overgroundNum;
     //工程类别
-    @javax.persistence.ManyToOne
-    @JoinColumn(name = "engineeringCategory_id")
-    protected EngineeringCategory engineeringCategory;
-    @javax.persistence.ManyToOne
+    protected String engineeringCategory;
     //工程结构形式
+    @javax.persistence.ManyToOne
     @JoinColumn(name = "structureForm_id")
     protected StructureForm structureForm;
     //项目
@@ -88,11 +86,11 @@ public class UnitEngineering {
         this.overgroundNum = overgroundNum;
     }
 
-    public EngineeringCategory getEngineeringCategory() {
+    public String getEngineeringCategory() {
         return engineeringCategory;
     }
 
-    public void setEngineeringCategory(EngineeringCategory engineeringCategory) {
+    public void setEngineeringCategory(String engineeringCategory) {
         this.engineeringCategory = engineeringCategory;
     }
 
