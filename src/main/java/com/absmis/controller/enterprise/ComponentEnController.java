@@ -22,7 +22,7 @@ public class ComponentEnController {
 
     //添加一个新的学院  完成 增
     @RequestMapping(value = "/addComponentEn", method = RequestMethod.POST)
-    public Map<String, Object> addDepartment(@RequestBody ComponentEn componentEn)throws Exception {
+    public Map<String, Object> addComponentEn(@RequestBody ComponentEn componentEn)throws Exception {
         this.componentEnService.addComponentEn(componentEn);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("componentEn", componentEn);
