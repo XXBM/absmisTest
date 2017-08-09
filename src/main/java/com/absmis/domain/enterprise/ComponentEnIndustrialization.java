@@ -65,6 +65,7 @@ public class ComponentEnIndustrialization {
         return prebuiltConcreteNum;
     }
 
+
     public void setPrebuiltConcreteNum(Double prebuiltConcreteNum) {
         this.prebuiltConcreteNum = prebuiltConcreteNum;
     }

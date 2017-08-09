@@ -36,6 +36,7 @@ public class ApplicationTechnology {
     @JoinColumn(name = "applicationTechnology_id")
     private List<ShearWall> shearWalls;
 
+
     public ApplicationTechnology() {
         super();
     }

@@ -14,6 +14,7 @@ import com.absmis.domain.authority.User;
 @javax.persistence.Entity
 public class Supervisor extends User {
 
+
     public Supervisor() {
         super();
     }

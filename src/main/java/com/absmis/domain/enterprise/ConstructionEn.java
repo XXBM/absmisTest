@@ -26,6 +26,7 @@ public abstract class ConstructionEn extends Organization {
     @javax.persistence.OneToMany(mappedBy = "constructionEn")
     protected Set<ConstructionEnIndustrialization> componentEnIndustrializations;
 
+
     public ConstructionEn() {
         super();
     }

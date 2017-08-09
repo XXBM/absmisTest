@@ -59,6 +59,7 @@ public class SubUnitEnIndustrialization {
     //整体内装体系
     private Double integralInteriorDecorationScale;
 
+
     @javax.persistence.ManyToOne
     @javax.persistence.JoinColumn(nullable = false)
     protected SubUnitEn subUnitEn;

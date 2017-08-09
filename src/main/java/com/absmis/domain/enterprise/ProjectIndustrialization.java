@@ -35,6 +35,7 @@ public class ProjectIndustrialization {
     @Embedded
     private ApplicationTechnology applicationTechnology;
 
+
     public ProjectIndustrialization() {
         super();
     }

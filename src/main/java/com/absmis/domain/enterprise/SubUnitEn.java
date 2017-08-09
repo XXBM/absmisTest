@@ -16,6 +16,7 @@ import java.util.Set;
 @javax.persistence.Entity
 public class SubUnitEn extends Organization {
 
+
     public SubUnitEn() {
         super();
     }

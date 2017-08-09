@@ -22,6 +22,7 @@ public class RealEstateEn extends ConstructionEn {
     @javax.persistence.Column(nullable = false)
     protected String qualificationDes;
 
+
     //项目
     @javax.persistence.OneToMany(mappedBy = "realEstateEn")
     protected Set<Project> project;

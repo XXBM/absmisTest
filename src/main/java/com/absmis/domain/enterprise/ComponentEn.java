@@ -27,6 +27,7 @@ public class ComponentEn extends Organization {
         return componentEnIndustrializations;
     }
 
+
     public void setComponentEnIndustrializations(Set<ComponentEnIndustrialization> componentEnIndustrializations) {
         this.componentEnIndustrializations = componentEnIndustrializations;
     }

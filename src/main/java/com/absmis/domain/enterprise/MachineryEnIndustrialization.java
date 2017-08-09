@@ -14,6 +14,7 @@ import javax.persistence.Id;
 
 @javax.persistence.Entity
 public class MachineryEnIndustrialization {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

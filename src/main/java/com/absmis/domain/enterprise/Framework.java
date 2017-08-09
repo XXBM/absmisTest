@@ -15,6 +15,7 @@ public class Framework {
     @javax.persistence.Column(nullable = false)
     protected Long id;
 
+
     @javax.persistence.Column(nullable = false)
     protected String no;
 

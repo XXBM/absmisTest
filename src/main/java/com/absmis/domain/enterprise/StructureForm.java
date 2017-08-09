@@ -10,6 +10,7 @@ package com.absmis.domain.enterprise;
 @javax.persistence.Entity 
 public class StructureForm
 {
+
 	@javax.persistence.Id
 	protected Long id;
 	protected String no;

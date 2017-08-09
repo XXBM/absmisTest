@@ -17,6 +17,7 @@ import java.util.Set;
 @javax.persistence.Entity
 public class MachineryEn extends Organization {
 
+
     //建筑产业化信息
     @JsonIgnore
     @javax.persistence.OneToMany(mappedBy = "machineryEn")

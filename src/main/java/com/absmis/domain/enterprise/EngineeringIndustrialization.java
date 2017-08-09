@@ -19,6 +19,7 @@ import javax.persistence.JoinColumn;
 @DynamicInsert(true)
 @DynamicUpdate(true)
 public class EngineeringIndustrialization {
+
     //单体装配率
     protected Double unitAssemblyRate;
     //外墙预制比例应用产业化技术的建筑面积

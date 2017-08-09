@@ -5,6 +5,7 @@ package com.absmis.domain.enterprise;
  * <!--  end-user-doc  -->
  * 项目类别
  *
+ *
  * @generated
  */
 

@@ -48,6 +48,7 @@ public abstract class Organization extends User {
         return creditCode;
     }
 
+
     public void setCreditCode(String creditCode) {
         this.creditCode = creditCode;
     }

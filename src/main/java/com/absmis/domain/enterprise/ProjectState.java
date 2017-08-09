@@ -11,6 +11,7 @@ package com.absmis.domain.enterprise;
 @javax.persistence.Entity
 public class ProjectState {
 
+
     @javax.persistence.Id
     @javax.persistence.Column(nullable = false)
     protected Long id;

@@ -93,6 +93,7 @@ public class Schedule {
         return landUseRightStart;
     }
 
+
     public void setLandUseRightStart(String landUseRightStart) {
         this.landUseRightStart = landUseRightStart;
     }

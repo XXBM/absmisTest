@@ -15,6 +15,7 @@ import javax.persistence.DiscriminatorValue;
 @DiscriminatorValue("Designer")
 public class Designer extends ConstructionEn {
 
+
     //资质证书编号
     @javax.persistence.Column(nullable = false)
     private String qualificationNo;

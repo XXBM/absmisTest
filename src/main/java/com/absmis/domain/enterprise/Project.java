@@ -67,6 +67,7 @@ public class Project {
     private ProjectState projectState;
     //TODO 结构形式
 
+
     //项目产业化信息
     @Embedded
     private ProjectIndustrialization projectIndustrialization;

@@ -21,6 +21,7 @@ public class Builder extends ConstructionEn {
     @javax.persistence.Column(nullable = false)
     private String qualificationDes;
 
+
     public Builder() {
         super();
     }
