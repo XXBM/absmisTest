@@ -5,6 +5,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,6 +32,9 @@ public class ProjectIndustrialization {
     //不纳入地上容积率的建筑面积
     protected Double constructionArea;
     //TODO 应用建筑产业化技术内容
+    @Embedded
+    private ApplicationTechnology applicationTechnology;
+
     public ProjectIndustrialization() {
         super();
     }

@@ -30,8 +30,8 @@ public class UnitEngineering {
     protected String engineeringCategory;
     //工程结构形式
     @javax.persistence.ManyToOne
-    @JoinColumn(name = "structureForm_id")
-    protected StructureForm structureForm;
+    @JoinColumn(name = "structure_id")
+    private StructureForm structureForm;
     //项目
     @javax.persistence.ManyToOne
     @javax.persistence.JoinColumn(nullable = false)
@@ -94,14 +94,6 @@ public class UnitEngineering {
         this.engineeringCategory = engineeringCategory;
     }
 
-    public StructureForm getStructureForm() {
-        return structureForm;
-    }
-
-    public void setStructureForm(StructureForm structureForm) {
-        this.structureForm = structureForm;
-    }
-
     public Project getProject() {
         return project;
     }
@@ -118,6 +110,12 @@ public class UnitEngineering {
         this.engineeringIndustrialization = engineeringIndustrialization;
     }
 
+    public StructureForm getStructureForm() {
+        return structureForm;
+    }
 
+    public void setStructureForm(StructureForm structureForm) {
+        this.structureForm = structureForm;
+    }
 }
 

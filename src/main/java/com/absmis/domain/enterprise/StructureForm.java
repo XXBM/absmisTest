@@ -10,20 +10,17 @@ package com.absmis.domain.enterprise;
 @javax.persistence.Entity 
 public class StructureForm
 {
-	@javax.persistence.Id 
-	@javax.persistence.Column(nullable = false) 
+	@javax.persistence.Id
 	protected Long id;
-
-	@javax.persistence.Column(nullable = false) 
 	protected String no;
-
-	 
-	@javax.persistence.Column(nullable = false) 
 	protected String description;
 
 
 	public StructureForm(){
 		super();
+	}
+	public StructureForm(Long id){
+		this.id = id;
 	}
 
 	public Long getId() {
