@@ -1,8 +1,11 @@
 package com.absmis.domain.enterprise;
 
 
+import com.absmis.controller.enterprise.CheckedStatus;
+
 import javax.persistence.Embedded;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,6 +37,12 @@ public class UnitEngineering {
     @javax.persistence.ManyToOne
     @javax.persistence.JoinColumn(name = "project_id")
     private Project project;
+
+
+    @ManyToOne
+    @JoinColumn(name = "checkedStatus_id")
+    private CheckedStatus checkedStatus;
+
     //单位工程产业化信息
     @Embedded
     private EngineeringIndustrialization engineeringIndustrialization;
@@ -44,6 +53,13 @@ public class UnitEngineering {
         super();
     }
 
+    public CheckedStatus getCheckedStatus() {
+        return checkedStatus;
+    }
+
+    public void setCheckedStatus(CheckedStatus checkedStatus) {
+        this.checkedStatus = checkedStatus;
+    }
 
     public Long getId() {
         return id;

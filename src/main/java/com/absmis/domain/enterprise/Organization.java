@@ -1,10 +1,13 @@
 package com.absmis.domain.enterprise;
 
 
+import com.absmis.controller.enterprise.CheckedStatus;
 import com.absmis.domain.authority.User;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
 /**
@@ -29,6 +32,11 @@ public abstract class Organization extends User {
     protected String officePhone;
     protected String mailingAddress;
     protected String postalCode;
+
+    @ManyToOne
+    @JoinColumn(name = "checkedStatus_id")
+    protected CheckedStatus checkedStatus;
+
     public Organization() {
         super();
     }
@@ -122,5 +130,12 @@ public abstract class Organization extends User {
         this.postalCode = postalCode;
     }
 
+    public CheckedStatus getCheckedStatus() {
+        return checkedStatus;
+    }
+
+    public void setCheckedStatus(CheckedStatus checkedStatus) {
+        this.checkedStatus = checkedStatus;
+    }
 }
 

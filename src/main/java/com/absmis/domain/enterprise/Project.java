@@ -1,5 +1,6 @@
 package com.absmis.domain.enterprise;
 
+import com.absmis.controller.enterprise.CheckedStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -59,6 +60,12 @@ public class Project {
     @ManyToOne
     @JoinColumn(name = "projectState_id")
     private ProjectState projectState;
+
+
+    @ManyToOne
+    @JoinColumn(name = "checkedStatus_id")
+    private CheckedStatus checkedStatus;
+
     //TODO 结构形式
 
 
@@ -83,6 +90,14 @@ public class Project {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public CheckedStatus getCheckedStatus() {
+        return checkedStatus;
+    }
+
+    public void setCheckedStatus(CheckedStatus checkedStatus) {
+        this.checkedStatus = checkedStatus;
     }
 
     public String getName() {

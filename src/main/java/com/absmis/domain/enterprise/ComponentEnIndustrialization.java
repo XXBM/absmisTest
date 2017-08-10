@@ -1,6 +1,8 @@
 package com.absmis.domain.enterprise;
 
 
+import com.absmis.controller.enterprise.CheckedStatus;
+
 import javax.persistence.*;
 
 /**
@@ -49,8 +51,22 @@ public class ComponentEnIndustrialization {
     @javax.persistence.ManyToOne
     @JoinColumn(name = "componentEn_id")
     private ComponentEn componentEn;
+
+
+    @ManyToOne
+    @JoinColumn(name = "checkedStatus_id")
+    private CheckedStatus checkedStatus;
+
     public ComponentEnIndustrialization() {
         super();
+    }
+
+    public CheckedStatus getCheckedStatus() {
+        return checkedStatus;
+    }
+
+    public void setCheckedStatus(CheckedStatus checkedStatus) {
+        this.checkedStatus = checkedStatus;
     }
 
     public Long getId() {

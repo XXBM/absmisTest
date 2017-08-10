@@ -1,9 +1,9 @@
 package com.absmis.domain.enterprise;
 
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.absmis.controller.enterprise.CheckedStatus;
+
+import javax.persistence.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,6 +28,19 @@ public class MachineryEnIndustrialization {
     @javax.persistence.ManyToOne
     @javax.persistence.JoinColumn(name = "machineryEn_id")
     private MachineryEn machineryEn;
+
+
+    @ManyToOne
+    @JoinColumn(name = "checkedStatus_id")
+    private CheckedStatus checkedStatus;
+
+    public CheckedStatus getCheckedStatus() {
+        return checkedStatus;
+    }
+
+    public void setCheckedStatus(CheckedStatus checkedStatus) {
+        this.checkedStatus = checkedStatus;
+    }
 
     public MachineryEnIndustrialization() {
         super();

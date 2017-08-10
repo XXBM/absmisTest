@@ -1,6 +1,8 @@
 package com.absmis.domain.enterprise;
 
 
+import com.absmis.controller.enterprise.CheckedStatus;
+
 import javax.persistence.*;
 
 /**
@@ -23,6 +25,10 @@ public class ConstructionEnIndustrialization {
     // 新增装配式木建筑的数量
     private Double addNewTimber;
 
+    @ManyToOne
+    @JoinColumn(name = "checkedStatus_id")
+    private CheckedStatus checkedStatus;
+
 
     @javax.persistence.ManyToOne
     @javax.persistence.JoinColumn(name = "constructionEn_id")
@@ -41,6 +47,14 @@ public class ConstructionEnIndustrialization {
 
     public Double getAddNewConcrete() {
         return addNewConcrete;
+    }
+
+    public CheckedStatus getCheckedStatus() {
+        return checkedStatus;
+    }
+
+    public void setCheckedStatus(CheckedStatus checkedStatus) {
+        this.checkedStatus = checkedStatus;
     }
 
     public void setAddNewConcrete(Double addNewConcrete) {
