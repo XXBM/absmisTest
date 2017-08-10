@@ -28,7 +28,7 @@ public class SubUnitEnIndustrializationController {
     /**
      * 获取到所有
      */
-    @RequestMapping(value = "/findAllSubUnitEnIndustrialization", method = RequestMethod.GET)
+    @RequestMapping(value = "/findAllSubUnitEnIndustrializations", method = RequestMethod.GET)
     public List<SubUnitEnIndustrialization> findSubUnitEnIndustrialization()throws Exception {
         List<SubUnitEnIndustrialization> subUnitEnIndustrializations = subUnitEnIndustrializationService.findAllT();
         return subUnitEnIndustrializations;
@@ -36,7 +36,7 @@ public class SubUnitEnIndustrializationController {
 
 
     //实现分页
-    @RequestMapping(value = "/displayAllSubUnitEnIndustrialization", method = RequestMethod.GET)
+    @RequestMapping(value = "/displayAllSubUnitEnIndustrializations", method = RequestMethod.GET)
     public Map<String, Object> findAllSubUnitEnIndustrialization(@RequestParam(value = "page") Integer page, @RequestParam(value = "rows") Integer size)throws Exception {
         Page<SubUnitEnIndustrialization> list = this.subUnitEnIndustrializationService.findAllT(new PageRequest(page - 1, size));
         Map<String, Object> map = new HashMap<String, Object>();

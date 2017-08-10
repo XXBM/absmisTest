@@ -19,7 +19,7 @@ public class RealEstateEnQualificationController {
     /**
      * 获取到所有
      */
-    @RequestMapping(value = "/findAllRealEstateEnQualification", method = RequestMethod.GET)
+    @RequestMapping(value = "/findAllRealEstateEnQualifications", method = RequestMethod.GET)
     public List<RealEstateEnQualification> findRealEstateEnQualification()throws Exception {
         List<RealEstateEnQualification> realEstateEnQualifications = realEstateEnQualificationService.findAllT();
         return realEstateEnQualifications;

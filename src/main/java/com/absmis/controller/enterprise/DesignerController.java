@@ -28,7 +28,7 @@ public class DesignerController {
     /**
      * 获取到所有
      */
-    @RequestMapping(value = "/findAllDesigner", method = RequestMethod.GET)
+    @RequestMapping(value = "/findAllDesigners", method = RequestMethod.GET)
     public List<Designer> findDesigner()throws Exception {
         List<Designer> designers = designerService.findAllT();
         return designers;
@@ -36,7 +36,7 @@ public class DesignerController {
 
 
     //实现分页
-    @RequestMapping(value = "/displayAllDesigner", method = RequestMethod.GET)
+    @RequestMapping(value = "/displayAllDesigners", method = RequestMethod.GET)
     public Map<String, Object> findAllDesigner(@RequestParam(value = "page") Integer page, @RequestParam(value = "rows") Integer size)throws Exception {
         Page<Designer> list = this.designerService.findAllT(new PageRequest(page - 1, size));
         Map<String, Object> map = new HashMap<String, Object>();

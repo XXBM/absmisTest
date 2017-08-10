@@ -26,7 +26,7 @@ public class EstateOwnerController {
     /**
      * 获取到所有
      */
-    @RequestMapping(value = "/findAllEstateOwner", method = RequestMethod.GET)
+    @RequestMapping(value = "/findAllEstateOwners", method = RequestMethod.GET)
     public List<EstateOwner> findEstateOwner()throws Exception {
         List<EstateOwner> estateOwners = estateOwnerService.findAllT();
         return estateOwners;
@@ -34,7 +34,7 @@ public class EstateOwnerController {
 
 
     //实现分页
-    @RequestMapping(value = "/displayAllEstateOwner", method = RequestMethod.GET)
+    @RequestMapping(value = "/displayAllEstateOwners", method = RequestMethod.GET)
     public Map<String, Object> findAllEstateOwner(@RequestParam(value = "page") Integer page, @RequestParam(value = "rows") Integer size)throws Exception {
         Page<EstateOwner> list = this.estateOwnerService.findAllT(new PageRequest(page - 1, size));
         Map<String, Object> map = new HashMap<String, Object>();

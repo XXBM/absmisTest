@@ -33,7 +33,7 @@ public class BuilderController {
     /**
      * 获取到所有
      */
-    @RequestMapping(value = "/findAllBuilder", method = RequestMethod.GET)
+    @RequestMapping(value = "/findAllBuilders", method = RequestMethod.GET)
     public List<Builder> findBuilder()throws Exception {
         List<Builder> builders = builderService.findAllT();
         return builders;
@@ -41,7 +41,7 @@ public class BuilderController {
 
 
     //实现分页
-    @RequestMapping(value = "/displayAllBuilder", method = RequestMethod.GET)
+    @RequestMapping(value = "/displayAllBuilders", method = RequestMethod.GET)
     public Map<String, Object> findAllBuilder(@RequestParam(value = "page") Integer page, @RequestParam(value = "rows") Integer size)throws Exception {
         Page<Builder> list = this.builderService.findAllT(new PageRequest(page - 1, size));
         Map<String, Object> map = new HashMap<String, Object>();

@@ -19,7 +19,7 @@ public class BuilderQualificationController {
     /**
      * 获取到所有
      */
-    @RequestMapping(value = "/findAllBuilderQualification", method = RequestMethod.GET)
+    @RequestMapping(value = "/findAllBuilderQualifications", method = RequestMethod.GET)
     public List<BuilderQualification> findBuilderQualification()throws Exception {
         List<BuilderQualification> builderQualifications = builderQualificationService.findAllT();
         return builderQualifications;

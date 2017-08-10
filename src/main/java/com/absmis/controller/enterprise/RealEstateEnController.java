@@ -32,7 +32,7 @@ public class RealEstateEnController {
     /**
      * 获取到所有
      */
-    @RequestMapping(value = "/findAllRealEstateEn", method = RequestMethod.GET)
+    @RequestMapping(value = "/findAllRealEstateEns", method = RequestMethod.GET)
     public List<RealEstateEn> findRealEstateEn()throws Exception {
         List<RealEstateEn> realEstates = realEstateEnService.findAllT();
         return realEstates;
@@ -40,7 +40,7 @@ public class RealEstateEnController {
 
 
     //实现分页
-    @RequestMapping(value = "/displayAllRealEstateEn", method = RequestMethod.GET)
+    @RequestMapping(value = "/displayAllRealEstateEns", method = RequestMethod.GET)
     public Map<String, Object> findAllRealEstateEn(@RequestParam(value = "page") Integer page, @RequestParam(value = "rows") Integer size)throws Exception {
         Page<RealEstateEn> list = this.realEstateEnService.findAllT(new PageRequest(page - 1, size));
         Map<String, Object> map = new HashMap<String, Object>();

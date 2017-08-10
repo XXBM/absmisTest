@@ -28,7 +28,7 @@ public class MachineryEnIndustrializationController {
     /**
      * 获取到所有
      */
-    @RequestMapping(value = "/findAllMachineryEnIndustrialization", method = RequestMethod.GET)
+    @RequestMapping(value = "/findAllMachineryEnIndustrializations", method = RequestMethod.GET)
     public List<MachineryEnIndustrialization> findMachineryEnIndustrialization()throws Exception {
         List<MachineryEnIndustrialization> machineryEnIndustrializations = machineryEnIndustrializationService.findAllT();
         return machineryEnIndustrializations;
@@ -36,7 +36,7 @@ public class MachineryEnIndustrializationController {
 
 
     //实现分页
-    @RequestMapping(value = "/displayAllMachineryEnIndustrialization", method = RequestMethod.GET)
+    @RequestMapping(value = "/displayAllMachineryEnIndustrializations", method = RequestMethod.GET)
     public Map<String, Object> findAllMachineryEnIndustrialization(@RequestParam(value = "page") Integer page, @RequestParam(value = "rows") Integer size)throws Exception {
         Page<MachineryEnIndustrialization> list = this.machineryEnIndustrializationService.findAllT(new PageRequest(page - 1, size));
         Map<String, Object> map = new HashMap<String, Object>();

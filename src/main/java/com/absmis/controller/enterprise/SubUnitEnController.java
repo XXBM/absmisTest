@@ -32,7 +32,7 @@ public class SubUnitEnController {
     /**
      * 获取到所有
      */
-    @RequestMapping(value = "/findAllSubUnitEn", method = RequestMethod.GET)
+    @RequestMapping(value = "/findAllSubUnitEns", method = RequestMethod.GET)
     public List<SubUnitEn> findSubUnitEn()throws Exception {
         List<SubUnitEn> subUnitEns = subUnitEnService.findAllT();
         return subUnitEns;
@@ -40,7 +40,7 @@ public class SubUnitEnController {
 
 
     //实现分页
-    @RequestMapping(value = "/displayAllSubUnitEn", method = RequestMethod.GET)
+    @RequestMapping(value = "/displayAllSubUnitEns", method = RequestMethod.GET)
     public Map<String, Object> findAllSubUnitEn(@RequestParam(value = "page") Integer page, @RequestParam(value = "rows") Integer size)throws Exception {
         Page<SubUnitEn> list = this.subUnitEnService.findAllT(new PageRequest(page - 1, size));
         Map<String, Object> map = new HashMap<String, Object>();

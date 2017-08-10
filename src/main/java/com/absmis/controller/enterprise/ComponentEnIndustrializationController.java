@@ -28,7 +28,7 @@ public class ComponentEnIndustrializationController {
     /**
      * 获取到所有
      */
-    @RequestMapping(value = "/findAllComponentEnIndustrialization", method = RequestMethod.GET)
+    @RequestMapping(value = "/findAllComponentEnIndustrializations", method = RequestMethod.GET)
     public List<ComponentEnIndustrialization> findComponentEnIndustrialization()throws Exception {
         List<ComponentEnIndustrialization> componentEnIndustrializations = componentEnIndustrializationService.findAllT();
         return componentEnIndustrializations;
@@ -36,7 +36,7 @@ public class ComponentEnIndustrializationController {
 
 
     //实现分页
-    @RequestMapping(value = "/displayAllComponentEnIndustrialization", method = RequestMethod.GET)
+    @RequestMapping(value = "/displayAllComponentEnIndustrializations", method = RequestMethod.GET)
     public Map<String, Object> findAllComponentEnIndustrialization(@RequestParam(value = "page") Integer page, @RequestParam(value = "rows") Integer size)throws Exception {
         Page<ComponentEnIndustrialization> list = this.componentEnIndustrializationService.findAllT(new PageRequest(page - 1, size));
         Map<String, Object> map = new HashMap<String, Object>();

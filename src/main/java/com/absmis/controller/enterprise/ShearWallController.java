@@ -17,7 +17,7 @@ public class ShearWallController {
     /**
      * 获取到所有
      */
-    @RequestMapping(value = "/findAllShearWall", method = RequestMethod.GET)
+    @RequestMapping(value = "/findAllShearWalls", method = RequestMethod.GET)
     public List<ShearWall> findShearWall()throws Exception {
         List<ShearWall> shearWalls = shearWallService.findAllT();
         return shearWalls;

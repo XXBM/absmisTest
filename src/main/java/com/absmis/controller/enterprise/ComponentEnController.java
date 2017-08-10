@@ -32,7 +32,7 @@ public class ComponentEnController {
     /**
      * 获取到所有
      */
-    @RequestMapping(value = "/findAllComponentEn", method = RequestMethod.GET)
+    @RequestMapping(value = "/findAllComponentEns", method = RequestMethod.GET)
     public List<ComponentEn> findComponentEn()throws Exception {
         List<ComponentEn> componentEns = componentEnService.findAllT();
         return componentEns;
@@ -40,7 +40,7 @@ public class ComponentEnController {
 
 
     //实现分页
-    @RequestMapping(value = "/displayAllComponentEn", method = RequestMethod.GET)
+    @RequestMapping(value = "/displayAllComponentEns", method = RequestMethod.GET)
     public Map<String, java.lang.Object> findAllComponentEn(@RequestParam(value = "page") Integer page, @RequestParam(value = "rows") Integer size)throws Exception {
         Page<ComponentEn> list = this.componentEnService.findAllT(new PageRequest(page - 1, size));
         Map<String, java.lang.Object> map = new HashMap<String, java.lang.Object>();

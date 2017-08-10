@@ -17,7 +17,7 @@ public class FrameworkController {
     /**
      * 获取到所有
      */
-    @RequestMapping(value = "/findAllFramework", method = RequestMethod.GET)
+    @RequestMapping(value = "/findAllFrameworks", method = RequestMethod.GET)
     public List<Framework> findFramework()throws Exception {
         List<Framework> frameworks = frameworkService.findAllT();
         return frameworks;

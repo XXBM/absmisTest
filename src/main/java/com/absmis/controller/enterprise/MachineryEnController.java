@@ -32,7 +32,7 @@ public class MachineryEnController {
     /**
      * 获取到所有
      */
-    @RequestMapping(value = "/findAllMachineryEn", method = RequestMethod.GET)
+    @RequestMapping(value = "/findAllMachineryEns", method = RequestMethod.GET)
     public List<MachineryEn> findMachineryEn()throws Exception {
         List<MachineryEn> machineryEns = machineryEnService.findAllT();
         return machineryEns;
@@ -40,7 +40,7 @@ public class MachineryEnController {
 
 
     //实现分页
-    @RequestMapping(value = "/displayAllMachineryEn", method = RequestMethod.GET)
+    @RequestMapping(value = "/displayAllMachineryEns", method = RequestMethod.GET)
     public Map<String, Object> findAllMachineryEn(@RequestParam(value = "page") Integer page, @RequestParam(value = "rows") Integer size)throws Exception {
         Page<MachineryEn> list = this.machineryEnService.findAllT(new PageRequest(page - 1, size));
         Map<String, Object> map = new HashMap<String, Object>();
