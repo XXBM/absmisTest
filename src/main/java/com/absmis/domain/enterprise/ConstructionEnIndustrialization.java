@@ -4,6 +4,7 @@ package com.absmis.domain.enterprise;
 import com.absmis.controller.enterprise.CheckedStatus;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,7 +15,7 @@ import javax.persistence.*;
  * @generated
  */
 @Entity
-public class ConstructionEnIndustrialization {
+public class ConstructionEnIndustrialization implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
