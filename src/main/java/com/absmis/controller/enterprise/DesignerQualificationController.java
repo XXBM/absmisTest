@@ -19,7 +19,7 @@ public class DesignerQualificationController {
     /**
      * 获取到所有
      */
-    @RequestMapping(value = "/findAllDesignerCertification", method = RequestMethod.GET)
+    @RequestMapping(value = "/findAllDesignerQualification", method = RequestMethod.GET)
     public List<DesignerQualification> findDesignerQualification()throws Exception {
         List<DesignerQualification> designerQualifications = designerQualificationService.findAllT();
         return designerQualifications;
