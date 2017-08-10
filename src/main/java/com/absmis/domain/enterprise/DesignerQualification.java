@@ -5,22 +5,22 @@ import java.io.Serializable;
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
- * 房地产资质等级
+ * 设计单位资质等级
  *
  * @generated
  */
 
 @javax.persistence.Entity
-public class RealEstateEnCertification implements Serializable {
+public class DesignerQualification implements Serializable {
     @javax.persistence.Id
     private Long id;
     private String no;
     private String description;
-    public RealEstateEnCertification() {
+    public DesignerQualification() {
         super();
     }
 
-    public RealEstateEnCertification(Long id) {
+    public DesignerQualification(Long id) {
         this.id = id;
     }
 

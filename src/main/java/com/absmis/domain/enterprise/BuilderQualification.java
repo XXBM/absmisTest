@@ -6,21 +6,20 @@ import java.io.Serializable;
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
  * 施工单位资质等级
- *
  * @generated
  */
 
 @javax.persistence.Entity
-public class BuilderCertification implements Serializable {
+public class BuilderQualification implements Serializable {
     @javax.persistence.Id
     private Long id;
     private String no;
     private String description;
-    public BuilderCertification() {
+    public BuilderQualification() {
         super();
     }
 
-    public BuilderCertification(Long id) {
+    public BuilderQualification(Long id) {
         this.id = id;
     }
 

@@ -23,9 +23,9 @@ public class RealEstateEn extends ConstructionEn {
     private String qualificationNo;
     //资质
     //private String qualificationDes;
-    @JoinColumn(name = "estateEnCertification_id")
+    @JoinColumn(name = "realEstateEnQualification_id")
     @ManyToOne
-    private RealEstateEnCertification estateEnCertification;
+    private RealEstateEnQualification realEstateEnQualification;
     //项目
     @JsonIgnore
     @javax.persistence.OneToMany(mappedBy = "realEstateEn")
@@ -48,12 +48,12 @@ public class RealEstateEn extends ConstructionEn {
         this.qualificationNo = qualificationNo;
     }
 
-    public RealEstateEnCertification getEstateEnCertification() {
-        return estateEnCertification;
+    public RealEstateEnQualification getRealEstateEnQualification() {
+        return realEstateEnQualification;
     }
 
-    public void setEstateEnCertification(RealEstateEnCertification estateEnCertification) {
-        this.estateEnCertification = estateEnCertification;
+    public void setRealEstateEnQualification(RealEstateEnQualification realEstateEnQualification) {
+        this.realEstateEnQualification = realEstateEnQualification;
     }
 
     public Set<Project> getProject() {

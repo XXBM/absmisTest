@@ -21,9 +21,9 @@ public class Builder extends ConstructionEn {
     //资质
     //private String qualificationDes;
 
-    @JoinColumn(name = "builderCertification_id")
+    @JoinColumn(name = "builderQualification_id")
     @ManyToOne
-    private BuilderCertification builderCertification;
+    private BuilderQualification builderQualification;
 
 
     public Builder() {
@@ -43,12 +43,12 @@ public class Builder extends ConstructionEn {
         this.qualificationNo = qualificationNo;
     }
 
-    public BuilderCertification getBuilderCertification() {
-        return builderCertification;
+    public BuilderQualification getBuilderQualification() {
+        return builderQualification;
     }
 
-    public void setBuilderCertification(BuilderCertification builderCertification) {
-        this.builderCertification = builderCertification;
+    public void setBuilderQualification(BuilderQualification builderQualification) {
+        this.builderQualification = builderQualification;
     }
 }
 

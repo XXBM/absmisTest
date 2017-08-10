@@ -1,9 +1,6 @@
 package com.absmis.domain.enterprise;
 
 
-import com.absmis.jsonDeserialize.DesignerCertificationDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,10 +22,9 @@ public class Designer extends ConstructionEn {
     //资质
 //    @javax.persistence.Column(nullable = false)
 //    private String qualificationDes;
-    @JoinColumn(name = "designerCertification_id")
-    @JsonDeserialize(using = DesignerCertificationDeserialize.class)
+    @JoinColumn(name = "designerQualification_id")
     @ManyToOne
-    private DesignerCertification designerCertification;
+    private DesignerQualification designerQualification;
 
     public Designer() {
         super();
@@ -47,12 +43,12 @@ public class Designer extends ConstructionEn {
         this.qualificationNo = qualificationNo;
     }
 
-    public DesignerCertification getDesignerCertification() {
-        return designerCertification;
+    public DesignerQualification getDesignerQualification() {
+        return designerQualification;
     }
 
-    public void setDesignerCertification(DesignerCertification designerCertification) {
-        this.designerCertification = designerCertification;
+    public void setDesignerQualification(DesignerQualification designerQualification) {
+        this.designerQualification = designerQualification;
     }
 }
 

@@ -1,7 +1,7 @@
 package com.absmis.controller.enterprise;
 
-import com.absmis.domain.enterprise.DesignerCertification;
-import com.absmis.service.enterprise.DesignerCertificationService;
+import com.absmis.domain.enterprise.DesignerQualification;
+import com.absmis.service.enterprise.DesignerQualificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,16 +10,18 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class DesignerCertificationController {
+public class DesignerQualificationController {
     @Autowired
-    DesignerCertificationService designerCertificationService;
+    DesignerQualificationService designerQualificationService;
+
+
 
     /**
      * 获取到所有
      */
     @RequestMapping(value = "/findAllDesignerCertification", method = RequestMethod.GET)
-    public List<DesignerCertification> findDesignerCertification()throws Exception {
-        List<DesignerCertification> designerCertifications = designerCertificationService.findAllT();
-        return designerCertifications;
+    public List<DesignerQualification> findDesignerQualification()throws Exception {
+        List<DesignerQualification> designerQualifications = designerQualificationService.findAllT();
+        return designerQualifications;
     }
 }

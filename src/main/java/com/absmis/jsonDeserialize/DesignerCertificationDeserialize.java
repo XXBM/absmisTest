@@ -1,6 +1,6 @@
 package com.absmis.jsonDeserialize;
 
-import com.absmis.domain.enterprise.DesignerCertification;
+import com.absmis.domain.enterprise.DesignerQualification;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -16,18 +16,18 @@ import java.io.IOException;
  * 当请求将Json内容反序列话成java类型对象的时候，该方法被调用
  * 当Json为空时，该方法不会被调用，所以，方法不需要去check该值是否为空
  */
-public class DesignerCertificationDeserialize extends JsonDeserializer<DesignerCertification> {
+public class DesignerCertificationDeserialize extends JsonDeserializer<DesignerQualification> {
     @Override
-    public DesignerCertification deserialize(JsonParser jp, DeserializationContext context)
+    public DesignerQualification deserialize(JsonParser jp, DeserializationContext context)
             throws IOException, JsonProcessingException {
         ObjectMapper mapper = (ObjectMapper) jp.getCodec();
         JsonNode root = mapper.readTree(jp);//读取到json
         Long id = root.asLong();//得到id
         if (id == 0) {
             Long citationId = root.findValue("id").asLong();
-            return new DesignerCertification(citationId);//没获取到id就返回空
+            return new DesignerQualification(citationId);//没获取到id就返回空
         } else {
-            return new DesignerCertification(id);//有id就返回一个对象
+            return new DesignerQualification(id);//有id就返回一个对象
         }
     }
 }
