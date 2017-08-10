@@ -1,8 +1,6 @@
 package com.absmis.domain.enterprise;
 
 
-import com.absmis.controller.enterprise.CheckedStatus;
-
 import javax.persistence.*;
 import java.io.Serializable;
 

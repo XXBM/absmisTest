@@ -1,4 +1,4 @@
-package com.absmis.controller.enterprise;
+package com.absmis.domain.enterprise;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;

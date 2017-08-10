@@ -1,7 +1,6 @@
 package com.absmis.domain.enterprise;
 
 
-import com.absmis.controller.enterprise.CheckedStatus;
 import com.absmis.domain.authority.User;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
