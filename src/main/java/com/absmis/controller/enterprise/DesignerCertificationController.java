@@ -9,10 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/**
- * Created by xuling on 2016/10/11.
- */
-
 @RestController
 public class DesignerCertificationController {
     @Autowired
