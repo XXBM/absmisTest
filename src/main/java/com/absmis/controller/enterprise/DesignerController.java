@@ -59,9 +59,18 @@ public class DesignerController {
         return map;
     }
 
-    //删除一个学院   完成 删
+    //单个删除   完成 删
     @RequestMapping(value = "/deleteDesigner", method = RequestMethod.DELETE)
     public void deleteDesigner(@RequestParam("id") Long id)throws Exception {
         this.designerService.deleteDesigner(id);
+    }
+
+    //批量删除   完成 删
+    @RequestMapping(value = "/deleteDesigners",method = RequestMethod.DELETE)
+    public void deleteDesigners(@RequestParam("ids") String ids){
+        String deleteIds[] = ids.split(",");
+        for(int i = 0; i<deleteIds.length; i++){
+            this.designerService.deleteById(Long.parseLong(deleteIds[i]));
+        }
     }
 }
