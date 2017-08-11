@@ -64,4 +64,13 @@ public class RealEstateEnController {
     public void deleteRealEstateEn(@RequestParam("id") Long id)throws Exception {
         this.realEstateEnService.deleteRealEstateEn(id);
     }
+
+    //批量删除   完成 删
+    @RequestMapping(value = "/deleteRealEstateEns",method = RequestMethod.DELETE)
+    public void deleteRealEstateEns(@RequestParam("ids") String ids){
+        String deleteIds[] = ids.split(",");
+        for(int i = 0; i<deleteIds.length; i++){
+            this.realEstateEnService.deleteById(Long.parseLong(deleteIds[i]));
+        }
+    }
 }

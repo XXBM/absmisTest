@@ -65,4 +65,14 @@ public class BuilderController {
     public void deleteBuilder(@RequestParam("id") Long id)throws Exception {
         this.builderService.deleteBuilder(id);
     }
+
+
+    //批量删除   完成 删
+    @RequestMapping(value = "/deleteBuilders",method = RequestMethod.DELETE)
+    public void deleteBuilders(@RequestParam("ids") String ids){
+        String deleteIds[] = ids.split(",");
+        for(int i = 0; i<deleteIds.length; i++){
+            this.builderService.deleteById(Long.parseLong(deleteIds[i]));
+        }
+    }
 }
