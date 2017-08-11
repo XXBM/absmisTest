@@ -64,4 +64,13 @@ public class MachineryEnController {
     public void deleteMachineryEn(@RequestParam("id") Long id)throws Exception {
         this.machineryEnService.deleteMachineryEn(id);
     }
+
+    //批量删除   完成 删
+    @RequestMapping(value = "/deleteMachineryEns",method = RequestMethod.DELETE)
+    public void deleteMachineryEns(@RequestParam("ids") String ids){
+        String deleteIds[] = ids.split(",");
+        for(int i = 0; i<deleteIds.length; i++){
+            this.machineryEnService.deleteById(Long.parseLong(deleteIds[i]));
+        }
+    }
 }

@@ -58,4 +58,13 @@ public class EstateOwnerController {
     public void deleteEstateOwner(@RequestParam("id") Long id)throws Exception {
         this.estateOwnerService.deleteEstateOwner(id);
     }
+
+    //批量删除   完成 删
+    @RequestMapping(value = "/deleteEstateOwners",method = RequestMethod.DELETE)
+    public void deleteEstateOwners(@RequestParam("ids") String ids){
+        String deleteIds[] = ids.split(",");
+        for(int i = 0; i<deleteIds.length; i++){
+            this.estateOwnerService.deleteById(Long.parseLong(deleteIds[i]));
+        }
+    }
 }

@@ -64,4 +64,13 @@ public class SubUnitEnController {
     public void deleteSubUnitEn(@RequestParam("id") Long id)throws Exception {
         this.subUnitEnService.deleteSubUnitEn(id);
     }
+
+    //批量删除   完成 删
+    @RequestMapping(value = "/deleteSubUnitEns",method = RequestMethod.DELETE)
+    public void deleteSubUnitEns(@RequestParam("ids") String ids){
+        String deleteIds[] = ids.split(",");
+        for(int i = 0; i<deleteIds.length; i++){
+            this.subUnitEnService.deleteById(Long.parseLong(deleteIds[i]));
+        }
+    }
 }

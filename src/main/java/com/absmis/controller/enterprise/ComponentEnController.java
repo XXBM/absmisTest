@@ -64,4 +64,13 @@ public class ComponentEnController {
     public void deleteComponentEn(@RequestParam("id") Long id)throws Exception {
         this.componentEnService.deleteComponentEn(id);
     }
+
+    //批量删除   完成 删
+    @RequestMapping(value = "/deleteComponentEns",method = RequestMethod.DELETE)
+    public void deleteComponentEns(@RequestParam("ids") String ids){
+        String deleteIds[] = ids.split(",");
+        for(int i = 0; i<deleteIds.length; i++){
+            this.componentEnService.deleteById(Long.parseLong(deleteIds[i]));
+        }
+    }
 }
