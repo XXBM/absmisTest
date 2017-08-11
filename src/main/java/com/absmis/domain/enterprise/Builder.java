@@ -18,6 +18,7 @@ import javax.persistence.ManyToOne;
 public class Builder extends ConstructionEn {
     //资质证书编号
     private String qualificationNo;
+
     //资质
     //private String qualificationDes;
 
