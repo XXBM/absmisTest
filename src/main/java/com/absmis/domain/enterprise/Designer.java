@@ -17,11 +17,10 @@ import javax.persistence.ManyToOne;
 @DiscriminatorValue("Designer")
 public class Designer extends ConstructionEn {
     //资质证书编号
-    @javax.persistence.Column(nullable = false)
     private String qualificationNo;
     //资质
 //    @javax.persistence.Column(nullable = false)
-//    private String qualificationDes;
+//    privae String qualificationDes;
     @JoinColumn(name = "designerQualification_id")
     @ManyToOne
     private DesignerQualification designerQualification;
