@@ -1,6 +1,7 @@
 package com.absmis.controller.enterprise;
 
 import com.absmis.domain.authority.User;
+import com.absmis.domain.message.Result;
 import com.absmis.service.authority.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,16 +25,18 @@ public class UserController {
 
     //用户修改密码
     @RequestMapping(value = "/changePsd", method = RequestMethod.POST)
-    public String changePsd(@RequestParam(value = "oldPassword") String oldPassword,
+    public Result changePsd(@RequestParam(value = "oldPassword") String oldPassword,
                             @RequestParam(value = "newPassword") String newPassword)throws Exception {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User storedUser = userService.findByUsername(username);
+        Result result = new Result();
         if(oldPassword.equals(storedUser.getPassword())){
             storedUser.setPassword(newPassword);
             userService.update(storedUser);
-            return "密码修改成功！";
+            result.setMsg("密码修改成功！");
         }else{
-            return "原密码错误！";
+            result.setMsg("原密码错误！");
         }
+        return result;
     }
 }
