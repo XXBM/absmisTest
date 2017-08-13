@@ -22,6 +22,7 @@ public class UserController {
         return user;
     }
 
+    //用户修改密码
     @RequestMapping(value = "/changePsd", method = RequestMethod.POST)
     public String changePsd(@RequestParam(value = "oldPassword") String oldPassword,
                             @RequestParam(value = "newPassword") String newPassword)throws Exception {
