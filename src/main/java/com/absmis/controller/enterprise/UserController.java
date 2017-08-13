@@ -2,6 +2,7 @@ package com.absmis.controller.enterprise;
 
 import com.absmis.domain.authority.User;
 import com.absmis.domain.message.Result;
+import com.absmis.domain.message.UserInfo;
 import com.absmis.service.authority.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -40,5 +41,16 @@ public class UserController {
             result.setMsg("原密码错误！");
         }
         return result;
+    }
+
+    //返回用户名和用户类型
+    @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
+    public UserInfo resetPsd()throws Exception {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User storedUser = userService.findByUsername(username);
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUserName(username);
+        userInfo.setUserType(storedUser.getEnterpriseType());
+        return userInfo;
     }
 }

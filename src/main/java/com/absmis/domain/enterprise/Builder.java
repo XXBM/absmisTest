@@ -32,6 +32,11 @@ public class Builder extends ConstructionEn {
     }
 
     @Override
+    public String getEnterpriseType() {
+        return "施工单位";
+    }
+
+    @Override
     String getQualification() {
         return null;
     }

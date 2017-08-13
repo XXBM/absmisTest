@@ -17,5 +17,10 @@ public class Supervisor extends User {
         super();
     }
 
+    @Override
+    public String getEnterpriseType() {
+        return "管理部门";
+    }
+
 }
 

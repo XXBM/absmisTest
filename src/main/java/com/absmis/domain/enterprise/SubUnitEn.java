@@ -21,6 +21,11 @@ public class SubUnitEn extends Organization {
         super();
     }
 
+    @Override
+    public String getEnterpriseType() {
+        return "部品生产企业";
+    }
+
     //建筑产业化信息
     @JsonIgnore
     @javax.persistence.OneToMany(mappedBy = "subUnitEn")

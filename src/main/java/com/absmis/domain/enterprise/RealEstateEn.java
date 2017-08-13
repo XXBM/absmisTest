@@ -36,6 +36,11 @@ public class RealEstateEn extends ConstructionEn {
     }
 
     @Override
+    public String getEnterpriseType() {
+        return "房地产企业";
+    }
+
+    @Override
     String getQualification() {
         return null;
     }

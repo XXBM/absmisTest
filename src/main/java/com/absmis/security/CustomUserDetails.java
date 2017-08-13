@@ -50,5 +50,10 @@ public class CustomUserDetails extends User implements UserDetails {
         return super.getUsername();
     }
 
+    @Override
+    public String getEnterpriseType() {
+        return null;
+    }
+
 
 }

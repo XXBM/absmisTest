@@ -30,6 +30,11 @@ public class Designer extends ConstructionEn {
     }
 
     @Override
+    public String getEnterpriseType() {
+        return "设计单位";
+    }
+
+    @Override
     String getQualification() {
         return null;
     }

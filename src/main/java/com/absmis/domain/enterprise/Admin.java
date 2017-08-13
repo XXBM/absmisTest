@@ -17,5 +17,10 @@ public class Admin extends User {
         super();
     }
 
+    @Override
+    public String getEnterpriseType() {
+        return "业务管理员";
+    }
+
 }
 

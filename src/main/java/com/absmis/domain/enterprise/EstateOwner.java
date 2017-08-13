@@ -24,6 +24,11 @@ public class EstateOwner extends Organization {
         super();
     }
 
+    @Override
+    public String getEnterpriseType() {
+        return "建设单位";
+    }
+
     public Set<Project> getProject() {
         return project;
     }

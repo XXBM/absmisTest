@@ -23,6 +23,11 @@ public class ComponentEn extends Organization {
         super();
     }
 
+    @Override
+    public String getEnterpriseType() {
+        return "构件生产企业";
+    }
+
     public Set<ComponentEnIndustrialization> getComponentEnIndustrializations() {
         return componentEnIndustrializations;
     }

@@ -93,5 +93,7 @@ public abstract class User implements Serializable {
     public void setRole(Role role) {
         this.role = role;
     }
+
+    public abstract String getEnterpriseType();
 }
 
