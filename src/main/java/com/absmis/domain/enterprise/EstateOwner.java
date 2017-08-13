@@ -1,5 +1,7 @@
 package com.absmis.domain.enterprise;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Set;
 
 
@@ -14,6 +16,7 @@ import java.util.Set;
 @javax.persistence.Entity
 public class EstateOwner extends Organization {
     //项目
+    @JsonIgnore
     @javax.persistence.OneToMany(mappedBy = "estateOwner")
     private Set<Project> project;
 

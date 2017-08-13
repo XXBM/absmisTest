@@ -6,7 +6,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Calendar;
 
 
 /**
@@ -27,7 +27,7 @@ public abstract class User implements Serializable {
     protected String password;
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
-    protected Date lastLogin;
+    protected Calendar lastLogin;
     protected int loginCounter;
     @ManyToOne
     @JoinColumn(name = "role_id")
@@ -70,11 +70,11 @@ public abstract class User implements Serializable {
         this.password = password;
     }
 
-    public Date getLastLogin() {
+    public Calendar getLastLogin() {
         return lastLogin;
     }
 
-    public void setLastLogin(Date lastLogin) {
+    public void setLastLogin(Calendar lastLogin) {
         this.lastLogin = lastLogin;
     }
 
