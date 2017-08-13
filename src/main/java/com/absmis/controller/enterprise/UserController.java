@@ -3,6 +3,7 @@ package com.absmis.controller.enterprise;
 import com.absmis.domain.authority.User;
 import com.absmis.service.authority.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,5 +20,19 @@ public class UserController {
         user.setPassword(user.getUsername());
         userService.update(user);
         return user;
+    }
+
+    @RequestMapping(value = "/changePsd", method = RequestMethod.POST)
+    public String changePsd(@RequestParam(value = "oldPassword") String oldPassword,
+                            @RequestParam(value = "newPassword") String newPassword)throws Exception {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User storedUser = userService.findByUsername(username);
+        if(oldPassword.equals(storedUser.getPassword())){
+            storedUser.setPassword(newPassword);
+            userService.update(storedUser);
+            return "密码修改成功！";
+        }else{
+            return "原密码错误！";
+        }
     }
 }
