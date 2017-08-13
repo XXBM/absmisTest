@@ -33,8 +33,10 @@ public class UserController {
         if(oldPassword.equals(storedUser.getPassword())){
             storedUser.setPassword(newPassword);
             userService.update(storedUser);
+            result.setSuccess(true);
             result.setMsg("密码修改成功！");
         }else{
+            result.setSuccess(false);
             result.setMsg("原密码错误！");
         }
         return result;
