@@ -13,7 +13,6 @@ import java.util.Set;
 
 @javax.persistence.Entity
 public class EstateOwner extends Organization {
-
     //项目
     @javax.persistence.OneToMany(mappedBy = "estateOwner")
     private Set<Project> project;

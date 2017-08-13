@@ -4,6 +4,7 @@ package com.absmis.domain.enterprise;
 import javax.persistence.Embedded;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import java.io.Serializable;
 
 /**
  * <!-- begin-user-doc -->
@@ -14,7 +15,7 @@ import javax.persistence.ManyToOne;
  */
 
 @javax.persistence.Entity
-public class UnitEngineering {
+public class UnitEngineering implements Serializable {
     @javax.persistence.Id
     private Long id;
     //工程名称
@@ -35,12 +36,9 @@ public class UnitEngineering {
     @javax.persistence.ManyToOne
     @javax.persistence.JoinColumn(name = "project_id")
     private Project project;
-
-
     @ManyToOne
     @JoinColumn(name = "checkedStatus_id")
     private CheckedStatus checkedStatus;
-
     //单位工程产业化信息
     @Embedded
     private EngineeringIndustrialization engineeringIndustrialization;

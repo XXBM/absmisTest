@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Embedded;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ import java.util.Set;
  */
 
 @javax.persistence.Entity
-public class Project {
+public class Project implements Serializable {
     @javax.persistence.Id
     private Long id;
     //项目名称
@@ -66,8 +67,6 @@ public class Project {
     private CheckedStatus checkedStatus;
 
     //TODO 结构形式
-
-
     //项目产业化信息
     @Embedded
     private ProjectIndustrialization projectIndustrialization;
