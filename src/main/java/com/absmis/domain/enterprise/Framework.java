@@ -13,18 +13,25 @@ import java.io.Serializable;
  */
 
 @javax.persistence.Entity
-public class FrameworkShear implements Serializable {
-
+public class Framework implements Serializable {
     @javax.persistence.Id
     private Long id;
     private String no;
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "project_id")
-    private Project project;
+    @JoinColumn(name = "projectShear_id")
+    private Project projectShear;
 
-    public FrameworkShear() {
+    @ManyToOne
+    @JoinColumn(name = "projectCore_id")
+    private Project projectCore;
+
+    @ManyToOne
+    @JoinColumn(name = "unitEngineeringCore_id")
+    private UnitEngineering unitEngineeringCore;
+
+    public Framework() {
         super();
     }
 
@@ -52,12 +59,20 @@ public class FrameworkShear implements Serializable {
         this.description = description;
     }
 
-    public Project getProject() {
-        return project;
+    public Project getProjectShear() {
+        return projectShear;
     }
 
-    public void setProject(Project project) {
-        this.project = project;
+    public void setProjectShear(Project projectShear) {
+        this.projectShear = projectShear;
+    }
+
+    public Project getProjectCore() {
+        return projectCore;
+    }
+
+    public void setProjectCore(Project projectCore) {
+        this.projectCore = projectCore;
     }
 }
 

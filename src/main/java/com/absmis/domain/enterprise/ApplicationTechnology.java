@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
- *     应用建筑产业化技术内容
+ * 应用建筑产业化技术内容
  *
  * @generated
  */
@@ -21,12 +21,12 @@ import java.util.List;
 @DynamicInsert(true)
 @DynamicUpdate(true)
 public class ApplicationTechnology {
-    @javax.persistence.OneToMany(mappedBy = "project")
+    @javax.persistence.OneToMany(mappedBy = "projectShear")
     @JsonIgnore
-    private List<FrameworkShear> frameworkShears;
-    @javax.persistence.OneToMany(mappedBy = "project")
+    private List<Framework> frameworkShears;
+    @javax.persistence.OneToMany(mappedBy = "projectCore")
     @JsonIgnore
-    private List<FrameworkCore> frameworkCores;
+    private List<Framework> frameworkCores;
     @javax.persistence.OneToMany(mappedBy = "project")
     @JsonIgnore
     private List<ShearWall> shearWalls;
@@ -36,21 +36,20 @@ public class ApplicationTechnology {
         super();
     }
 
-
-    public List<FrameworkShear> getFrameworkShears() {
-        return frameworkShears;
-    }
-
-    public void setFrameworkShears(List<FrameworkShear> frameworkShears) {
-        this.frameworkShears = frameworkShears;
-    }
-
-    public List<FrameworkCore> getFrameworkCores() {
+    public List<Framework> getFrameworkCores() {
         return frameworkCores;
     }
 
-    public void setFrameworkCores(List<FrameworkCore> frameworkCores) {
+    public void setFrameworkCores(List<Framework> frameworkCores) {
         this.frameworkCores = frameworkCores;
+    }
+
+    public List<Framework> getFrameworkShears() {
+        return frameworkShears;
+    }
+
+    public void setFrameworkShears(List<Framework> frameworkShears) {
+        this.frameworkShears = frameworkShears;
     }
 
     public List<ShearWall> getShearWalls() {

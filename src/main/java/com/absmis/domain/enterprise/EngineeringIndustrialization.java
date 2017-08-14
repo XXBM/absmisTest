@@ -7,7 +7,6 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import java.util.List;
 
 /**
@@ -36,10 +35,9 @@ public class EngineeringIndustrialization {
     @JoinColumn(name = "applicationStructureType_id")
     private ApplicationStructureType applicationStructureType;
     // 应用构件部品
-    @OneToMany
+    @javax.persistence.OneToMany(mappedBy = "unitEngineeringCore")
     @JsonIgnore
-    @JoinColumn(name = "engineeringIndustrialization_id")
-    private List<FrameworkShear> frameworkShearCores;
+    private List<Framework> frameworkCores;
     //应用楼层范围
     private String floorScope;
     public EngineeringIndustrialization() {
@@ -86,12 +84,12 @@ public class EngineeringIndustrialization {
         this.applicationStructureType = applicationStructureType;
     }
 
-    public List<FrameworkShear> getFrameworkShearCores() {
-        return frameworkShearCores;
+    public List<Framework> getFrameworkCores() {
+        return frameworkCores;
     }
 
-    public void setFrameworkShearCores(List<FrameworkShear> frameworkShearCores) {
-        this.frameworkShearCores = frameworkShearCores;
+    public void setFrameworkCores(List<Framework> frameworkCores) {
+        this.frameworkCores = frameworkCores;
     }
 
     public String getFloorScope() {

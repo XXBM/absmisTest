@@ -1,7 +1,7 @@
 package com.absmis.service.enterprise;
 
 
-import com.absmis.domain.enterprise.FrameworkShear;
+import com.absmis.domain.enterprise.Framework;
 import com.absmis.service.BasicService;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +10,6 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class FrameworkShearService extends BasicService<FrameworkShear, Long> {
+public class FrameworkService extends BasicService<Framework, Long> {
 
 }
