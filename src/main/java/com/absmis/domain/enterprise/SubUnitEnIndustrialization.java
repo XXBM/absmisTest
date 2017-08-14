@@ -1,8 +1,11 @@
 package com.absmis.domain.enterprise;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Calendar;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,6 +19,9 @@ public class SubUnitEnIndustrialization implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Calendar declareTime;
     /*生产条数*/
     //整体墙板
     private Double integralWallNum;
@@ -82,6 +88,14 @@ public class SubUnitEnIndustrialization implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Calendar getDeclareTime() {
+        return declareTime;
+    }
+
+    public void setDeclareTime(Calendar declareTime) {
+        this.declareTime = declareTime;
     }
 
     private Double structuralInsulatedDecorateIntegration;

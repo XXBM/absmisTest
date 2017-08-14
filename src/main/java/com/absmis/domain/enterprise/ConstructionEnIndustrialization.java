@@ -1,8 +1,11 @@
 package com.absmis.domain.enterprise;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Calendar;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,6 +20,9 @@ public class ConstructionEnIndustrialization implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Calendar declareTime;
     //新增装配式混凝土结构建筑的数量
     private Double addNewConcrete;
     //新增装配式钢结构建筑的数量
@@ -46,6 +52,14 @@ public class ConstructionEnIndustrialization implements Serializable {
 
     public Double getAddNewConcrete() {
         return addNewConcrete;
+    }
+
+    public Calendar getDeclareTime() {
+        return declareTime;
+    }
+
+    public void setDeclareTime(Calendar declareTime) {
+        this.declareTime = declareTime;
     }
 
     public CheckedStatus getCheckedStatus() {

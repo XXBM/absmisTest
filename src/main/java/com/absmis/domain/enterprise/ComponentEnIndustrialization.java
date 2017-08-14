@@ -1,8 +1,11 @@
 package com.absmis.domain.enterprise;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Calendar;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,6 +20,9 @@ public class ComponentEnIndustrialization implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Calendar declareTime;
     /*生产条数*/
     //预制装配混凝土结构
     private Double prebuiltConcreteNum;
@@ -80,6 +86,13 @@ public class ComponentEnIndustrialization implements Serializable {
         return prebuiltConcreteNum;
     }
 
+    public Calendar getDeclareTime() {
+        return declareTime;
+    }
+
+    public void setDeclareTime(Calendar declareTime) {
+        this.declareTime = declareTime;
+    }
 
     public void setPrebuiltConcreteNum(Double prebuiltConcreteNum) {
         this.prebuiltConcreteNum = prebuiltConcreteNum;

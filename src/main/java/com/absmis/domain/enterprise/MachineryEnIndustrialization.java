@@ -1,8 +1,11 @@
 package com.absmis.domain.enterprise;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Calendar;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,6 +19,9 @@ public class MachineryEnIndustrialization implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Calendar declareTime;
     //预制混凝土生产设备
     private Double integralWall;
     //专用运输设备
@@ -34,6 +40,14 @@ public class MachineryEnIndustrialization implements Serializable {
 
     public CheckedStatus getCheckedStatus() {
         return checkedStatus;
+    }
+
+    public Calendar getDeclareTime() {
+        return declareTime;
+    }
+
+    public void setDeclareTime(Calendar declareTime) {
+        this.declareTime = declareTime;
     }
 
     public void setCheckedStatus(CheckedStatus checkedStatus) {
