@@ -1,5 +1,7 @@
 package com.absmis.domain.enterprise;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
 /**
@@ -11,14 +13,18 @@ import java.io.Serializable;
  */
 
 @javax.persistence.Entity
-public class Framework implements Serializable {
+public class FrameworkShear implements Serializable {
 
     @javax.persistence.Id
     private Long id;
     private String no;
     private String description;
 
-    public Framework() {
+    @ManyToOne
+    @JoinColumn(name = "project_id")
+    private Project project;
+
+    public FrameworkShear() {
         super();
     }
 
@@ -46,5 +52,12 @@ public class Framework implements Serializable {
         this.description = description;
     }
 
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
 }
 

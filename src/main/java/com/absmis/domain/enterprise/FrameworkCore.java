@@ -7,14 +7,13 @@ import java.io.Serializable;
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
- *     剪力墙结构
- *
+ *     框架及剪框
  *
  * @generated
  */
 
 @javax.persistence.Entity
-public class ShearWall implements Serializable {
+public class FrameworkCore implements Serializable {
 
     @javax.persistence.Id
     private Long id;
@@ -25,7 +24,7 @@ public class ShearWall implements Serializable {
     @JoinColumn(name = "project_id")
     private Project project;
 
-    public ShearWall() {
+    public FrameworkCore() {
         super();
     }
 

@@ -30,7 +30,7 @@ public class UnitEngineering implements Serializable {
     private String engineeringCategory;
     //单位工程结构形式
     @javax.persistence.ManyToOne
-    @JoinColumn(name = "structure_id")
+    @JoinColumn(name = "structureForm_id")
     private StructureForm structureForm;
     //项目
     @javax.persistence.ManyToOne

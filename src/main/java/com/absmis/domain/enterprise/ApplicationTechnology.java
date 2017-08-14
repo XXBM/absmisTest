@@ -6,8 +6,6 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import java.util.List;
 
 /**
@@ -23,17 +21,14 @@ import java.util.List;
 @DynamicInsert(true)
 @DynamicUpdate(true)
 public class ApplicationTechnology {
-    @OneToMany
+    @javax.persistence.OneToMany(mappedBy = "project")
     @JsonIgnore
-    @JoinColumn(name = "applicationTechnology_id")
-    private List<Framework> frameworkShears;
-    @OneToMany
+    private List<FrameworkShear> frameworkShears;
+    @javax.persistence.OneToMany(mappedBy = "project")
     @JsonIgnore
-    @JoinColumn(name = "applicationTechnology_id")
-    private List<Framework> frameworkCores;
-    @OneToMany
+    private List<FrameworkCore> frameworkCores;
+    @javax.persistence.OneToMany(mappedBy = "project")
     @JsonIgnore
-    @JoinColumn(name = "applicationTechnology_id")
     private List<ShearWall> shearWalls;
 
 
@@ -41,19 +36,20 @@ public class ApplicationTechnology {
         super();
     }
 
-    public List<Framework> getFrameworkShears() {
+
+    public List<FrameworkShear> getFrameworkShears() {
         return frameworkShears;
     }
 
-    public void setFrameworkShears(List<Framework> frameworkShears) {
+    public void setFrameworkShears(List<FrameworkShear> frameworkShears) {
         this.frameworkShears = frameworkShears;
     }
 
-    public List<Framework> getFrameworkCores() {
+    public List<FrameworkCore> getFrameworkCores() {
         return frameworkCores;
     }
 
-    public void setFrameworkCores(List<Framework> frameworkCores) {
+    public void setFrameworkCores(List<FrameworkCore> frameworkCores) {
         this.frameworkCores = frameworkCores;
     }
 

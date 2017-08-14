@@ -1,5 +1,7 @@
 package com.absmis.domain.authority;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -18,6 +20,7 @@ public class Role implements Serializable {
     private Long id;
     private String no;
     private String description;
+    @JsonIgnore
     @javax.persistence.OneToMany(mappedBy = "role")
     private List<RoleAssResource> roleAssResource;
 
