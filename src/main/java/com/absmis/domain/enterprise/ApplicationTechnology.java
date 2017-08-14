@@ -1,12 +1,11 @@
 package com.absmis.domain.enterprise;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Embeddable;
-import java.util.List;
+import javax.persistence.Embedded;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,43 +20,40 @@ import java.util.List;
 @DynamicInsert(true)
 @DynamicUpdate(true)
 public class ApplicationTechnology {
-    @javax.persistence.OneToMany(mappedBy = "projectShear")
-    @JsonIgnore
-    private List<Framework> frameworkShears;
-    @javax.persistence.OneToMany(mappedBy = "projectCore")
-    @JsonIgnore
-    private List<Framework> frameworkCores;
-    @javax.persistence.OneToMany(mappedBy = "project")
-    @JsonIgnore
-    private List<ShearWall> shearWalls;
+    @Embedded
+    private FrameworkShear frameworkShear;
+    @Embedded
+    private FrameworkCore frameworkCore;
+    @Embedded
+    private ShearWall shearWall;
 
 
     public ApplicationTechnology() {
         super();
     }
 
-    public List<Framework> getFrameworkCores() {
-        return frameworkCores;
+    public FrameworkShear getFrameworkShear() {
+        return frameworkShear;
     }
 
-    public void setFrameworkCores(List<Framework> frameworkCores) {
-        this.frameworkCores = frameworkCores;
+    public void setFrameworkShear(FrameworkShear frameworkShear) {
+        this.frameworkShear = frameworkShear;
     }
 
-    public List<Framework> getFrameworkShears() {
-        return frameworkShears;
+    public FrameworkCore getFrameworkCore() {
+        return frameworkCore;
     }
 
-    public void setFrameworkShears(List<Framework> frameworkShears) {
-        this.frameworkShears = frameworkShears;
+    public void setFrameworkCore(FrameworkCore frameworkCore) {
+        this.frameworkCore = frameworkCore;
     }
 
-    public List<ShearWall> getShearWalls() {
-        return shearWalls;
+    public ShearWall getShearWall() {
+        return shearWall;
     }
 
-    public void setShearWalls(List<ShearWall> shearWalls) {
-        this.shearWalls = shearWalls;
+    public void setShearWall(ShearWall shearWall) {
+        this.shearWall = shearWall;
     }
 }
 

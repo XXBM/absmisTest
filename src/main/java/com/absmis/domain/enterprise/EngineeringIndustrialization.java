@@ -1,13 +1,12 @@
 package com.absmis.domain.enterprise;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 import javax.persistence.JoinColumn;
-import java.util.List;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,9 +34,8 @@ public class EngineeringIndustrialization {
     @JoinColumn(name = "applicationStructureType_id")
     private ApplicationStructureType applicationStructureType;
     // 应用构件部品
-    @javax.persistence.OneToMany(mappedBy = "unitEngineeringCore")
-    @JsonIgnore
-    private List<Framework> frameworkCores;
+    @Embedded
+    private FrameworkShear frameworkShear;
     //应用楼层范围
     private String floorScope;
     public EngineeringIndustrialization() {
@@ -84,12 +82,12 @@ public class EngineeringIndustrialization {
         this.applicationStructureType = applicationStructureType;
     }
 
-    public List<Framework> getFrameworkCores() {
-        return frameworkCores;
+    public FrameworkShear getFrameworkShear() {
+        return frameworkShear;
     }
 
-    public void setFrameworkCores(List<Framework> frameworkCores) {
-        this.frameworkCores = frameworkCores;
+    public void setFrameworkShear(FrameworkShear frameworkShear) {
+        this.frameworkShear = frameworkShear;
     }
 
     public String getFloorScope() {

@@ -1,7 +1,9 @@
 package com.absmis.domain.enterprise;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
+import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 /**
@@ -12,53 +14,83 @@ import java.io.Serializable;
  *
  * @generated
  */
-
-@javax.persistence.Entity
+@Embeddable
+@DynamicInsert(true)
+@DynamicUpdate(true)
 public class ShearWall implements Serializable {
-
-    @javax.persistence.Id
-    private Long id;
-    private String no;
-    private String description;
-
-    @ManyToOne
-    @JoinColumn(name = "project_id")
-    private Project project;
+    //楼板
+    private boolean floorSw;
+    //楼梯
+    private boolean stairsSw;
+    //外墙
+    private boolean exteriorWallSw;
+    //内墙
+    private boolean interiorWallSw;
+    //整体厨房
+    private boolean integralKitchenSw;
+    //整体卫生间
+    private boolean integralToiletSw;
+    //太阳能
+    private boolean solarEnergySw;
 
     public ShearWall() {
         super();
     }
 
-    public Long getId() {
-        return id;
+    public boolean isFloorSw() {
+        return floorSw;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setFloorSw(boolean floorSw) {
+        this.floorSw = floorSw;
     }
 
-    public String getNo() {
-        return no;
+    public boolean isStairsSw() {
+        return stairsSw;
     }
 
-    public void setNo(String no) {
-        this.no = no;
+    public void setStairsSw(boolean stairsSw) {
+        this.stairsSw = stairsSw;
     }
 
-    public String getDescription() {
-        return description;
+    public boolean isExteriorWallSw() {
+        return exteriorWallSw;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setExteriorWallSw(boolean exteriorWallSw) {
+        this.exteriorWallSw = exteriorWallSw;
     }
 
-    public Project getProject() {
-        return project;
+    public boolean isInteriorWallSw() {
+        return interiorWallSw;
     }
 
-    public void setProject(Project project) {
-        this.project = project;
+    public void setInteriorWallSw(boolean interiorWallSw) {
+        this.interiorWallSw = interiorWallSw;
+    }
+
+    public boolean isIntegralKitchenSw() {
+        return integralKitchenSw;
+    }
+
+    public void setIntegralKitchenSw(boolean integralKitchenSw) {
+        this.integralKitchenSw = integralKitchenSw;
+    }
+
+    public boolean isIntegralToiletSw() {
+        return integralToiletSw;
+    }
+
+    public void setIntegralToiletSw(boolean integralToiletSw) {
+        this.integralToiletSw = integralToiletSw;
+    }
+
+    public boolean isSolarEnergySw() {
+        return solarEnergySw;
+    }
+
+    public void setSolarEnergySw(boolean solarEnergySw) {
+        this.solarEnergySw = solarEnergySw;
     }
 }
 
