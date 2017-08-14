@@ -24,6 +24,10 @@ public class Project implements Serializable {
     private Long id;
     //项目名称
     private String name;
+    //项目开工时间
+    @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Calendar startTime;
     //项目填报时间
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -92,6 +96,14 @@ public class Project implements Serializable {
 
     public CheckedStatus getCheckedStatus() {
         return checkedStatus;
+    }
+
+    public Calendar getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Calendar startTime) {
+        this.startTime = startTime;
     }
 
     public void setCheckedStatus(CheckedStatus checkedStatus) {
