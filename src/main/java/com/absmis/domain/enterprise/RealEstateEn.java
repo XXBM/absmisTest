@@ -19,7 +19,7 @@ import java.util.Set;
 @javax.persistence.Entity
 @DiscriminatorValue("RealEstateEn")
 public class RealEstateEn extends ConstructionEn {
-	 //资质证书编号
+    //资质证书编号
     private String qualificationNo;
     //资质
     //private String qualificationDes;
@@ -28,8 +28,8 @@ public class RealEstateEn extends ConstructionEn {
     private RealEstateEnQualification realEstateEnQualification;
     //项目
     @JsonIgnore
-    @javax.persistence.OneToMany(mappedBy = "organization")
-    private Set<Project> project;
+    @javax.persistence.OneToMany(mappedBy = "realEstateEn")
+    private Set<ProjectByRealEstateEn> projectByRealEstateEns;
 
     public RealEstateEn() {
         super();
@@ -61,12 +61,12 @@ public class RealEstateEn extends ConstructionEn {
         this.realEstateEnQualification = realEstateEnQualification;
     }
 
-    public Set<Project> getProject() {
-        return project;
+    public Set<ProjectByRealEstateEn> getProjectByRealEstateEns() {
+        return projectByRealEstateEns;
     }
 
-    public void setProject(Set<Project> project) {
-        this.project = project;
+    public void setProjectByRealEstateEns(Set<ProjectByRealEstateEn> projectByRealEstateEns) {
+        this.projectByRealEstateEns = projectByRealEstateEns;
     }
 }
 

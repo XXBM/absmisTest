@@ -17,8 +17,8 @@ import java.util.Set;
 public class EstateOwner extends Organization {
     //项目
     @JsonIgnore
-    @javax.persistence.OneToMany(mappedBy = "organization")
-    private Set<Project> project;
+    @javax.persistence.OneToMany(mappedBy = "estateOwner")
+    private Set<ProjectByEstateOwner> projectByEstateOwners;
 
     public EstateOwner() {
         super();
@@ -29,12 +29,12 @@ public class EstateOwner extends Organization {
         return "建设单位";
     }
 
-    public Set<Project> getProject() {
-        return project;
+    public Set<ProjectByEstateOwner> getProjectByEstateOwners() {
+        return projectByEstateOwners;
     }
 
-    public void setProject(Set<Project> project) {
-        this.project = project;
+    public void setProjectByEstateOwners(Set<ProjectByEstateOwner> projectByEstateOwners) {
+        this.projectByEstateOwners = projectByEstateOwners;
     }
 }
 

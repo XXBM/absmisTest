@@ -51,17 +51,6 @@ public class ProjectController {
         return map;
     }
 
-    //实现分页
-//    @RequestMapping(value = "/displayAllProjectsByEn", method = RequestMethod.GET)
-//    public Map<String, Object> findAllProjectsByEn(@RequestParam(value = "page") Integer page, @RequestParam(value = "rows") Integer size)throws Exception {
-//        Page<Project> list = this.projectService.findAllT(new PageRequest(page - 1, size));
-//        Map<String, Object> map = new HashMap<String, Object>();
-//        int total = this.projectService.findAllT().size();
-//        map.put("total", total);
-//        map.put("rows", list.getContent());
-//        return map;
-//    }
-
     //修改学院信息    完成 改
     @RequestMapping(value = "/updateProject", method = RequestMethod.PUT)
     public Map<String, Object> updateProject(@RequestBody Project project)throws Exception {

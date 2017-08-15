@@ -3,9 +3,7 @@ package com.absmis.domain.enterprise;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Embedded;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Set;
@@ -18,8 +16,11 @@ import java.util.Set;
  * @generated
  */
 
-@javax.persistence.Entity
-public class Project implements Serializable {
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue("Project")
+public abstract class Project implements Serializable {
     @javax.persistence.Id
     private Long id;
     //项目名称
@@ -56,9 +57,6 @@ public class Project implements Serializable {
     //@javax.persistence.ManyToOne
     //@javax.persistence.JoinColumn(name = "estateOwner_id")
     //private EstateOwner estateOwner;
-    @javax.persistence.ManyToOne
-    @javax.persistence.JoinColumn(name = "organization_id")
-    private Organization organization;
     //项目类别
     @ManyToOne
     @JoinColumn(name = "projectCategory_id")
@@ -193,14 +191,6 @@ public class Project implements Serializable {
         this.construction = construction;
     }
 
-    public Organization getOrganization() {
-        return organization;
-    }
-
-    public void setOrganization(Organization organization) {
-        this.organization = organization;
-    }
-
     public ProjectCategory getProjectCategory() {
         return projectCategory;
     }
@@ -240,5 +230,8 @@ public class Project implements Serializable {
     public void setSchedule(Schedule schedule) {
         this.schedule = schedule;
     }
+
+    public abstract String getOwner();
+
 }
 
