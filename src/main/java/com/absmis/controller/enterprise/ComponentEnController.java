@@ -1,6 +1,7 @@
 package com.absmis.controller.enterprise;
 
 import com.absmis.domain.enterprise.ComponentEn;
+import com.absmis.service.authority.RoleService;
 import com.absmis.service.enterprise.ComponentEnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,10 +20,14 @@ import java.util.Map;
 public class ComponentEnController {
     @Autowired
     ComponentEnService componentEnService;
+    @Autowired
+    RoleService roleService;
 
     //添加
     @RequestMapping(value = "/addComponentEn", method = RequestMethod.POST)
     public Map<String, Object> addComponentEn(@RequestBody ComponentEn componentEn)throws Exception {
+        componentEn.setPassword(componentEn.getUsername());
+        componentEn.setRole(roleService.findOne((long)8));
         this.componentEnService.addComponentEn(componentEn);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("componentEn", componentEn);

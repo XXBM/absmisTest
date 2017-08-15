@@ -1,6 +1,7 @@
 package com.absmis.controller.enterprise;
 
 import com.absmis.domain.enterprise.MachineryEn;
+import com.absmis.service.authority.RoleService;
 import com.absmis.service.enterprise.MachineryEnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,10 +20,14 @@ import java.util.Map;
 public class MachineryEnController {
     @Autowired
     MachineryEnService machineryEnService;
+    @Autowired
+    RoleService roleService;
 
     //添加
     @RequestMapping(value = "/addMachineryEn", method = RequestMethod.POST)
     public Map<String, Object> addMachineryEn(@RequestBody MachineryEn machineryEn)throws Exception {
+        machineryEn.setPassword(machineryEn.getUsername());
+        machineryEn.setRole(roleService.findOne((long)6));
         this.machineryEnService.addMachineryEn(machineryEn);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("machineryEn", machineryEn);

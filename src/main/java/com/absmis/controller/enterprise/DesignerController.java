@@ -1,6 +1,7 @@
 package com.absmis.controller.enterprise;
 
 import com.absmis.domain.enterprise.Designer;
+import com.absmis.service.authority.RoleService;
 import com.absmis.service.enterprise.DesignerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,10 +16,14 @@ import java.util.Map;
 public class DesignerController {
     @Autowired
     DesignerService designerService;
+    @Autowired
+    RoleService roleService;
 
     //添加
     @RequestMapping(value = "/addDesigner", method = RequestMethod.POST)
     public Map<String, Object> addDesigner(@RequestBody Designer designer)throws Exception {
+        designer.setPassword(designer.getUsername());
+        designer.setRole(roleService.findOne((long)4));
         this.designerService.addDesigner(designer);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("designer", designer);

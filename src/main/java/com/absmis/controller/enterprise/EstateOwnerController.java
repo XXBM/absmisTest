@@ -1,6 +1,7 @@
 package com.absmis.controller.enterprise;
 
 import com.absmis.domain.enterprise.EstateOwner;
+import com.absmis.service.authority.RoleService;
 import com.absmis.service.enterprise.EstateOwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -13,10 +14,14 @@ import java.util.Map;
 public class EstateOwnerController {
     @Autowired
     EstateOwnerService estateOwnerService;
+    @Autowired
+    RoleService roleService;
 
     //添加
     @RequestMapping(value = "/addEstateOwner", method = RequestMethod.POST)
     public Map<String, Object> addEstateOwner(@RequestBody EstateOwner estateOwner)throws Exception {
+        estateOwner.setPassword(estateOwner.getUsername());
+        estateOwner.setRole(roleService.findOne((long)9));
         this.estateOwnerService.addEstateOwner(estateOwner);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("estateOwner", estateOwner);

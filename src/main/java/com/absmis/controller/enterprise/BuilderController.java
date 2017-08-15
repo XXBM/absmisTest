@@ -1,6 +1,7 @@
 package com.absmis.controller.enterprise;
 
 import com.absmis.domain.enterprise.Builder;
+import com.absmis.service.authority.RoleService;
 import com.absmis.service.enterprise.BuilderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,10 +21,14 @@ import java.util.Map;
 public class BuilderController {
     @Autowired
     BuilderService builderService;
+    @Autowired
+    RoleService roleService;
 
     //添加
     @RequestMapping(value = "/addBuilder", method = RequestMethod.POST)
     public Map<String, Object> addBuilder(@RequestBody Builder builder)throws Exception {
+        builder.setPassword(builder.getUsername());
+        builder.setRole(roleService.findOne((long)5));
         this.builderService.addBuilder(builder);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("builder", builder);
