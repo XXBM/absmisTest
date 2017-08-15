@@ -49,14 +49,6 @@ public abstract class Project implements Serializable {
     private String designer;
     //建设单位
     private String construction;
-    //房地产企业
-    //@javax.persistence.ManyToOne
-    //@javax.persistence.JoinColumn(name = "realEstateEn_id")
-    //private RealEstateEn realEstateEn;
-    //建设单位
-    //@javax.persistence.ManyToOne
-    //@javax.persistence.JoinColumn(name = "estateOwner_id")
-    //private EstateOwner estateOwner;
     //项目类别
     @ManyToOne
     @JoinColumn(name = "projectCategory_id")
