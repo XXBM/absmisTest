@@ -49,13 +49,16 @@ public class Project implements Serializable {
     //建设单位
     private String construction;
     //房地产企业
-    @javax.persistence.ManyToOne
-    @javax.persistence.JoinColumn(name = "realEstateEn_id")
-    private RealEstateEn realEstateEn;
+    //@javax.persistence.ManyToOne
+    //@javax.persistence.JoinColumn(name = "realEstateEn_id")
+    //private RealEstateEn realEstateEn;
     //建设单位
+    //@javax.persistence.ManyToOne
+    //@javax.persistence.JoinColumn(name = "estateOwner_id")
+    //private EstateOwner estateOwner;
     @javax.persistence.ManyToOne
-    @javax.persistence.JoinColumn(name = "estateOwner_id")
-    private EstateOwner estateOwner;
+    @javax.persistence.JoinColumn(name = "organization_id")
+    private Organization organization;
     //项目类别
     @ManyToOne
     @JoinColumn(name = "projectCategory_id")
@@ -190,20 +193,12 @@ public class Project implements Serializable {
         this.construction = construction;
     }
 
-    public RealEstateEn getRealEstateEn() {
-        return realEstateEn;
+    public Organization getOrganization() {
+        return organization;
     }
 
-    public void setRealEstateEn(RealEstateEn realEstateEn) {
-        this.realEstateEn = realEstateEn;
-    }
-
-    public EstateOwner getEstateOwner() {
-        return estateOwner;
-    }
-
-    public void setEstateOwner(EstateOwner estateOwner) {
-        this.estateOwner = estateOwner;
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
     }
 
     public ProjectCategory getProjectCategory() {

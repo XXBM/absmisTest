@@ -28,7 +28,7 @@ public class RealEstateEn extends ConstructionEn {
     private RealEstateEnQualification realEstateEnQualification;
     //项目
     @JsonIgnore
-    @javax.persistence.OneToMany(mappedBy = "realEstateEn")
+    @javax.persistence.OneToMany(mappedBy = "organization")
     private Set<Project> project;
 
     public RealEstateEn() {

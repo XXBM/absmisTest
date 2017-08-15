@@ -17,7 +17,7 @@ import java.util.Set;
 public class EstateOwner extends Organization {
     //项目
     @JsonIgnore
-    @javax.persistence.OneToMany(mappedBy = "estateOwner")
+    @javax.persistence.OneToMany(mappedBy = "organization")
     private Set<Project> project;
 
     public EstateOwner() {

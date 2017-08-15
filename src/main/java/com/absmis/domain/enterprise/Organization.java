@@ -5,9 +5,9 @@ import com.absmis.domain.authority.User;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MappedSuperclass;
 
 /**
  * <!-- begin-user-doc -->
@@ -16,7 +16,7 @@ import javax.persistence.MappedSuperclass;
  *  企业抽象
  *
  */
-@MappedSuperclass
+@Entity
 @DynamicInsert(true)
 @DynamicUpdate(true)
 public abstract class Organization extends User {
