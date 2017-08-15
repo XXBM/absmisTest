@@ -27,7 +27,7 @@ public class Project implements Serializable {
     //项目开工时间
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Calendar startTime;
+    private Calendar startingTime;
     //项目填报时间
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -98,12 +98,12 @@ public class Project implements Serializable {
         return checkedStatus;
     }
 
-    public Calendar getStartTime() {
-        return startTime;
+    public Calendar getStartingTime() {
+        return startingTime;
     }
 
-    public void setStartTime(Calendar startTime) {
-        this.startTime = startTime;
+    public void setStartingTime(Calendar startingTime) {
+        this.startingTime = startingTime;
     }
 
     public void setCheckedStatus(CheckedStatus checkedStatus) {
