@@ -19,6 +19,10 @@ public class ProjectByRealEstateEn extends Project {
     @javax.persistence.JoinColumn(name = "realEstateEn_id")
     private RealEstateEn realEstateEn;
 
+    public ProjectByRealEstateEn(Long id) {
+        super(id);
+    }
+
     public ProjectByRealEstateEn() {
         super();
     }

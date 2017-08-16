@@ -23,6 +23,11 @@ public class ProjectByEstateOwner extends Project {
         super();
     }
 
+
+    public ProjectByEstateOwner(Long id) {
+        super(id);
+    }
+
     @Override
     public String getOwner() {
         return "建设单位";

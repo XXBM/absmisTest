@@ -79,6 +79,10 @@ public abstract class Project implements Serializable {
     public Project() {
         super();
     }
+    public Project(Long id) {
+        this.id = id;
+    }
+
 
     public Long getId() {
         return id;

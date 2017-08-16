@@ -1,6 +1,7 @@
 package com.absmis.controller.enterprise;
 
 import com.absmis.domain.enterprise.UnitEngineering;
+import com.absmis.service.enterprise.ProjectService;
 import com.absmis.service.enterprise.UnitEngineeringService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,12 +22,15 @@ import java.util.Map;
 public class UnitEngineeringController {
     @Autowired
     UnitEngineeringService unitEngineeringService;
+    @Autowired
+    ProjectService projectService;
 
     //添加
     @RequestMapping(value = "/addUnitEngineering", method = RequestMethod.POST)
-    public Map<String, Object> addUnitEngineering(@RequestBody UnitEngineering unitEngineering)throws Exception {
-        //EngineeringIndustrialization engineeringIndustrialization = new EngineeringIndustrialization((double)2,(double)2,null,null,null,null,null);
-        //unitEngineering.setEngineeringIndustrialization(engineeringIndustrialization);
+    public Map<String, Object> addUnitEngineering(
+            @RequestParam(value = "projectId") Long id,
+            @RequestBody UnitEngineering unitEngineering)throws Exception {
+        unitEngineering.setProject(projectService.findById(id));
         this.unitEngineeringService.addUnitEngineering(unitEngineering);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("unitEngineering", unitEngineering);
@@ -57,7 +61,7 @@ public class UnitEngineeringController {
     //实现分页
     @RequestMapping(value = "/displayAllUnitEngineeringsByPro", method = RequestMethod.GET)
     public Map<String, Object> findAllUnitEngineeringByProject(
-            @RequestParam(value = "page") Long id,
+            @RequestParam(value = "id") Long id,
             @RequestParam(value = "page") Integer page,
             @RequestParam(value = "rows") Integer size)throws Exception {
         Map<String, Object> map = new HashMap<String, Object>();

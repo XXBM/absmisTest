@@ -26,11 +26,13 @@ public class ProjectByEstateOwnerController {
     ProjectByEstateOwnerService projectByEstateOwnerService;
     @Autowired
     UserService userService;
-    String username = SecurityContextHolder.getContext().getAuthentication().getName();
-    User storedUser = userService.findByUsername(username);
+    String username = null;
+    User storedUser = null;
     //添加
     @RequestMapping(value = "/addProjectByEstateOwner", method = RequestMethod.POST)
     public Map<String, Object> addProjectByEstateOwner(@RequestBody ProjectByEstateOwner projectByEstateOwner)throws Exception {
+        username = SecurityContextHolder.getContext().getAuthentication().getName();
+        storedUser = userService.findByUsername(username);
         projectByEstateOwner.setEstateOwner((EstateOwner)storedUser);
         this.projectByEstateOwnerService.addProjectByEstateOwner(projectByEstateOwner);
         Map<String, Object> map = new HashMap<String, Object>();
