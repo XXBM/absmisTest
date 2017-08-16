@@ -5,6 +5,7 @@ import com.absmis.service.enterprise.UnitEngineeringService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -53,6 +54,20 @@ public class UnitEngineeringController {
         return map;
     }
 
+    //实现分页
+    @RequestMapping(value = "/displayAllUnitEngineeringsByPro", method = RequestMethod.GET)
+    public Map<String, Object> findAllUnitEngineeringByProject(
+            @RequestParam(value = "page") Long id,
+            @RequestParam(value = "page") Integer page,
+            @RequestParam(value = "rows") Integer size)throws Exception {
+        Map<String, Object> map = new HashMap<String, Object>();
+        Pageable pageable = new PageRequest(page - 1, size);
+        Page<UnitEngineering> list = this.unitEngineeringService.findByProjectId(id, pageable);
+        int total = this.unitEngineeringService.findByProjectId(id).size();
+        map.put("total", total);
+        map.put("rows", list.getContent());
+        return map;
+    }
     //修改学院信息    完成 改
     @RequestMapping(value = "/updateUnitEngineering", method = RequestMethod.PUT)
     public Map<String, Object> updateUnitEngineering(@RequestBody UnitEngineering unitEngineering)throws Exception {

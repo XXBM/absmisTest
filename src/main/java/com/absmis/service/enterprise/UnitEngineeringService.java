@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by xuling on 2016/10/11.
  */
@@ -17,6 +19,14 @@ import org.springframework.stereotype.Service;
 public class UnitEngineeringService extends BasicService<UnitEngineering, Long> {
     @Autowired
     UnitEngineeringRepository unitEngineeringRepository;
+
+    public Page<UnitEngineering> findByProjectId(Long id, Pageable pageable) {
+        return this.unitEngineeringRepository.findByProjectId(id, pageable);
+    }
+    public List<UnitEngineering> findByProjectId(Long id) {
+        return this.unitEngineeringRepository.findByProjectId(id);
+    }
+
     /*增加*/
     public void addUnitEngineering(UnitEngineering unitEngineering){
         this.unitEngineeringRepository.save(unitEngineering);
