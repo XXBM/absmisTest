@@ -51,13 +51,10 @@ public class ConstructionEnController {
         List<Organization> organizations = this.organizationService.findAllT();
         List<ConstructionEn> constructionEns = this.constructionEnService.findAllT();
         organizations.removeAll(constructionEns);
-//        for(){
-//            listO.
-//        }
         int totalC = this.constructionEnService.findAllT().size();
         int totalO = this.organizationService.findAllT().size();
         map.put("total", totalO-totalC);
-        map.put("rows", listO.getContent());
+        map.put("rows", organizations);
         return map;
     }
 }
