@@ -23,6 +23,7 @@ public class ProjectCategory implements Serializable{
         super();
     }
 
+
     public ProjectCategory(Long id) {
         this.id = id;
     }

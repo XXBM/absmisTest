@@ -12,8 +12,6 @@ import java.io.Serializable;
 
 @javax.persistence.Entity
 public class ProjectState implements Serializable{
-
-
     @javax.persistence.Id
     private Long id;
     private String no;
@@ -21,6 +19,10 @@ public class ProjectState implements Serializable{
 
     public ProjectState() {
         super();
+    }
+
+    public ProjectState(Long id) {
+        this.id = id;
     }
 
     public Long getId() {

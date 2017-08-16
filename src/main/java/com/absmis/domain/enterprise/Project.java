@@ -21,6 +21,7 @@ import java.util.Set;
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("Project")
 public abstract class Project implements Serializable {
+    @GeneratedValue(strategy=GenerationType.TABLE)
     @javax.persistence.Id
     private Long id;
     //项目名称

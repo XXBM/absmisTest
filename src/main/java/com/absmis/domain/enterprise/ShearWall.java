@@ -18,18 +18,25 @@ import javax.persistence.Embeddable;
 @DynamicUpdate(true)
 public class ShearWall{
     //楼板
+    @javax.persistence.Column(nullable = true)
     private boolean floorSw;
     //楼梯
+    @javax.persistence.Column(nullable = true)
     private boolean stairsSw;
     //外墙
+    @javax.persistence.Column(nullable = true)
     private boolean exteriorWallSw;
     //内墙
+    @javax.persistence.Column(nullable = true)
     private boolean interiorWallSw;
     //整体厨房
+    @javax.persistence.Column(nullable = true)
     private boolean integralKitchenSw;
     //整体卫生间
+    @javax.persistence.Column(nullable = true)
     private boolean integralToiletSw;
     //太阳能
+    @javax.persistence.Column(nullable = true)
     private boolean solarEnergySw;
 
     public ShearWall() {

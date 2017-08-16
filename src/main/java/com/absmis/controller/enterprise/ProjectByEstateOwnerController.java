@@ -1,10 +1,14 @@
 package com.absmis.controller.enterprise;
 
+import com.absmis.domain.authority.User;
+import com.absmis.domain.enterprise.EstateOwner;
 import com.absmis.domain.enterprise.ProjectByEstateOwner;
+import com.absmis.service.authority.UserService;
 import com.absmis.service.enterprise.ProjectByEstateOwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -20,10 +24,14 @@ import java.util.Map;
 public class ProjectByEstateOwnerController {
     @Autowired
     ProjectByEstateOwnerService projectByEstateOwnerService;
-
+    @Autowired
+    UserService userService;
+    String username = SecurityContextHolder.getContext().getAuthentication().getName();
+    User storedUser = userService.findByUsername(username);
     //添加
     @RequestMapping(value = "/addProjectByEstateOwner", method = RequestMethod.POST)
     public Map<String, Object> addProjectByEstateOwner(@RequestBody ProjectByEstateOwner projectByEstateOwner)throws Exception {
+        projectByEstateOwner.setEstateOwner((EstateOwner)storedUser);
         this.projectByEstateOwnerService.addProjectByEstateOwner(projectByEstateOwner);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("projectByEstateOwner", projectByEstateOwner);
