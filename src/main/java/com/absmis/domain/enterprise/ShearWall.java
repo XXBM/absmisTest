@@ -4,7 +4,6 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Embeddable;
-import java.io.Serializable;
 
 /**
  * <!-- begin-user-doc -->
@@ -17,7 +16,7 @@ import java.io.Serializable;
 @Embeddable
 @DynamicInsert(true)
 @DynamicUpdate(true)
-public class ShearWall implements Serializable {
+public class ShearWall{
     //楼板
     private boolean floorSw;
     //楼梯

@@ -4,12 +4,11 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Embeddable;
-import java.io.Serializable;
 
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
- *     框架及剪框
+ * 框架及剪框
  *
  * @generated
  */
@@ -17,98 +16,108 @@ import java.io.Serializable;
 @Embeddable
 @DynamicInsert(true)
 @DynamicUpdate(true)
-public class FrameworkShear implements Serializable {
+public class FrameworkShear {
     //柱
-    private boolean columnFs;
+    @javax.persistence.Column(nullable = true)
+    private Boolean columnFs;
     //梁
-    private boolean beamFs;
+    @javax.persistence.Column(nullable = true)
+    private Boolean beamFs;
     //楼板
-    private boolean floorFs;
+    @javax.persistence.Column(nullable = true)
+    private Boolean floorFs;
     //楼梯
-    private boolean stairsFs;
+    @javax.persistence.Column(nullable = true)
+    private Boolean stairsFs;
     //外墙
-    private boolean exteriorWallFs;
+    @javax.persistence.Column(nullable = true)
+    private Boolean exteriorWallFs;
     //内墙
-    private boolean interiorWallFs;
+    @javax.persistence.Column(nullable = true)
+    private Boolean interiorWallFs;
     //整体厨房
-    private boolean integralKitchenFs;
+    @javax.persistence.Column(nullable = true)
+    private Boolean integralKitchenFs;
     //整体卫生间
-    private boolean integralToiletFs;
+    @javax.persistence.Column(nullable = true)
+    private Boolean integralToiletFs;
     //太阳能
-    private boolean solarEnergyFs;
+    @javax.persistence.Column(nullable = true)
+    private Boolean solarEnergyFs;
+
     public FrameworkShear() {
         super();
     }
 
-    public boolean isColumnFs() {
+    public Boolean getColumnFs() {
         return columnFs;
     }
 
-    public void setColumnFs(boolean columnFs) {
+    public void setColumnFs(Boolean columnFs) {
         this.columnFs = columnFs;
     }
 
-    public boolean isBeamFs() {
+    public Boolean getBeamFs() {
         return beamFs;
     }
 
-    public void setBeamFs(boolean beamFs) {
+    public void setBeamFs(Boolean beamFs) {
         this.beamFs = beamFs;
     }
 
-    public boolean isFloorFs() {
+    public Boolean getFloorFs() {
         return floorFs;
     }
 
-    public void setFloorFs(boolean floorFs) {
+    public void setFloorFs(Boolean floorFs) {
         this.floorFs = floorFs;
     }
 
-    public boolean isStairsFs() {
+    public Boolean getStairsFs() {
         return stairsFs;
     }
 
-    public void setStairsFs(boolean stairsFs) {
+    public void setStairsFs(Boolean stairsFs) {
         this.stairsFs = stairsFs;
     }
 
-    public boolean isExteriorWallFs() {
+    public Boolean getExteriorWallFs() {
         return exteriorWallFs;
     }
 
-    public void setExteriorWallFs(boolean exteriorWallFs) {
+    public void setExteriorWallFs(Boolean exteriorWallFs) {
         this.exteriorWallFs = exteriorWallFs;
     }
 
-    public boolean isInteriorWallFs() {
+    public Boolean getInteriorWallFs() {
         return interiorWallFs;
     }
 
-    public void setInteriorWallFs(boolean interiorWallFs) {
+    public void setInteriorWallFs(Boolean interiorWallFs) {
         this.interiorWallFs = interiorWallFs;
     }
 
-    public boolean isIntegralKitchenFs() {
+    public Boolean getIntegralKitchenFs() {
         return integralKitchenFs;
     }
 
-    public void setIntegralKitchenFs(boolean integralKitchenFs) {
+    public void setIntegralKitchenFs(Boolean integralKitchenFs) {
         this.integralKitchenFs = integralKitchenFs;
     }
 
-    public boolean isIntegralToiletFs() {
+    public Boolean getIntegralToiletFs() {
         return integralToiletFs;
     }
 
-    public void setIntegralToiletFs(boolean integralToiletFs) {
+    public void setIntegralToiletFs(Boolean integralToiletFs) {
         this.integralToiletFs = integralToiletFs;
     }
 
-    public boolean isSolarEnergyFs() {
+    public Boolean getSolarEnergyFs() {
         return solarEnergyFs;
     }
 
-    public void setSolarEnergyFs(boolean solarEnergyFs) {
+    public void setSolarEnergyFs(Boolean solarEnergyFs) {
         this.solarEnergyFs = solarEnergyFs;
     }
 }

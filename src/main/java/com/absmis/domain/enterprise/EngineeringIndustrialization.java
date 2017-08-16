@@ -7,6 +7,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.JoinColumn;
+import java.io.Serializable;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,8 +20,7 @@ import javax.persistence.JoinColumn;
 @Embeddable
 @DynamicInsert(true)
 @DynamicUpdate(true)
-public class EngineeringIndustrialization {
-
+public class EngineeringIndustrialization implements Serializable {
     //单体装配率
     private Double unitAssemblyRate;
     //外墙预制比例应用产业化技术的建筑面积
@@ -40,6 +40,16 @@ public class EngineeringIndustrialization {
     private String floorScope;
     public EngineeringIndustrialization() {
         super();
+    }
+
+    public EngineeringIndustrialization(Double unitAssemblyRate, Double exteriorWallArea, Double wallShadowArea, Double conArea, ApplicationStructureType applicationStructureType, FrameworkShear frameworkShear, String floorScope) {
+        this.unitAssemblyRate = unitAssemblyRate;
+        this.exteriorWallArea = exteriorWallArea;
+        this.wallShadowArea = wallShadowArea;
+        this.conArea = conArea;
+        this.applicationStructureType = applicationStructureType;
+        this.frameworkShear = frameworkShear;
+        this.floorScope = floorScope;
     }
 
     public Double getUnitAssemblyRate() {

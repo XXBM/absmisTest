@@ -24,6 +24,8 @@ public class UnitEngineeringController {
     //添加
     @RequestMapping(value = "/addUnitEngineering", method = RequestMethod.POST)
     public Map<String, Object> addUnitEngineering(@RequestBody UnitEngineering unitEngineering)throws Exception {
+        //EngineeringIndustrialization engineeringIndustrialization = new EngineeringIndustrialization((double)2,(double)2,null,null,null,null,null);
+        //unitEngineering.setEngineeringIndustrialization(engineeringIndustrialization);
         this.unitEngineeringService.addUnitEngineering(unitEngineering);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("unitEngineering", unitEngineering);

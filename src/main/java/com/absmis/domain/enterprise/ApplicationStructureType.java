@@ -1,5 +1,7 @@
 package com.absmis.domain.enterprise;
 
+import java.io.Serializable;
+
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
@@ -9,7 +11,7 @@ package com.absmis.domain.enterprise;
  */
 
 @javax.persistence.Entity
-public class ApplicationStructureType {
+public class ApplicationStructureType implements Serializable {
 
 
     @javax.persistence.Id
@@ -21,6 +23,10 @@ public class ApplicationStructureType {
 
     public ApplicationStructureType() {
         super();
+    }
+
+    public ApplicationStructureType(Long id) {
+        this.id = id;
     }
 
     public Long getId() {

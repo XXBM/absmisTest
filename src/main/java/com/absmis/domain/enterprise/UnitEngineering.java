@@ -1,9 +1,7 @@
 package com.absmis.domain.enterprise;
 
 
-import javax.persistence.Embedded;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -16,6 +14,7 @@ import java.io.Serializable;
 
 @javax.persistence.Entity
 public class UnitEngineering implements Serializable {
+    @GeneratedValue(strategy= GenerationType.AUTO)
     @javax.persistence.Id
     private Long id;
     //工程名称
