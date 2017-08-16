@@ -13,9 +13,6 @@ import java.util.List;
 public class CheckedStatusController {
     @Autowired
     CheckedStatusService checkedStatusService;
-
-
-
     /**
      * 获取到所有
      */
