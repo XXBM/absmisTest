@@ -1,5 +1,7 @@
 package com.absmis.domain.enterprise;
 
+import java.io.Serializable;
+
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
@@ -9,7 +11,7 @@ package com.absmis.domain.enterprise;
  */
 
 @javax.persistence.Entity
-public class ProjectState {
+public class ProjectState implements Serializable{
 
 
     @javax.persistence.Id
