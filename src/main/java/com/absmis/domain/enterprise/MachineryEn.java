@@ -27,7 +27,7 @@ public class MachineryEn extends Organization {
 
     @Override
     public String getEnterpriseType() {
-        return "设备单位";
+        return "设备生产企业";
     }
 
     public Set<MachineryEnIndustrialization> getMachineryEnIndustrializations() {

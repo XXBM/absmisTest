@@ -1,6 +1,7 @@
 package com.absmis.controller.enterprise;
 
 import com.absmis.domain.authority.User;
+import com.absmis.domain.enterprise.*;
 import com.absmis.domain.message.Result;
 import com.absmis.domain.message.UserInfo;
 import com.absmis.service.authority.UserService;
@@ -52,5 +53,26 @@ public class UserController {
         userInfo.setUserName(username);
         userInfo.setUserType(storedUser.getEnterpriseType());
         return userInfo;
+    }
+
+    @RequestMapping(value = "/returnUserInfo", method = RequestMethod.GET)
+    public User returnUser()throws Exception {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User storedUser = userService.findByUsername(username);
+        if("施工单位".equals(storedUser.getEnterpriseType())){
+            return (Builder)storedUser;
+        }else if("设计单位".equals(storedUser.getEnterpriseType())){
+            return (Designer)storedUser;
+        }else if("房地产企业".equals(storedUser.getEnterpriseType())){
+            return (RealEstateEn)storedUser;
+        }else if("构件生产企业".equals(storedUser.getEnterpriseType())){
+            return (ComponentEn)storedUser;
+        }else if("部品生产企业".equals(storedUser.getEnterpriseType())){
+            return (SubUnitEn)storedUser;
+        }else if("设备生产企业".equals(storedUser.getEnterpriseType())){
+            return (MachineryEn)storedUser;
+        }else{
+            return storedUser;
+        }
     }
 }
