@@ -7,11 +7,14 @@ import com.absmis.service.enterprise.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,16 +48,20 @@ public class ConstructionEnController {
     //实现分页 获取非传统企业
     @RequestMapping(value = "/displayOrganizations", method = RequestMethod.GET)
     public Map<String, Object> findAllOranization(@RequestParam(value = "page") Integer page, @RequestParam(value = "rows") Integer size)throws Exception {
-        Map<String, Object> map = new HashMap<String, Object>();
-        Page<Organization> listO = this.organizationService.findAllT(new PageRequest(page - 1, size));
-        Page<ConstructionEn> listC = this.constructionEnService.findAllT(new PageRequest(page - 1, size));
-        List<Organization> organizations = this.organizationService.findAllT();
-        List<ConstructionEn> constructionEns = this.constructionEnService.findAllT();
+        List<Organization> organizations = organizationService.findAllT();
+        List<ConstructionEn> constructionEns = constructionEnService.findAllT();
         organizations.removeAll(constructionEns);
-        int totalC = this.constructionEnService.findAllT().size();
-        int totalO = this.organizationService.findAllT().size();
-        map.put("total", totalO-totalC);
-        map.put("rows", organizations);
+        List<Long> property = new ArrayList<>();
+        for(int i=0;i<organizations.size();i++){
+            property.add(organizations.get(i).getId());
+        }
+        Map<String, Object> map = new HashMap<String, Object>();
+        Pageable pageable = new PageRequest(page-1,size);
+        Specification<Organization> specification = this.organizationService.findNoTra(property);
+        Page<Organization> list = this.organizationService.findBySepc(specification,pageable);
+        int total = this.organizationService.findBySepc(specification).size();
+        map.put("total", total);
+        map.put("rows", list.getContent());
         return map;
     }
 }
