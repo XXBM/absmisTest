@@ -2,6 +2,7 @@ package com.absmis.controller.enterprise;
 
 import com.absmis.domain.enterprise.ConstructionEn;
 import com.absmis.domain.enterprise.Organization;
+import com.absmis.service.enterprise.CheckedStatusService;
 import com.absmis.service.enterprise.ConstructionEnService;
 import com.absmis.service.enterprise.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ public class ConstructionEnController {
     ConstructionEnService constructionEnService;
     @Autowired
     OrganizationService organizationService;
+    @Autowired
+    CheckedStatusService checkedStatusService;
     /**
      * 获取到所有传统企业
      */
@@ -42,6 +45,20 @@ public class ConstructionEnController {
         int total = this.constructionEnService.findAllT().size();
         map.put("total", total);
         map.put("rows", list.getContent());
+        return map;
+    }
+
+    //非传统企业审核信息    完成 改
+    @RequestMapping(value = "/updateTraditionalEn", method = RequestMethod.POST)
+    public Map<String, Object> updateTraditionalEn(
+            @RequestParam("id") Long id,
+            @RequestParam("checkedStatusId") Long checkedId
+    )throws Exception {
+        Organization organization = organizationService.findOne(id);
+        organization.setCheckedStatus(checkedStatusService.findOne(checkedId));
+        this.organizationService.update(organization);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("project", organization);
         return map;
     }
 
