@@ -1,10 +1,14 @@
 package com.absmis.controller.enterprise;
 
+import com.absmis.domain.authority.User;
+import com.absmis.domain.enterprise.ConstructionEn;
 import com.absmis.domain.enterprise.ConstructionEnIndustrialization;
+import com.absmis.service.authority.UserService;
 import com.absmis.service.enterprise.ConstructionEnIndustrializationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -15,10 +19,17 @@ import java.util.Map;
 public class ConstructionEnIndustrializationController {
     @Autowired
     ConstructionEnIndustrializationService constructionEnIndustrializationService;
+    @Autowired
+    UserService userService;
+    String username = null;
+    User storedUser = null;
 
     //添加
     @RequestMapping(value = "/addConstructionEnIndustrialization", method = RequestMethod.POST)
     public Map<String, Object> addConstructionEnIndustrialization(@RequestBody ConstructionEnIndustrialization constructionEnIndustrialization)throws Exception {
+        username = SecurityContextHolder.getContext().getAuthentication().getName();
+        storedUser = userService.findByUsername(username);
+        constructionEnIndustrialization.setConstructionEn((ConstructionEn)storedUser);
         this.constructionEnIndustrializationService.addConstructionEnIndustrialization(constructionEnIndustrialization);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("constructionEnIndustrialization", constructionEnIndustrialization);
