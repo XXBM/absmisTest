@@ -35,6 +35,13 @@ public class ProjectIndustrialization {
     @Embedded
     private ApplicationTechnology applicationTechnology;
 
+    public ApplicationTechnology getApplicationTechnology() {
+        return applicationTechnology;
+    }
+
+    public void setApplicationTechnology(ApplicationTechnology applicationTechnology) {
+        this.applicationTechnology = applicationTechnology;
+    }
 
     public ProjectIndustrialization() {
         super();

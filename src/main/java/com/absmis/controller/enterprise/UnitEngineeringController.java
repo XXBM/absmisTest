@@ -74,7 +74,10 @@ public class UnitEngineeringController {
     }
     //修改学院信息    完成 改
     @RequestMapping(value = "/updateUnitEngineering", method = RequestMethod.PUT)
-    public Map<String, Object> updateUnitEngineering(@RequestBody UnitEngineering unitEngineering)throws Exception {
+    public Map<String, Object> updateUnitEngineering(
+            @RequestParam(value = "projectId") Long id,
+            @RequestBody UnitEngineering unitEngineering)throws Exception {
+        unitEngineering.setProject(projectService.findById(id));
         this.unitEngineeringService.updateUnitEngineering(unitEngineering);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("unitEngineering", unitEngineering);

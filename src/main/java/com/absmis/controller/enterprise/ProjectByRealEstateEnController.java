@@ -45,6 +45,14 @@ public class ProjectByRealEstateEnController {
     /**
      * 获取到所有
      */
+    @RequestMapping(value = "/findProjectInfoById", method = RequestMethod.GET)
+    public ProjectByRealEstateEn findProjectById(@RequestParam(value = "id") Long id)throws Exception {
+        return projectByRealEstateEnService.findById(id);
+    }
+
+    /**
+     * 获取到所有
+     */
     @RequestMapping(value = "/findAllProjectByRealEstateEns", method = RequestMethod.GET)
     public List<ProjectByRealEstateEn> findProjectByRealEstateEn()throws Exception {
         List<ProjectByRealEstateEn> projectByRealEstateEns = projectByRealEstateEnService.findAllT();
@@ -66,6 +74,9 @@ public class ProjectByRealEstateEnController {
     //修改学院信息    完成 改
     @RequestMapping(value = "/updateProjectByRealEstateEn", method = RequestMethod.PUT)
     public Map<String, Object> updateProjectByRealEstateEn(@RequestBody ProjectByRealEstateEn projectByRealEstateEn)throws Exception {
+        username = SecurityContextHolder.getContext().getAuthentication().getName();
+        storedUser = userService.findByUsername(username);
+        projectByRealEstateEn.setRealEstateEn((RealEstateEn)storedUser);
         this.projectByRealEstateEnService.updateProjectByRealEstateEn(projectByRealEstateEn);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("projectByRealEstateEn", projectByRealEstateEn);

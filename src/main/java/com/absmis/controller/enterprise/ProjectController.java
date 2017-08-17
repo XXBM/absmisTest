@@ -1,6 +1,7 @@
 package com.absmis.controller.enterprise;
 
 import com.absmis.domain.enterprise.Project;
+import com.absmis.service.enterprise.CheckedStatusService;
 import com.absmis.service.enterprise.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,6 +21,8 @@ import java.util.Map;
 public class ProjectController {
     @Autowired
     ProjectService projectService;
+    @Autowired
+    CheckedStatusService checkedStatusService;
 
     //添加
     @RequestMapping(value = "/addProject", method = RequestMethod.POST)
@@ -54,6 +57,20 @@ public class ProjectController {
     //修改学院信息    完成 改
     @RequestMapping(value = "/updateProject", method = RequestMethod.PUT)
     public Map<String, Object> updateProject(@RequestBody Project project)throws Exception {
+        this.projectService.updateProject(project);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("project", project);
+        return map;
+    }
+
+    //修改学院信息    完成 改
+    @RequestMapping(value = "/updateProjectById", method = RequestMethod.POST)
+    public Map<String, Object> updateProjectById(
+            @RequestParam("id") Long id,
+            @RequestParam("checkedStatus") Long checkedId
+    )throws Exception {
+        Project project = projectService.findById(id);
+        project.setCheckedStatus(checkedStatusService.findOne(checkedId));
         this.projectService.updateProject(project);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("project", project);

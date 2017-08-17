@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProjectByRealEstateEnRepository extends MyRepository<ProjectByRealEstateEn, Long> {
+    ProjectByRealEstateEn findById(Long id);
 }
