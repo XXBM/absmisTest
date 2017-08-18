@@ -2,6 +2,7 @@ package com.absmis.controller.enterprise;
 
 import com.absmis.domain.enterprise.Designer;
 import com.absmis.service.authority.RoleService;
+import com.absmis.service.enterprise.CheckedStatusService;
 import com.absmis.service.enterprise.DesignerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,6 +19,8 @@ public class DesignerController {
     DesignerService designerService;
     @Autowired
     RoleService roleService;
+    @Autowired
+    CheckedStatusService checkedStatusService;
 
     //添加
     @RequestMapping(value = "/addDesigner", method = RequestMethod.POST)
@@ -39,6 +42,19 @@ public class DesignerController {
         return designers;
     }
 
+    //非传统企业审核信息    完成 改
+    @RequestMapping(value = "/checkDesigner", method = RequestMethod.POST)
+    public Map<String, Object> checkDesigner(
+            @RequestParam("id") Long id,
+            @RequestParam("checkedStatusId") Long checkedId
+    )throws Exception {
+        Designer designer = designerService.findOne(id);
+        designer.setCheckedStatus(checkedStatusService.findOne(checkedId));
+        this.designerService.update(designer);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("designer", designer);
+        return map;
+    }
 
     //实现分页
     @RequestMapping(value = "/displayAllDesigners", method = RequestMethod.GET)

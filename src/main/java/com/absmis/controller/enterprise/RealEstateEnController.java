@@ -2,6 +2,7 @@ package com.absmis.controller.enterprise;
 
 import com.absmis.domain.enterprise.RealEstateEn;
 import com.absmis.service.authority.RoleService;
+import com.absmis.service.enterprise.CheckedStatusService;
 import com.absmis.service.enterprise.RealEstateEnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,6 +23,8 @@ public class RealEstateEnController {
     RealEstateEnService realEstateEnService;
     @Autowired
     RoleService roleService;
+    @Autowired
+    CheckedStatusService checkedStatusService;
 
     //添加
     @RequestMapping(value = "/addRealEstateEn", method = RequestMethod.POST)
@@ -43,6 +46,19 @@ public class RealEstateEnController {
         return realEstates;
     }
 
+    //非传统企业审核信息    完成 改
+    @RequestMapping(value = "/checkRealEstateEn", method = RequestMethod.POST)
+    public Map<String, Object> checkRealEstateEn(
+            @RequestParam("id") Long id,
+            @RequestParam("checkedStatusId") Long checkedId
+    )throws Exception {
+        RealEstateEn realEstateEn = realEstateEnService.findOne(id);
+        realEstateEn.setCheckedStatus(checkedStatusService.findOne(checkedId));
+        this.realEstateEnService.update(realEstateEn);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("realEstateEn", realEstateEn);
+        return map;
+    }
 
     //实现分页
     @RequestMapping(value = "/displayAllRealEstateEns", method = RequestMethod.GET)
