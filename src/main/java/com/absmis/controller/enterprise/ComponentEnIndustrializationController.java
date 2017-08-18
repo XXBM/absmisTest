@@ -73,8 +73,8 @@ public class ComponentEnIndustrializationController {
     }
 
     //check
-    @RequestMapping(value = "/checkConstructionEnIndustrialization", method = RequestMethod.POST)
-    public Map<String, Object> checkConstructionEnIndustrialization(
+    @RequestMapping(value = "/checkComponentEnIndustrialization", method = RequestMethod.POST)
+    public Map<String, Object> checkComponentEnIndustrialization(
             @RequestParam("id") Long id,
             @RequestParam("constructionEnId") Long constructionEnId,
             @RequestParam("checkedStatusId") Long checkedStatusId
