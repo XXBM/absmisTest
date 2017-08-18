@@ -20,6 +20,10 @@ public class SubUnitEn extends Organization {
     public SubUnitEn() {
         super();
     }
+    public SubUnitEn(Long id) {
+
+       this.id = id;
+    }
 
     @Override
     public String getEnterpriseType() {

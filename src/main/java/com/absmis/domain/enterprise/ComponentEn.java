@@ -22,6 +22,9 @@ public class ComponentEn extends Organization {
     public ComponentEn() {
         super();
     }
+    public ComponentEn(Long id) {
+       this.id = id;
+    }
 
     @Override
     public String getEnterpriseType() {

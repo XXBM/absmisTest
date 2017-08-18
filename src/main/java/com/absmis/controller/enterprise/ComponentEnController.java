@@ -1,5 +1,4 @@
 package com.absmis.controller.enterprise;
-
 import com.absmis.domain.enterprise.ComponentEn;
 import com.absmis.service.authority.RoleService;
 import com.absmis.service.enterprise.CheckedStatusService;
@@ -23,8 +22,6 @@ public class ComponentEnController {
     ComponentEnService componentEnService;
     @Autowired
     RoleService roleService;
-    @Autowired
-    ComponentEn componentEn;
     @Autowired
     CheckedStatusService checkedStatusService;
 
