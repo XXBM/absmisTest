@@ -60,9 +60,6 @@ public class ConstructionEnIndustrializationController {
     //修改学院信息    完成 改
     @RequestMapping(value = "/updateConstructionEnIndustrialization", method = RequestMethod.PUT)
     public Map<String, Object> updateConstructionEnIndustrialization(@RequestBody ConstructionEnIndustrialization constructionEnIndustrialization)throws Exception {
-        username = SecurityContextHolder.getContext().getAuthentication().getName();
-        storedUser = userService.findByUsername(username);
-        constructionEnIndustrialization.setConstructionEn((ConstructionEn)storedUser);
         this.constructionEnIndustrializationService.updateConstructionEnIndustrialization(constructionEnIndustrialization);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("constructionEnIndustrialization", constructionEnIndustrialization);
