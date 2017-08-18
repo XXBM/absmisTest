@@ -24,11 +24,11 @@ public class Schedule {
     //项目起止时间
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Calendar startTime;
+    private Calendar projectStartTime;
     //项目结束时间
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
-    private Calendar endTime;
+    private Calendar projectEndTime;
     //取得土地使用权开始时间
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -90,20 +90,20 @@ public class Schedule {
         super();
     }
 
-    public Calendar getStartTime() {
-        return startTime;
+    public Calendar getProjectStartTime() {
+        return projectStartTime;
     }
 
-    public void setStartTime(Calendar startTime) {
-        this.startTime = startTime;
+    public void setProjectStartTime(Calendar projectStartTime) {
+        this.projectStartTime = projectStartTime;
     }
 
-    public Calendar getEndTime() {
-        return endTime;
+    public Calendar getProjectEndTime() {
+        return projectEndTime;
     }
 
-    public void setEndTime(Calendar endTime) {
-        this.endTime = endTime;
+    public void setProjectEndTime(Calendar projectEndTime) {
+        this.projectEndTime = projectEndTime;
     }
 
     public Calendar getLandUseRightStart() {
