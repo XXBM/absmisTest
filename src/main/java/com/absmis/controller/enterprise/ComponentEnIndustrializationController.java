@@ -4,7 +4,9 @@ import com.absmis.domain.authority.User;
 import com.absmis.domain.enterprise.ComponentEn;
 import com.absmis.domain.enterprise.ComponentEnIndustrialization;
 import com.absmis.service.authority.UserService;
+import com.absmis.service.enterprise.CheckedStatusService;
 import com.absmis.service.enterprise.ComponentEnIndustrializationService;
+import com.absmis.service.enterprise.ComponentEnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +21,10 @@ import java.util.Map;
 public class ComponentEnIndustrializationController {
     @Autowired
     ComponentEnIndustrializationService componentEnIndustrializationService;
+    @Autowired
+    ComponentEnService componentEnService;
+    @Autowired
+    CheckedStatusService checkedStatusService;
     @Autowired
     UserService userService;
     String username = null;
@@ -60,6 +66,22 @@ public class ComponentEnIndustrializationController {
     //修改学院信息    完成 改
     @RequestMapping(value = "/updateComponentEnIndustrialization", method = RequestMethod.PUT)
     public Map<String, Object> updateComponentEnIndustrialization(@RequestBody ComponentEnIndustrialization componentEnIndustrialization)throws Exception {
+        this.componentEnIndustrializationService.updateComponentEnIndustrialization(componentEnIndustrialization);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("componentEnIndustrialization", componentEnIndustrialization);
+        return map;
+    }
+
+    //check
+    @RequestMapping(value = "/checkConstructionEnIndustrialization", method = RequestMethod.POST)
+    public Map<String, Object> checkConstructionEnIndustrialization(
+            @RequestParam("id") Long id,
+            @RequestParam("constructionEnId") Long constructionEnId,
+            @RequestParam("checkedStatusId") Long checkedStatusId
+    )throws Exception {
+        ComponentEnIndustrialization componentEnIndustrialization = componentEnIndustrializationService.findById(id);
+        componentEnIndustrialization.setComponentEn(componentEnService.findOne(constructionEnId));
+        componentEnIndustrialization.setCheckedStatus(checkedStatusService.findOne(checkedStatusId));
         this.componentEnIndustrializationService.updateComponentEnIndustrialization(componentEnIndustrialization);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("componentEnIndustrialization", componentEnIndustrialization);
