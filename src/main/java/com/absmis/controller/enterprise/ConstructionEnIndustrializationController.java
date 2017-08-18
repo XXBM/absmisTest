@@ -4,7 +4,9 @@ import com.absmis.domain.authority.User;
 import com.absmis.domain.enterprise.ConstructionEn;
 import com.absmis.domain.enterprise.ConstructionEnIndustrialization;
 import com.absmis.service.authority.UserService;
+import com.absmis.service.enterprise.CheckedStatusService;
 import com.absmis.service.enterprise.ConstructionEnIndustrializationService;
+import com.absmis.service.enterprise.ConstructionEnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +21,10 @@ import java.util.Map;
 public class ConstructionEnIndustrializationController {
     @Autowired
     ConstructionEnIndustrializationService constructionEnIndustrializationService;
+    @Autowired
+    ConstructionEnService constructionEnService;
+    @Autowired
+    CheckedStatusService checkedStatusService;
     @Autowired
     UserService userService;
     String username = null;
@@ -65,6 +71,23 @@ public class ConstructionEnIndustrializationController {
         map.put("constructionEnIndustrialization", constructionEnIndustrialization);
         return map;
     }
+
+    //check
+    @RequestMapping(value = "/checkConstructionEnIndustrialization", method = RequestMethod.POST)
+    public Map<String, Object> checkConstructionEnIndustrialization(
+            @RequestParam("id") Long id,
+            @RequestParam("constructionEnId") Long constructionEnId,
+            @RequestParam("checkedStatusId") Long checkedStatusId
+    )throws Exception {
+        ConstructionEnIndustrialization constructionEnIndustrialization = constructionEnIndustrializationService.findById(id);
+        constructionEnIndustrialization.setConstructionEn(constructionEnService.findOne(constructionEnId));
+        constructionEnIndustrialization.setCheckedStatus(checkedStatusService.findOne(checkedStatusId));
+        this.constructionEnIndustrializationService.updateConstructionEnIndustrialization(constructionEnIndustrialization);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("constructionEnIndustrialization", constructionEnIndustrialization);
+        return map;
+    }
+
 
     //单个删除   完成 删
     @RequestMapping(value = "/deleteConstructionEnIndustrialization", method = RequestMethod.DELETE)
