@@ -48,6 +48,13 @@ public class ProjectByEstateOwnerController {
         List<ProjectByEstateOwner> projectByEstateOwners = projectByEstateOwnerService.findAllT();
         return projectByEstateOwners;
     }
+    /**
+     * 获取到所有
+     */
+    @RequestMapping(value = "/findProjectInfoByEstateOwner", method = RequestMethod.GET)
+    public ProjectByEstateOwner findProjectById(@RequestParam(value = "id") Long id)throws Exception {
+        return projectByEstateOwnerService.findById(id);
+    }
 
 
     //实现分页

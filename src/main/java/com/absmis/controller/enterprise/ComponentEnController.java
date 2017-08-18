@@ -2,6 +2,7 @@ package com.absmis.controller.enterprise;
 
 import com.absmis.domain.enterprise.ComponentEn;
 import com.absmis.service.authority.RoleService;
+import com.absmis.service.enterprise.CheckedStatusService;
 import com.absmis.service.enterprise.ComponentEnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,6 +23,10 @@ public class ComponentEnController {
     ComponentEnService componentEnService;
     @Autowired
     RoleService roleService;
+    @Autowired
+    ComponentEn componentEn;
+    @Autowired
+    CheckedStatusService checkedStatusService;
 
     //添加
     @RequestMapping(value = "/addComponentEn", method = RequestMethod.POST)
@@ -34,6 +39,19 @@ public class ComponentEnController {
         return map;
     }
 
+    //非传统企业审核信息    完成 改
+    @RequestMapping(value = "/checkComponentEn", method = RequestMethod.POST)
+    public Map<String, Object> checkComponentEn(
+            @RequestParam("id") Long id,
+            @RequestParam("checkedStatusId") Long checkedId
+    )throws Exception {
+        ComponentEn componentEn = componentEnService.findOne(id);
+        componentEn.setCheckedStatus(checkedStatusService.findOne(checkedId));
+        this.componentEnService.update(componentEn);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("componentEn", componentEn);
+        return map;
+    }
     /**
      * 获取到所有
      */

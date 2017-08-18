@@ -2,6 +2,7 @@ package com.absmis.controller.enterprise;
 
 import com.absmis.domain.enterprise.SubUnitEn;
 import com.absmis.service.authority.RoleService;
+import com.absmis.service.enterprise.CheckedStatusService;
 import com.absmis.service.enterprise.SubUnitEnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,6 +23,8 @@ public class SubUnitEnController {
     SubUnitEnService subUnitEnService;
     @Autowired
     RoleService roleService;
+    @Autowired
+    CheckedStatusService checkedStatusService;
 
     //添加
     @RequestMapping(value = "/addSubUnitEn", method = RequestMethod.POST)
@@ -29,6 +32,19 @@ public class SubUnitEnController {
         subUnitEn.setPassword(subUnitEn.getUsername());
         subUnitEn.setRole(roleService.findOne((long)7));
         this.subUnitEnService.addSubUnitEn(subUnitEn);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("subUnitEn", subUnitEn);
+        return map;
+    }
+    //非传统企业审核信息    完成 改
+    @RequestMapping(value = "/checkSubUnitEn", method = RequestMethod.POST)
+    public Map<String, Object> checkSubUnitEn(
+            @RequestParam("id") Long id,
+            @RequestParam("checkedStatusId") Long checkedId
+    )throws Exception {
+        SubUnitEn subUnitEn = subUnitEnService.findOne(id);
+        subUnitEn.setCheckedStatus(checkedStatusService.findOne(checkedId));
+        this.subUnitEnService.update(subUnitEn);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("subUnitEn", subUnitEn);
         return map;

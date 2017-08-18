@@ -23,9 +23,11 @@ import java.util.Calendar;
 public class Schedule {
     //项目起止时间
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar startTime;
     //项目结束时间
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar endTime;
     //取得土地使用权开始时间
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)

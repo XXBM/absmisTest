@@ -2,6 +2,7 @@ package com.absmis.controller.enterprise;
 
 import com.absmis.domain.enterprise.MachineryEn;
 import com.absmis.service.authority.RoleService;
+import com.absmis.service.enterprise.CheckedStatusService;
 import com.absmis.service.enterprise.MachineryEnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,6 +23,8 @@ public class MachineryEnController {
     MachineryEnService machineryEnService;
     @Autowired
     RoleService roleService;
+    @Autowired
+    CheckedStatusService checkedStatusService;
 
     //添加
     @RequestMapping(value = "/addMachineryEn", method = RequestMethod.POST)
@@ -33,7 +36,19 @@ public class MachineryEnController {
         map.put("machineryEn", machineryEn);
         return map;
     }
-
+    //非传统企业审核信息    完成 改
+    @RequestMapping(value = "/checkMachineryEn", method = RequestMethod.POST)
+    public Map<String, Object> checkMachineryEn(
+            @RequestParam("id") Long id,
+            @RequestParam("checkedStatusId") Long checkedId
+    )throws Exception {
+        MachineryEn machineryEn = machineryEnService.findOne(id);
+        machineryEn.setCheckedStatus(checkedStatusService.findOne(checkedId));
+        this.machineryEnService.update(machineryEn);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("machineryEn", machineryEn);
+        return map;
+    }
     /**
      * 获取到所有
      */
