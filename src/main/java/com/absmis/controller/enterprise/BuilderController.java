@@ -36,7 +36,7 @@ public class BuilderController {
             @RequestParam(value = "page") Integer page,
             @RequestParam(value = "rows") Integer size)throws Exception {
         Pageable pageable = new PageRequest(page-1,size);
-        Specification<Builder> specification = this.builderService.findNoTra(query);
+        Specification<Builder> specification = this.builderService.queryName(query);
         Page<Builder> list = this.builderService.findBySepc(specification,pageable);
         Map<String, Object> map = new HashMap<String, Object>();
         int total = this.builderService.findAllT().size();

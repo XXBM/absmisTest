@@ -58,4 +58,22 @@ public class OrganizationService extends BasicService<Organization, Long> {
             }
         };
     }
+
+
+    public Specification<Organization> findNoTraAndQueryName(
+            List<Long> property,
+            String name){
+        return new Specification<Organization>() {
+            @Override
+            public Predicate toPredicate(Root<Organization> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                List<Predicate> predicate = new ArrayList<>();
+                //条件一：查询在岗人员
+                predicate.add(cb.in(root.get("id")).value(property));
+                predicate.add(cb.like(root.get("name"),name));
+                Predicate[] pre = new Predicate[predicate.size()];
+                query.distinct(true);
+                return query.where(predicate.toArray(pre)).getRestriction();
+            }
+        };
+    }
 }

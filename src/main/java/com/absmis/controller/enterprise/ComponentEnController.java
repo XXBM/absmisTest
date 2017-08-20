@@ -34,7 +34,7 @@ public class ComponentEnController {
             @RequestParam(value = "page") Integer page,
             @RequestParam(value = "rows") Integer size)throws Exception {
         Pageable pageable = new PageRequest(page-1,size);
-        Specification<ComponentEn> specification = this.componentEnService.findNoTra(query);
+        Specification<ComponentEn> specification = this.componentEnService.queryName(query);
         Page<ComponentEn> list = this.componentEnService.findBySepc(specification,pageable);
         Map<String, Object> map = new HashMap<String, Object>();
         int total = this.componentEnService.findAllT().size();

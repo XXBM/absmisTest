@@ -67,7 +67,7 @@ public class DesignerService extends BasicService<Designer, Long> {
         return this.designerRepository.findAll(specification,sort);
     }
 
-    public Specification<Designer> findNoTra(String property){
+    public Specification<Designer> queryName(String property){
         return new Specification<Designer>() {
             @Override
             public Predicate toPredicate(Root<Designer> root, CriteriaQuery<?> query, CriteriaBuilder cb) {

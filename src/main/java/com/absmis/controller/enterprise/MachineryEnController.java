@@ -34,7 +34,7 @@ public class MachineryEnController {
             @RequestParam(value = "page") Integer page,
             @RequestParam(value = "rows") Integer size)throws Exception {
         Pageable pageable = new PageRequest(page-1,size);
-        Specification<MachineryEn> specification = this.machineryEnService.findNoTra(query);
+        Specification<MachineryEn> specification = this.machineryEnService.queryName(query);
         Page<MachineryEn> list = this.machineryEnService.findBySepc(specification,pageable);
         Map<String, Object> map = new HashMap<String, Object>();
         int total = this.machineryEnService.findAllT().size();

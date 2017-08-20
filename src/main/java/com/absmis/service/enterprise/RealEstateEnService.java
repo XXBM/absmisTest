@@ -67,7 +67,7 @@ public class RealEstateEnService extends BasicService<RealEstateEn, Long> {
         return this.realEstateEnRepository.findAll(specification,sort);
     }
 
-    public Specification<RealEstateEn> findNoTra(String property){
+    public Specification<RealEstateEn> queryName(String property){
         return new Specification<RealEstateEn>() {
             @Override
             public Predicate toPredicate(Root<RealEstateEn> root, CriteriaQuery<?> query, CriteriaBuilder cb) {

@@ -34,7 +34,7 @@ public class RealEstateEnController {
             @RequestParam(value = "page") Integer page,
             @RequestParam(value = "rows") Integer size)throws Exception {
         Pageable pageable = new PageRequest(page-1,size);
-        Specification<RealEstateEn> specification = this.realEstateEnService.findNoTra(query);
+        Specification<RealEstateEn> specification = this.realEstateEnService.queryName(query);
         Page<RealEstateEn> list = this.realEstateEnService.findBySepc(specification,pageable);
         Map<String, Object> map = new HashMap<String, Object>();
         int total = this.realEstateEnService.findAllT().size();

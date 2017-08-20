@@ -11,6 +11,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,5 +43,20 @@ public class ConstructionEnService extends BasicService<ConstructionEn, Long> {
     }
     public List<ConstructionEn> findBySepc(Specification<ConstructionEn> specification,Sort sort) {
         return this.constructionEnRepository.findAll(specification,sort);
+    }
+
+
+    public Specification<ConstructionEn> queryName(String property){
+        return new Specification<ConstructionEn>() {
+            @Override
+            public Predicate toPredicate(Root<ConstructionEn> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                List<Predicate> predicate = new ArrayList<>();
+                //条件一：查询在岗人员
+                predicate.add(cb.like(root.get("name"),property));
+                Predicate[] pre = new Predicate[predicate.size()];
+                query.distinct(true);
+                return query.where(predicate.toArray(pre)).getRestriction();
+            }
+        };
     }
 }

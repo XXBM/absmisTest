@@ -67,7 +67,7 @@ public class BuilderService extends BasicService<Builder, Long> {
         return this.builderRepository.findAll(specification,sort);
     }
 
-    public Specification<Builder> findNoTra(String property){
+    public Specification<Builder> queryName(String property){
         return new Specification<Builder>() {
             @Override
             public Predicate toPredicate(Root<Builder> root, CriteriaQuery<?> query, CriteriaBuilder cb) {

@@ -63,7 +63,7 @@ public class SubUnitEnService extends BasicService<SubUnitEn, Long> {
         return this.subUnitEnRepository.findAll(specification,sort);
     }
 
-    public Specification<SubUnitEn> findNoTra(String property){
+    public Specification<SubUnitEn> queryName(String property){
         return new Specification<SubUnitEn>() {
             @Override
             public Predicate toPredicate(Root<SubUnitEn> root, CriteriaQuery<?> query, CriteriaBuilder cb) {

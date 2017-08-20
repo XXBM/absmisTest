@@ -34,7 +34,7 @@ public class SubUnitEnController {
             @RequestParam(value = "page") Integer page,
             @RequestParam(value = "rows") Integer size)throws Exception {
         Pageable pageable = new PageRequest(page-1,size);
-        Specification<SubUnitEn> specification = this.subUnitEnService.findNoTra(query);
+        Specification<SubUnitEn> specification = this.subUnitEnService.queryName(query);
         Page<SubUnitEn> list = this.subUnitEnService.findBySepc(specification,pageable);
         Map<String, Object> map = new HashMap<String, Object>();
         int total = this.subUnitEnService.findAllT().size();

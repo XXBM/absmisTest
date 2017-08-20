@@ -63,7 +63,7 @@ public class MachineryEnService extends BasicService<MachineryEn, Long> {
         return this.machineryEnRepository.findAll(specification,sort);
     }
 
-    public Specification<MachineryEn> findNoTra(String property){
+    public Specification<MachineryEn> queryName(String property){
         return new Specification<MachineryEn>() {
             @Override
             public Predicate toPredicate(Root<MachineryEn> root, CriteriaQuery<?> query, CriteriaBuilder cb) {

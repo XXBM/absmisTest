@@ -81,4 +81,27 @@ public class ConstructionEnController {
         map.put("rows", list.getContent());
         return map;
     }
+
+    //模糊查询 获取非传统企业
+    @RequestMapping(value = "/queryOrganizations", method = RequestMethod.GET)
+    public Map<String, Object> findAllOranization(
+            @RequestParam(value = "queryName") String name,
+            @RequestParam(value = "page") Integer page,
+            @RequestParam(value = "rows") Integer size)throws Exception {
+        List<Organization> organizations = organizationService.findAllT();
+        List<ConstructionEn> constructionEns = constructionEnService.findAllT();
+        organizations.removeAll(constructionEns);
+        List<Long> property = new ArrayList<>();
+        for(int i=0;i<organizations.size();i++){
+            property.add(organizations.get(i).getId());
+        }
+        Map<String, Object> map = new HashMap<String, Object>();
+        Pageable pageable = new PageRequest(page-1,size);
+        Specification<Organization> specification = this.organizationService.findNoTraAndQueryName(property,name);
+        Page<Organization> list = this.organizationService.findBySepc(specification,pageable);
+        int total = this.organizationService.findBySepc(specification).size();
+        map.put("total", total);
+        map.put("rows", list.getContent());
+        return map;
+    }
 }

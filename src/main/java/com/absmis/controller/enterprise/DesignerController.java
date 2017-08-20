@@ -31,7 +31,7 @@ public class DesignerController {
             @RequestParam(value = "page") Integer page,
             @RequestParam(value = "rows") Integer size)throws Exception {
         Pageable pageable = new PageRequest(page-1,size);
-        Specification<Designer> specification = this.designerService.findNoTra(query);
+        Specification<Designer> specification = this.designerService.queryName(query);
         Page<Designer> list = this.designerService.findBySepc(specification,pageable);
         Map<String, Object> map = new HashMap<String, Object>();
         int total = this.designerService.findAllT().size();

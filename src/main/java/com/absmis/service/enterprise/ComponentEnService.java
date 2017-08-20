@@ -66,7 +66,7 @@ public class ComponentEnService extends BasicService<ComponentEn, Long> {
         return this.componentEnRepository.findAll(specification,sort);
     }
 
-    public Specification<ComponentEn> findNoTra(String property){
+    public Specification<ComponentEn> queryName(String property){
         return new Specification<ComponentEn>() {
             @Override
             public Predicate toPredicate(Root<ComponentEn> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
