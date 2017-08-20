@@ -28,6 +28,22 @@ public class ConstructionEnController {
     OrganizationService organizationService;
     @Autowired
     CheckedStatusService checkedStatusService;
+
+    //根据企业名称模糊查询
+    @RequestMapping(value = "/queryConstructionEnByName", method = RequestMethod.GET)
+    public Map<String, Object> queryConstructionEnByName(
+            @RequestParam(value = "nameQuery") String query,
+            @RequestParam(value = "page") Integer page,
+            @RequestParam(value = "rows") Integer size)throws Exception {
+        Pageable pageable = new PageRequest(page-1,size);
+        Specification<ConstructionEn> specification = this.constructionEnService.queryName(query);
+        Page<ConstructionEn> list = this.constructionEnService.findBySepc(specification,pageable);
+        Map<String, Object> map = new HashMap<String, Object>();
+        int total = this.constructionEnService.findAllT().size();
+        map.put("total", total);
+        map.put("rows", list.getContent());
+        return map;
+    }
     /**
      * 获取到所有传统企业
      */
