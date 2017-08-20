@@ -7,7 +7,16 @@ import com.absmis.service.BasicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by xuling on 2016/10/11.
@@ -41,4 +50,34 @@ public class BuilderService extends BasicService<Builder, Long> {
         return this.builderRepository.findAll(pageable);
     }
 
+    /**
+     * 多条件查询
+     */
+    public Page<Builder> findBySepc(Specification<Builder> specification, Pageable pageable) {
+        return this.builderRepository.findAll(specification, pageable);
+    }
+
+    /**
+     * 多条件查询
+     */
+    public List<Builder> findBySepc(Specification<Builder> specification) {
+        return this.builderRepository.findAll(specification);
+    }
+    public List<Builder> findBySepc(Specification<Builder> specification, Sort sort) {
+        return this.builderRepository.findAll(specification,sort);
+    }
+
+    public Specification<Builder> findNoTra(String property){
+        return new Specification<Builder>() {
+            @Override
+            public Predicate toPredicate(Root<Builder> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                List<Predicate> predicate = new ArrayList<>();
+                //条件一：查询在岗人员
+                predicate.add(cb.like(root.get("name"),property));
+                Predicate[] pre = new Predicate[predicate.size()];
+                query.distinct(true);
+                return query.where(predicate.toArray(pre)).getRestriction();
+            }
+        };
+    }
 }

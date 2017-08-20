@@ -7,6 +7,8 @@ import com.absmis.service.enterprise.DesignerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -22,6 +24,21 @@ public class DesignerController {
     @Autowired
     CheckedStatusService checkedStatusService;
 
+    //根据企业名称模糊查询
+    @RequestMapping(value = "/queryDesignerByName", method = RequestMethod.GET)
+    public Map<String, Object> queryDesignerByName(
+            @RequestParam(value = "nameQuery") String query,
+            @RequestParam(value = "page") Integer page,
+            @RequestParam(value = "rows") Integer size)throws Exception {
+        Pageable pageable = new PageRequest(page-1,size);
+        Specification<Designer> specification = this.designerService.findNoTra(query);
+        Page<Designer> list = this.designerService.findBySepc(specification,pageable);
+        Map<String, Object> map = new HashMap<String, Object>();
+        int total = this.designerService.findAllT().size();
+        map.put("total", total);
+        map.put("rows", list.getContent());
+        return map;
+    }
     //添加
     @RequestMapping(value = "/addDesigner", method = RequestMethod.POST)
     public Map<String, Object> addDesigner(@RequestBody Designer designer)throws Exception {

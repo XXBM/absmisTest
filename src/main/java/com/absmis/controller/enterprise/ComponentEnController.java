@@ -1,4 +1,5 @@
 package com.absmis.controller.enterprise;
+
 import com.absmis.domain.enterprise.ComponentEn;
 import com.absmis.service.authority.RoleService;
 import com.absmis.service.enterprise.CheckedStatusService;
@@ -6,6 +7,8 @@ import com.absmis.service.enterprise.ComponentEnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -24,7 +27,21 @@ public class ComponentEnController {
     RoleService roleService;
     @Autowired
     CheckedStatusService checkedStatusService;
-
+    //根据企业名称模糊查询
+    @RequestMapping(value = "/queryComponentEnByName", method = RequestMethod.GET)
+    public Map<String, Object> queryComponentEnByName(
+            @RequestParam(value = "nameQuery") String query,
+            @RequestParam(value = "page") Integer page,
+            @RequestParam(value = "rows") Integer size)throws Exception {
+        Pageable pageable = new PageRequest(page-1,size);
+        Specification<ComponentEn> specification = this.componentEnService.findNoTra(query);
+        Page<ComponentEn> list = this.componentEnService.findBySepc(specification,pageable);
+        Map<String, Object> map = new HashMap<String, Object>();
+        int total = this.componentEnService.findAllT().size();
+        map.put("total", total);
+        map.put("rows", list.getContent());
+        return map;
+    }
     //添加
     @RequestMapping(value = "/addComponentEn", method = RequestMethod.POST)
     public Map<String, Object> addComponentEn(@RequestBody ComponentEn componentEn)throws Exception {
