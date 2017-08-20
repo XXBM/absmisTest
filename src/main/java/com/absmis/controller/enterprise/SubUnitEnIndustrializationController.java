@@ -27,7 +27,7 @@ public class SubUnitEnIndustrializationController {
     User storedUser = null;
 
     //根据企业和申报起止时间查询
-    @RequestMapping(value = "/querySubUnitEnIn", method = RequestMethod.GET)
+    @RequestMapping(value = "/querySubUnitEnInCheck", method = RequestMethod.GET)
     public Map<String, Object> querySubUnitEnIn(
             @RequestParam(value = "startTime") String startTime,
             @RequestParam(value = "endTime") String endTime,
@@ -37,6 +37,24 @@ public class SubUnitEnIndustrializationController {
         storedUser = userService.findByUsername(username);
         Pageable pageable = new PageRequest(page-1,size);
         Specification<SubUnitEnIndustrialization> specification = this.subUnitEnIndustrializationService.queryEnIndustrialization(storedUser.getId(),startTime,endTime);
+        Page<SubUnitEnIndustrialization> list = this.subUnitEnIndustrializationService.findBySepc(specification,pageable);
+        Map<String, Object> map = new HashMap<String, Object>();
+        int total = this.subUnitEnIndustrializationService.findAllT().size();
+        map.put("total", total);
+        map.put("rows", list.getContent());
+        return map;
+    }
+
+    //根据企业和申报起止时间查询
+    @RequestMapping(value = "/querySubUnitEnIn", method = RequestMethod.GET)
+    public Map<String, Object> querySubUnitEnIn(
+            @RequestParam(value = "subUnitEnName") String name,
+            @RequestParam(value = "startTime") String startTime,
+            @RequestParam(value = "endTime") String endTime,
+            @RequestParam(value = "page") Integer page,
+            @RequestParam(value = "rows") Integer size)throws Exception {
+        Pageable pageable = new PageRequest(page-1,size);
+        Specification<SubUnitEnIndustrialization> specification = this.subUnitEnIndustrializationService.queryIndustrialization(name,startTime,endTime);
         Page<SubUnitEnIndustrialization> list = this.subUnitEnIndustrializationService.findBySepc(specification,pageable);
         Map<String, Object> map = new HashMap<String, Object>();
         int total = this.subUnitEnIndustrializationService.findAllT().size();

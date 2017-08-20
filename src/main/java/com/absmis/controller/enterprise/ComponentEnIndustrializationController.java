@@ -53,13 +53,13 @@ public class ComponentEnIndustrializationController {
     //根据企业和申报起止时间查询
     @RequestMapping(value = "/queryComponentEnIn", method = RequestMethod.GET)
     public Map<String, Object> queryComponentEnIn(
-            @RequestParam(value = "componentEnId") Long id,
+            @RequestParam(value = "componentEnName") String name,
             @RequestParam(value = "startTime") String startTime,
             @RequestParam(value = "endTime") String endTime,
             @RequestParam(value = "page") Integer page,
             @RequestParam(value = "rows") Integer size)throws Exception {
         Pageable pageable = new PageRequest(page-1,size);
-        Specification<ComponentEnIndustrialization> specification = this.componentEnIndustrializationService.queryEnIndustrialization(id,startTime,endTime);
+        Specification<ComponentEnIndustrialization> specification = this.componentEnIndustrializationService.queryIndustrialization(name,startTime,endTime);
         Page<ComponentEnIndustrialization> list = this.componentEnIndustrializationService.findBySepc(specification,pageable);
         Map<String, Object> map = new HashMap<String, Object>();
         int total = this.componentEnIndustrializationService.findAllT().size();

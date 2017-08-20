@@ -52,6 +52,24 @@ public class ConstructionEnIndustrializationController {
         return map;
     }
 
+    //根据企业和申报起止时间查询
+    @RequestMapping(value = "/queryConstructionEnIn", method = RequestMethod.GET)
+    public Map<String, Object> queryConstructionEnIn(
+            @RequestParam(value = "constructionEnName") String name,
+            @RequestParam(value = "startTime") String startTime,
+            @RequestParam(value = "endTime") String endTime,
+            @RequestParam(value = "page") Integer page,
+            @RequestParam(value = "rows") Integer size)throws Exception {
+        Pageable pageable = new PageRequest(page-1,size);
+        Specification<ConstructionEnIndustrialization> specification = this.constructionEnIndustrializationService.queryIndustrialization(name,startTime,endTime);
+        Page<ConstructionEnIndustrialization> list = this.constructionEnIndustrializationService.findBySepc(specification,pageable);
+        Map<String, Object> map = new HashMap<String, Object>();
+        int total = this.constructionEnIndustrializationService.findAllT().size();
+        map.put("total", total);
+        map.put("rows", list.getContent());
+        return map;
+    }
+
 
     //添加
     @RequestMapping(value = "/addConstructionEnIndustrialization", method = RequestMethod.POST)

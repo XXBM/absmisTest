@@ -87,5 +87,31 @@ public class SubUnitEnIndustrializationService extends BasicService<SubUnitEnInd
         };
     }
 
+    public Specification<SubUnitEnIndustrialization> queryIndustrialization(
+            String name,
+            String startTime,
+            String endTime){
+        return new Specification<SubUnitEnIndustrialization>() {
+            @Override
+            public Predicate toPredicate(Root<SubUnitEnIndustrialization> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                List<Predicate> predicate = new ArrayList<>();
+                //条件一：查询在岗人员
+                if (name!=""){
+                    predicate.add(cb.like(root.get("subUnitEn").get("name"),name));
+                }
+                if (startTime!=""){
+                    predicate.add(cb.greaterThanOrEqualTo(root.get("declareTime").as(String.class), startTime));
+                }
+                if(endTime!=""){
+                    predicate.add(cb.lessThanOrEqualTo(root.get("declareTime").as(String.class), endTime));
+                }
+                Predicate[] pre = new Predicate[predicate.size()];
+                query.distinct(true);
+                return query.where(predicate.toArray(pre)).getRestriction();
+            }
+        };
+    }
+
+
 
 }

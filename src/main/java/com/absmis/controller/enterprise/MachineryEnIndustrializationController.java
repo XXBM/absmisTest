@@ -46,6 +46,24 @@ public class MachineryEnIndustrializationController {
         return map;
     }
 
+    //根据企业和申报起止时间查询
+    @RequestMapping(value = "/queryMachineryEnIn", method = RequestMethod.GET)
+    public Map<String, Object> queryMachineryEnIn(
+            @RequestParam(value = "machineryEnName") String name,
+            @RequestParam(value = "startTime") String startTime,
+            @RequestParam(value = "endTime") String endTime,
+            @RequestParam(value = "page") Integer page,
+            @RequestParam(value = "rows") Integer size)throws Exception {
+        Pageable pageable = new PageRequest(page-1,size);
+        Specification<MachineryEnIndustrialization> specification = this.machineryEnIndustrializationService.queryIndustrialization(name,startTime,endTime);
+        Page<MachineryEnIndustrialization> list = this.machineryEnIndustrializationService.findBySepc(specification,pageable);
+        Map<String, Object> map = new HashMap<String, Object>();
+        int total = this.machineryEnIndustrializationService.findAllT().size();
+        map.put("total", total);
+        map.put("rows", list.getContent());
+        return map;
+    }
+
     //添加
     @RequestMapping(value = "/addMachineryEnIndustrialization", method = RequestMethod.POST)
     public Map<String, Object> addMachineryEnIndustrialization(@RequestBody MachineryEnIndustrialization machineryEnIndustrialization)throws Exception {
