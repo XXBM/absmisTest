@@ -7,7 +7,16 @@ import com.absmis.service.BasicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by xuling on 2016/10/11.
@@ -40,5 +49,45 @@ public class ProjectService extends BasicService<Project, Long> {
     public Page<Project> findAll(Pageable pageable){
         return this.projectRepository.findAll(pageable);
     }
+
+
+    /**
+     * 多条件查询
+     */
+    public Page<Project> findBySepc(Specification<Project> specification, Pageable pageable) {
+        return this.projectRepository.findAll(specification, pageable);
+    }
+
+    /**
+     * 多条件查询
+     */
+    public List<Project> findBySepc(Specification<Project> specification) {
+        return this.projectRepository.findAll(specification);
+    }
+    public List<Project> findBySepc(Specification<Project> specification, Sort sort) {
+        return this.projectRepository.findAll(specification,sort);
+    }
+
+
+    public Specification<Project> queryProject(
+            String startTime,
+            String endTime){
+        return new Specification<Project>() {
+            @Override
+            public Predicate toPredicate(Root<Project> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                List<Predicate> predicate = new ArrayList<>();
+                if (startTime!=""){
+                    predicate.add(cb.greaterThanOrEqualTo(root.get("startingTime").as(String.class), startTime));
+                }
+                if(endTime!=""){
+                    predicate.add(cb.lessThanOrEqualTo(root.get("startingTime").as(String.class), endTime));
+                }
+                Predicate[] pre = new Predicate[predicate.size()];
+                query.distinct(true);
+                return query.where(predicate.toArray(pre)).getRestriction();
+            }
+        };
+    }
+
 
 }

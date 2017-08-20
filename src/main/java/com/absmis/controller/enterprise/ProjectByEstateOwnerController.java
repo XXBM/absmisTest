@@ -8,6 +8,8 @@ import com.absmis.service.enterprise.ProjectByEstateOwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +30,26 @@ public class ProjectByEstateOwnerController {
     UserService userService;
     String username = null;
     User storedUser = null;
+
+    //根据项目开工起止时间查询项目
+    @RequestMapping(value = "/queryProjectByEstateOwner", method = RequestMethod.GET)
+    public Map<String, Object> queryProjectByEstateOwner(
+            @RequestParam(value = "startTime") String startTime,
+            @RequestParam(value = "endTime") String endTime,
+            @RequestParam(value = "page") Integer page,
+            @RequestParam(value = "rows") Integer size)throws Exception {
+        username = SecurityContextHolder.getContext().getAuthentication().getName();
+        storedUser = userService.findByUsername(username);
+        Pageable pageable = new PageRequest(page-1,size);
+        Specification<ProjectByEstateOwner> specification = this.projectByEstateOwnerService.queryProjectByEstateOwner(startTime,endTime);
+        Page<ProjectByEstateOwner> list = this.projectByEstateOwnerService.findBySepc(specification,pageable);
+        Map<String, Object> map = new HashMap<String, Object>();
+        int total = this.projectByEstateOwnerService.findAllT().size();
+        map.put("total", total);
+        map.put("rows", list.getContent());
+        return map;
+    }
+
     //添加
     @RequestMapping(value = "/addProjectByEstateOwner", method = RequestMethod.POST)
     public Map<String, Object> addProjectByEstateOwner(@RequestBody ProjectByEstateOwner projectByEstateOwner)throws Exception {
