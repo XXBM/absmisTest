@@ -10,6 +10,8 @@ import com.absmis.service.enterprise.ComponentEnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +31,42 @@ public class ComponentEnIndustrializationController {
     UserService userService;
     String username = null;
     User storedUser = null;
+    //check根据企业和申报起止时间查询
+    @RequestMapping(value = "/queryComponentEnInCheck", method = RequestMethod.GET)
+    public Map<String, Object> queryComponentEnInCheck(
+            @RequestParam(value = "startTime") String startTime,
+            @RequestParam(value = "endTime") String endTime,
+            @RequestParam(value = "page") Integer page,
+            @RequestParam(value = "rows") Integer size)throws Exception {
+        username = SecurityContextHolder.getContext().getAuthentication().getName();
+        storedUser = userService.findByUsername(username);
+        Pageable pageable = new PageRequest(page-1,size);
+        Specification<ComponentEnIndustrialization> specification = this.componentEnIndustrializationService.queryEnIndustrialization(storedUser.getId(),startTime,endTime);
+        Page<ComponentEnIndustrialization> list = this.componentEnIndustrializationService.findBySepc(specification,pageable);
+        Map<String, Object> map = new HashMap<String, Object>();
+        int total = this.componentEnIndustrializationService.findAllT().size();
+        map.put("total", total);
+        map.put("rows", list.getContent());
+        return map;
+    }
+
+    //根据企业和申报起止时间查询
+    @RequestMapping(value = "/queryComponentEnIn", method = RequestMethod.GET)
+    public Map<String, Object> queryComponentEnIn(
+            @RequestParam(value = "componentEnId") Long id,
+            @RequestParam(value = "startTime") String startTime,
+            @RequestParam(value = "endTime") String endTime,
+            @RequestParam(value = "page") Integer page,
+            @RequestParam(value = "rows") Integer size)throws Exception {
+        Pageable pageable = new PageRequest(page-1,size);
+        Specification<ComponentEnIndustrialization> specification = this.componentEnIndustrializationService.queryEnIndustrialization(id,startTime,endTime);
+        Page<ComponentEnIndustrialization> list = this.componentEnIndustrializationService.findBySepc(specification,pageable);
+        Map<String, Object> map = new HashMap<String, Object>();
+        int total = this.componentEnIndustrializationService.findAllT().size();
+        map.put("total", total);
+        map.put("rows", list.getContent());
+        return map;
+    }
 
     //添加
     @RequestMapping(value = "/addComponentEnIndustrialization", method = RequestMethod.POST)

@@ -7,7 +7,16 @@ import com.absmis.service.BasicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class MachineryEnIndustrializationService extends BasicService<MachineryEnIndustrialization, Long> {
@@ -36,5 +45,47 @@ public class MachineryEnIndustrializationService extends BasicService<MachineryE
     public Page<MachineryEnIndustrialization> findAll(Pageable pageable){
         return this.machineryEnIndustrializationRepository.findAll(pageable);
     }
+
+    /**
+     * 多条件查询
+     */
+    public Page<MachineryEnIndustrialization> findBySepc(Specification<MachineryEnIndustrialization> specification, Pageable pageable) {
+        return this.machineryEnIndustrializationRepository.findAll(specification, pageable);
+    }
+
+    /**
+     * 多条件查询
+     */
+    public List<MachineryEnIndustrialization> findBySepc(Specification<MachineryEnIndustrialization> specification) {
+        return this.machineryEnIndustrializationRepository.findAll(specification);
+    }
+    public List<MachineryEnIndustrialization> findBySepc(Specification<MachineryEnIndustrialization> specification, Sort sort) {
+        return this.machineryEnIndustrializationRepository.findAll(specification,sort);
+    }
+
+
+    public Specification<MachineryEnIndustrialization> queryEnIndustrialization(
+            Long id,
+            String startTime,
+            String endTime){
+        return new Specification<MachineryEnIndustrialization>() {
+            @Override
+            public Predicate toPredicate(Root<MachineryEnIndustrialization> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                List<Predicate> predicate = new ArrayList<>();
+                //条件一：查询在岗人员
+                predicate.add(cb.equal(root.get("machineryEn"), id));
+                if (startTime!=""){
+                    predicate.add(cb.greaterThanOrEqualTo(root.get("declareTime").as(String.class), startTime));
+                }
+                if(endTime!=""){
+                    predicate.add(cb.lessThanOrEqualTo(root.get("declareTime").as(String.class), endTime));
+                }
+                Predicate[] pre = new Predicate[predicate.size()];
+                query.distinct(true);
+                return query.where(predicate.toArray(pre)).getRestriction();
+            }
+        };
+    }
+
 
 }

@@ -8,6 +8,8 @@ import com.absmis.service.enterprise.MachineryEnIndustrializationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +25,26 @@ public class MachineryEnIndustrializationController {
     UserService userService;
     String username = null;
     User storedUser = null;
+
+
+    //根据企业和申报起止时间查询
+    @RequestMapping(value = "/queryMachineryEnInCheck", method = RequestMethod.GET)
+    public Map<String, Object> queryMachineryEnInCheck(
+            @RequestParam(value = "startTime") String startTime,
+            @RequestParam(value = "endTime") String endTime,
+            @RequestParam(value = "page") Integer page,
+            @RequestParam(value = "rows") Integer size)throws Exception {
+        username = SecurityContextHolder.getContext().getAuthentication().getName();
+        storedUser = userService.findByUsername(username);
+        Pageable pageable = new PageRequest(page-1,size);
+        Specification<MachineryEnIndustrialization> specification = this.machineryEnIndustrializationService.queryEnIndustrialization(storedUser.getId(),startTime,endTime);
+        Page<MachineryEnIndustrialization> list = this.machineryEnIndustrializationService.findBySepc(specification,pageable);
+        Map<String, Object> map = new HashMap<String, Object>();
+        int total = this.machineryEnIndustrializationService.findAllT().size();
+        map.put("total", total);
+        map.put("rows", list.getContent());
+        return map;
+    }
 
     //添加
     @RequestMapping(value = "/addMachineryEnIndustrialization", method = RequestMethod.POST)
