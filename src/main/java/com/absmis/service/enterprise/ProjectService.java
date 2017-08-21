@@ -78,10 +78,12 @@ public class ProjectService extends BasicService<Project, Long> {
             @Override
             public Predicate toPredicate(Root<Project> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 List<Predicate> predicate = new ArrayList<>();
-                if (startTime!=""&& startTime!="Invalid date" && startTime != new SimpleDateFormat("yyyy-MM-dd").format(new Date())){
+                if(!"Invalid date".equals(startTime) && !"".equals(startTime) && !new SimpleDateFormat("yyyy-MM-dd").format(new Date()).equals(startTime)){
+                    System.out.println("start"+startTime);
                     predicate.add(cb.greaterThanOrEqualTo(root.get("startingTime").as(String.class), startTime));
                 }
-                if(endTime!=""&& startTime!="Invalid date" && startTime != new SimpleDateFormat("yyyy-MM-dd").format(new Date())){
+                if(!"Invalid date".equals(endTime) && !"".equals(endTime) && !new SimpleDateFormat("yyyy-MM-dd").format(new Date()).equals(endTime)){
+                    System.out.println("end"+endTime);
                     predicate.add(cb.lessThanOrEqualTo(root.get("startingTime").as(String.class), endTime));
                 }
                 Predicate[] pre = new Predicate[predicate.size()];

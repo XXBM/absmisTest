@@ -33,8 +33,8 @@ public class ProjectController {
             @RequestParam(value = "endTime") String endTime,
             @RequestParam(value = "page") Integer page,
             @RequestParam(value = "rows") Integer size)throws Exception {
-        System.out.println(startTime);
-        System.out.println(endTime);
+        System.out.println("***"+startTime);
+        System.out.println("---"+endTime);
         Pageable pageable = new PageRequest(page-1,size);
         Specification<Project> specification = this.projectService.queryProject(startTime,endTime);
         Page<Project> list = this.projectService.findBySepc(specification,pageable);
