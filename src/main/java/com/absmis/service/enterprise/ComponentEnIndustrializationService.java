@@ -101,7 +101,7 @@ public class ComponentEnIndustrializationService extends BasicService<ComponentE
                 List<Predicate> predicate = new ArrayList<>();
                 //条件一：查询在岗人员
                 if (name!=""){
-                    predicate.add(cb.like(root.get("componentEn").get("name"),name));
+                    predicate.add(cb.like(root.get("componentEn").get("name"),"%"+name+"%"));
                 }
                 if (startTime!=""){
                     predicate.add(cb.greaterThanOrEqualTo(root.get("declareTime").as(String.class), startTime));

@@ -69,7 +69,7 @@ public class MachineryEnService extends BasicService<MachineryEn, Long> {
             public Predicate toPredicate(Root<MachineryEn> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 List<Predicate> predicate = new ArrayList<>();
                 //条件一：查询在岗人员
-                predicate.add(cb.like(root.get("name"),property));
+                predicate.add(cb.like(root.get("name"),"%"+property+"%"));
                 Predicate[] pre = new Predicate[predicate.size()];
                 query.distinct(true);
                 return query.where(predicate.toArray(pre)).getRestriction();

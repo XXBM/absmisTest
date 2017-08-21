@@ -38,6 +38,7 @@ public class ProjectByRealEstateEnController {
             @RequestParam(value = "endTime") String endTime,
             @RequestParam(value = "page") Integer page,
             @RequestParam(value = "rows") Integer size)throws Exception {
+        System.out.println(startTime);
         username = SecurityContextHolder.getContext().getAuthentication().getName();
         storedUser = userService.findByUsername(username);
         Pageable pageable = new PageRequest(page-1,size);

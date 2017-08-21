@@ -77,10 +77,10 @@ public class ProjectByRealEstateEnService extends BasicService<ProjectByRealEsta
             public Predicate toPredicate(Root<ProjectByRealEstateEn> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 List<Predicate> predicate = new ArrayList<>();
                 if (startTime!=""){
-                    predicate.add(cb.greaterThanOrEqualTo(root.get("startingTime").as(String.class), startTime));
+                    predicate.add(cb.lessThanOrEqualTo(root.get("startingTime").as(String.class), startTime));
                 }
                 if(endTime!=""){
-                    predicate.add(cb.lessThanOrEqualTo(root.get("startingTime").as(String.class), endTime));
+                    predicate.add(cb.greaterThanOrEqualTo(root.get("startingTime").as(String.class), endTime));
                 }
                 Predicate[] pre = new Predicate[predicate.size()];
                 query.distinct(true);

@@ -97,7 +97,7 @@ public class SubUnitEnIndustrializationService extends BasicService<SubUnitEnInd
                 List<Predicate> predicate = new ArrayList<>();
                 //条件一：查询在岗人员
                 if (name!=""){
-                    predicate.add(cb.like(root.get("subUnitEn").get("name"),name));
+                    predicate.add(cb.like(root.get("subUnitEn").get("name"),"%"+name+"%"));
                 }
                 if (startTime!=""){
                     predicate.add(cb.greaterThanOrEqualTo(root.get("declareTime").as(String.class), startTime));

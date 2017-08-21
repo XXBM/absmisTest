@@ -69,7 +69,7 @@ public class OrganizationService extends BasicService<Organization, Long> {
                 List<Predicate> predicate = new ArrayList<>();
                 //条件一：查询在岗人员
                 predicate.add(cb.in(root.get("id")).value(property));
-                predicate.add(cb.like(root.get("name"),name));
+                predicate.add(cb.like(root.get("name"),"%"+name+"%"));
                 Predicate[] pre = new Predicate[predicate.size()];
                 query.distinct(true);
                 return query.where(predicate.toArray(pre)).getRestriction();
