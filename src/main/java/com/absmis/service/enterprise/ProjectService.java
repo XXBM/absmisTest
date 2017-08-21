@@ -15,7 +15,9 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -76,10 +78,10 @@ public class ProjectService extends BasicService<Project, Long> {
             @Override
             public Predicate toPredicate(Root<Project> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 List<Predicate> predicate = new ArrayList<>();
-                if (startTime!=""){
+                if (startTime!=""&& startTime!="Invalid date" && startTime != new SimpleDateFormat("yyyy-MM-dd").format(new Date())){
                     predicate.add(cb.greaterThanOrEqualTo(root.get("startingTime").as(String.class), startTime));
                 }
-                if(endTime!=""){
+                if(endTime!=""&& startTime!="Invalid date" && startTime != new SimpleDateFormat("yyyy-MM-dd").format(new Date())){
                     predicate.add(cb.lessThanOrEqualTo(root.get("startingTime").as(String.class), endTime));
                 }
                 Predicate[] pre = new Predicate[predicate.size()];

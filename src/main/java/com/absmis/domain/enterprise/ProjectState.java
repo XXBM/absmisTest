@@ -1,5 +1,7 @@
 package com.absmis.domain.enterprise;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.io.Serializable;
 
 /**
@@ -13,6 +15,7 @@ import java.io.Serializable;
 @javax.persistence.Entity
 public class ProjectState implements Serializable{
     @javax.persistence.Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String no;
     private String description;

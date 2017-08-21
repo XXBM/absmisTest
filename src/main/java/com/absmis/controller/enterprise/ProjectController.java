@@ -6,6 +6,8 @@ import com.absmis.service.enterprise.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -23,6 +25,25 @@ public class ProjectController {
     ProjectService projectService;
     @Autowired
     CheckedStatusService checkedStatusService;
+
+    //根据项目开工起止时间查询项目
+    @RequestMapping(value = "/queryProject", method = RequestMethod.GET)
+    public Map<String, Object> queryProject(
+            @RequestParam(value = "startTime") String startTime,
+            @RequestParam(value = "endTime") String endTime,
+            @RequestParam(value = "page") Integer page,
+            @RequestParam(value = "rows") Integer size)throws Exception {
+        System.out.println(startTime);
+        System.out.println(endTime);
+        Pageable pageable = new PageRequest(page-1,size);
+        Specification<Project> specification = this.projectService.queryProject(startTime,endTime);
+        Page<Project> list = this.projectService.findBySepc(specification,pageable);
+        Map<String, Object> map = new HashMap<String, Object>();
+        int total = this.projectService.findAllT().size();
+        map.put("total", total);
+        map.put("rows", list.getContent());
+        return map;
+    }
 
     //添加
     @RequestMapping(value = "/addProject", method = RequestMethod.POST)
