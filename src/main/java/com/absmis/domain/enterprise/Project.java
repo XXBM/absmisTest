@@ -51,16 +51,16 @@ public abstract class Project implements Serializable {
     //建设单位
     private String construction;
     //项目类别
-    @ManyToOne(cascade={CascadeType.MERGE})
+    @ManyToOne
     @JoinColumn(name = "projectCategory_id")
     private ProjectCategory projectCategory;
     //项目状态
-    @ManyToOne(cascade={CascadeType.MERGE})
+    @ManyToOne
     @JoinColumn(name = "projectState_id")
     private ProjectState projectState;
 
 
-    @ManyToOne(cascade={CascadeType.ALL})
+    @ManyToOne
     @JoinColumn(name = "checkedStatus_id")
     private CheckedStatus checkedStatus;
 

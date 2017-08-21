@@ -1,5 +1,8 @@
 package com.absmis.domain.enterprise;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.io.Serializable;
@@ -13,6 +16,8 @@ import java.io.Serializable;
  */
 
 @javax.persistence.Entity
+@DynamicUpdate(true)
+@DynamicInsert(true)
 public class ProjectState implements Serializable{
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.AUTO)
