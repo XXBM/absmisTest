@@ -64,13 +64,13 @@ public class ProjectByRealEstateEnController {
         return map;
     }
 
-    /**
-     * 获取到所有
-     */
-    @RequestMapping(value = "/findProjectInfoById", method = RequestMethod.GET)
-    public ProjectByRealEstateEn findProjectById(@RequestParam(value = "id") Long id)throws Exception {
-        return projectByRealEstateEnService.findById(id);
-    }
+//    /**
+//     * 获取到所有
+//     */
+//    @RequestMapping(value = "/findProjectInfoById", method = RequestMethod.GET)
+//    public ProjectByRealEstateEn findProjectById(@RequestParam(value = "id") Long id)throws Exception {
+//        return projectByRealEstateEnService.findById(id);
+//    }
 
     /**
      * 获取到所有

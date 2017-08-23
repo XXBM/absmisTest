@@ -26,6 +26,14 @@ public class ProjectController {
     @Autowired
     CheckedStatusService checkedStatusService;
 
+    /**
+     * 获取到所有
+     */
+    @RequestMapping(value = "/findProjectInfoById", method = RequestMethod.GET)
+    public Project findProjectById(@RequestParam(value = "id") Long id)throws Exception {
+        return projectService.findById(id);
+    }
+
     //根据项目开工起止时间查询项目
     @RequestMapping(value = "/queryProject", method = RequestMethod.GET)
     public Map<String, Object> queryProject(

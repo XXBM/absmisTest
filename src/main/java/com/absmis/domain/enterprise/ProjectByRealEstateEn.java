@@ -32,6 +32,11 @@ public class ProjectByRealEstateEn extends Project {
         return "房地产企业";
     }
 
+    @Override
+    public String testProject() {
+        return "test房地产企业";
+    }
+
     public RealEstateEn getRealEstateEn() {
         return realEstateEn;
     }

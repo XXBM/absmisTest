@@ -33,6 +33,11 @@ public class ProjectByEstateOwner extends Project {
         return "建设单位";
     }
 
+    @Override
+    public String testProject() {
+        return "test房地产企业";
+    }
+
     public EstateOwner getEstateOwner() {
         return estateOwner;
     }

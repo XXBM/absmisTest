@@ -230,5 +230,7 @@ public abstract class Project implements Serializable {
 
     public abstract String getOwner();
 
+    public abstract String testProject();
+
 }
 
