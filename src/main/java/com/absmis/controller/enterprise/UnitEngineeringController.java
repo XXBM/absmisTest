@@ -1,6 +1,7 @@
 package com.absmis.controller.enterprise;
 
 import com.absmis.domain.enterprise.UnitEngineering;
+import com.absmis.service.enterprise.CheckedStatusService;
 import com.absmis.service.enterprise.ProjectService;
 import com.absmis.service.enterprise.UnitEngineeringService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,8 @@ public class UnitEngineeringController {
     UnitEngineeringService unitEngineeringService;
     @Autowired
     ProjectService projectService;
+    @Autowired
+    CheckedStatusService checkedStatusService;
 
     //添加
     @RequestMapping(value = "/addUnitEngineering", method = RequestMethod.POST)
@@ -32,6 +35,20 @@ public class UnitEngineeringController {
             @RequestBody UnitEngineering unitEngineering)throws Exception {
         unitEngineering.setProject(projectService.findById(id));
         this.unitEngineeringService.addUnitEngineering(unitEngineering);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("unitEngineering", unitEngineering);
+        return map;
+    }
+    //非传统企业审核信息    完成 改
+    @RequestMapping(value = "/checkUnitEngineering", method = RequestMethod.POST)
+    public Map<String, Object> checkUnitEngineering(
+            @RequestParam("id") Long id,
+            @RequestParam("checkedStatusId") Long checkedId
+    )throws Exception {
+        System.out.println("unit"+id+"check"+checkedId);
+        UnitEngineering unitEngineering = unitEngineeringService.findOne(id);
+        unitEngineering.setCheckedStatus(checkedStatusService.findOne(checkedId));
+        this.unitEngineeringService.update(unitEngineering);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("unitEngineering", unitEngineering);
         return map;
