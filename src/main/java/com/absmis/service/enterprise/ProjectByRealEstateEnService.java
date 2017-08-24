@@ -79,13 +79,9 @@ public class ProjectByRealEstateEnService extends BasicService<ProjectByRealEsta
             public Predicate toPredicate(Root<ProjectByRealEstateEn> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 List<Predicate> predicate = new ArrayList<>();
                 if(!"Invalid date".equals(startTime) && !"".equals(startTime) && !new SimpleDateFormat("yyyy-MM-dd").format(new Date()).equals(startTime)){
-                    System.out.println(startTime);
-                    System.out.println("1进来啦");
                     predicate.add(cb.greaterThanOrEqualTo(root.get("startingTime").as(String.class), startTime));
                 }
                 if(!"Invalid date".equals(endTime) && !"".equals(endTime) && !new SimpleDateFormat("yyyy-MM-dd").format(new Date()).equals(endTime)){
-                    System.out.println(endTime);
-                    System.out.println("2进来啦");
                     predicate.add(cb.lessThanOrEqualTo(root.get("startingTime").as(String.class), endTime));
                 }
                 Predicate[] pre = new Predicate[predicate.size()];
