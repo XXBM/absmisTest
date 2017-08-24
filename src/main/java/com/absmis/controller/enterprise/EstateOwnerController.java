@@ -2,6 +2,7 @@ package com.absmis.controller.enterprise;
 
 import com.absmis.domain.enterprise.EstateOwner;
 import com.absmis.service.authority.RoleService;
+import com.absmis.service.enterprise.CheckedStatusService;
 import com.absmis.service.enterprise.EstateOwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,6 +20,8 @@ public class EstateOwnerController {
     EstateOwnerService estateOwnerService;
     @Autowired
     RoleService roleService;
+    @Autowired
+    CheckedStatusService checkedStatusService;
 
     //根据企业名称模糊查询
     @RequestMapping(value = "/queryEstateOwnerByName", method = RequestMethod.GET)
@@ -33,6 +36,21 @@ public class EstateOwnerController {
         int total = this.estateOwnerService.findBySepc(specification).size();
         map.put("total", total);
         map.put("rows", list.getContent());
+        return map;
+    }
+
+
+    //非传统企业审核信息    完成 改
+    @RequestMapping(value = "/checkEstateOwner", method = RequestMethod.POST)
+    public Map<String, Object> checkEstateOwner(
+            @RequestParam("id") Long id,
+            @RequestParam("checkedStatusId") Long checkedId
+    )throws Exception {
+        EstateOwner estateOwner = estateOwnerService.findOne(id);
+        estateOwner.setCheckedStatus(checkedStatusService.findOne(checkedId));
+        this.estateOwnerService.update(estateOwner);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("estateOwner", estateOwner);
         return map;
     }
     //添加
