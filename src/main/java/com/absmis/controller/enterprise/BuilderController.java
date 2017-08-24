@@ -39,7 +39,7 @@ public class BuilderController {
         Specification<Builder> specification = this.builderService.queryName(query);
         Page<Builder> list = this.builderService.findBySepc(specification,pageable);
         Map<String, Object> map = new HashMap<String, Object>();
-        int total = this.builderService.findAllT().size();
+        int total = this.builderService.findBySepc(specification).size();
         map.put("total", total);
         map.put("rows", list.getContent());
         return map;

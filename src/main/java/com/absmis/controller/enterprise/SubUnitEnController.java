@@ -37,7 +37,7 @@ public class SubUnitEnController {
         Specification<SubUnitEn> specification = this.subUnitEnService.queryName(query);
         Page<SubUnitEn> list = this.subUnitEnService.findBySepc(specification,pageable);
         Map<String, Object> map = new HashMap<String, Object>();
-        int total = this.subUnitEnService.findAllT().size();
+        int total = this.subUnitEnService.findBySepc(specification).size();
         map.put("total", total);
         map.put("rows", list.getContent());
         return map;

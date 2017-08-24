@@ -39,7 +39,7 @@ public class SubUnitEnIndustrializationController {
         Specification<SubUnitEnIndustrialization> specification = this.subUnitEnIndustrializationService.queryEnIndustrialization(storedUser.getId(),startTime,endTime);
         Page<SubUnitEnIndustrialization> list = this.subUnitEnIndustrializationService.findBySepc(specification,pageable);
         Map<String, Object> map = new HashMap<String, Object>();
-        int total = this.subUnitEnIndustrializationService.findAllT().size();
+        int total = this.subUnitEnIndustrializationService.findBySepc(specification).size();
         map.put("total", total);
         map.put("rows", list.getContent());
         return map;
@@ -57,7 +57,7 @@ public class SubUnitEnIndustrializationController {
         Specification<SubUnitEnIndustrialization> specification = this.subUnitEnIndustrializationService.queryIndustrialization(name,startTime,endTime);
         Page<SubUnitEnIndustrialization> list = this.subUnitEnIndustrializationService.findBySepc(specification,pageable);
         Map<String, Object> map = new HashMap<String, Object>();
-        int total = this.subUnitEnIndustrializationService.findAllT().size();
+        int total = this.subUnitEnIndustrializationService.findBySepc(specification).size();
         map.put("total", total);
         map.put("rows", list.getContent());
         return map;

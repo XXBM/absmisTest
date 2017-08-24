@@ -37,7 +37,7 @@ public class MachineryEnController {
         Specification<MachineryEn> specification = this.machineryEnService.queryName(query);
         Page<MachineryEn> list = this.machineryEnService.findBySepc(specification,pageable);
         Map<String, Object> map = new HashMap<String, Object>();
-        int total = this.machineryEnService.findAllT().size();
+        int total = this.machineryEnService.findBySepc(specification).size();
         map.put("total", total);
         map.put("rows", list.getContent());
         return map;

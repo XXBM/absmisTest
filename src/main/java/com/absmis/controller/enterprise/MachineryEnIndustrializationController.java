@@ -40,7 +40,7 @@ public class MachineryEnIndustrializationController {
         Specification<MachineryEnIndustrialization> specification = this.machineryEnIndustrializationService.queryEnIndustrialization(storedUser.getId(),startTime,endTime);
         Page<MachineryEnIndustrialization> list = this.machineryEnIndustrializationService.findBySepc(specification,pageable);
         Map<String, Object> map = new HashMap<String, Object>();
-        int total = this.machineryEnIndustrializationService.findAllT().size();
+        int total = this.machineryEnIndustrializationService.findBySepc(specification).size();
         map.put("total", total);
         map.put("rows", list.getContent());
         return map;
@@ -58,7 +58,7 @@ public class MachineryEnIndustrializationController {
         Specification<MachineryEnIndustrialization> specification = this.machineryEnIndustrializationService.queryIndustrialization(name,startTime,endTime);
         Page<MachineryEnIndustrialization> list = this.machineryEnIndustrializationService.findBySepc(specification,pageable);
         Map<String, Object> map = new HashMap<String, Object>();
-        int total = this.machineryEnIndustrializationService.findAllT().size();
+        int total = this.machineryEnIndustrializationService.findBySepc(specification).size();
         map.put("total", total);
         map.put("rows", list.getContent());
         return map;

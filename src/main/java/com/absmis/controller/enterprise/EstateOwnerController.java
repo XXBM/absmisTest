@@ -30,7 +30,7 @@ public class EstateOwnerController {
         Specification<EstateOwner> specification = this.estateOwnerService.queryName(query);
         Page<EstateOwner> list = this.estateOwnerService.findBySepc(specification,pageable);
         Map<String, Object> map = new HashMap<String, Object>();
-        int total = this.estateOwnerService.findAllT().size();
+        int total = this.estateOwnerService.findBySepc(specification).size();
         map.put("total", total);
         map.put("rows", list.getContent());
         return map;

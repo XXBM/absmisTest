@@ -34,7 +34,7 @@ public class DesignerController {
         Specification<Designer> specification = this.designerService.queryName(query);
         Page<Designer> list = this.designerService.findBySepc(specification,pageable);
         Map<String, Object> map = new HashMap<String, Object>();
-        int total = this.designerService.findAllT().size();
+        int total = this.designerService.findBySepc(specification).size();
         map.put("total", total);
         map.put("rows", list.getContent());
         return map;

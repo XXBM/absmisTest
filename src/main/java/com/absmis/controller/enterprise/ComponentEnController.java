@@ -37,7 +37,7 @@ public class ComponentEnController {
         Specification<ComponentEn> specification = this.componentEnService.queryName(query);
         Page<ComponentEn> list = this.componentEnService.findBySepc(specification,pageable);
         Map<String, Object> map = new HashMap<String, Object>();
-        int total = this.componentEnService.findAllT().size();
+        int total = this.componentEnService.findBySepc(specification).size();
         map.put("total", total);
         map.put("rows", list.getContent());
         return map;

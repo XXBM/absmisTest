@@ -47,7 +47,7 @@ public class ProjectController {
         Specification<Project> specification = this.projectService.queryProject(startTime,endTime);
         Page<Project> list = this.projectService.findBySepc(specification,pageable);
         Map<String, Object> map = new HashMap<String, Object>();
-        int total = this.projectService.findAllT().size();
+        int total = this.projectService.findBySepc(specification).size();
         map.put("total", total);
         map.put("rows", list.getContent());
         return map;

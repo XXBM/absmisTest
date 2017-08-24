@@ -44,7 +44,7 @@ public class ProjectByEstateOwnerController {
         Specification<ProjectByEstateOwner> specification = this.projectByEstateOwnerService.queryProjectByEstateOwner(startTime,endTime);
         Page<ProjectByEstateOwner> list = this.projectByEstateOwnerService.findBySepc(specification,pageable);
         Map<String, Object> map = new HashMap<String, Object>();
-        int total = this.projectByEstateOwnerService.findAllT().size();
+        int total = this.projectByEstateOwnerService.findBySepc(specification).size();
         map.put("total", total);
         map.put("rows", list.getContent());
         return map;

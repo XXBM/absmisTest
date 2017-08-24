@@ -39,7 +39,7 @@ public class ConstructionEnController {
         Specification<ConstructionEn> specification = this.constructionEnService.queryName(query);
         Page<ConstructionEn> list = this.constructionEnService.findBySepc(specification,pageable);
         Map<String, Object> map = new HashMap<String, Object>();
-        int total = this.constructionEnService.findAllT().size();
+        int total = this.constructionEnService.findBySepc(specification).size();
         map.put("total", total);
         map.put("rows", list.getContent());
         return map;
