@@ -11,15 +11,21 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'war'
 
-version = '0.0.1-SNAPSHOT'
+//可执行jar包的名字和版本号
+war {
+	baseName = 'absmis'
+	version = '0.0.1-SNAPSHOT'
+}
 sourceCompatibility = 1.8
-
+targetCompatibility = 1.8
 repositories {
 	mavenCentral()
 }
+
 
 
 dependencies {
