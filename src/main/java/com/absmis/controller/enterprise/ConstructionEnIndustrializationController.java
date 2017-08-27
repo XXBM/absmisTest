@@ -76,7 +76,9 @@ public class ConstructionEnIndustrializationController {
     public Map<String, Object> addConstructionEnIndustrialization(@RequestBody ConstructionEnIndustrialization constructionEnIndustrialization)throws Exception {
         username = SecurityContextHolder.getContext().getAuthentication().getName();
         storedUser = userService.findByUsername(username);
-        constructionEnIndustrialization.setConstructionEn((ConstructionEn)storedUser);
+        ConstructionEn constructionEn = (ConstructionEn)storedUser;
+        constructionEn.setCumulant(constructionEn.getCumulant()+constructionEnIndustrialization.getAddNewConcrete()+constructionEnIndustrialization.getAddNewSteel()+constructionEnIndustrialization.getAddNewTimber());
+        constructionEnIndustrialization.setConstructionEn(constructionEn);
         this.constructionEnIndustrializationService.addConstructionEnIndustrialization(constructionEnIndustrialization);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("constructionEnIndustrialization", constructionEnIndustrialization);

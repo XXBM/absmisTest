@@ -39,7 +39,7 @@ public class ProjectByRealEstateEnController {
             @RequestParam(value = "page") Integer page,
             @RequestParam(value = "rows") Integer size)throws Exception {
         System.out.println(startTime);
-        System.out.println(startTime);
+        System.out.println(endTime);
         username = SecurityContextHolder.getContext().getAuthentication().getName();
         storedUser = userService.findByUsername(username);
         Pageable pageable = new PageRequest(page-1,size);
