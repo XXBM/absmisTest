@@ -3,8 +3,10 @@ package com.absmis.controller.enterprise;
 import com.absmis.domain.authority.User;
 import com.absmis.domain.enterprise.MachineryEn;
 import com.absmis.domain.enterprise.MachineryEnIndustrialization;
+import com.absmis.domain.message.MachineryEnIndustrializationInfo;
 import com.absmis.service.authority.UserService;
 import com.absmis.service.enterprise.MachineryEnIndustrializationService;
+import com.absmis.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,6 +27,29 @@ public class MachineryEnIndustrializationController {
     UserService userService;
     String username = null;
     User storedUser = null;
+
+    //根据企业和申报起止时间查询
+    @RequestMapping(value = "/queryQuarter", method = RequestMethod.GET)
+    public MachineryEnIndustrializationInfo queryQuarter()throws Exception {
+        username = SecurityContextHolder.getContext().getAuthentication().getName();
+        storedUser = userService.findByUsername(username);
+        Specification<MachineryEnIndustrialization> specification = this.machineryEnIndustrializationService.queryQuarter(storedUser.getId(),2017,3);
+        List<MachineryEnIndustrialization> list = this.machineryEnIndustrializationService.findBySepc(specification);
+        System.out.println(list.size()+"一共有几条");
+        MachineryEnIndustrializationInfo machineryEnIndustrializationInfo = new MachineryEnIndustrializationInfo();
+        double integralWall = 0;
+        double specialTransportEquipment = 0;
+        double specialConstructionEquipment = 0;
+        for(int i=0;i<list.size();i++){
+            integralWall += list.get(i).getIntegralWall();
+            specialTransportEquipment += list.get(i).getSpecialTransportEquipment();
+            specialConstructionEquipment += list.get(i).getSpecialConstructionEquipment();
+        }
+        machineryEnIndustrializationInfo.setIntegralWall(integralWall);
+        machineryEnIndustrializationInfo.setSpecialTransportEquipment(specialTransportEquipment);
+        machineryEnIndustrializationInfo.setSpecialConstructionEquipment(specialConstructionEquipment);
+        return machineryEnIndustrializationInfo;
+    }
 
 
     //根据企业和申报起止时间查询
@@ -70,6 +95,8 @@ public class MachineryEnIndustrializationController {
         username = SecurityContextHolder.getContext().getAuthentication().getName();
         storedUser = userService.findByUsername(username);
         machineryEnIndustrialization.setMachineryEn((MachineryEn) storedUser);
+        machineryEnIndustrialization.setYear(machineryEnIndustrialization.getDeclareTime().getWeekYear());
+        machineryEnIndustrialization.setQuarter(Utils.getSeason(machineryEnIndustrialization.getDeclareTime()));
         this.machineryEnIndustrializationService.addMachineryEnIndustrialization(machineryEnIndustrialization);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("machineryEnIndustrialization", machineryEnIndustrialization);

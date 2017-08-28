@@ -113,5 +113,24 @@ public class MachineryEnIndustrializationService extends BasicService<MachineryE
         };
     }
 
+    public Specification<MachineryEnIndustrialization> queryQuarter(
+            Long enId,
+            Integer year,
+            Integer quarter){
+        return new Specification<MachineryEnIndustrialization>() {
+            @Override
+            public Predicate toPredicate(Root<MachineryEnIndustrialization> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                List<Predicate> predicate = new ArrayList<>();
+                //条件一：查询在岗人员
+                predicate.add(cb.equal(root.get("machineryEn"), enId));
+                predicate.add(cb.equal(root.get("year"), year));
+                predicate.add(cb.equal(root.get("quarter"), quarter));
+                Predicate[] pre = new Predicate[predicate.size()];
+                query.distinct(true);
+                return query.where(predicate.toArray(pre)).getRestriction();
+            }
+        };
+    }
+
 
 }

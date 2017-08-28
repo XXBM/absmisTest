@@ -23,6 +23,25 @@ public class ConstructionEnIndustrialization implements Serializable {
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar declareTime;
+    private Integer year;
+    private Integer quarter;
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    public Integer getQuarter() {
+        return quarter;
+    }
+
+    public void setQuarter(Integer quarter) {
+        this.quarter = quarter;
+    }
+
     //新增装配式混凝土结构建筑的数量
     private Double addNewConcrete;
     //新增装配式钢结构建筑的数量

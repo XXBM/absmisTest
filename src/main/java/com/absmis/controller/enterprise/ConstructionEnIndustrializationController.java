@@ -3,10 +3,12 @@ package com.absmis.controller.enterprise;
 import com.absmis.domain.authority.User;
 import com.absmis.domain.enterprise.ConstructionEn;
 import com.absmis.domain.enterprise.ConstructionEnIndustrialization;
+import com.absmis.domain.message.ConstructionEnIndustrializationInfo;
 import com.absmis.service.authority.UserService;
 import com.absmis.service.enterprise.CheckedStatusService;
 import com.absmis.service.enterprise.ConstructionEnIndustrializationService;
 import com.absmis.service.enterprise.ConstructionEnService;
+import com.absmis.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -31,6 +33,49 @@ public class ConstructionEnIndustrializationController {
     UserService userService;
     String username = null;
     User storedUser = null;
+
+    //根据企业和申报起止时间查询
+    @RequestMapping(value = "/queryAnnual", method = RequestMethod.GET)
+    public ConstructionEnIndustrializationInfo queryQuarterConstructionEnIndustrialization()throws Exception {
+        username = SecurityContextHolder.getContext().getAuthentication().getName();
+        storedUser = userService.findByUsername(username);
+        ConstructionEn constructionEn = (ConstructionEn)storedUser;
+        Specification<ConstructionEnIndustrialization> specification = this.constructionEnIndustrializationService.queryQuarter(constructionEn.getId(),2017,3);
+        List<ConstructionEnIndustrialization> list = this.constructionEnIndustrializationService.findBySepc(specification);
+        double addNewConcrete = 0;
+        //新增装配式钢结构建筑的数量
+        double addNewSteel = 0;
+        //新增装配式木建筑的数量
+        double addNewTimber = 0;
+        for(int i=0;i<list.size();i++){
+            addNewConcrete += list.get(i).getAddNewConcrete();
+            addNewSteel += list.get(i).getAddNewSteel();
+            addNewTimber += list.get(i).getAddNewTimber();
+        }
+        System.out.println(list.size()+"一共有几条");
+        Specification<ConstructionEnIndustrialization> sp = this.constructionEnIndustrializationService.queryAnnual(constructionEn.getId(),2017,3);
+        List<ConstructionEnIndustrialization> annualList = this.constructionEnIndustrializationService.findBySepc(sp);
+        double annualConcrete = 0;
+        //年度装配式钢结构建筑的数量
+        double annualSteel = 0;
+        //年度装配式木建筑的数量
+        double annualTimber = 0;
+        System.out.println(annualList.size()+"一共");
+        for(int i=0;i<annualList.size();i++){
+            annualConcrete += annualList.get(i).getAddNewConcrete();
+            annualSteel += annualList.get(i).getAddNewSteel();
+            annualTimber += annualList.get(i).getAddNewTimber();
+        }
+        ConstructionEnIndustrializationInfo constructionEnIndustrializationInfo = new ConstructionEnIndustrializationInfo();
+        constructionEnIndustrializationInfo.setAddNewConcrete(addNewConcrete);
+        constructionEnIndustrializationInfo.setAddNewSteel(addNewSteel);
+        constructionEnIndustrializationInfo.setAddNewTimber(addNewTimber);
+        constructionEnIndustrializationInfo.setCumulant(constructionEn.getCumulant());
+        constructionEnIndustrializationInfo.setAnnualConcrete(annualConcrete);
+        constructionEnIndustrializationInfo.setAnnualSteel(annualSteel);
+        constructionEnIndustrializationInfo.setAnnualTimber(annualTimber);
+        return constructionEnIndustrializationInfo;
+    }
 
 
     //根据企业和申报起止时间查询
@@ -79,6 +124,8 @@ public class ConstructionEnIndustrializationController {
         ConstructionEn constructionEn = (ConstructionEn)storedUser;
         constructionEn.setCumulant(constructionEn.getCumulant()+constructionEnIndustrialization.getAddNewConcrete()+constructionEnIndustrialization.getAddNewSteel()+constructionEnIndustrialization.getAddNewTimber());
         constructionEnIndustrialization.setConstructionEn(constructionEn);
+        constructionEnIndustrialization.setYear(constructionEnIndustrialization.getDeclareTime().getWeekYear());
+        constructionEnIndustrialization.setQuarter(Utils.getSeason(constructionEnIndustrialization.getDeclareTime()));
         this.constructionEnIndustrializationService.addConstructionEnIndustrialization(constructionEnIndustrialization);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("constructionEnIndustrialization", constructionEnIndustrialization);

@@ -22,6 +22,26 @@ public class MachineryEnIndustrialization implements Serializable {
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar declareTime;
+
+    private Integer year;
+    private Integer quarter;
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    public Integer getQuarter() {
+        return quarter;
+    }
+
+    public void setQuarter(Integer quarter) {
+        this.quarter = quarter;
+    }
+
     //预制混凝土生产设备
     private Double integralWall;
     //专用运输设备

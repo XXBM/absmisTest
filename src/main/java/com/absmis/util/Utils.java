@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextImpl;
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.util.Calendar;
 
 
 /**
@@ -61,5 +62,37 @@ public class Utils {
             e.printStackTrace();
         }
         return p;
+    }
+
+
+    public static int getSeason(Calendar date) {
+
+        int season = 0;
+        int month = date.get(Calendar.MONTH);
+        switch (month) {
+            case Calendar.JANUARY:
+            case Calendar.FEBRUARY:
+            case Calendar.MARCH:
+                season = 1;
+                break;
+            case Calendar.APRIL:
+            case Calendar.MAY:
+            case Calendar.JUNE:
+                season = 2;
+                break;
+            case Calendar.JULY:
+            case Calendar.AUGUST:
+            case Calendar.SEPTEMBER:
+                season = 3;
+                break;
+            case Calendar.OCTOBER:
+            case Calendar.NOVEMBER:
+            case Calendar.DECEMBER:
+                season = 4;
+                break;
+            default:
+                break;
+        }
+        return season;
     }
 }
