@@ -30,10 +30,14 @@ public class SubUnitEnIndustrializationController {
 
     //根据企业和申报起止时间查询
     @RequestMapping(value = "/queryQuarterSubUnitEnIn", method = RequestMethod.GET)
-    public SubUnitEnIndustrializationInfo queryQuarter()throws Exception {
+    public SubUnitEnIndustrializationInfo queryQuarter(
+            @RequestParam(value = "enId") Long enId,
+            @RequestParam(value = "year") Integer year,
+            @RequestParam(value = "quarter") Integer quarter
+    )throws Exception {
         username = SecurityContextHolder.getContext().getAuthentication().getName();
         storedUser = userService.findByUsername(username);
-        Specification<SubUnitEnIndustrialization> specification = this.subUnitEnIndustrializationService.queryQuarter(storedUser.getId(),2017,3);
+        Specification<SubUnitEnIndustrialization> specification = this.subUnitEnIndustrializationService.queryQuarter(enId,year,quarter);
         List<SubUnitEnIndustrialization> list = this.subUnitEnIndustrializationService.findBySepc(specification);
         System.out.println(list.size()+"一共有几条");
         double integralWallNum = 0;

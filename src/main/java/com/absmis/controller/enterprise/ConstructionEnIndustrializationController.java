@@ -36,11 +36,13 @@ public class ConstructionEnIndustrializationController {
 
     //根据企业和申报起止时间查询
     @RequestMapping(value = "/queryAnnual", method = RequestMethod.GET)
-    public ConstructionEnIndustrializationInfo queryQuarterConstructionEnIndustrialization()throws Exception {
-        username = SecurityContextHolder.getContext().getAuthentication().getName();
-        storedUser = userService.findByUsername(username);
-        ConstructionEn constructionEn = (ConstructionEn)storedUser;
-        Specification<ConstructionEnIndustrialization> specification = this.constructionEnIndustrializationService.queryQuarter(constructionEn.getId(),2017,3);
+    public ConstructionEnIndustrializationInfo queryQuarterConstructionEnIndustrialization(
+            @RequestParam(value = "enId") Long enId,
+            @RequestParam(value = "year") Integer year,
+            @RequestParam(value = "quarter") Integer quarter
+    )throws Exception {
+        ConstructionEn constructionEn = constructionEnService.findOne(enId);
+        Specification<ConstructionEnIndustrialization> specification = this.constructionEnIndustrializationService.queryQuarter(enId,year,quarter);
         List<ConstructionEnIndustrialization> list = this.constructionEnIndustrializationService.findBySepc(specification);
         double addNewConcrete = 0;
         //新增装配式钢结构建筑的数量
@@ -53,7 +55,7 @@ public class ConstructionEnIndustrializationController {
             addNewTimber += list.get(i).getAddNewTimber();
         }
         System.out.println(list.size()+"一共有几条");
-        Specification<ConstructionEnIndustrialization> sp = this.constructionEnIndustrializationService.queryAnnual(constructionEn.getId(),2017,3);
+        Specification<ConstructionEnIndustrialization> sp = this.constructionEnIndustrializationService.queryAnnual(enId,year,quarter);
         List<ConstructionEnIndustrialization> annualList = this.constructionEnIndustrializationService.findBySepc(sp);
         double annualConcrete = 0;
         //年度装配式钢结构建筑的数量

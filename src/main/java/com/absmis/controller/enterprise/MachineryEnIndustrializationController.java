@@ -30,10 +30,12 @@ public class MachineryEnIndustrializationController {
 
     //根据企业和申报起止时间查询
     @RequestMapping(value = "/queryQuarterMachineryEnIn", method = RequestMethod.GET)
-    public MachineryEnIndustrializationInfo queryQuarter()throws Exception {
-        username = SecurityContextHolder.getContext().getAuthentication().getName();
-        storedUser = userService.findByUsername(username);
-        Specification<MachineryEnIndustrialization> specification = this.machineryEnIndustrializationService.queryQuarter(storedUser.getId(),2017,3);
+    public MachineryEnIndustrializationInfo queryQuarter(
+            @RequestParam(value = "enId") Long enId,
+            @RequestParam(value = "year") Integer year,
+            @RequestParam(value = "quarter") Integer quarter
+    )throws Exception {
+        Specification<MachineryEnIndustrialization> specification = this.machineryEnIndustrializationService.queryQuarter(enId,year,quarter);
         List<MachineryEnIndustrialization> list = this.machineryEnIndustrializationService.findBySepc(specification);
         System.out.println(list.size()+"一共有几条");
         MachineryEnIndustrializationInfo machineryEnIndustrializationInfo = new MachineryEnIndustrializationInfo();

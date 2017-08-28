@@ -37,10 +37,14 @@ public class ComponentEnIndustrializationController {
 
     //根据企业和申报起止时间查询
     @RequestMapping(value = "/queryQuarterComponentEnIn", method = RequestMethod.GET)
-    public ComponentEnIndustrializationInfo queryQuarter()throws Exception {
+    public ComponentEnIndustrializationInfo queryQuarter(
+            @RequestParam(value = "enId") Long enId,
+            @RequestParam(value = "year") Integer year,
+            @RequestParam(value = "quarter") Integer quarter
+    )throws Exception {
         username = SecurityContextHolder.getContext().getAuthentication().getName();
         storedUser = userService.findByUsername(username);
-        Specification<ComponentEnIndustrialization> specification = this.componentEnIndustrializationService.queryQuarter(storedUser.getId(),2017,3);
+        Specification<ComponentEnIndustrialization> specification = this.componentEnIndustrializationService.queryQuarter(enId,year,quarter);
         List<ComponentEnIndustrialization> list = this.componentEnIndustrializationService.findBySepc(specification);
         double prebuiltConcreteNum = 0;
         double prebuiltSteelNum = 0;
