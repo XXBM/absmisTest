@@ -1,47 +1,12 @@
-package com.absmis.domain.enterprise;
-
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Calendar;
+package com.absmis.domain.message;
 
 /**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- *
- * 构件企业
- *
- * @generated
+ * @Author: LihuaHuang
+ * @Description:
+ * @Date: Created in 16:23 2017/8/28.
+ * @Modified by:
  */
-@Entity
-public class ComponentEnIndustrialization implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Calendar declareTime;
-    private Integer year;
-    private Integer quarter;
-
-    public Integer getYear() {
-        return year;
-    }
-
-    public void setYear(Integer year) {
-        this.year = year;
-    }
-
-    public Integer getQuarter() {
-        return quarter;
-    }
-
-    public void setQuarter(Integer quarter) {
-        this.quarter = quarter;
-    }
-
+public class ComponentEnIndustrializationInfo {
     /*生产条数*/
     //预制装配混凝土结构
     private Double prebuiltConcreteNum;
@@ -72,45 +37,8 @@ public class ComponentEnIndustrialization implements Serializable {
     //其他结构的构件
     private Double prebuiltOtherScale;
 
-    @javax.persistence.ManyToOne
-    @JoinColumn(name = "componentEn_id")
-    private ComponentEn componentEn;
-
-
-    @ManyToOne
-    @JoinColumn(name = "checkedStatus_id")
-    private CheckedStatus checkedStatus;
-
-    public ComponentEnIndustrialization() {
-        super();
-    }
-
-    public CheckedStatus getCheckedStatus() {
-        return checkedStatus;
-    }
-
-    public void setCheckedStatus(CheckedStatus checkedStatus) {
-        this.checkedStatus = checkedStatus;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Double getPrebuiltConcreteNum() {
         return prebuiltConcreteNum;
-    }
-
-    public Calendar getDeclareTime() {
-        return declareTime;
-    }
-
-    public void setDeclareTime(Calendar declareTime) {
-        this.declareTime = declareTime;
     }
 
     public void setPrebuiltConcreteNum(Double prebuiltConcreteNum) {
@@ -204,13 +132,4 @@ public class ComponentEnIndustrialization implements Serializable {
     public void setPrebuiltOtherScale(Double prebuiltOtherScale) {
         this.prebuiltOtherScale = prebuiltOtherScale;
     }
-
-    public ComponentEn getComponentEn() {
-        return componentEn;
-    }
-
-    public void setComponentEn(ComponentEn componentEn) {
-        this.componentEn = componentEn;
-    }
 }
-

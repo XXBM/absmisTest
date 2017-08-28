@@ -3,6 +3,7 @@ package com.absmis.controller.enterprise;
 import com.absmis.domain.authority.User;
 import com.absmis.domain.enterprise.ComponentEn;
 import com.absmis.domain.enterprise.ComponentEnIndustrialization;
+import com.absmis.domain.message.ComponentEnIndustrializationInfo;
 import com.absmis.service.authority.UserService;
 import com.absmis.service.enterprise.CheckedStatusService;
 import com.absmis.service.enterprise.ComponentEnIndustrializationService;
@@ -31,6 +32,58 @@ public class ComponentEnIndustrializationController {
     UserService userService;
     String username = null;
     User storedUser = null;
+
+
+    //根据企业和申报起止时间查询
+    @RequestMapping(value = "/queryQuarterComponentEnIn", method = RequestMethod.GET)
+    public ComponentEnIndustrializationInfo queryQuarter()throws Exception {
+        username = SecurityContextHolder.getContext().getAuthentication().getName();
+        storedUser = userService.findByUsername(username);
+        Specification<ComponentEnIndustrialization> specification = this.componentEnIndustrializationService.queryQuarter(storedUser.getId(),2017,3);
+        List<ComponentEnIndustrialization> list = this.componentEnIndustrializationService.findBySepc(specification);
+        double prebuiltConcreteNum = 0;
+        double prebuiltSteelNum = 0;
+        double prebuiltTimberNum = 0;
+        double prebuiltOtherNum = 0;
+        double prebuiltConcreteAbility = 0;
+        double prebuiltSteelAbility = 0;
+        double prebuiltTimberAbility = 0;
+        double prebuiltOtherAbility = 0;
+        double prebuiltConcreteScale = 0;
+        double prebuiltSteelScale = 0;
+        double prebuiltTimberScale = 0;
+        double prebuiltOtherScale = 0;
+        for(int i=0;i<list.size();i++){
+             prebuiltConcreteNum += list.get(i).getPrebuiltConcreteNum();
+             prebuiltSteelNum += list.get(i).getPrebuiltSteelNum();
+             prebuiltTimberNum += list.get(i).getPrebuiltTimberNum();
+             prebuiltOtherNum += list.get(i).getPrebuiltOtherNum();
+             prebuiltConcreteAbility += list.get(i).getPrebuiltConcreteAbility();
+             prebuiltSteelAbility += list.get(i).getPrebuiltSteelAbility();
+             prebuiltTimberAbility += list.get(i).getPrebuiltTimberAbility();
+             prebuiltOtherAbility += list.get(i).getPrebuiltOtherAbility();
+             prebuiltConcreteScale += list.get(i).getPrebuiltConcreteScale();
+             prebuiltSteelScale += list.get(i).getPrebuiltSteelScale();
+             prebuiltTimberScale += list.get(i).getPrebuiltTimberScale();
+             prebuiltOtherScale += list.get(i).getPrebuiltOtherScale();
+        }
+        System.out.println(list.size()+"一共有几条");
+        ComponentEnIndustrializationInfo machineryEnIndustrializationInfo = new ComponentEnIndustrializationInfo();
+        machineryEnIndustrializationInfo.setPrebuiltConcreteNum(prebuiltConcreteNum);
+        machineryEnIndustrializationInfo.setPrebuiltSteelNum(prebuiltSteelNum);
+        machineryEnIndustrializationInfo.setPrebuiltTimberNum(prebuiltTimberNum);
+        machineryEnIndustrializationInfo.setPrebuiltOtherNum(prebuiltOtherNum);
+        machineryEnIndustrializationInfo.setPrebuiltConcreteAbility(prebuiltConcreteAbility);
+        machineryEnIndustrializationInfo.setPrebuiltSteelAbility(prebuiltSteelAbility);
+        machineryEnIndustrializationInfo.setPrebuiltTimberAbility(prebuiltTimberAbility);
+        machineryEnIndustrializationInfo.setPrebuiltOtherAbility(prebuiltOtherAbility);
+        machineryEnIndustrializationInfo.setPrebuiltConcreteScale(prebuiltConcreteScale);
+        machineryEnIndustrializationInfo.setPrebuiltSteelScale(prebuiltSteelScale);
+        machineryEnIndustrializationInfo.setPrebuiltTimberScale(prebuiltTimberScale);
+        machineryEnIndustrializationInfo.setPrebuiltOtherScale(prebuiltOtherScale);
+        return machineryEnIndustrializationInfo;
+    }
+
     //check根据企业和申报起止时间查询
     @RequestMapping(value = "/queryComponentEnInCheck", method = RequestMethod.GET)
     public Map<String, Object> queryComponentEnInCheck(

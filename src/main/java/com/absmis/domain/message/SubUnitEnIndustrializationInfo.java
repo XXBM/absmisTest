@@ -1,46 +1,12 @@
-package com.absmis.domain.enterprise;
-
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Calendar;
+package com.absmis.domain.message;
 
 /**
- * <!-- begin-user-doc -->
- * <!--  end-user-doc  -->
- *
- * @generated Industrialization
+ * @Author: LihuaHuang
+ * @Description:
+ * @Date: Created in 16:00 2017/8/28.
+ * @Modified by:
  */
-
-@javax.persistence.Entity
-public class SubUnitEnIndustrialization implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Calendar declareTime;
-    private Integer year;
-    private Integer quarter;
-
-    public Integer getYear() {
-        return year;
-    }
-
-    public void setYear(Integer year) {
-        this.year = year;
-    }
-
-    public Integer getQuarter() {
-        return quarter;
-    }
-
-    public void setQuarter(Integer quarter) {
-        this.quarter = quarter;
-    }
-
+public class SubUnitEnIndustrializationInfo {
     /*生产条数*/
     //整体墙板
     private Double integralWallNum;
@@ -82,46 +48,6 @@ public class SubUnitEnIndustrialization implements Serializable {
     private Double integralToiletScale;
     //整体内装体系
     private Double integralInteriorDecorationScale;
-
-
-    @javax.persistence.ManyToOne
-    @javax.persistence.JoinColumn(name = "subUnitEn_id")
-    private SubUnitEn subUnitEn;
-
-
-    @ManyToOne
-    @JoinColumn(name = "checkedStatus_id")
-    private CheckedStatus checkedStatus;
-
-    public CheckedStatus getCheckedStatus() {
-        return checkedStatus;
-    }
-
-    public void setCheckedStatus(CheckedStatus checkedStatus) {
-        this.checkedStatus = checkedStatus;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Calendar getDeclareTime() {
-        return declareTime;
-    }
-
-    public void setDeclareTime(Calendar declareTime) {
-        this.declareTime = declareTime;
-    }
-
-    private Double structuralInsulatedDecorateIntegration;
-
-    public SubUnitEnIndustrialization() {
-        super();
-    }
 
     public Double getIntegralWallNum() {
         return integralWallNum;
@@ -266,21 +192,4 @@ public class SubUnitEnIndustrialization implements Serializable {
     public void setIntegralInteriorDecorationScale(Double integralInteriorDecorationScale) {
         this.integralInteriorDecorationScale = integralInteriorDecorationScale;
     }
-
-    public Double getStructuralInsulatedDecorateIntegration() {
-        return structuralInsulatedDecorateIntegration;
-    }
-
-    public void setStructuralInsulatedDecorateIntegration(Double structuralInsulatedDecorateIntegration) {
-        this.structuralInsulatedDecorateIntegration = structuralInsulatedDecorateIntegration;
-    }
-
-    public SubUnitEn getSubUnitEn() {
-        return subUnitEn;
-    }
-
-    public void setSubUnitEn(SubUnitEn subUnitEn) {
-        this.subUnitEn = subUnitEn;
-    }
 }
-

@@ -29,7 +29,7 @@ public class MachineryEnIndustrializationController {
     User storedUser = null;
 
     //根据企业和申报起止时间查询
-    @RequestMapping(value = "/queryQuarter", method = RequestMethod.GET)
+    @RequestMapping(value = "/queryQuarterMachineryEnIn", method = RequestMethod.GET)
     public MachineryEnIndustrializationInfo queryQuarter()throws Exception {
         username = SecurityContextHolder.getContext().getAuthentication().getName();
         storedUser = userService.findByUsername(username);

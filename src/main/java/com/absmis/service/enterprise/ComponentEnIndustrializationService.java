@@ -117,4 +117,23 @@ public class ComponentEnIndustrializationService extends BasicService<ComponentE
     }
 
 
+    public Specification<ComponentEnIndustrialization> queryQuarter(
+            Long enId,
+            Integer year,
+            Integer quarter){
+        return new Specification<ComponentEnIndustrialization>() {
+            @Override
+            public Predicate toPredicate(Root<ComponentEnIndustrialization> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                List<Predicate> predicate = new ArrayList<>();
+                //条件一：查询在岗人员
+                predicate.add(cb.equal(root.get("componentEn"), enId));
+                predicate.add(cb.equal(root.get("year"), year));
+                predicate.add(cb.equal(root.get("quarter"), quarter));
+                Predicate[] pre = new Predicate[predicate.size()];
+                query.distinct(true);
+                return query.where(predicate.toArray(pre)).getRestriction();
+            }
+        };
+    }
+
 }

@@ -113,5 +113,25 @@ public class SubUnitEnIndustrializationService extends BasicService<SubUnitEnInd
     }
 
 
+    public Specification<SubUnitEnIndustrialization> queryQuarter(
+            Long enId,
+            Integer year,
+            Integer quarter){
+        return new Specification<SubUnitEnIndustrialization>() {
+            @Override
+            public Predicate toPredicate(Root<SubUnitEnIndustrialization> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                List<Predicate> predicate = new ArrayList<>();
+                //条件一：查询在岗人员
+                predicate.add(cb.equal(root.get("subUnitEn"), enId));
+                predicate.add(cb.equal(root.get("year"), year));
+                predicate.add(cb.equal(root.get("quarter"), quarter));
+                Predicate[] pre = new Predicate[predicate.size()];
+                query.distinct(true);
+                return query.where(predicate.toArray(pre)).getRestriction();
+            }
+        };
+    }
+
+
 
 }
