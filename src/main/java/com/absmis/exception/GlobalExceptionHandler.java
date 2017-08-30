@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by xuling on 2016/10/29.
  * 统一异常处理
  * 该类会处理所有在执行标有@RequestMapping注解的方法时，发生的异常
  */

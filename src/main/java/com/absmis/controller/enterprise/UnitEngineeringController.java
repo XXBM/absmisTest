@@ -15,10 +15,6 @@ import java.util.List;
 import java.util.Map;
 
 
-/**
- * Created by xuling on 2016/10/11.
- */
-
 @RestController
 public class UnitEngineeringController {
     @Autowired

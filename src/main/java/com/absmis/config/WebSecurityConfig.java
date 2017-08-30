@@ -19,9 +19,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * Created by xuling on 2016/10/11.
  * spring security的配置
  */
-
-
-
 @Configuration
 //通过 @EnableWebMvcSecurity禁用Boot的默认Security配合，配合@Configuration启用自定义的Spring Security的功能
 @EnableWebSecurity

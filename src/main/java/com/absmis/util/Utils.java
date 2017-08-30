@@ -15,9 +15,6 @@ import java.security.MessageDigest;
 import java.util.Calendar;
 
 
-/**
- * Created by ibs on 16/12/3.
- */
 public class Utils {
     public static SecurityContextImpl securityContext;
     @Autowired

@@ -2,9 +2,7 @@ package com.absmis.domain.message;
 
 import java.io.Serializable;
 
-/**
- * Created by kene213 on 2017/5/5.
- */
+
 public class UserInfo implements Serializable {
     //用户名
     private String userName;

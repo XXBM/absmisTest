@@ -7,9 +7,6 @@ import com.absmis.service.BasicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * Created by xuling on 2016/10/11.
- */
 
 @Service
 public class UserService extends BasicService<User,Long> {

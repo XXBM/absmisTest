@@ -11,9 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Created by xuling on 2016/10/11.
- */
+
 
 @Service
 public class UnitEngineeringService extends BasicService<UnitEngineering, Long> {

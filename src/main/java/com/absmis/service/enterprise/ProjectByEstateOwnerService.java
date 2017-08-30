@@ -20,10 +20,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by xuling on 2016/10/11.
- */
-
 @Service
 public class ProjectByEstateOwnerService extends BasicService<ProjectByEstateOwner, Long> {
     @Autowired

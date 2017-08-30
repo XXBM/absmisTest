@@ -18,9 +18,7 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by xuling on 2016/10/11.
- */
+
 
 @Service
 public class ComponentEnService extends BasicService<ComponentEn, Long> {

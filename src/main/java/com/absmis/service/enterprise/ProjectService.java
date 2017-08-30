@@ -20,9 +20,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by xuling on 2016/10/11.
- */
+
 
 @Service
 public class ProjectService extends BasicService<Project, Long> {

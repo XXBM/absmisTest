@@ -14,10 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Created by xuling on 2016/11/19.
- */
 @RestController
 public class CreateMenuController {
     @Autowired
