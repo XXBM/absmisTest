@@ -11,6 +11,7 @@ import java.util.List;
 
 @Repository
 public interface UnitEngineeringRepository extends MyRepository<UnitEngineering, Long> {
+    List<UnitEngineering> findByStructureFormId(Long id);
     List<UnitEngineering> findByProjectId(Long id);
     Page<UnitEngineering> findByProjectId(Long id, Pageable pageable);
 }

@@ -5,6 +5,7 @@ import com.absmis.domain.enterprise.ProjectByRealEstateEn;
 import com.absmis.domain.enterprise.RealEstateEn;
 import com.absmis.service.authority.UserService;
 import com.absmis.service.enterprise.ProjectByRealEstateEnService;
+import com.absmis.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -54,6 +55,8 @@ public class ProjectByRealEstateEnController {
         username = SecurityContextHolder.getContext().getAuthentication().getName();
         storedUser = userService.findByUsername(username);
         projectByRealEstateEn.setRealEstateEn((RealEstateEn)storedUser);
+        projectByRealEstateEn.setYear(projectByRealEstateEn.getStartingTime().getWeekYear());
+        projectByRealEstateEn.setQuarter(Utils.getSeason(projectByRealEstateEn.getStartingTime()));
         this.projectByRealEstateEnService.addProjectByRealEstateEn(projectByRealEstateEn);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("projectByRealEstateEn", projectByRealEstateEn);

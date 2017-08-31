@@ -2,6 +2,7 @@ package com.absmis.service.enterprise;
 
 
 import com.absmis.domain.enterprise.Project;
+import com.absmis.domain.enterprise.UnitEngineering;
 import com.absmis.repository.enterprise.ProjectRepository;
 import com.absmis.service.BasicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -84,6 +82,64 @@ public class ProjectService extends BasicService<Project, Long> {
                     System.out.println("end"+endTime);
                     predicate.add(cb.lessThanOrEqualTo(root.get("startingTime").as(String.class), endTime));
                 }
+                Predicate[] pre = new Predicate[predicate.size()];
+                query.distinct(true);
+                return query.where(predicate.toArray(pre)).getRestriction();
+            }
+        };
+    }
+
+
+
+    public Specification<Project> queryQuarter(
+            Integer year,
+            Integer quarter){
+        return new Specification<Project>() {
+            @Override
+            public Predicate toPredicate(Root<Project> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                List<Predicate> predicate = new ArrayList<>();
+                //条件一：查询在岗人员
+                predicate.add(cb.equal(root.get("year"), year));
+                predicate.add(cb.equal(root.get("quarter"), quarter));
+                Predicate[] pre = new Predicate[predicate.size()];
+                query.distinct(true);
+                return query.where(predicate.toArray(pre)).getRestriction();
+            }
+        };
+    }
+
+    public Specification<Project> queryQuarterByCategory(
+            Long categoryId,
+            Integer year,
+            Integer quarter){
+        return new Specification<Project>() {
+            @Override
+            public Predicate toPredicate(Root<Project> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                List<Predicate> predicate = new ArrayList<>();
+                //条件一：查询在岗人员
+                predicate.add(cb.equal(root.get("projectCategory"), categoryId));
+                predicate.add(cb.equal(root.get("year"), year));
+                predicate.add(cb.equal(root.get("quarter"), quarter));
+                Predicate[] pre = new Predicate[predicate.size()];
+                query.distinct(true);
+                return query.where(predicate.toArray(pre)).getRestriction();
+            }
+        };
+    }
+
+    public Specification<Project> queryQuarterByForm(
+            Long formId,
+            Integer year,
+            Integer quarter){
+        return new Specification<Project>() {
+            @Override
+            public Predicate toPredicate(Root<Project> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                List<Predicate> predicate = new ArrayList<>();
+                //条件一：查询在岗人员
+                Join<Project, UnitEngineering> projectAssUnitEngineeringJoins = root.join("unitEngineerings");;
+                predicate.add(cb.equal(projectAssUnitEngineeringJoins.get("structureForm").get("id"),formId));
+                predicate.add(cb.equal(root.get("year"), year));
+                predicate.add(cb.equal(root.get("quarter"), quarter));
                 Predicate[] pre = new Predicate[predicate.size()];
                 query.distinct(true);
                 return query.where(predicate.toArray(pre)).getRestriction();

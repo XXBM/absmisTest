@@ -30,6 +30,25 @@ public abstract class Project implements Serializable {
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar startingTime;
+    private Integer year;
+    private Integer quarter;
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    public Integer getQuarter() {
+        return quarter;
+    }
+
+    public void setQuarter(Integer quarter) {
+        this.quarter = quarter;
+    }
+
     //项目填报时间
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -74,7 +93,7 @@ public abstract class Project implements Serializable {
     //单位工程
     @JsonIgnore
     @javax.persistence.OneToMany(mappedBy = "project")
-    private Set<UnitEngineering> unitEngineering;
+    private Set<UnitEngineering> unitEngineerings;
 
     public Project() {
         super();
@@ -200,12 +219,12 @@ public abstract class Project implements Serializable {
         return projectState;
     }
 
-    public Set<UnitEngineering> getUnitEngineering() {
-        return unitEngineering;
+    public Set<UnitEngineering> getUnitEngineerings() {
+        return unitEngineerings;
     }
 
-    public void setUnitEngineering(Set<UnitEngineering> unitEngineering) {
-        this.unitEngineering = unitEngineering;
+    public void setUnitEngineerings(Set<UnitEngineering> unitEngineerings) {
+        this.unitEngineerings = unitEngineerings;
     }
 
     public void setProjectState(ProjectState projectState) {

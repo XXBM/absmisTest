@@ -5,6 +5,7 @@ import com.absmis.domain.enterprise.EstateOwner;
 import com.absmis.domain.enterprise.ProjectByEstateOwner;
 import com.absmis.service.authority.UserService;
 import com.absmis.service.enterprise.ProjectByEstateOwnerService;
+import com.absmis.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -52,6 +53,8 @@ public class ProjectByEstateOwnerController {
         username = SecurityContextHolder.getContext().getAuthentication().getName();
         storedUser = userService.findByUsername(username);
         projectByEstateOwner.setEstateOwner((EstateOwner)storedUser);
+        projectByEstateOwner.setYear(projectByEstateOwner.getStartingTime().getWeekYear());
+        projectByEstateOwner.setQuarter(Utils.getSeason(projectByEstateOwner.getStartingTime()));
         this.projectByEstateOwnerService.addProjectByEstateOwner(projectByEstateOwner);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("projectByEstateOwner", projectByEstateOwner);

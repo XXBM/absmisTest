@@ -1,8 +1,11 @@
 package com.absmis.domain.enterprise;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Calendar;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,6 +22,12 @@ public class UnitEngineering implements Serializable {
     private Long id;
     //工程名称
     private String name;
+    //工程开工时间
+    @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Calendar startingTime;
+    private Integer year;
+    private Integer quarter;
     //建筑面积
     private Double constructionArea;
     //地上层数
@@ -46,6 +55,30 @@ public class UnitEngineering implements Serializable {
 
     public UnitEngineering() {
         super();
+    }
+
+    public Calendar getStartingTime() {
+        return startingTime;
+    }
+
+    public void setStartingTime(Calendar startingTime) {
+        this.startingTime = startingTime;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public void setYear(Integer year) {
+        this.year = year;
+    }
+
+    public Integer getQuarter() {
+        return quarter;
+    }
+
+    public void setQuarter(Integer quarter) {
+        this.quarter = quarter;
     }
 
     public CheckedStatus getCheckedStatus() {
