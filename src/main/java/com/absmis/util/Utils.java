@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextImpl;
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 
@@ -91,5 +92,38 @@ public class Utils {
                 break;
         }
         return season;
+    }
+
+    /**
+     * 当前季度的结束时间，即2012-03-31 23:59:59
+     *
+     * @return
+     */
+    public static  String getQuarterEndTime(int year ,int quarter) {
+        Calendar c = Calendar.getInstance();
+        try {
+            if (quarter==1) {
+                c.set(Calendar.MONTH, 2);
+                c.set(Calendar.DATE, 31);
+                c.set(Calendar.YEAR,year);
+            } else if (quarter==2) {
+                c.set(Calendar.MONTH, 5);
+                c.set(Calendar.DATE, 30);
+                c.set(Calendar.YEAR,year);
+            } else if (quarter==3) {
+                c.set(Calendar.MONTH,8);
+                c.set(Calendar.DATE, 30);
+                c.set(Calendar.YEAR,year);
+            } else if (quarter==4) {
+                c.set(Calendar.MONTH, 11);
+                c.set(Calendar.DATE, 31);
+                c.set(Calendar.YEAR,year);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String dateStr = sdf.format(c.getTime());
+        return dateStr;
     }
 }

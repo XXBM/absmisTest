@@ -79,7 +79,7 @@ public class UnitEngineeringService extends BasicService<UnitEngineering, Long> 
 
 
     public Specification<UnitEngineering> queryQuarter(
-            Long structureFormId,
+            Long categoryId,
             Integer year,
             Integer quarter){
         return new Specification<UnitEngineering>() {
@@ -87,9 +87,43 @@ public class UnitEngineeringService extends BasicService<UnitEngineering, Long> 
             public Predicate toPredicate(Root<UnitEngineering> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 List<Predicate> predicate = new ArrayList<>();
                 //条件一：查询在岗人员
-                predicate.add(cb.equal(root.get("structureForm"), structureFormId));
+                predicate.add(cb.equal(root.get("engineeringIndustrialization").get("applicationStructureType"), categoryId));
                 predicate.add(cb.equal(root.get("year"), year));
-                predicate.add(cb.equal(root.get("quarter"), quarter));
+                predicate.add(cb.lessThanOrEqualTo(root.get("quarter"), quarter));
+                Predicate[] pre = new Predicate[predicate.size()];
+                query.distinct(true);
+                return query.where(predicate.toArray(pre)).getRestriction();
+            }
+        };
+    }
+
+    public Specification<UnitEngineering> queryQuarterYear(
+            Long categoryId,
+            Integer year){
+        return new Specification<UnitEngineering>() {
+            @Override
+            public Predicate toPredicate(Root<UnitEngineering> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                List<Predicate> predicate = new ArrayList<>();
+                //条件一：查询在岗人员
+                predicate.add(cb.equal(root.get("engineeringIndustrialization").get("applicationStructureType"), categoryId));
+                predicate.add(cb.lessThan(root.get("year"), year));
+                Predicate[] pre = new Predicate[predicate.size()];
+                query.distinct(true);
+                return query.where(predicate.toArray(pre)).getRestriction();
+            }
+        };
+    }
+
+    public Specification<UnitEngineering> queryQuarter(
+            Long categoryId,
+            String endTime){
+        return new Specification<UnitEngineering>() {
+            @Override
+            public Predicate toPredicate(Root<UnitEngineering> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                List<Predicate> predicate = new ArrayList<>();
+                //条件一：查询在岗人员
+                predicate.add(cb.equal(root.get("engineeringIndustrialization").get("applicationStructureType"), categoryId));
+                predicate.add(cb.lessThanOrEqualTo(root.get("startingTime").as(String.class), endTime));
                 Predicate[] pre = new Predicate[predicate.size()];
                 query.distinct(true);
                 return query.where(predicate.toArray(pre)).getRestriction();

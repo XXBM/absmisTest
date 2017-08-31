@@ -5,6 +5,7 @@ import com.absmis.domain.message.ProjectInfo;
 import com.absmis.domain.message.ProjectInfoByForm;
 import com.absmis.service.enterprise.CheckedStatusService;
 import com.absmis.service.enterprise.ProjectService;
+import com.absmis.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -30,28 +31,29 @@ public class ProjectController {
             @RequestParam(value = "year") Integer year,
             @RequestParam(value = "quarter") Integer quarter
     )throws Exception {
-        Specification<Project> concreteSp = this.projectService.queryQuarterByForm((long)1,year,quarter);
+        String endTime = Utils.getQuarterEndTime(year,quarter);
+        Specification<Project> concreteSp = this.projectService.queryQuarterByForm((long)1,endTime);
         List<Project> concreteList = this.projectService.findBySepc(concreteSp);
         double concreteArea = 0;
         for(int i=0;i<concreteList.size();i++){
             concreteArea += concreteList.get(i).getTotalConstructionArea();
         }
         ProjectInfoByForm concreteInfo = new ProjectInfoByForm("混凝土结构",(double)concreteList.size(),concreteArea);
-        Specification<Project> steelSp = this.projectService.queryQuarterByForm((long)2,year,quarter);
+        Specification<Project> steelSp = this.projectService.queryQuarterByForm((long)2,endTime);
         List<Project> steelList = this.projectService.findBySepc(steelSp);
         double stellArea = 0;
         for(int i=0;i<steelList.size();i++){
             stellArea += steelList.get(i).getTotalConstructionArea();
         }
         ProjectInfoByForm steelInfo = new ProjectInfoByForm("钢结构",(double)steelList.size(),stellArea);
-        Specification<Project> timberSp = this.projectService.queryQuarterByForm((long)3,year,quarter);
+        Specification<Project> timberSp = this.projectService.queryQuarterByForm((long)3,endTime);
         List<Project> timberList = this.projectService.findBySepc(timberSp);
         double timberArea = 0;
         for(int i=0;i<timberList.size();i++){
             timberArea += timberList.get(i).getTotalConstructionArea();
         }
         ProjectInfoByForm timberInfo = new ProjectInfoByForm("木结构",(double)timberList.size(),timberArea);
-        Specification<Project> otherSp = this.projectService.queryQuarterByForm((long)4,year,quarter);
+        Specification<Project> otherSp = this.projectService.queryQuarterByForm((long)4,endTime);
         List<Project> otherList = this.projectService.findBySepc(otherSp);
         double otherArea = 0;
         for(int i=0;i<otherList.size();i++){
@@ -71,19 +73,20 @@ public class ProjectController {
             @RequestParam(value = "year") Integer year,
             @RequestParam(value = "quarter") Integer quarter
     )throws Exception {
-        Specification<Project> projectSp = this.projectService.queryQuarter(year,quarter);
+        String endTime = Utils.getQuarterEndTime(year,quarter);
+        Specification<Project> projectSp = this.projectService.queryQuarter(endTime);
         List<Project> projectList = this.projectService.findBySepc(projectSp);
         ProjectInfo projectInfo = new ProjectInfo("项目总数",(double)projectList.size());
-        Specification<Project> pPublicSp = this.projectService.queryQuarterByCategory((long)1,year,quarter);
+        Specification<Project> pPublicSp = this.projectService.queryQuarterByCategory((long)1,endTime);
         List<Project> pPublicList = this.projectService.findBySepc(pPublicSp);
         ProjectInfo pPublicInfo = new ProjectInfo("公建项目数量",(double)pPublicList.size());
-        Specification<Project> pHouseSp = this.projectService.queryQuarterByCategory((long)2,year,quarter);
+        Specification<Project> pHouseSp = this.projectService.queryQuarterByCategory((long)2,endTime);
         List<Project> pHouseList = this.projectService.findBySepc(pHouseSp);
         ProjectInfo pHouseInfo = new ProjectInfo("住宅项目数量",(double)pHouseList.size());
-        Specification<Project> pWorkSp = this.projectService.queryQuarterByCategory((long)3,year,quarter);
+        Specification<Project> pWorkSp = this.projectService.queryQuarterByCategory((long)3,endTime);
         List<Project> pWorkList = this.projectService.findBySepc(pWorkSp);
         ProjectInfo pWorkInfo = new ProjectInfo("厂房项目数量",(double)pWorkList.size());
-        Specification<Project> pOtherSp = this.projectService.queryQuarterByCategory((long)4,year,quarter);
+        Specification<Project> pOtherSp = this.projectService.queryQuarterByCategory((long)4,endTime);
         List<Project> pOtherList = this.projectService.findBySepc(pOtherSp);
         ProjectInfo pOtherInfo = new ProjectInfo("其他项目数量",(double)pOtherList.size());
         double totalConstructionArea = 0;

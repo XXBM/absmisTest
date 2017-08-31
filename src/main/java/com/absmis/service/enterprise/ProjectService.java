@@ -92,15 +92,13 @@ public class ProjectService extends BasicService<Project, Long> {
 
 
     public Specification<Project> queryQuarter(
-            Integer year,
-            Integer quarter){
+            String endTime){
         return new Specification<Project>() {
             @Override
             public Predicate toPredicate(Root<Project> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 List<Predicate> predicate = new ArrayList<>();
                 //条件一：查询在岗人员
-                predicate.add(cb.equal(root.get("year"), year));
-                predicate.add(cb.equal(root.get("quarter"), quarter));
+                predicate.add(cb.lessThanOrEqualTo(root.get("startingTime").as(String.class), endTime));
                 Predicate[] pre = new Predicate[predicate.size()];
                 query.distinct(true);
                 return query.where(predicate.toArray(pre)).getRestriction();
@@ -110,16 +108,31 @@ public class ProjectService extends BasicService<Project, Long> {
 
     public Specification<Project> queryQuarterByCategory(
             Long categoryId,
-            Integer year,
-            Integer quarter){
+            String endTime){
         return new Specification<Project>() {
             @Override
             public Predicate toPredicate(Root<Project> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
                 List<Predicate> predicate = new ArrayList<>();
                 //条件一：查询在岗人员
                 predicate.add(cb.equal(root.get("projectCategory"), categoryId));
-                predicate.add(cb.equal(root.get("year"), year));
-                predicate.add(cb.equal(root.get("quarter"), quarter));
+                predicate.add(cb.lessThanOrEqualTo(root.get("startingTime").as(String.class), endTime));
+                Predicate[] pre = new Predicate[predicate.size()];
+                query.distinct(true);
+                return query.where(predicate.toArray(pre)).getRestriction();
+            }
+        };
+    }
+
+    public Specification<Project> queryQuarterByCategoryYear(
+            Long categoryId,
+            Integer year){
+        return new Specification<Project>() {
+            @Override
+            public Predicate toPredicate(Root<Project> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                List<Predicate> predicate = new ArrayList<>();
+                //条件一：查询在岗人员
+                predicate.add(cb.equal(root.get("projectCategory"), categoryId));
+                predicate.add(cb.lessThan(root.get("year"), year));
                 Predicate[] pre = new Predicate[predicate.size()];
                 query.distinct(true);
                 return query.where(predicate.toArray(pre)).getRestriction();
@@ -139,7 +152,7 @@ public class ProjectService extends BasicService<Project, Long> {
                 Join<Project, UnitEngineering> projectAssUnitEngineeringJoins = root.join("unitEngineerings");;
                 predicate.add(cb.equal(projectAssUnitEngineeringJoins.get("structureForm").get("id"),formId));
                 predicate.add(cb.equal(root.get("year"), year));
-                predicate.add(cb.equal(root.get("quarter"), quarter));
+                predicate.add(cb.lessThanOrEqualTo(root.get("quarter"), quarter));
                 Predicate[] pre = new Predicate[predicate.size()];
                 query.distinct(true);
                 return query.where(predicate.toArray(pre)).getRestriction();
@@ -147,5 +160,40 @@ public class ProjectService extends BasicService<Project, Long> {
         };
     }
 
+    public Specification<Project> queryQuarterByFormYear(
+            Long formId,
+            Integer year){
+        return new Specification<Project>() {
+            @Override
+            public Predicate toPredicate(Root<Project> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                List<Predicate> predicate = new ArrayList<>();
+                //条件一：查询在岗人员
+                Join<Project, UnitEngineering> projectAssUnitEngineeringJoins = root.join("unitEngineerings");;
+                predicate.add(cb.equal(projectAssUnitEngineeringJoins.get("structureForm").get("id"),formId));
+                predicate.add(cb.lessThan(root.get("year"), year));
+                Predicate[] pre = new Predicate[predicate.size()];
+                query.distinct(true);
+                return query.where(predicate.toArray(pre)).getRestriction();
+            }
+        };
+    }
+
+    public Specification<Project> queryQuarterByForm(
+            Long formId,
+            String endTime){
+        return new Specification<Project>() {
+            @Override
+            public Predicate toPredicate(Root<Project> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                List<Predicate> predicate = new ArrayList<>();
+                //条件一：查询在岗人员
+                Join<Project, UnitEngineering> projectAssUnitEngineeringJoins = root.join("unitEngineerings");;
+                predicate.add(cb.equal(projectAssUnitEngineeringJoins.get("structureForm").get("id"),formId));
+                predicate.add(cb.lessThanOrEqualTo(root.get("startingTime").as(String.class), endTime));
+                Predicate[] pre = new Predicate[predicate.size()];
+                query.distinct(true);
+                return query.where(predicate.toArray(pre)).getRestriction();
+            }
+        };
+    }
 
 }
