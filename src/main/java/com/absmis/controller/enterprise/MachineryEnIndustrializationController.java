@@ -6,7 +6,6 @@ import com.absmis.domain.enterprise.MachineryEnIndustrialization;
 import com.absmis.domain.message.MachineryEnIndustrializationInfo;
 import com.absmis.service.authority.UserService;
 import com.absmis.service.enterprise.MachineryEnIndustrializationService;
-import com.absmis.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -97,8 +96,6 @@ public class MachineryEnIndustrializationController {
         username = SecurityContextHolder.getContext().getAuthentication().getName();
         storedUser = userService.findByUsername(username);
         machineryEnIndustrialization.setMachineryEn((MachineryEn) storedUser);
-        machineryEnIndustrialization.setYear(machineryEnIndustrialization.getDeclareTime().getWeekYear());
-        machineryEnIndustrialization.setQuarter(Utils.getSeason(machineryEnIndustrialization.getDeclareTime()));
         this.machineryEnIndustrializationService.addMachineryEnIndustrialization(machineryEnIndustrialization);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("machineryEnIndustrialization", machineryEnIndustrialization);

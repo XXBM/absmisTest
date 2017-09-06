@@ -8,7 +8,6 @@ import com.absmis.service.authority.UserService;
 import com.absmis.service.enterprise.CheckedStatusService;
 import com.absmis.service.enterprise.ConstructionEnIndustrializationService;
 import com.absmis.service.enterprise.ConstructionEnService;
-import com.absmis.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -126,8 +125,6 @@ public class ConstructionEnIndustrializationController {
         ConstructionEn constructionEn = (ConstructionEn)storedUser;
         constructionEn.setCumulant(constructionEn.getCumulant()+constructionEnIndustrialization.getAddNewConcrete()+constructionEnIndustrialization.getAddNewSteel()+constructionEnIndustrialization.getAddNewTimber());
         constructionEnIndustrialization.setConstructionEn(constructionEn);
-        constructionEnIndustrialization.setYear(constructionEnIndustrialization.getDeclareTime().getWeekYear());
-        constructionEnIndustrialization.setQuarter(Utils.getSeason(constructionEnIndustrialization.getDeclareTime()));
         this.constructionEnIndustrializationService.addConstructionEnIndustrialization(constructionEnIndustrialization);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("constructionEnIndustrialization", constructionEnIndustrialization);

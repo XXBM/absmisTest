@@ -8,7 +8,6 @@ import com.absmis.service.authority.UserService;
 import com.absmis.service.enterprise.CheckedStatusService;
 import com.absmis.service.enterprise.ComponentEnIndustrializationService;
 import com.absmis.service.enterprise.ComponentEnService;
-import com.absmis.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -138,8 +137,6 @@ public class ComponentEnIndustrializationController {
             this.startingTime = componentEnIndustrialization.getDeclareTime();
         }
         componentEnIndustrialization.setComponentEn((ComponentEn)storedUser);
-        componentEnIndustrialization.setYear(componentEnIndustrialization.getDeclareTime().getWeekYear());
-        componentEnIndustrialization.setQuarter(Utils.getSeason(componentEnIndustrialization.getDeclareTime()));
         this.componentEnIndustrializationService.addComponentEnIndustrialization(componentEnIndustrialization);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("componentEnIndustrialization", componentEnIndustrialization);

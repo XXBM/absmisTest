@@ -6,7 +6,6 @@ import com.absmis.domain.enterprise.SubUnitEnIndustrialization;
 import com.absmis.domain.message.SubUnitEnIndustrializationInfo;
 import com.absmis.service.authority.UserService;
 import com.absmis.service.enterprise.SubUnitEnIndustrializationService;
-import com.absmis.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -144,8 +143,6 @@ public class SubUnitEnIndustrializationController {
         username = SecurityContextHolder.getContext().getAuthentication().getName();
         storedUser = userService.findByUsername(username);
         subUnitEnIndustrialization.setSubUnitEn((SubUnitEn)storedUser);
-        subUnitEnIndustrialization.setYear(subUnitEnIndustrialization.getDeclareTime().getWeekYear());
-        subUnitEnIndustrialization.setQuarter(Utils.getSeason(subUnitEnIndustrialization.getDeclareTime()));
         this.subUnitEnIndustrializationService.addSubUnitEnIndustrialization(subUnitEnIndustrialization);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("subUnitEnIndustrialization", subUnitEnIndustrialization);
