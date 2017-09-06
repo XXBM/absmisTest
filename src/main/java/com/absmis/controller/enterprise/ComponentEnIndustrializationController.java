@@ -17,6 +17,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,6 +34,7 @@ public class ComponentEnIndustrializationController {
     UserService userService;
     String username = null;
     User storedUser = null;
+    public static Calendar startingTime;
 
 
     //根据企业和申报起止时间查询
@@ -131,6 +133,10 @@ public class ComponentEnIndustrializationController {
     public Map<String, Object> addComponentEnIndustrialization(@RequestBody ComponentEnIndustrialization componentEnIndustrialization)throws Exception {
         username = SecurityContextHolder.getContext().getAuthentication().getName();
         storedUser = userService.findByUsername(username);
+        List<ComponentEnIndustrialization> first = componentEnIndustrializationService.findByComponentEnId(storedUser.getId());
+        if(first.isEmpty()){
+            this.startingTime = componentEnIndustrialization.getDeclareTime();
+        }
         componentEnIndustrialization.setComponentEn((ComponentEn)storedUser);
         componentEnIndustrialization.setYear(componentEnIndustrialization.getDeclareTime().getWeekYear());
         componentEnIndustrialization.setQuarter(Utils.getSeason(componentEnIndustrialization.getDeclareTime()));

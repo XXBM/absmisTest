@@ -106,6 +106,42 @@ public class ProjectService extends BasicService<Project, Long> {
         };
     }
 
+    public Specification<Project> queryQuarter(
+            Integer year,
+            Integer quarter){
+        return new Specification<Project>() {
+            @Override
+            public Predicate toPredicate(Root<Project> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                List<Predicate> predicate = new ArrayList<>();
+                //条件一：查询在岗人员
+                predicate.add(cb.equal(root.get("year"), year));
+                predicate.add(cb.lessThanOrEqualTo(root.get("quarter"), quarter));
+                Predicate[] pre = new Predicate[predicate.size()];
+                query.distinct(true);
+                return query.where(predicate.toArray(pre)).getRestriction();
+            }
+        };
+    }
+
+    public Specification<Project> queryQuarterByCategory(
+            Long categoryId,
+            Integer year,
+            Integer quarter){
+        return new Specification<Project>() {
+            @Override
+            public Predicate toPredicate(Root<Project> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                List<Predicate> predicate = new ArrayList<>();
+                //条件一：查询在岗人员
+                predicate.add(cb.equal(root.get("projectCategory"), categoryId));
+                predicate.add(cb.equal(root.get("year"), year));
+                predicate.add(cb.lessThanOrEqualTo(root.get("quarter"), quarter));
+                Predicate[] pre = new Predicate[predicate.size()];
+                query.distinct(true);
+                return query.where(predicate.toArray(pre)).getRestriction();
+            }
+        };
+    }
+
     public Specification<Project> queryQuarterByCategory(
             Long categoryId,
             String endTime){

@@ -33,6 +33,10 @@ public class ComponentEnIndustrializationService extends BasicService<ComponentE
         this.componentEnIndustrializationRepository.saveAndFlush(componentEnIndustrialization);}
 
     /*findById*/
+    public List<ComponentEnIndustrialization> findByComponentEnId(Long id){
+        return componentEnIndustrializationRepository.findByComponentEnId(id);
+    }
+
     public ComponentEnIndustrialization findById(Long id){
         return componentEnIndustrializationRepository.findOne(id);
     }

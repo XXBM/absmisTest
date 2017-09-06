@@ -31,35 +31,34 @@ public class UnitEngineeringController {
     @Autowired
     ApplicationStructureTypeService applicationStructureTypeService;
 
-    //统计项目信息
+    //统计项目信息3下
     @RequestMapping(value = "/queryQuarterUnitEngineering", method = RequestMethod.GET)
     public List<UnitEngineeringInfo> queryQuarter(
             @RequestParam(value = "year") Integer year,
             @RequestParam(value = "quarter") Integer quarter
     )throws Exception {
-        String endTime = Utils.getQuarterEndTime(year,quarter);
-        Specification<UnitEngineering> engK = this.unitEngineeringService.queryQuarter((long)1,endTime);
+        Specification<UnitEngineering> engK = this.unitEngineeringService.queryQuarter((long)1,year,quarter);
         List<UnitEngineering> engKList = this.unitEngineeringService.findBySepc(engK);
         double constructionAreaK = 0;
         for(int i=0;i<engKList.size();i++){
             constructionAreaK += engKList.get(i).getConstructionArea();
         }
         UnitEngineeringInfo engKInfo = new UnitEngineeringInfo("框架及框剪结构",(double)engKList.size(),constructionAreaK);
-        Specification<UnitEngineering> engJ = this.unitEngineeringService.queryQuarter((long)2,endTime);
+        Specification<UnitEngineering> engJ = this.unitEngineeringService.queryQuarter((long)2,year,quarter);
         List<UnitEngineering> engJList = this.unitEngineeringService.findBySepc(engJ);
         double constructionAreaJ = 0;
         for(int i=0;i<engJList.size();i++){
             constructionAreaJ += engJList.get(i).getConstructionArea();
         }
         UnitEngineeringInfo engJInfo = new UnitEngineeringInfo("剪力墙结构",(double)engJList.size(),constructionAreaJ);
-        Specification<UnitEngineering> engH = this.unitEngineeringService.queryQuarter((long)3,endTime);
+        Specification<UnitEngineering> engH = this.unitEngineeringService.queryQuarter((long)3,year,quarter);
         List<UnitEngineering> engHList = this.unitEngineeringService.findBySepc(engH);
         double constructionAreaH = 0;
         for(int i=0;i<engHList.size();i++){
             constructionAreaH += engHList.get(i).getConstructionArea();
         }
         UnitEngineeringInfo engHInfo = new UnitEngineeringInfo("框架核心筒结构",(double)engHList.size(),constructionAreaH);
-        Specification<UnitEngineering> engO = this.unitEngineeringService.queryQuarter((long)4,endTime);
+        Specification<UnitEngineering> engO = this.unitEngineeringService.queryQuarter((long)4,year,quarter);
         List<UnitEngineering> engOList = this.unitEngineeringService.findBySepc(engO);
         double constructionAreaO = 0;
         for(int i=0;i<engOList.size();i++){
