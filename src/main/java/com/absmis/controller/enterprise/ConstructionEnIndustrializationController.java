@@ -40,20 +40,8 @@ public class ConstructionEnIndustrializationController {
             @RequestParam(value = "year") Integer year,
             @RequestParam(value = "quarter") Integer quarter
     )throws Exception {
+        ConstructionEnIndustrialization constructionEnIndustrialization =  constructionEnIndustrializationService.getByConstructionEnIdAndYearAndQuarter(enId,year,quarter);
         ConstructionEn constructionEn = constructionEnService.findOne(enId);
-        Specification<ConstructionEnIndustrialization> specification = this.constructionEnIndustrializationService.queryQuarter(enId,year,quarter);
-        List<ConstructionEnIndustrialization> list = this.constructionEnIndustrializationService.findBySepc(specification);
-        double addNewConcrete = 0;
-        //新增装配式钢结构建筑的数量
-        double addNewSteel = 0;
-        //新增装配式木建筑的数量
-        double addNewTimber = 0;
-        for(int i=0;i<list.size();i++){
-            addNewConcrete += list.get(i).getAddNewConcrete();
-            addNewSteel += list.get(i).getAddNewSteel();
-            addNewTimber += list.get(i).getAddNewTimber();
-        }
-        System.out.println(list.size()+"一共有几条");
         Specification<ConstructionEnIndustrialization> sp = this.constructionEnIndustrializationService.queryAnnual(enId,year,quarter);
         List<ConstructionEnIndustrialization> annualList = this.constructionEnIndustrializationService.findBySepc(sp);
         double annualConcrete = 0;
@@ -68,9 +56,9 @@ public class ConstructionEnIndustrializationController {
             annualTimber += annualList.get(i).getAddNewTimber();
         }
         ConstructionEnIndustrializationInfo constructionEnIndustrializationInfo = new ConstructionEnIndustrializationInfo();
-        constructionEnIndustrializationInfo.setAddNewConcrete(addNewConcrete);
-        constructionEnIndustrializationInfo.setAddNewSteel(addNewSteel);
-        constructionEnIndustrializationInfo.setAddNewTimber(addNewTimber);
+        constructionEnIndustrializationInfo.setAddNewConcrete(constructionEnIndustrialization.getAddNewConcrete());
+        constructionEnIndustrializationInfo.setAddNewSteel(constructionEnIndustrialization.getAddNewSteel());
+        constructionEnIndustrializationInfo.setAddNewTimber(constructionEnIndustrialization.getAddNewTimber());
         constructionEnIndustrializationInfo.setCumulant(constructionEn.getCumulant());
         constructionEnIndustrializationInfo.setAnnualConcrete(annualConcrete);
         constructionEnIndustrializationInfo.setAnnualSteel(annualSteel);

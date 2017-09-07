@@ -27,6 +27,9 @@ public class MachineryEnIndustrializationService extends BasicService<MachineryE
         this.machineryEnIndustrializationRepository.save(machineryEnIndustrialization);
     }
 
+    public MachineryEnIndustrialization getByMachineryEnIdAndYearAndQuarter(Long id,Integer year,Integer quarter){
+        return machineryEnIndustrializationRepository.getByMachineryEnIdAndYearAndQuarter(id,year,quarter);
+    };
     /*修改*/
     public void updateMachineryEnIndustrialization(MachineryEnIndustrialization machineryEnIndustrialization){
         this.machineryEnIndustrializationRepository.saveAndFlush(machineryEnIndustrialization);}

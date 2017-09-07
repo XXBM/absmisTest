@@ -3,7 +3,6 @@ package com.absmis.controller.enterprise;
 import com.absmis.domain.authority.User;
 import com.absmis.domain.enterprise.MachineryEn;
 import com.absmis.domain.enterprise.MachineryEnIndustrialization;
-import com.absmis.domain.message.MachineryEnIndustrializationInfo;
 import com.absmis.service.authority.UserService;
 import com.absmis.service.enterprise.MachineryEnIndustrializationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,29 +26,23 @@ public class MachineryEnIndustrializationController {
     String username = null;
     User storedUser = null;
 
+    /**
+     * 获取到所有
+     */
+    @RequestMapping(value = "/findA", method = RequestMethod.GET)
+    public MachineryEnIndustrialization test()throws Exception {
+        return machineryEnIndustrializationService.getByMachineryEnIdAndYearAndQuarter((long)131072,2017,3);
+    }
+
+
     //根据企业和申报起止时间查询
     @RequestMapping(value = "/queryQuarterMachineryEnIn", method = RequestMethod.GET)
-    public MachineryEnIndustrializationInfo queryQuarter(
+    public MachineryEnIndustrialization queryQuarter(
             @RequestParam(value = "enId") Long enId,
             @RequestParam(value = "year") Integer year,
             @RequestParam(value = "quarter") Integer quarter
     )throws Exception {
-        Specification<MachineryEnIndustrialization> specification = this.machineryEnIndustrializationService.queryQuarter(enId,year,quarter);
-        List<MachineryEnIndustrialization> list = this.machineryEnIndustrializationService.findBySepc(specification);
-        System.out.println(list.size()+"一共有几条");
-        MachineryEnIndustrializationInfo machineryEnIndustrializationInfo = new MachineryEnIndustrializationInfo();
-        double integralWall = 0;
-        double specialTransportEquipment = 0;
-        double specialConstructionEquipment = 0;
-        for(int i=0;i<list.size();i++){
-            integralWall += list.get(i).getIntegralWall();
-            specialTransportEquipment += list.get(i).getSpecialTransportEquipment();
-            specialConstructionEquipment += list.get(i).getSpecialConstructionEquipment();
-        }
-        machineryEnIndustrializationInfo.setIntegralWall(integralWall);
-        machineryEnIndustrializationInfo.setSpecialTransportEquipment(specialTransportEquipment);
-        machineryEnIndustrializationInfo.setSpecialConstructionEquipment(specialConstructionEquipment);
-        return machineryEnIndustrializationInfo;
+        return machineryEnIndustrializationService.getByMachineryEnIdAndYearAndQuarter(enId,year,quarter);
     }
 
 

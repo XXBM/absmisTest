@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface ComponentEnIndustrializationRepository extends MyRepository<ComponentEnIndustrialization, Long> {
     List<ComponentEnIndustrialization> findByComponentEnId(Long id);
+    ComponentEnIndustrialization getByComponentEnIdAndYearAndQuarter(Long id, Integer year, Integer quarter);
 }

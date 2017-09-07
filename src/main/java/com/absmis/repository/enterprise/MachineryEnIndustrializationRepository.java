@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MachineryEnIndustrializationRepository extends MyRepository<MachineryEnIndustrialization, Long> {
+    MachineryEnIndustrialization getByMachineryEnIdAndYearAndQuarter(Long id,Integer year,Integer quarter);
 }

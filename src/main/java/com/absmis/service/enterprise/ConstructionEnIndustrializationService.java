@@ -27,6 +27,9 @@ public class ConstructionEnIndustrializationService extends BasicService<Constru
         this.constructionEnIndustrializationRepository.save(constructionEnIndustrialization);
     }
 
+    public ConstructionEnIndustrialization getByConstructionEnIdAndYearAndQuarter(Long id, Integer year, Integer quarter){
+        return constructionEnIndustrializationRepository.getByConstructionEnIdAndYearAndQuarter(id,year,quarter);
+    };
     /*修改*/
     public void updateConstructionEnIndustrialization(ConstructionEnIndustrialization constructionEnIndustrialization){
         this.constructionEnIndustrializationRepository.saveAndFlush(constructionEnIndustrialization);}

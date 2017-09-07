@@ -27,6 +27,10 @@ public class SubUnitEnIndustrializationService extends BasicService<SubUnitEnInd
         this.subUnitEnIndustrializationRepository.save(subUnitEnIndustrialization);
     }
 
+    public SubUnitEnIndustrialization getBySubUnitEnIdAndYearAndQuarter(Long id, Integer year, Integer quarter){
+        return subUnitEnIndustrializationRepository.getBySubUnitEnIdAndYearAndQuarter(id,year,quarter);
+    };
+
     /*修改*/
     public void updateSubUnitEnIndustrialization(SubUnitEnIndustrialization subUnitEnIndustrialization){
         this.subUnitEnIndustrializationRepository.saveAndFlush(subUnitEnIndustrialization);}

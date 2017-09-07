@@ -11,7 +11,6 @@ import java.io.Serializable;
  */
 
 @javax.persistence.Entity
-//@Table(uniqueConstraints={@UniqueConstraint(columnNames={"no", "description"})})
 public class ApplicationStructureType implements Serializable {
     @javax.persistence.Id
     private Long id;

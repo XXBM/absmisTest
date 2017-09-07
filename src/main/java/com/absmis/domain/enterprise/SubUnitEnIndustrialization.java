@@ -15,6 +15,7 @@ import java.util.Calendar;
  */
 
 @javax.persistence.Entity
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"year", "quarter"})})
 public class SubUnitEnIndustrialization implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

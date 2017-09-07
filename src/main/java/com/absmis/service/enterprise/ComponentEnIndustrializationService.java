@@ -28,6 +28,10 @@ public class ComponentEnIndustrializationService extends BasicService<ComponentE
         this.componentEnIndustrializationRepository.save(componentEnIndustrialization);
     }
 
+    public ComponentEnIndustrialization getByComponentEnIdAndYearAndQuarter(Long id, Integer year, Integer quarter){
+        return componentEnIndustrializationRepository.getByComponentEnIdAndYearAndQuarter(id,year,quarter);
+    };
+
     /*修改*/
     public void updateComponentEnIndustrialization(ComponentEnIndustrialization componentEnIndustrialization){
         this.componentEnIndustrializationRepository.saveAndFlush(componentEnIndustrialization);}
