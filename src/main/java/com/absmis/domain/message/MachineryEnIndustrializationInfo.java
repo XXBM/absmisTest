@@ -4,7 +4,7 @@ package com.absmis.domain.message;
  * @Author: LihuaHuang
  * @Description:
  * @Date: Created in 14:37 2017/8/28.
- * @Modified by:
+ * @Modified by:no
  */
 public class MachineryEnIndustrializationInfo {
     //预制混凝土生产设备

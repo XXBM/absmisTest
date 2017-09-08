@@ -88,9 +88,6 @@ public class ComponentEnIndustrializationController {
         username = SecurityContextHolder.getContext().getAuthentication().getName();
         storedUser = userService.findByUsername(username);
         List<ComponentEnIndustrialization> first = componentEnIndustrializationService.findByComponentEnId(storedUser.getId());
-        if(first.isEmpty()){
-            this.startingTime = componentEnIndustrialization.getDeclareTime();
-        }
         componentEnIndustrialization.setComponentEn((ComponentEn)storedUser);
         this.componentEnIndustrializationService.addComponentEnIndustrialization(componentEnIndustrialization);
         Map<String, Object> map = new HashMap<String, Object>();

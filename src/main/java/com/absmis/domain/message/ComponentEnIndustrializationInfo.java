@@ -4,7 +4,7 @@ package com.absmis.domain.message;
  * @Author: LihuaHuang
  * @Description:
  * @Date: Created in 16:23 2017/8/28.
- * @Modified by:
+ * @Modified by:no
  */
 public class ComponentEnIndustrializationInfo {
     /*生产条数*/

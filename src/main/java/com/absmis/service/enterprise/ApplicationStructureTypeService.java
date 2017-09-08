@@ -33,6 +33,7 @@ public class ApplicationStructureTypeService extends BasicService<ApplicationStr
 
         //查询结果
         Page<ApplicationStructureType> list = applicationStructureTypeRepository.findAll(new PageRequest(page - 1, rows));
+        List<ApplicationStructureType> list2 = applicationStructureTypeRepository.findAll();
         //获取分页信息
         PageInfo<ApplicationStructureType> info = new PageInfo<>(list.getContent());
         DataGridResult result = new DataGridResult();
@@ -41,7 +42,7 @@ public class ApplicationStructureTypeService extends BasicService<ApplicationStr
         //封装分页信息
         List<ApplicationStructureType> row = info.getList();
         result.setRows(row);
-        result.setTotal(total);
+        result.setTotal((long)list2.size());
         return result;
     }
 }
