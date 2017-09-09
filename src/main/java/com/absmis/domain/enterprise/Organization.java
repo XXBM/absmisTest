@@ -31,7 +31,6 @@ public abstract class Organization extends User {
     protected String officePhone;
     protected String mailingAddress;
     protected String postalCode;
-
     @ManyToOne
     @JoinColumn(name = "checkedStatus_id")
     protected CheckedStatus checkedStatus;
@@ -43,7 +42,6 @@ public abstract class Organization extends User {
     public String getCreditCode() {
         return creditCode;
     }
-
 
     public void setCreditCode(String creditCode) {
         this.creditCode = creditCode;

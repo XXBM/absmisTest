@@ -2,8 +2,10 @@ package com.absmis.service.enterprise;
 
 
 import com.absmis.domain.enterprise.ComponentEn;
+import com.absmis.domain.enterprise.ComponentEnIndustrialization;
 import com.absmis.repository.enterprise.ComponentEnRepository;
 import com.absmis.service.BasicService;
+import com.absmis.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,10 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,6 +70,26 @@ public class ComponentEnService extends BasicService<ComponentEn, Long> {
                 List<Predicate> predicate = new ArrayList<>();
                 //条件一：查询在岗人员
                 predicate.add(cb.like(root.get("name"),"%"+property+"%"));
+                Predicate[] pre = new Predicate[predicate.size()];
+                query.distinct(true);
+                return query.where(predicate.toArray(pre)).getRestriction();
+            }
+        };
+    }
+
+
+    public Specification<ComponentEn> queryAnnual(
+            String property,
+            Integer year,
+            Integer quarter
+    ){
+        return new Specification<ComponentEn>() {
+            @Override
+            public Predicate toPredicate(Root<ComponentEn> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                List<Predicate> predicate = new ArrayList<>();
+                Join<ComponentEn, ComponentEnIndustrialization> componentEnAssIndustrializationJoins = root.join("componentEnIndustrializations");
+                predicate.add(cb.greaterThan(componentEnAssIndustrializationJoins.get(property),0));
+                predicate.add(cb.lessThanOrEqualTo(componentEnAssIndustrializationJoins.get("quarterEnd").as(String.class), Utils.getQuarterEndTime(year,quarter)));
                 Predicate[] pre = new Predicate[predicate.size()];
                 query.distinct(true);
                 return query.where(predicate.toArray(pre)).getRestriction();

@@ -26,6 +26,17 @@ public class MachineryEnIndustrialization implements Serializable {
 
     private Integer year;
     private Integer quarter;
+    @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Calendar quarterEnd;
+
+    public Calendar getQuarterEnd() {
+        return quarterEnd;
+    }
+
+    public void setQuarterEnd(Calendar quarterEnd) {
+        this.quarterEnd = quarterEnd;
+    }
 
     public Integer getYear() {
         return year;

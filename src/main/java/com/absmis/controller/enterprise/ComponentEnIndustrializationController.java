@@ -3,10 +3,12 @@ package com.absmis.controller.enterprise;
 import com.absmis.domain.authority.User;
 import com.absmis.domain.enterprise.ComponentEn;
 import com.absmis.domain.enterprise.ComponentEnIndustrialization;
+import com.absmis.domain.message.SubUnitAndComponentEnInfo;
 import com.absmis.service.authority.UserService;
 import com.absmis.service.enterprise.CheckedStatusService;
 import com.absmis.service.enterprise.ComponentEnIndustrializationService;
 import com.absmis.service.enterprise.ComponentEnService;
+import com.absmis.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,10 +17,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 public class ComponentEnIndustrializationController {
@@ -33,6 +32,86 @@ public class ComponentEnIndustrializationController {
     String username = null;
     User storedUser = null;
     public static Calendar startingTime;
+
+
+    //根据企业和申报起止时间查询
+    @RequestMapping(value = "/querytjComponentEn", method = RequestMethod.GET)
+    public List<SubUnitAndComponentEnInfo> queryComponentEn(
+            @RequestParam(value = "year") Integer year,
+            @RequestParam(value = "quarter") Integer quarter
+    )throws Exception{
+        Specification<ComponentEn> prebuiltConcreteSp = this.componentEnService.queryAnnual("prebuiltConcreteNum",year,quarter);
+        List<ComponentEn> prebuiltConcretes = componentEnService.findBySepc(prebuiltConcreteSp);
+        double totalPrebuiltConcretesNum = 0;
+        double totalPrebuiltConcretesAbility = 0;
+        double totalPrebuiltConcretesScale = 0;
+        for(int i=0;i<prebuiltConcretes.size();i++){
+            ComponentEnIndustrialization componentEnIndustrialization = componentEnIndustrializationService.getByComponentEnIdAndYearAndQuarter(prebuiltConcretes.get(i).getId(),year,quarter);
+            totalPrebuiltConcretesNum += componentEnIndustrialization.getPrebuiltConcreteNum();
+            totalPrebuiltConcretesAbility += componentEnIndustrialization.getPrebuiltConcreteAbility();
+            Specification<ComponentEnIndustrialization> sp = this.componentEnIndustrializationService.queryAnnual(prebuiltConcretes.get(i).getId(),year,quarter);
+            List<ComponentEnIndustrialization> list = componentEnIndustrializationService.findBySepc(sp);
+            for(int x=0;x<list.size();x++){
+                totalPrebuiltConcretesScale += list.get(i).getPrebuiltConcreteScale();
+            }
+        }
+        Specification<ComponentEn> prebuiltSteelSp = this.componentEnService.queryAnnual("prebuiltSteelNum",year,quarter);
+        List<ComponentEn> prebuiltSteels = componentEnService.findBySepc(prebuiltSteelSp);
+        double totalPrebuiltSteelNum = 0;
+        double totalPrebuiltSteelAbility = 0;
+        double totalPrebuiltSteelScale = 0;
+        for(int i=0;i<prebuiltSteels.size();i++){
+            ComponentEnIndustrialization componentEnIndustrialization = componentEnIndustrializationService.getByComponentEnIdAndYearAndQuarter(prebuiltSteels.get(i).getId(),year,quarter);
+            totalPrebuiltSteelNum += componentEnIndustrialization.getPrebuiltSteelNum();
+            totalPrebuiltSteelAbility += componentEnIndustrialization.getPrebuiltSteelAbility();
+            Specification<ComponentEnIndustrialization> sp = this.componentEnIndustrializationService.queryAnnual(prebuiltSteels.get(i).getId(),year,quarter);
+            List<ComponentEnIndustrialization> list = componentEnIndustrializationService.findBySepc(sp);
+            for(int x=0;x<list.size();x++){
+                totalPrebuiltSteelScale += list.get(i).getPrebuiltSteelScale();
+            }
+        }
+        Specification<ComponentEn> prebuiltTimberSp = this.componentEnService.queryAnnual("prebuiltTimberNum",year,quarter);
+        List<ComponentEn> prebuiltTimbers = componentEnService.findBySepc(prebuiltTimberSp);
+        double totalPrebuiltTimberNum = 0;
+        double totalPrebuiltTimberAbility = 0;
+        double totalPrebuiltTimberScale = 0;
+        for(int i=0;i<prebuiltTimbers.size();i++){
+            ComponentEnIndustrialization componentEnIndustrialization = componentEnIndustrializationService.getByComponentEnIdAndYearAndQuarter(prebuiltTimbers.get(i).getId(),year,quarter);
+            totalPrebuiltTimberNum += componentEnIndustrialization.getPrebuiltTimberNum();
+            totalPrebuiltTimberAbility += componentEnIndustrialization.getPrebuiltTimberAbility();
+            Specification<ComponentEnIndustrialization> sp = this.componentEnIndustrializationService.queryAnnual(prebuiltTimbers.get(i).getId(),year,quarter);
+            List<ComponentEnIndustrialization> list = componentEnIndustrializationService.findBySepc(sp);
+            for(int x=0;x<list.size();x++){
+                totalPrebuiltTimberScale += list.get(i).getPrebuiltTimberScale();
+            }
+        }
+        Specification<ComponentEn> prebuiltOtherSp = this.componentEnService.queryAnnual("prebuiltOtherNum",year,quarter);
+        List<ComponentEn> prebuiltOthers = componentEnService.findBySepc(prebuiltOtherSp);
+        double totalPrebuiltOtherNum = 0;
+        double totalPrebuiltOtherAbility = 0;
+        double totalPrebuiltOtherScale = 0;
+        for(int i=0;i<prebuiltOthers.size();i++){
+            ComponentEnIndustrialization subUnitEnIndustrialization = componentEnIndustrializationService.getByComponentEnIdAndYearAndQuarter(prebuiltOthers.get(i).getId(),year,quarter);
+            totalPrebuiltOtherNum += subUnitEnIndustrialization.getPrebuiltOtherNum();
+            totalPrebuiltOtherAbility += subUnitEnIndustrialization.getPrebuiltOtherAbility();
+            Specification<ComponentEnIndustrialization> sp = this.componentEnIndustrializationService.queryAnnual(prebuiltOthers.get(i).getId(),year,quarter);
+            List<ComponentEnIndustrialization> list = componentEnIndustrializationService.findBySepc(sp);
+            for(int x=0;x<list.size();x++){
+                totalPrebuiltOtherScale += list.get(i).getPrebuiltOtherScale();
+            }
+        }
+        List<SubUnitAndComponentEnInfo> subUnitAndComponentEnInfos = new ArrayList<>();
+        SubUnitAndComponentEnInfo integralWallEnInfo = new SubUnitAndComponentEnInfo("预制装配混凝土结构生产情况",(double)prebuiltConcretes.size(),totalPrebuiltConcretesNum,totalPrebuiltConcretesAbility,totalPrebuiltConcretesScale);
+        subUnitAndComponentEnInfos.add(integralWallEnInfo);
+        SubUnitAndComponentEnInfo integrativeExternalWallEnInfo = new SubUnitAndComponentEnInfo("钢结构生产情况",(double)prebuiltSteels.size(),totalPrebuiltSteelNum,totalPrebuiltSteelAbility,totalPrebuiltSteelScale);
+        subUnitAndComponentEnInfos.add(integrativeExternalWallEnInfo);
+        SubUnitAndComponentEnInfo prebuiltStairsEnInfo = new SubUnitAndComponentEnInfo("木结构生产情况",(double)prebuiltTimbers.size(),totalPrebuiltTimberNum,totalPrebuiltTimberAbility,totalPrebuiltTimberScale);
+        subUnitAndComponentEnInfos.add(prebuiltStairsEnInfo);
+        SubUnitAndComponentEnInfo integralKitchenEnInfo = new SubUnitAndComponentEnInfo("其他结构的构件生产情况",(double)prebuiltOthers.size(),totalPrebuiltOtherNum,totalPrebuiltOtherAbility,totalPrebuiltOtherScale);
+        subUnitAndComponentEnInfos.add(integralKitchenEnInfo);
+        return subUnitAndComponentEnInfos;
+    }
+
 
 
     //根据企业和申报起止时间查询
@@ -87,8 +166,8 @@ public class ComponentEnIndustrializationController {
     public Map<String, Object> addComponentEnIndustrialization(@RequestBody ComponentEnIndustrialization componentEnIndustrialization)throws Exception {
         username = SecurityContextHolder.getContext().getAuthentication().getName();
         storedUser = userService.findByUsername(username);
-        List<ComponentEnIndustrialization> first = componentEnIndustrializationService.findByComponentEnId(storedUser.getId());
         componentEnIndustrialization.setComponentEn((ComponentEn)storedUser);
+        componentEnIndustrialization.setQuarterEnd(Utils.getQuarterEnd(componentEnIndustrialization.getYear(),componentEnIndustrialization.getQuarter()));
         this.componentEnIndustrializationService.addComponentEnIndustrialization(componentEnIndustrialization);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("componentEnIndustrialization", componentEnIndustrialization);

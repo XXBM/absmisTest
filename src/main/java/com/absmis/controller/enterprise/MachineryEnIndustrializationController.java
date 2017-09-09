@@ -6,6 +6,8 @@ import com.absmis.domain.enterprise.MachineryEnIndustrialization;
 import com.absmis.domain.message.MachineryEnInfo;
 import com.absmis.service.authority.UserService;
 import com.absmis.service.enterprise.MachineryEnIndustrializationService;
+import com.absmis.service.enterprise.MachineryEnService;
+import com.absmis.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,20 +16,21 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 public class MachineryEnIndustrializationController {
     @Autowired
     MachineryEnIndustrializationService machineryEnIndustrializationService;
     @Autowired
+    MachineryEnService machineryEnService;
+    @Autowired
     UserService userService;
     String username = null;
     User storedUser = null;
-    public MachineryEnIndustrialization machineryEnIn;
-    public Calendar getIntegralWallTime;
-    public Calendar steTime;
-    public Calendar sceTime;
 
     //根据企业和申报起止时间查询
     @RequestMapping(value = "/querytjMachineryEn", method = RequestMethod.GET)
@@ -35,12 +38,33 @@ public class MachineryEnIndustrializationController {
             @RequestParam(value = "year") Integer year,
             @RequestParam(value = "quarter") Integer quarter
     )throws Exception{
+        Specification<MachineryEn> integralWallSp = this.machineryEnService.queryAnnual("integralWall",year,quarter);
+        List<MachineryEn> integralWalls = machineryEnService.findBySepc(integralWallSp);
+        double totalIntegralWall = 0;
+        for(int i=0;i<integralWalls.size();i++){
+            MachineryEnIndustrialization machineryEnIndustrialization = machineryEnIndustrializationService.getByMachineryEnIdAndYearAndQuarter(integralWalls.get(i).getId(),year,quarter);
+            totalIntegralWall += machineryEnIndustrialization.getIntegralWall();
+        }
+        Specification<MachineryEn> specialTransportEquipmentSp = this.machineryEnService.queryAnnual("specialTransportEquipment",year,quarter);
+        List<MachineryEn> specialTransportEquipments = machineryEnService.findBySepc(specialTransportEquipmentSp);
+        double totalSpecialTransportEquipment = 0;
+        for(int i=0;i<specialTransportEquipments.size();i++){
+            MachineryEnIndustrialization machineryEnIndustrialization = machineryEnIndustrializationService.getByMachineryEnIdAndYearAndQuarter(specialTransportEquipments.get(i).getId(),year,quarter);
+            totalSpecialTransportEquipment += machineryEnIndustrialization.getSpecialTransportEquipment();
+        }
+        Specification<MachineryEn> specialConstructionEquipmentSp = this.machineryEnService.queryAnnual("specialConstructionEquipment",year,quarter);
+        List<MachineryEn> specialConstructionEquipments = machineryEnService.findBySepc(specialConstructionEquipmentSp);
+        double totalSpecialConstructionEquipment = 0;
+        for(int i=0;i<specialConstructionEquipments.size();i++){
+            MachineryEnIndustrialization machineryEnIndustrialization = machineryEnIndustrializationService.getByMachineryEnIdAndYearAndQuarter(specialConstructionEquipments.get(i).getId(),year,quarter);
+            totalSpecialConstructionEquipment += machineryEnIndustrialization.getSpecialConstructionEquipment();
+        }
         List<MachineryEnInfo> machineryEnInfos = new ArrayList<>();
-        MachineryEnInfo integralWallMachineryEnInfo = new MachineryEnInfo("预制混凝土生产设备情况",(double)1,(double)1);
+        MachineryEnInfo integralWallMachineryEnInfo = new MachineryEnInfo("预制混凝土生产设备情况",(double)integralWalls.size(),totalIntegralWall);
         machineryEnInfos.add(integralWallMachineryEnInfo);
-        MachineryEnInfo steMachineryEnInfo = new MachineryEnInfo("专用运输设备生产情况",(double)1,(double)1);
+        MachineryEnInfo steMachineryEnInfo = new MachineryEnInfo("专用运输设备生产情况",(double)specialConstructionEquipments.size(),totalSpecialTransportEquipment);
         machineryEnInfos.add(steMachineryEnInfo);
-        MachineryEnInfo sceachineryEnInfo = new MachineryEnInfo("专用施工设备生产情况",(double)1,(double)1);
+        MachineryEnInfo sceachineryEnInfo = new MachineryEnInfo("专用施工设备生产情况",(double)specialTransportEquipments.size(),totalSpecialConstructionEquipment);
         machineryEnInfos.add(sceachineryEnInfo);
         return machineryEnInfos;
     }
@@ -54,6 +78,7 @@ public class MachineryEnIndustrializationController {
     public MachineryEnIndustrialization test()throws Exception {
         return machineryEnIndustrializationService.getByMachineryEnIdAndYearAndQuarter((long)131072,2017,3);
     }
+
 
 
     //根据企业和申报起止时间查询
@@ -110,16 +135,7 @@ public class MachineryEnIndustrializationController {
         username = SecurityContextHolder.getContext().getAuthentication().getName();
         storedUser = userService.findByUsername(username);
         machineryEnIndustrialization.setMachineryEn((MachineryEn) storedUser);
-        machineryEnIn = machineryEnIndustrializationService.getByYearAndQuarter(machineryEnIndustrialization.getYear(),machineryEnIndustrialization.getQuarter()-1);
-        if(machineryEnIn.getIntegralWall()==0 && machineryEnIndustrialization.getIntegralWall()!=0){
-            getIntegralWallTime = machineryEnIndustrialization.getDeclareTime();
-        }
-        if(machineryEnIn.getSpecialTransportEquipment()==0 && machineryEnIndustrialization.getSpecialTransportEquipment()!=0){
-            steTime = machineryEnIndustrialization.getDeclareTime();
-        }
-        if(machineryEnIn.getSpecialConstructionEquipment()==0 && machineryEnIndustrialization.getSpecialConstructionEquipment()!=0){
-            sceTime = machineryEnIndustrialization.getDeclareTime();
-        }
+        machineryEnIndustrialization.setQuarterEnd(Utils.getQuarterEnd(machineryEnIndustrialization.getYear(),machineryEnIndustrialization.getQuarter()));
         this.machineryEnIndustrializationService.addMachineryEnIndustrialization(machineryEnIndustrialization);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("machineryEnIndustrialization", machineryEnIndustrialization);

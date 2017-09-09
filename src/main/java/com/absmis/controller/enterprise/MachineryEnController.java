@@ -24,6 +24,16 @@ public class MachineryEnController {
     RoleService roleService;
     @Autowired
     CheckedStatusService checkedStatusService;
+
+    /**
+     * 获取到所有
+     */
+    @RequestMapping(value = "/getAllMachineryEnIndustrializations", method = RequestMethod.GET)
+    public List<MachineryEn> getMachineryEnIndustrialization()throws Exception {
+        Specification<MachineryEn> specification = this.machineryEnService.queryAnnual("integralWall",2017,3);
+        List<MachineryEn> machineryEnIndustrializations = machineryEnService.findBySepc(specification);
+        return machineryEnIndustrializations;
+    }
     //根据企业名称模糊查询
     @RequestMapping(value = "/queryMachineryEnByName", method = RequestMethod.GET)
     public Map<String, Object> queryMachineryEnByName(
