@@ -1,10 +1,8 @@
 package com.absmis.controller.enterprise;
 
-import com.absmis.domain.enterprise.ConstructionEn;
-import com.absmis.domain.enterprise.Organization;
-import com.absmis.service.enterprise.CheckedStatusService;
-import com.absmis.service.enterprise.ConstructionEnService;
-import com.absmis.service.enterprise.OrganizationService;
+import com.absmis.domain.enterprise.*;
+import com.absmis.domain.message.ConstructionEnInfo;
+import com.absmis.service.enterprise.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -28,6 +26,73 @@ public class ConstructionEnController {
     OrganizationService organizationService;
     @Autowired
     CheckedStatusService checkedStatusService;
+    @Autowired
+    RealEstateEnService realEstateEnService;
+    @Autowired
+    DesignerService designerService;
+    @Autowired
+    BuilderService builderService;
+    @Autowired
+    ConstructionEnIndustrializationService constructionEnIndustrializationService;
+
+
+
+    //根据企业和申报起止时间查询
+    @RequestMapping(value = "/querytjConstructionEn", method = RequestMethod.GET)
+    public List<ConstructionEnInfo> queryConstructionEn(
+            @RequestParam(value = "year") Integer year,
+            @RequestParam(value = "quarter")Integer quarter
+    )throws Exception{
+        //TODO 从事装配式建筑规模累计量
+        Specification<RealEstateEn> realEstateEnSpecification = this.realEstateEnService.queryByCumulant();
+        List<RealEstateEn> realEstateEns = realEstateEnService.findBySepc(realEstateEnSpecification);
+        Specification<RealEstateEn> realEstateEnSpecificationM = this.realEstateEnService.queryByAnnualCumulant(year,quarter);
+        List<RealEstateEn> realEstateEnsM = realEstateEnService.findBySepc(realEstateEnSpecificationM);
+        double totalScaleR = 0;
+        for(int i=0;i<realEstateEns.size();i++){
+            ConstructionEnIndustrialization constructionEnIndustrialization =constructionEnIndustrializationService.getByConstructionEnIdAndYearAndQuarter(realEstateEns.get(i).getId(),year,quarter);
+            totalScaleR += constructionEnIndustrialization.getTotalScale();
+        }
+        for(int i=0;i<realEstateEnsM.size();i++){
+            ConstructionEnIndustrialization constructionEnIndustrialization =constructionEnIndustrializationService.getByConstructionEnIdAndYearAndQuarter(realEstateEnsM.get(i).getId(),year,quarter);
+            totalScaleR += constructionEnIndustrialization.getTotalScale();
+        }
+        Specification<Builder> builderSpecification = this.builderService.queryByCumulant();
+        List<Builder> builders = builderService.findBySepc(builderSpecification);
+        Specification<Builder> builderSpecificationM = this.builderService.queryByAnnualCumulant(year,quarter);
+        List<Builder> buildersM = builderService.findBySepc(builderSpecificationM);
+        double totalScaleB = 0;
+        for(int i=0;i<builders.size();i++){
+            ConstructionEnIndustrialization constructionEnIndustrialization =constructionEnIndustrializationService.getByConstructionEnIdAndYearAndQuarter(builders.get(i).getId(),year,quarter);
+            totalScaleB += constructionEnIndustrialization.getTotalScale();
+        }
+        for(int i=0;i<buildersM.size();i++){
+            ConstructionEnIndustrialization constructionEnIndustrialization =constructionEnIndustrializationService.getByConstructionEnIdAndYearAndQuarter(buildersM.get(i).getId(),year,quarter);
+            totalScaleB += constructionEnIndustrialization.getTotalScale();
+        }
+        Specification<Designer> designerSpecification = this.designerService.queryByCumulant();
+        List<Designer> designers = designerService.findBySepc(designerSpecification);
+        Specification<Designer> designerSpecificationM = this.designerService.queryByAnnualCumulant(year,quarter);
+        List<Designer> designersM = designerService.findBySepc(designerSpecificationM);
+        double totalScaleD = 0;
+        for(int i=0;i<designers.size();i++){
+            ConstructionEnIndustrialization constructionEnIndustrialization =constructionEnIndustrializationService.getByConstructionEnIdAndYearAndQuarter(designers.get(i).getId(),year,quarter);
+            totalScaleD += constructionEnIndustrialization.getTotalScale();
+        }
+        for(int i=0;i<designersM.size();i++){
+            ConstructionEnIndustrialization constructionEnIndustrialization =constructionEnIndustrializationService.getByConstructionEnIdAndYearAndQuarter(designersM.get(i).getId(),year,quarter);
+            totalScaleD += constructionEnIndustrialization.getTotalScale();
+        }
+        List<ConstructionEnInfo> constructionEnInfos = new ArrayList<>();
+        ConstructionEnInfo integralWallEnInfo = new ConstructionEnInfo("房地产开发企业",(double)(realEstateEns.size()+realEstateEnsM.size()),totalScaleR);
+        constructionEnInfos.add(integralWallEnInfo);
+        ConstructionEnInfo integrativeExternalWallEnInfo = new ConstructionEnInfo("施工单位",(double)(builders.size()+buildersM.size()),totalScaleB);
+        constructionEnInfos.add(integrativeExternalWallEnInfo);
+        ConstructionEnInfo prebuiltStairsEnInfo = new ConstructionEnInfo("设计单位",(double)(designers.size()+designersM.size()),totalScaleD);
+        constructionEnInfos.add(prebuiltStairsEnInfo);
+        return constructionEnInfos;
+    }
+
 
     //根据企业名称模糊查询
     @RequestMapping(value = "/queryConstructionEnByName", method = RequestMethod.GET)

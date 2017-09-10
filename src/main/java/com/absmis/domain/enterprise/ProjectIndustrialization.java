@@ -31,7 +31,7 @@ public class ProjectIndustrialization {
     private Double wallShadowArea;
     //不纳入地上容积率的建筑面积
     private Double constructionArea;
-    //TODO 应用建筑产业化技术内容
+    //应用建筑产业化技术内容
     @Embedded
     private ApplicationTechnology applicationTechnology;
 

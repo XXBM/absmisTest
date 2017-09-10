@@ -59,6 +59,7 @@ public class ConstructionEnIndustrializationController {
         constructionEnIndustrializationInfo.setAddNewConcrete(constructionEnIndustrialization.getAddNewConcrete());
         constructionEnIndustrializationInfo.setAddNewSteel(constructionEnIndustrialization.getAddNewSteel());
         constructionEnIndustrializationInfo.setAddNewTimber(constructionEnIndustrialization.getAddNewTimber());
+        //TODO 本单位从事装配式建筑历年累计量
         constructionEnIndustrializationInfo.setCumulant(constructionEn.getCumulant());
         constructionEnIndustrializationInfo.setAnnualConcrete(annualConcrete);
         constructionEnIndustrializationInfo.setAnnualSteel(annualSteel);
@@ -111,7 +112,10 @@ public class ConstructionEnIndustrializationController {
         username = SecurityContextHolder.getContext().getAuthentication().getName();
         storedUser = userService.findByUsername(username);
         ConstructionEn constructionEn = (ConstructionEn)storedUser;
-        constructionEn.setCumulant(constructionEn.getCumulant()+constructionEnIndustrialization.getAddNewConcrete()+constructionEnIndustrialization.getAddNewSteel()+constructionEnIndustrialization.getAddNewTimber());
+        //TODO 应当注释掉
+        //constructionEn.setCumulant(constructionEn.getCumulant()+constructionEnIndustrialization.getAddNewConcrete()+constructionEnIndustrialization.getAddNewSteel()+constructionEnIndustrialization.getAddNewTimber());
+        //TODO 设置当期总量
+        constructionEnIndustrialization.setTotalScale(constructionEnIndustrialization.getAddNewConcrete()+constructionEnIndustrialization.getAddNewTimber()+constructionEnIndustrialization.getAddNewSteel());
         constructionEnIndustrialization.setConstructionEn(constructionEn);
         this.constructionEnIndustrializationService.addConstructionEnIndustrialization(constructionEnIndustrialization);
         Map<String, Object> map = new HashMap<String, Object>();

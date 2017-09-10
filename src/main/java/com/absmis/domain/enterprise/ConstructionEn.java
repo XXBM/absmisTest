@@ -24,7 +24,7 @@ public abstract class ConstructionEn extends Organization {
     //建筑产业化信息
     @JsonIgnore
     @javax.persistence.OneToMany(mappedBy = "constructionEn")
-    protected Set<ConstructionEnIndustrialization> componentEnIndustrializations;
+    protected Set<ConstructionEnIndustrialization> constructionEnIndustrializations;
 
 
     public ConstructionEn() {
@@ -39,12 +39,12 @@ public abstract class ConstructionEn extends Organization {
         this.cumulant = cumulant;
     }
 
-    public Set<ConstructionEnIndustrialization> getComponentEnIndustrializations() {
-        return componentEnIndustrializations;
+    public Set<ConstructionEnIndustrialization> getConstructionEnIndustrializations() {
+        return constructionEnIndustrializations;
     }
 
-    public void setComponentEnIndustrializations(Set<ConstructionEnIndustrialization> componentEnIndustrializations) {
-        this.componentEnIndustrializations = componentEnIndustrializations;
+    public void setConstructionEnIndustrializations(Set<ConstructionEnIndustrialization> constructionEnIndustrializations) {
+        this.constructionEnIndustrializations = constructionEnIndustrializations;
     }
 
     abstract String getQualification();
