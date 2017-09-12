@@ -9,13 +9,22 @@ package com.absmis.domain.message;
 public class ConstructionEnInfo {
     private String enType;
     private Double enNum;
+    private Double totalScale;
     private Double annualScale;
-    //TODO 从事装配式建筑规模累计
 
-    public ConstructionEnInfo(String enType, Double enNum, Double annualScale) {
+    public ConstructionEnInfo(String enType, Double enNum, Double totalScale, Double annualScale) {
         this.enType = enType;
         this.enNum = enNum;
+        this.totalScale = totalScale;
         this.annualScale = annualScale;
+    }
+
+    public Double getTotalScale() {
+        return totalScale;
+    }
+
+    public void setTotalScale(Double totalScale) {
+        this.totalScale = totalScale;
     }
 
     public String getEnType() {

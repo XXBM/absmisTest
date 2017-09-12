@@ -59,8 +59,13 @@ public class ConstructionEnIndustrializationController {
         constructionEnIndustrializationInfo.setAddNewConcrete(constructionEnIndustrialization.getAddNewConcrete());
         constructionEnIndustrializationInfo.setAddNewSteel(constructionEnIndustrialization.getAddNewSteel());
         constructionEnIndustrializationInfo.setAddNewTimber(constructionEnIndustrialization.getAddNewTimber());
-        //TODO 本单位从事装配式建筑历年累计量
-        constructionEnIndustrializationInfo.setCumulant(constructionEn.getCumulant());
+        double totalScale = 0;
+        Specification<ConstructionEnIndustrialization> constructionEnIndustrializationSpecification = this.constructionEnIndustrializationService.queryTotalScale(enId,year,quarter);
+        List<ConstructionEnIndustrialization> constructionEnIndustrializations = constructionEnIndustrializationService.findBySepc(constructionEnIndustrializationSpecification);
+        for(int x=0;x<constructionEnIndustrializations.size();x++){
+            totalScale += constructionEnIndustrializations.get(x).getTotalScale();
+        }
+        constructionEnIndustrializationInfo.setCumulant(totalScale);
         constructionEnIndustrializationInfo.setAnnualConcrete(annualConcrete);
         constructionEnIndustrializationInfo.setAnnualSteel(annualSteel);
         constructionEnIndustrializationInfo.setAnnualTimber(annualTimber);
@@ -112,9 +117,7 @@ public class ConstructionEnIndustrializationController {
         username = SecurityContextHolder.getContext().getAuthentication().getName();
         storedUser = userService.findByUsername(username);
         ConstructionEn constructionEn = (ConstructionEn)storedUser;
-        //TODO 应当注释掉
-        //constructionEn.setCumulant(constructionEn.getCumulant()+constructionEnIndustrialization.getAddNewConcrete()+constructionEnIndustrialization.getAddNewSteel()+constructionEnIndustrialization.getAddNewTimber());
-        //TODO 设置当期总量
+        //设置当期总量
         constructionEnIndustrialization.setTotalScale(constructionEnIndustrialization.getAddNewConcrete()+constructionEnIndustrialization.getAddNewTimber()+constructionEnIndustrialization.getAddNewSteel());
         constructionEnIndustrialization.setConstructionEn(constructionEn);
         this.constructionEnIndustrializationService.addConstructionEnIndustrialization(constructionEnIndustrialization);

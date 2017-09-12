@@ -54,4 +54,23 @@ public class ConstructionEnService extends BasicService<ConstructionEn, Long> {
             }
         };
     }
+
+    public Specification<ConstructionEn> queryAnnual(
+            Long enId,
+            Integer year,
+            Integer quarter){
+        return new Specification<ConstructionEn>() {
+            @Override
+            public Predicate toPredicate(Root<ConstructionEn> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                List<Predicate> predicate = new ArrayList<>();
+                //条件一：查询在岗人员
+                predicate.add(cb.equal(root.get("subUnitEn"), enId));
+                predicate.add(cb.equal(root.get("year"), year));
+                predicate.add(cb.lessThanOrEqualTo(root.get("quarter"), quarter));
+                Predicate[] pre = new Predicate[predicate.size()];
+                query.distinct(true);
+                return query.where(predicate.toArray(pre)).getRestriction();
+            }
+        };
+    }
 }

@@ -19,7 +19,7 @@ import java.util.Set;
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("ConstructionEn")
 public abstract class ConstructionEn extends Organization {
-    //本单位从事装配式建筑当前累计
+    //本单位从事装配式建筑初始累计
     protected Double cumulant;
     //建筑产业化信息
     @JsonIgnore

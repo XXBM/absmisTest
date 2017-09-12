@@ -4,6 +4,7 @@ package com.absmis.service.enterprise;
 import com.absmis.domain.enterprise.ConstructionEnIndustrialization;
 import com.absmis.repository.enterprise.ConstructionEnIndustrializationRepository;
 import com.absmis.service.BasicService;
+import com.absmis.util.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -145,6 +146,25 @@ public class ConstructionEnIndustrializationService extends BasicService<Constru
                 predicate.add(cb.equal(root.get("constructionEn"), enId));
                 predicate.add(cb.equal(root.get("year"), year));
                 predicate.add(cb.lessThanOrEqualTo(root.get("quarter"), quarter));
+                Predicate[] pre = new Predicate[predicate.size()];
+                query.distinct(true);
+                return query.where(predicate.toArray(pre)).getRestriction();
+            }
+        };
+    }
+
+
+    public Specification<ConstructionEnIndustrialization> queryTotalScale(
+            Long enId,
+            Integer year,
+            Integer quarter
+    ){
+        return new Specification<ConstructionEnIndustrialization>() {
+            @Override
+            public Predicate toPredicate(Root<ConstructionEnIndustrialization> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                List<Predicate> predicate = new ArrayList<>();
+                predicate.add(cb.equal(root.get("constructionEn"), enId));
+                predicate.add(cb.lessThanOrEqualTo(root.get("quarterEnd").as(String.class), Utils.getQuarterEndTime(year,quarter)));
                 Predicate[] pre = new Predicate[predicate.size()];
                 query.distinct(true);
                 return query.where(predicate.toArray(pre)).getRestriction();

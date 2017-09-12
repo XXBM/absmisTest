@@ -1,8 +1,11 @@
 package com.absmis.controller.enterprise;
 
 import com.absmis.domain.enterprise.MachineryEn;
+import com.absmis.domain.enterprise.MachineryEnIndustrialization;
+import com.absmis.domain.message.MachineryEnStatistics;
 import com.absmis.service.authority.RoleService;
 import com.absmis.service.enterprise.CheckedStatusService;
+import com.absmis.service.enterprise.MachineryEnIndustrializationService;
 import com.absmis.service.enterprise.MachineryEnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +28,32 @@ public class MachineryEnController {
     RoleService roleService;
     @Autowired
     CheckedStatusService checkedStatusService;
+    @Autowired
+    MachineryEnIndustrializationService machineryEnIndustrializationService;
+
+    /**
+     * 统计行业信息1-机具设备企业产业化信息
+     */
+    @RequestMapping(value = "/getAllMachineryEns", method = RequestMethod.GET)
+    public List<MachineryEnStatistics> getMachineryEns(
+            @RequestParam(value = "year") Integer year,
+            @RequestParam(value = "quarter") Integer quarter,
+            @RequestParam(value = "page") Integer page,
+            @RequestParam(value = "rows") Integer size
+    )throws Exception {
+        List<MachineryEn> machineryEns = machineryEnService.findAllT();
+        List<MachineryEnStatistics> machineryEnStatisticses = new ArrayList<>();
+        for(int i=0;i<machineryEns.size();i++){
+            MachineryEnIndustrialization machineryEnIndustrialization = machineryEnIndustrializationService.getByMachineryEnIdAndYearAndQuarter(machineryEns.get(i).getId(),year,quarter);
+            MachineryEnStatistics integralWall = new MachineryEnStatistics(machineryEns.get(i).getName(),"预制混凝土生产设备",machineryEnIndustrialization.getIntegralWall());
+            machineryEnStatisticses.add(integralWall);
+            MachineryEnStatistics specialTransportEquipment = new MachineryEnStatistics(machineryEns.get(i).getName(),"专用运输设备",machineryEnIndustrialization.getSpecialTransportEquipment());
+            machineryEnStatisticses.add(specialTransportEquipment);
+            MachineryEnStatistics specialConstructionEquipment = new MachineryEnStatistics(machineryEns.get(i).getName(),"专用施工",machineryEnIndustrialization.getSpecialConstructionEquipment());
+            machineryEnStatisticses.add(specialConstructionEquipment);
+        }
+        return machineryEnStatisticses;
+    }
 
     /**
      * 获取到所有
