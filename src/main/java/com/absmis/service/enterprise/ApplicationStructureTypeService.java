@@ -16,7 +16,7 @@ import java.util.List;
 
 
 @Service
-public class ApplicationStructureTypeService extends BasicService<ApplicationStructureType, Long> {
+public class ApplicationStructureTypeService extends BasicService<ApplicationStructureType, Long>{
     @Autowired
     ApplicationStructureTypeRepository applicationStructureTypeRepository;
 
@@ -50,7 +50,7 @@ public class ApplicationStructureTypeService extends BasicService<ApplicationStr
         List<ApplicationStructureType> list = applicationStructureTypeRepository.findAll();
 
         //获取分页信息
-        PageInfo<ApplicationStructureType> info = new PageInfo<>(list);
+        PageInfo<ApplicationStructureType> info = new PageInfo<ApplicationStructureType>(list);
         DataGridResult result = new DataGridResult();
         long total = info.getTotal();
 

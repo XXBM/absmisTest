@@ -11,6 +11,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -59,5 +64,20 @@ public class SupervisorService extends BasicService<Supervisor, Long> {
     }
     public List<Supervisor> findBySepc(Specification<Supervisor> specification, Sort sort) {
         return this.supervisorRepository.findAll(specification,sort);
+    }
+
+
+    public Specification<Supervisor> queryName(String property){
+        return new Specification<Supervisor>() {
+            @Override
+            public Predicate toPredicate(Root<Supervisor> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+                List<Predicate> predicate = new ArrayList<>();
+                //条件一：查询在岗人员
+                predicate.add(cb.like(root.get("username"),"%"+property+"%"));
+                Predicate[] pre = new Predicate[predicate.size()];
+                query.distinct(true);
+                return query.where(predicate.toArray(pre)).getRestriction();
+            }
+        };
     }
 }

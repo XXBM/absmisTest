@@ -38,6 +38,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web-services')
 	compile('net.sourceforge.nekohtml:nekohtml:1.9.22')
 	compile('com.github.pagehelper:pagehelper:5.1.2-beta')
+	compile('org.mybatis:mybatis:3.4.4')
 	runtime('mysql:mysql-connector-java')
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')

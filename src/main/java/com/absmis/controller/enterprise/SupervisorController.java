@@ -7,6 +7,8 @@ import com.absmis.service.enterprise.SupervisorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -22,6 +24,23 @@ public class SupervisorController {
     RoleService roleService;
     @Autowired
     CheckedStatusService checkedStatusService;
+
+
+    //根据企业名称模糊查询
+    @RequestMapping(value = "/querySupervisorByName", method = RequestMethod.GET)
+    public Map<String, Object> querySupervisorByName(
+            @RequestParam(value = "nameQuery") String query,
+            @RequestParam(value = "page") Integer page,
+            @RequestParam(value = "rows") Integer size)throws Exception {
+        Pageable pageable = new PageRequest(page-1,size);
+        Specification<Supervisor> specification = this.supervisorService.queryName(query);
+        Page<Supervisor> list = this.supervisorService.findBySepc(specification,pageable);
+        Map<String, Object> map = new HashMap<String, Object>();
+        int total = this.supervisorService.findBySepc(specification).size();
+        map.put("total", total);
+        map.put("rows", list.getContent());
+        return map;
+    }
 
     //添加
     @RequestMapping(value = "/addSupervisor", method = RequestMethod.POST)
