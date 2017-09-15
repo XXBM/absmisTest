@@ -35,7 +35,7 @@ public class MachineryEnController {
      * 统计行业信息1-机具设备企业产业化信息
      */
     @RequestMapping(value = "/getAllMachineryEns", method = RequestMethod.GET)
-    public List<MachineryEnStatistics> getMachineryEns(
+    public Map<String, Object> getMachineryEns(
             @RequestParam(value = "year") Integer year,
             @RequestParam(value = "quarter") Integer quarter,
             @RequestParam(value = "page") Integer page,
@@ -52,7 +52,28 @@ public class MachineryEnController {
             MachineryEnStatistics specialConstructionEquipment = new MachineryEnStatistics(machineryEns.get(i).getName(),"专用施工",machineryEnIndustrialization.getSpecialConstructionEquipment());
             machineryEnStatisticses.add(specialConstructionEquipment);
         }
-        return machineryEnStatisticses;
+        Map<String, Object> map = new HashMap<String, Object>();
+        //查到的总用户数
+        map.put("total", machineryEnStatisticses.size());
+
+        //总页数
+        int pageTimes;
+        if (machineryEnStatisticses.size() % size == 0) {
+            pageTimes = machineryEnStatisticses.size() / size;
+        } else {
+            pageTimes = machineryEnStatisticses.size() / size + 1;
+        }
+        map.put("pageTimes", pageTimes);
+
+        List<MachineryEnStatistics> newMachineryEnStatistics = new ArrayList<MachineryEnStatistics>();
+        //每页开始的第几条记录
+        if(pageTimes==page) {
+            newMachineryEnStatistics.addAll(machineryEnStatisticses.subList((page-1)*size,machineryEnStatisticses.size()));
+        }else {
+            newMachineryEnStatistics.addAll(machineryEnStatisticses.subList((page-1)*size,(page-1)*size+size));
+        }
+        map.put("rows", newMachineryEnStatistics);
+        return map;
     }
 
     /**

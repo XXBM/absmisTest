@@ -49,9 +49,12 @@ public class SubUnitEnIndustrializationController {
             totalIntegralWallAbility += subUnitEnIndustrialization.getIntegralWallAbility();
             Specification<SubUnitEnIndustrialization> sp = this.subUnitEnIndustrializationService.queryAnnual(integralWalls.get(i).getId(),year,quarter);
             List<SubUnitEnIndustrialization> list = subUnitEnIndustrializationService.findBySepc(sp);
+            System.out.println(list.size()+"hhhhh");
             for(int x=0;x<list.size();x++){
-                totalIntegralWallScale += list.get(i).getIntegralWallScale();
+                System.out.println(list.get(x).getId()+"***"+list.get(x).getIntegralWallScale()+"oooo");
+                totalIntegralWallScale += list.get(x).getIntegralWallScale();
             }
+            System.out.println(totalIntegralWallScale+"ppppp");
         }
         Specification<SubUnitEn> integrativeExternalWallSp = this.subUnitEnService.queryAnnual("integrativeExternalWallNum",year,quarter);
         List<SubUnitEn> integrativeExternalWalls = subUnitEnService.findBySepc(integrativeExternalWallSp);
@@ -65,7 +68,7 @@ public class SubUnitEnIndustrializationController {
             Specification<SubUnitEnIndustrialization> sp = this.subUnitEnIndustrializationService.queryAnnual(integrativeExternalWalls.get(i).getId(),year,quarter);
             List<SubUnitEnIndustrialization> list = subUnitEnIndustrializationService.findBySepc(sp);
             for(int x=0;x<list.size();x++){
-                totalIntegrativeExternalWallScale += list.get(i).getIntegrativeExternalWallScale();
+                totalIntegrativeExternalWallScale += list.get(x).getIntegrativeExternalWallScale();
             }
         }
         Specification<SubUnitEn> prebuiltStairsSp = this.subUnitEnService.queryAnnual("prebuiltStairsNum",year,quarter);
@@ -80,7 +83,7 @@ public class SubUnitEnIndustrializationController {
             Specification<SubUnitEnIndustrialization> sp = this.subUnitEnIndustrializationService.queryAnnual(prebuiltStairses.get(i).getId(),year,quarter);
             List<SubUnitEnIndustrialization> list = subUnitEnIndustrializationService.findBySepc(sp);
             for(int x=0;x<list.size();x++){
-                totalPrebuiltStairsScale += list.get(i).getPrebuiltStairsScale();
+                totalPrebuiltStairsScale += list.get(x).getPrebuiltStairsScale();
             }
         }
         Specification<SubUnitEn> integralKitchenSp = this.subUnitEnService.queryAnnual("integralKitchenNum",year,quarter);
@@ -95,7 +98,7 @@ public class SubUnitEnIndustrializationController {
             Specification<SubUnitEnIndustrialization> sp = this.subUnitEnIndustrializationService.queryAnnual(integralKitchens.get(i).getId(),year,quarter);
             List<SubUnitEnIndustrialization> list = subUnitEnIndustrializationService.findBySepc(sp);
             for(int x=0;x<list.size();x++){
-                totalIntegralKitchenScale += list.get(i).getIntegralKitchenScale();
+                totalIntegralKitchenScale += list.get(x).getIntegralKitchenScale();
             }
         }
         Specification<SubUnitEn> integralToiletSp = this.subUnitEnService.queryAnnual("integralToiletNum",year,quarter);
@@ -110,7 +113,7 @@ public class SubUnitEnIndustrializationController {
             Specification<SubUnitEnIndustrialization> sp = this.subUnitEnIndustrializationService.queryAnnual(integralToilets.get(i).getId(),year,quarter);
             List<SubUnitEnIndustrialization> list = subUnitEnIndustrializationService.findBySepc(sp);
             for(int x=0;x<list.size();x++){
-                totalIntegralToiletScale += list.get(i).getIntegralToiletScale();
+                totalIntegralToiletScale += list.get(x).getIntegralToiletScale();
             }
         }
         Specification<SubUnitEn> integralInteriorDecorationSp = this.subUnitEnService.queryAnnual("integralInteriorDecorationNum",year,quarter);
@@ -125,7 +128,7 @@ public class SubUnitEnIndustrializationController {
             Specification<SubUnitEnIndustrialization> sp = this.subUnitEnIndustrializationService.queryAnnual(integralInteriorDecorations.get(i).getId(),year,quarter);
             List<SubUnitEnIndustrialization> list = subUnitEnIndustrializationService.findBySepc(sp);
             for(int x=0;x<list.size();x++){
-                totalIntegralInteriorDecorationScale += list.get(i).getIntegralInteriorDecorationScale();
+                totalIntegralInteriorDecorationScale += list.get(x).getIntegralInteriorDecorationScale();
             }
         }
         List<SubUnitAndComponentEnInfo> subUnitAndComponentEnInfos = new ArrayList<>();

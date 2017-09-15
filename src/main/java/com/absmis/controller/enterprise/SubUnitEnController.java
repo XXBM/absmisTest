@@ -37,9 +37,11 @@ public class SubUnitEnController {
      * 统计行业信息1-构件部品企业产业化信息
      */
     @RequestMapping(value = "/getAllSubUnitAndComponentEns", method = RequestMethod.GET)
-    public List<SubUnitAndComponentEnStatistics> getMachineryEns(
+    public Map<String, Object> getMachineryEns(
             @RequestParam(value = "year") Integer year,
-            @RequestParam(value = "quarter") Integer quarter
+            @RequestParam(value = "quarter") Integer quarter,
+            @RequestParam(value = "page") Integer page,
+            @RequestParam(value = "rows") Integer size
     )throws Exception {
         List<SubUnitEn> subUnitEns = subUnitEnService.findAllT();
         List<SubUnitAndComponentEnStatistics> subUnitAndComponentEnStatisticses = new ArrayList<>();
@@ -50,7 +52,7 @@ public class SubUnitEnController {
             List<SubUnitEnIndustrialization> listIntegralWall = subUnitEnIndustrializationService.findBySepc(spIntegralWall);
             double totalIntegralWallScale = 0;
             for(int x=0;x<listIntegralWall.size();x++){
-                totalIntegralWallScale += listIntegralWall.get(i).getIntegralWallScale();
+                totalIntegralWallScale += listIntegralWall.get(x).getIntegralWallScale();
             }
             SubUnitAndComponentEnStatistics integralWallNum = new SubUnitAndComponentEnStatistics(subUnitEns.get(i).getName(),"整体墙板",subUnitEnIndustrialization.getIntegralWallNum(),subUnitEnIndustrialization.getIntegralWallAbility(),totalIntegralWallScale);
             subUnitAndComponentEnStatisticses.add(integralWallNum);
@@ -58,7 +60,7 @@ public class SubUnitEnController {
             List<SubUnitEnIndustrialization> listIntegrativeExternalWall = subUnitEnIndustrializationService.findBySepc(spIntegrativeExternalWall);
             double totalIntegrativeExternalWallScale = 0;
             for(int x=0;x<listIntegrativeExternalWall.size();x++){
-                totalIntegrativeExternalWallScale += listIntegrativeExternalWall.get(i).getIntegrativeExternalWallScale();
+                totalIntegrativeExternalWallScale += listIntegrativeExternalWall.get(x).getIntegrativeExternalWallScale();
             }
             SubUnitAndComponentEnStatistics integrativeExternalWallNum = new SubUnitAndComponentEnStatistics(subUnitEns.get(i).getName(),"结构保温装饰一体化外墙",subUnitEnIndustrialization.getIntegrativeExternalWallNum(),subUnitEnIndustrialization.getIntegrativeExternalWallAbility(),totalIntegrativeExternalWallScale);
             subUnitAndComponentEnStatisticses.add(integrativeExternalWallNum);
@@ -66,7 +68,7 @@ public class SubUnitEnController {
             List<SubUnitEnIndustrialization> listPrebuiltStairs = subUnitEnIndustrializationService.findBySepc(spPrebuiltStairs);
             double totalPrebuiltStairsScale = 0;
             for(int x=0;x<listPrebuiltStairs.size();x++){
-                totalPrebuiltStairsScale += listPrebuiltStairs.get(i).getPrebuiltStairsScale();
+                totalPrebuiltStairsScale += listPrebuiltStairs.get(x).getPrebuiltStairsScale();
             }
             SubUnitAndComponentEnStatistics prebuiltStairsNum = new SubUnitAndComponentEnStatistics(subUnitEns.get(i).getName(),"预制楼梯",subUnitEnIndustrialization.getPrebuiltStairsNum(),subUnitEnIndustrialization.getPrebuiltStairsAbility(),totalPrebuiltStairsScale);
             subUnitAndComponentEnStatisticses.add(prebuiltStairsNum);
@@ -74,7 +76,7 @@ public class SubUnitEnController {
             List<SubUnitEnIndustrialization> listIntegralKitchen = subUnitEnIndustrializationService.findBySepc(spIntegralKitchen);
             double totalIntegralKitchenScale = 0;
             for(int x=0;x<listIntegralKitchen.size();x++){
-                totalIntegralKitchenScale += listIntegralKitchen.get(i).getIntegralKitchenScale();
+                totalIntegralKitchenScale += listIntegralKitchen.get(x).getIntegralKitchenScale();
             }
             SubUnitAndComponentEnStatistics integralKitchenNum = new SubUnitAndComponentEnStatistics(subUnitEns.get(i).getName(),"整体厨房",subUnitEnIndustrialization.getIntegralKitchenNum(),subUnitEnIndustrialization.getIntegralKitchenAbility(),totalIntegralKitchenScale);
             subUnitAndComponentEnStatisticses.add(integralKitchenNum);
@@ -82,7 +84,7 @@ public class SubUnitEnController {
             List<SubUnitEnIndustrialization> listIntegralToilet = subUnitEnIndustrializationService.findBySepc(spIntegralToilet);
             double totalIntegralToiletScale = 0;
             for(int x=0;x<listIntegralToilet.size();x++){
-                totalIntegralToiletScale += listIntegralToilet.get(i).getIntegralToiletScale();
+                totalIntegralToiletScale += listIntegralToilet.get(x).getIntegralToiletScale();
             }
             SubUnitAndComponentEnStatistics integralToiletNum = new SubUnitAndComponentEnStatistics(subUnitEns.get(i).getName(),"整体卫生间",subUnitEnIndustrialization.getIntegralToiletNum(),subUnitEnIndustrialization.getIntegralToiletAbility(),totalIntegralToiletScale);
             subUnitAndComponentEnStatisticses.add(integralToiletNum);
@@ -90,7 +92,7 @@ public class SubUnitEnController {
             List<SubUnitEnIndustrialization> listIntegralInteriorDecoration = subUnitEnIndustrializationService.findBySepc(spIntegralInteriorDecoration);
             double totalIntegralInteriorDecorationScale = 0;
             for(int x=0;x<listIntegralInteriorDecoration.size();x++){
-                totalIntegralInteriorDecorationScale += listIntegralInteriorDecoration.get(i).getIntegralInteriorDecorationScale();
+                totalIntegralInteriorDecorationScale += listIntegralInteriorDecoration.get(x).getIntegralInteriorDecorationScale();
             }
             SubUnitAndComponentEnStatistics integralInteriorDecorationNum = new SubUnitAndComponentEnStatistics(subUnitEns.get(i).getName(),"整体内装体系",subUnitEnIndustrialization.getIntegralInteriorDecorationNum(),subUnitEnIndustrialization.getIntegralInteriorDecorationAbility(),totalIntegralInteriorDecorationScale);
             subUnitAndComponentEnStatisticses.add(integralInteriorDecorationNum);
@@ -103,7 +105,7 @@ public class SubUnitEnController {
             List<ComponentEnIndustrialization> listPrebuiltConcrete = componentEnIndustrializationService.findBySepc(spPrebuiltConcrete);
             double totalPrebuiltConcreteScale = 0;
             for(int x=0;x<listPrebuiltConcrete.size();x++){
-                totalPrebuiltConcreteScale += listPrebuiltConcrete.get(i).getPrebuiltConcreteScale();
+                totalPrebuiltConcreteScale += listPrebuiltConcrete.get(x).getPrebuiltConcreteScale();
             }
             SubUnitAndComponentEnStatistics prebuiltConcrete = new SubUnitAndComponentEnStatistics(componentEns.get(i).getName(),"预制装配混凝土结构",componentEnIndustrialization.getPrebuiltConcreteNum(),componentEnIndustrialization.getPrebuiltConcreteAbility(),totalPrebuiltConcreteScale);
             subUnitAndComponentEnStatisticses.add(prebuiltConcrete);
@@ -111,7 +113,7 @@ public class SubUnitEnController {
             List<ComponentEnIndustrialization> listPrebuiltSteel = componentEnIndustrializationService.findBySepc(spPrebuiltSteel);
             double totalPrebuiltSteelScale = 0;
             for(int x=0;x<listPrebuiltSteel.size();x++){
-                totalPrebuiltSteelScale += listPrebuiltSteel.get(i).getPrebuiltSteelScale();
+                totalPrebuiltSteelScale += listPrebuiltSteel.get(x).getPrebuiltSteelScale();
             }
             SubUnitAndComponentEnStatistics prebuiltSteel = new SubUnitAndComponentEnStatistics(componentEns.get(i).getName(),"钢结构",componentEnIndustrialization.getPrebuiltSteelNum(),componentEnIndustrialization.getPrebuiltSteelAbility(),totalPrebuiltSteelScale);
             subUnitAndComponentEnStatisticses.add(prebuiltSteel);
@@ -119,7 +121,7 @@ public class SubUnitEnController {
             List<ComponentEnIndustrialization> listPrebuiltTimber = componentEnIndustrializationService.findBySepc(spPrebuiltTimber);
             double totalPrebuiltTimberScale = 0;
             for(int x=0;x<listPrebuiltTimber.size();x++){
-                totalPrebuiltTimberScale += listPrebuiltTimber.get(i).getPrebuiltTimberScale();
+                totalPrebuiltTimberScale += listPrebuiltTimber.get(x).getPrebuiltTimberScale();
             }
             SubUnitAndComponentEnStatistics prebuiltTimber = new SubUnitAndComponentEnStatistics(componentEns.get(i).getName(),"木结构",componentEnIndustrialization.getPrebuiltTimberNum(),componentEnIndustrialization.getPrebuiltTimberAbility(),totalPrebuiltTimberScale);
             subUnitAndComponentEnStatisticses.add(prebuiltTimber);
@@ -127,13 +129,35 @@ public class SubUnitEnController {
             List<ComponentEnIndustrialization> listPrebuiltOther = componentEnIndustrializationService.findBySepc(spPrebuiltOther);
             double totalPrebuiltOtherScale = 0;
             for(int x=0;x<listPrebuiltOther.size();x++){
-                totalPrebuiltOtherScale += listPrebuiltOther.get(i).getPrebuiltOtherScale();
+                totalPrebuiltOtherScale += listPrebuiltOther.get(x).getPrebuiltOtherScale();
             }
             SubUnitAndComponentEnStatistics prebuiltOther = new SubUnitAndComponentEnStatistics(componentEns.get(i).getName(),"其他结构的构件",componentEnIndustrialization.getPrebuiltOtherNum(),componentEnIndustrialization.getPrebuiltOtherAbility(),totalPrebuiltOtherScale);
             subUnitAndComponentEnStatisticses.add(prebuiltOther);
 
         }
-        return subUnitAndComponentEnStatisticses;
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        //查到的总用户数
+        map.put("total", subUnitAndComponentEnStatisticses.size());
+
+        //总页数
+        int pageTimes;
+        if (subUnitAndComponentEnStatisticses.size() % size == 0) {
+            pageTimes = subUnitAndComponentEnStatisticses.size() / size;
+        } else {
+            pageTimes = subUnitAndComponentEnStatisticses.size() / size + 1;
+        }
+        map.put("pageTimes", pageTimes);
+
+        List<SubUnitAndComponentEnStatistics> newSubUnitAndComponentEnStatistics = new ArrayList<SubUnitAndComponentEnStatistics>();
+        //每页开始的第几条记录
+        if(pageTimes==page) {
+            newSubUnitAndComponentEnStatistics.addAll(subUnitAndComponentEnStatisticses.subList((page-1)*size,subUnitAndComponentEnStatisticses.size()));
+        }else {
+            newSubUnitAndComponentEnStatistics.addAll(subUnitAndComponentEnStatisticses.subList((page-1)*size,(page-1)*size+size));
+        }
+        map.put("rows", newSubUnitAndComponentEnStatistics);
+        return map;
     }
 
     //根据企业名称模糊查询

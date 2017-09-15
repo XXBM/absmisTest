@@ -34,8 +34,6 @@ public class ApplicationStructureTypeController {
             @RequestParam(value = "page") Integer page,
             @RequestParam(value = "rows") Integer size
     ) throws Exception {
-        //每页显示的条数
-        int pageSize = size;
         List<ApplicationStructureType> applicationStructureTypes = this.applicationStructureTypeService.findAllT();
         Map<String, Object> map = new HashMap<String, Object>();
         //查到的总用户数
@@ -43,10 +41,10 @@ public class ApplicationStructureTypeController {
 
         //总页数
         int pageTimes;
-        if (applicationStructureTypes.size() % pageSize == 0) {
-            pageTimes = applicationStructureTypes.size() / pageSize;
+        if (applicationStructureTypes.size() % size == 0) {
+            pageTimes = applicationStructureTypes.size() / size;
         } else {
-            pageTimes = applicationStructureTypes.size() / pageSize + 1;
+            pageTimes = applicationStructureTypes.size() / size + 1;
         }
         map.put("pageTimes", pageTimes);
 

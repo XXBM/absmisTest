@@ -40,7 +40,7 @@ public class ConstructionEnController {
      * 统计行业信息1-机具设备企业产业化信息
      */
     @RequestMapping(value = "/getAllConstructionEns", method = RequestMethod.GET)
-    public List<ConstructionEnStatistics> getConstructionEns(
+    public Map<String, Object> getConstructionEns(
             @RequestParam(value = "year") Integer year,
             @RequestParam(value = "quarter") Integer quarter,
             @RequestParam(value = "page") Integer page,
@@ -59,7 +59,28 @@ public class ConstructionEnController {
             ConstructionEnStatistics ces = new ConstructionEnStatistics(constructionEns.get(i).getName(),constructionEns.get(i).getEnterpriseType(),totalScale,constructionEnIndustrialization.getTotalScale());
             constructionEnStatisticses.add(ces);
         }
-        return constructionEnStatisticses;
+        Map<String, Object> map = new HashMap<String, Object>();
+        //查到的总用户数
+        map.put("total", constructionEnStatisticses.size());
+
+        //总页数
+        int pageTimes;
+        if (constructionEnStatisticses.size() % size == 0) {
+            pageTimes = constructionEnStatisticses.size() / size;
+        } else {
+            pageTimes = constructionEnStatisticses.size() / size + 1;
+        }
+        map.put("pageTimes", pageTimes);
+
+        List<ConstructionEnStatistics> newConstructionEnStatistics = new ArrayList<ConstructionEnStatistics>();
+        //每页开始的第几条记录
+        if(pageTimes==page) {
+            newConstructionEnStatistics.addAll(constructionEnStatisticses.subList((page-1)*size,constructionEnStatisticses.size()));
+        }else {
+            newConstructionEnStatistics.addAll(constructionEnStatisticses.subList((page-1)*size,(page-1)*size+size));
+        }
+        map.put("rows", newConstructionEnStatistics);
+        return map;
     }
 
     //根据企业和申报起止时间查询
