@@ -36,6 +36,14 @@ public class MachineryEnIndustrializationService extends BasicService<MachineryE
     public void updateMachineryEnIndustrialization(MachineryEnIndustrialization machineryEnIndustrialization){
         this.machineryEnIndustrializationRepository.saveAndFlush(machineryEnIndustrialization);}
 
+
+    public Page<MachineryEnIndustrialization> findBySubmit(Boolean submit, Pageable pageable) {
+        return this.machineryEnIndustrializationRepository.findBySubmit(submit, pageable);
+    }
+    public List<MachineryEnIndustrialization> findBySubmit(Boolean submit) {
+        return this.machineryEnIndustrializationRepository.findBySubmit(submit);
+    }
+
     /*findById*/
     public MachineryEnIndustrialization findById(Long id){
         return machineryEnIndustrializationRepository.findOne(id);

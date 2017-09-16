@@ -204,6 +204,17 @@ public class ComponentEnIndustrializationController {
         return map;
     }
 
+    //实现分页 审核查询
+    @RequestMapping(value = "/displayAllComponentEnIndustrializationsBySubmit", method = RequestMethod.GET)
+    public Map<String, Object> findAllComponentEnIndustrializationBySubmit(@RequestParam(value = "page") Integer page, @RequestParam(value = "rows") Integer size)throws Exception {
+        Page<ComponentEnIndustrialization> list = this.componentEnIndustrializationService.findBySubmit(true,new PageRequest(page - 1, size));
+        Map<String, Object> map = new HashMap<String, Object>();
+        int total = this.componentEnIndustrializationService.findBySubmit(true).size();
+        map.put("total", total);
+        map.put("rows", list.getContent());
+        return map;
+    }
+
     //修改学院信息    完成 改
     @RequestMapping(value = "/updateComponentEnIndustrialization", method = RequestMethod.PUT)
     public Map<String, Object> updateComponentEnIndustrialization(@RequestBody ComponentEnIndustrialization componentEnIndustrialization)throws Exception {

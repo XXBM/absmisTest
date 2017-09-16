@@ -32,6 +32,14 @@ public class ComponentEnIndustrializationService extends BasicService<ComponentE
         return componentEnIndustrializationRepository.getByComponentEnIdAndYearAndQuarter(id,year,quarter);
     };
 
+    public Page<ComponentEnIndustrialization> findBySubmit(Boolean submit, Pageable pageable) {
+        return this.componentEnIndustrializationRepository.findBySubmit(submit, pageable);
+    }
+    public List<ComponentEnIndustrialization> findBySubmit(Boolean submit) {
+        return this.componentEnIndustrializationRepository.findBySubmit(submit);
+    }
+
+
     /*修改*/
     public void updateComponentEnIndustrialization(ComponentEnIndustrialization componentEnIndustrialization){
         this.componentEnIndustrializationRepository.saveAndFlush(componentEnIndustrialization);}
@@ -160,6 +168,5 @@ public class ComponentEnIndustrializationService extends BasicService<ComponentE
             }
         };
     }
-
 
 }

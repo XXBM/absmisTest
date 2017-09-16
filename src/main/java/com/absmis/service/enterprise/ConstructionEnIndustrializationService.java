@@ -40,6 +40,14 @@ public class ConstructionEnIndustrializationService extends BasicService<Constru
         return constructionEnIndustrializationRepository.findOne(id);
     }
 
+    public Page<ConstructionEnIndustrialization> findBySubmit(Boolean submit, Pageable pageable) {
+        return this.constructionEnIndustrializationRepository.findBySubmit(submit, pageable);
+    }
+    public List<ConstructionEnIndustrialization> findBySubmit(Boolean submit) {
+        return this.constructionEnIndustrializationRepository.findBySubmit(submit);
+    }
+
+
     /*删除*/
     public void deleteConstructionEnIndustrialization(Long id){
         this.constructionEnIndustrializationRepository.delete(id);

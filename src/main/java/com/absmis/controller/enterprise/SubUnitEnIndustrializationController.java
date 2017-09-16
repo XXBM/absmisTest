@@ -199,7 +199,6 @@ public class SubUnitEnIndustrializationController {
         storedUser = userService.findByUsername(username);
         subUnitEnIndustrialization.setSubUnitEn((SubUnitEn)storedUser);
         subUnitEnIndustrialization.setQuarterEnd(Utils.getQuarterEnd(subUnitEnIndustrialization.getYear(),subUnitEnIndustrialization.getQuarter()));
-        
         this.subUnitEnIndustrializationService.addSubUnitEnIndustrialization(subUnitEnIndustrialization);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("subUnitEnIndustrialization", subUnitEnIndustrialization);
@@ -222,6 +221,18 @@ public class SubUnitEnIndustrializationController {
         Page<SubUnitEnIndustrialization> list = this.subUnitEnIndustrializationService.findAllT(new PageRequest(page - 1, size));
         Map<String, Object> map = new HashMap<String, Object>();
         int total = this.subUnitEnIndustrializationService.findAllT().size();
+        map.put("total", total);
+        map.put("rows", list.getContent());
+        return map;
+    }
+
+
+    //实现分页 审核查询
+    @RequestMapping(value = "/displayAllSubUnitEnIndustrializationsBySubmit", method = RequestMethod.GET)
+    public Map<String, Object> findAllSubUnitEnIndustrializationBySubmit(@RequestParam(value = "page") Integer page, @RequestParam(value = "rows") Integer size)throws Exception {
+        Page<SubUnitEnIndustrialization> list = this.subUnitEnIndustrializationService.findBySubmit(true,new PageRequest(page - 1, size));
+        Map<String, Object> map = new HashMap<String, Object>();
+        int total = this.subUnitEnIndustrializationService.findBySubmit(true).size();
         map.put("total", total);
         map.put("rows", list.getContent());
         return map;

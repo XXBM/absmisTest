@@ -146,6 +146,18 @@ public class ConstructionEnIndustrializationController {
         return map;
     }
 
+
+    //实现分页 审核查询
+    @RequestMapping(value = "/displayAllConstructionEnIndustrializationsBySubmit", method = RequestMethod.GET)
+    public Map<String, Object> findAllConstructionEnIndustrializationBySubmit(@RequestParam(value = "page") Integer page, @RequestParam(value = "rows") Integer size)throws Exception {
+        Page<ConstructionEnIndustrialization> list = this.constructionEnIndustrializationService.findBySubmit(true,new PageRequest(page - 1, size));
+        Map<String, Object> map = new HashMap<String, Object>();
+        int total = this.constructionEnIndustrializationService.findBySubmit(true).size();
+        map.put("total", total);
+        map.put("rows", list.getContent());
+        return map;
+    }
+
     //修改学院信息    完成 改
     @RequestMapping(value = "/updateConstructionEnIndustrialization", method = RequestMethod.PUT)
     public Map<String, Object> updateConstructionEnIndustrialization(@RequestBody ConstructionEnIndustrialization constructionEnIndustrialization)throws Exception {

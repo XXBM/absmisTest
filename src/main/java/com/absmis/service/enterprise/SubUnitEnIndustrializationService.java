@@ -31,6 +31,13 @@ public class SubUnitEnIndustrializationService extends BasicService<SubUnitEnInd
         return subUnitEnIndustrializationRepository.getBySubUnitEnIdAndYearAndQuarter(id,year,quarter);
     };
 
+    public Page<SubUnitEnIndustrialization> findBySubmit(Boolean submit, Pageable pageable) {
+        return this.subUnitEnIndustrializationRepository.findBySubmit(submit, pageable);
+    }
+    public List<SubUnitEnIndustrialization> findBySubmit(Boolean submit) {
+        return this.subUnitEnIndustrializationRepository.findBySubmit(submit);
+    }
+
     /*修改*/
     public void updateSubUnitEnIndustrialization(SubUnitEnIndustrialization subUnitEnIndustrialization){
         this.subUnitEnIndustrializationRepository.saveAndFlush(subUnitEnIndustrialization);}
