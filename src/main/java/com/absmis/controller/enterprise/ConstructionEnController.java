@@ -52,12 +52,14 @@ public class ConstructionEnController {
             ConstructionEnIndustrialization constructionEnIndustrialization = constructionEnIndustrializationService.getByConstructionEnIdAndYearAndQuarter(constructionEns.get(i).getId(),year,quarter);
             Specification<ConstructionEnIndustrialization> constructionEnIndustrializationSpecification = this.constructionEnIndustrializationService.queryTotalScale(constructionEns.get(i).getId(),year,quarter);
             List<ConstructionEnIndustrialization> constructionEnIndustrializations = constructionEnIndustrializationService.findBySepc(constructionEnIndustrializationSpecification);
-            double totalScale = 0;
+            double totalScale = constructionEns.get(i).getCumulant();
             for(int x=0;x<constructionEnIndustrializations.size();x++){
                 totalScale += constructionEnIndustrializations.get(x).getTotalScale();
             }
-            ConstructionEnStatistics ces = new ConstructionEnStatistics(constructionEns.get(i).getName(),constructionEns.get(i).getEnterpriseType(),totalScale,constructionEnIndustrialization.getTotalScale());
-            constructionEnStatisticses.add(ces);
+            if(constructionEnIndustrialization!=null){
+                ConstructionEnStatistics ces = new ConstructionEnStatistics(constructionEns.get(i).getName(),constructionEns.get(i).getEnterpriseType(),totalScale,constructionEnIndustrialization.getTotalScale());
+                constructionEnStatisticses.add(ces);
+            }
         }
         Map<String, Object> map = new HashMap<String, Object>();
         //查到的总用户数

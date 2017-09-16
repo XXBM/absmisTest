@@ -49,12 +49,9 @@ public class SubUnitEnIndustrializationController {
             totalIntegralWallAbility += subUnitEnIndustrialization.getIntegralWallAbility();
             Specification<SubUnitEnIndustrialization> sp = this.subUnitEnIndustrializationService.queryAnnual(integralWalls.get(i).getId(),year,quarter);
             List<SubUnitEnIndustrialization> list = subUnitEnIndustrializationService.findBySepc(sp);
-            System.out.println(list.size()+"hhhhh");
             for(int x=0;x<list.size();x++){
-                System.out.println(list.get(x).getId()+"***"+list.get(x).getIntegralWallScale()+"oooo");
                 totalIntegralWallScale += list.get(x).getIntegralWallScale();
             }
-            System.out.println(totalIntegralWallScale+"ppppp");
         }
         Specification<SubUnitEn> integrativeExternalWallSp = this.subUnitEnService.queryAnnual("integrativeExternalWallNum",year,quarter);
         List<SubUnitEn> integrativeExternalWalls = subUnitEnService.findBySepc(integrativeExternalWallSp);
