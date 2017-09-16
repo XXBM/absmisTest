@@ -49,7 +49,6 @@ public class ConstructionEnIndustrializationController {
         double annualSteel = 0;
         //年度装配式木建筑的数量
         double annualTimber = 0;
-        System.out.println(annualList.size()+"一共");
         for(int i=0;i<annualList.size();i++){
             annualConcrete += annualList.get(i).getAddNewConcrete();
             annualSteel += annualList.get(i).getAddNewSteel();
