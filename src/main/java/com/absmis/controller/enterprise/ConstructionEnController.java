@@ -52,7 +52,10 @@ public class ConstructionEnController {
             ConstructionEnIndustrialization constructionEnIndustrialization = constructionEnIndustrializationService.getByConstructionEnIdAndYearAndQuarter(constructionEns.get(i).getId(),year,quarter);
             Specification<ConstructionEnIndustrialization> constructionEnIndustrializationSpecification = this.constructionEnIndustrializationService.queryTotalScale(constructionEns.get(i).getId(),year,quarter);
             List<ConstructionEnIndustrialization> constructionEnIndustrializations = constructionEnIndustrializationService.findBySepc(constructionEnIndustrializationSpecification);
-            double totalScale = constructionEns.get(i).getCumulant();
+            double totalScale = 0;
+            if(constructionEns.get(i).getCumulant()!=null){
+                totalScale+=constructionEns.get(i).getCumulant();
+            }
             for(int x=0;x<constructionEnIndustrializations.size();x++){
                 totalScale += constructionEnIndustrializations.get(x).getTotalScale();
             }
@@ -98,6 +101,9 @@ public class ConstructionEnController {
         double totalScaleR = 0;
         double annualScaleR = 0;
         for(int i=0;i<realEstateEns.size();i++){
+            if(realEstateEns.get(i).getCumulant()!=null){
+                totalScaleR+=realEstateEns.get(i).getCumulant();
+            }
             Specification<ConstructionEnIndustrialization> ceiSp = this.constructionEnIndustrializationService.queryAnnual(realEstateEns.get(i).getId(),year,quarter);
             List<ConstructionEnIndustrialization> constructionEnIndustrializations = constructionEnIndustrializationService.findBySepc(ceiSp);
             for(int x=0;x<constructionEnIndustrializations.size();x++){
@@ -110,6 +116,9 @@ public class ConstructionEnController {
             }
         }
         for(int i=0;i<realEstateEnsM.size();i++){
+            if(realEstateEnsM.get(i).getCumulant()!=null){
+                totalScaleR+=realEstateEnsM.get(i).getCumulant();
+            }
             Specification<ConstructionEnIndustrialization> ceiSp = this.constructionEnIndustrializationService.queryAnnual(realEstateEnsM.get(i).getId(),year,quarter);
             List<ConstructionEnIndustrialization> constructionEnIndustrializations = constructionEnIndustrializationService.findBySepc(ceiSp);
             for(int x=0;x<constructionEnIndustrializations.size();x++){
@@ -128,6 +137,9 @@ public class ConstructionEnController {
         double totalScaleB = 0;
         double annualScaleB = 0;
         for(int i=0;i<builders.size();i++){
+            if(builders.get(i).getCumulant()!=null){
+                totalScaleB+=builders.get(i).getCumulant();
+            }
             Specification<ConstructionEnIndustrialization> ceiSp = this.constructionEnIndustrializationService.queryAnnual(builders.get(i).getId(),year,quarter);
             List<ConstructionEnIndustrialization> constructionEnIndustrializations = constructionEnIndustrializationService.findBySepc(ceiSp);
             for(int x=0;x<constructionEnIndustrializations.size();x++){
@@ -140,6 +152,9 @@ public class ConstructionEnController {
             }
         }
         for(int i=0;i<buildersM.size();i++){
+            if(buildersM.get(i).getCumulant()!=null){
+                totalScaleB+=buildersM.get(i).getCumulant();
+            }
             Specification<ConstructionEnIndustrialization> ceiSp = this.constructionEnIndustrializationService.queryAnnual(buildersM.get(i).getId(),year,quarter);
             List<ConstructionEnIndustrialization> constructionEnIndustrializations = constructionEnIndustrializationService.findBySepc(ceiSp);
             for(int x=0;x<constructionEnIndustrializations.size();x++){
@@ -158,6 +173,9 @@ public class ConstructionEnController {
         double totalScaleD = 0;
         double annualScaleD = 0;
         for(int i=0;i<designers.size();i++){
+            if(designers.get(i).getCumulant()!=null){
+                totalScaleD+=designers.get(i).getCumulant();
+            }
             Specification<ConstructionEnIndustrialization> ceiSp = this.constructionEnIndustrializationService.queryAnnual(designers.get(i).getId(),year,quarter);
             List<ConstructionEnIndustrialization> constructionEnIndustrializations = constructionEnIndustrializationService.findBySepc(ceiSp);
             for(int x=0;x<constructionEnIndustrializations.size();x++){
@@ -170,6 +188,9 @@ public class ConstructionEnController {
             }
         }
         for(int i=0;i<designersM.size();i++){
+            if(designersM.get(i).getCumulant()!=null){
+                totalScaleD+=designersM.get(i).getCumulant();
+            }
             Specification<ConstructionEnIndustrialization> ceiSp = this.constructionEnIndustrializationService.queryAnnual(designersM.get(i).getId(),year,quarter);
             List<ConstructionEnIndustrialization> constructionEnIndustrializations = constructionEnIndustrializationService.findBySepc(ceiSp);
             for(int x=0;x<constructionEnIndustrializations.size();x++){
