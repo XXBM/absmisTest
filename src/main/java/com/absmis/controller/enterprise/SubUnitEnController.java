@@ -47,92 +47,94 @@ public class SubUnitEnController {
         List<SubUnitAndComponentEnStatistics> subUnitAndComponentEnStatisticses = new ArrayList<>();
         for(int i=0;i<subUnitEns.size();i++){
             SubUnitEnIndustrialization subUnitEnIndustrialization = subUnitEnIndustrializationService.getBySubUnitEnIdAndYearAndQuarter(subUnitEns.get(i).getId(),year,quarter);
-
-            Specification<SubUnitEnIndustrialization> spIntegralWall = this.subUnitEnIndustrializationService.queryAnnual(subUnitEns.get(i).getId(),year,quarter);
-            List<SubUnitEnIndustrialization> listIntegralWall = subUnitEnIndustrializationService.findBySepc(spIntegralWall);
-            double totalIntegralWallScale = 0;
-            for(int x=0;x<listIntegralWall.size();x++){
-                totalIntegralWallScale += listIntegralWall.get(x).getIntegralWallScale();
+            if(subUnitEnIndustrialization!=null){
+                Specification<SubUnitEnIndustrialization> spIntegralWall = this.subUnitEnIndustrializationService.queryAnnual(subUnitEns.get(i).getId(),year,quarter);
+                List<SubUnitEnIndustrialization> listIntegralWall = subUnitEnIndustrializationService.findBySepc(spIntegralWall);
+                double totalIntegralWallScale = 0;
+                for(int x=0;x<listIntegralWall.size();x++){
+                    totalIntegralWallScale += listIntegralWall.get(x).getIntegralWallScale();
+                }
+                SubUnitAndComponentEnStatistics integralWallNum = new SubUnitAndComponentEnStatistics(subUnitEns.get(i).getName(),"整体墙板",subUnitEnIndustrialization.getIntegralWallNum(),subUnitEnIndustrialization.getIntegralWallAbility(),totalIntegralWallScale);
+                subUnitAndComponentEnStatisticses.add(integralWallNum);
+                Specification<SubUnitEnIndustrialization> spIntegrativeExternalWall = this.subUnitEnIndustrializationService.queryAnnual(subUnitEns.get(i).getId(),year,quarter);
+                List<SubUnitEnIndustrialization> listIntegrativeExternalWall = subUnitEnIndustrializationService.findBySepc(spIntegrativeExternalWall);
+                double totalIntegrativeExternalWallScale = 0;
+                for(int x=0;x<listIntegrativeExternalWall.size();x++){
+                    totalIntegrativeExternalWallScale += listIntegrativeExternalWall.get(x).getIntegrativeExternalWallScale();
+                }
+                SubUnitAndComponentEnStatistics integrativeExternalWallNum = new SubUnitAndComponentEnStatistics(subUnitEns.get(i).getName(),"结构保温装饰一体化外墙",subUnitEnIndustrialization.getIntegrativeExternalWallNum(),subUnitEnIndustrialization.getIntegrativeExternalWallAbility(),totalIntegrativeExternalWallScale);
+                subUnitAndComponentEnStatisticses.add(integrativeExternalWallNum);
+                Specification<SubUnitEnIndustrialization> spPrebuiltStairs = this.subUnitEnIndustrializationService.queryAnnual(subUnitEns.get(i).getId(),year,quarter);
+                List<SubUnitEnIndustrialization> listPrebuiltStairs = subUnitEnIndustrializationService.findBySepc(spPrebuiltStairs);
+                double totalPrebuiltStairsScale = 0;
+                for(int x=0;x<listPrebuiltStairs.size();x++){
+                    totalPrebuiltStairsScale += listPrebuiltStairs.get(x).getPrebuiltStairsScale();
+                }
+                SubUnitAndComponentEnStatistics prebuiltStairsNum = new SubUnitAndComponentEnStatistics(subUnitEns.get(i).getName(),"预制楼梯",subUnitEnIndustrialization.getPrebuiltStairsNum(),subUnitEnIndustrialization.getPrebuiltStairsAbility(),totalPrebuiltStairsScale);
+                subUnitAndComponentEnStatisticses.add(prebuiltStairsNum);
+                Specification<SubUnitEnIndustrialization> spIntegralKitchen = this.subUnitEnIndustrializationService.queryAnnual(subUnitEns.get(i).getId(),year,quarter);
+                List<SubUnitEnIndustrialization> listIntegralKitchen = subUnitEnIndustrializationService.findBySepc(spIntegralKitchen);
+                double totalIntegralKitchenScale = 0;
+                for(int x=0;x<listIntegralKitchen.size();x++){
+                    totalIntegralKitchenScale += listIntegralKitchen.get(x).getIntegralKitchenScale();
+                }
+                SubUnitAndComponentEnStatistics integralKitchenNum = new SubUnitAndComponentEnStatistics(subUnitEns.get(i).getName(),"整体厨房",subUnitEnIndustrialization.getIntegralKitchenNum(),subUnitEnIndustrialization.getIntegralKitchenAbility(),totalIntegralKitchenScale);
+                subUnitAndComponentEnStatisticses.add(integralKitchenNum);
+                Specification<SubUnitEnIndustrialization> spIntegralToilet = this.subUnitEnIndustrializationService.queryAnnual(subUnitEns.get(i).getId(),year,quarter);
+                List<SubUnitEnIndustrialization> listIntegralToilet = subUnitEnIndustrializationService.findBySepc(spIntegralToilet);
+                double totalIntegralToiletScale = 0;
+                for(int x=0;x<listIntegralToilet.size();x++){
+                    totalIntegralToiletScale += listIntegralToilet.get(x).getIntegralToiletScale();
+                }
+                SubUnitAndComponentEnStatistics integralToiletNum = new SubUnitAndComponentEnStatistics(subUnitEns.get(i).getName(),"整体卫生间",subUnitEnIndustrialization.getIntegralToiletNum(),subUnitEnIndustrialization.getIntegralToiletAbility(),totalIntegralToiletScale);
+                subUnitAndComponentEnStatisticses.add(integralToiletNum);
+                Specification<SubUnitEnIndustrialization> spIntegralInteriorDecoration = this.subUnitEnIndustrializationService.queryAnnual(subUnitEns.get(i).getId(),year,quarter);
+                List<SubUnitEnIndustrialization> listIntegralInteriorDecoration = subUnitEnIndustrializationService.findBySepc(spIntegralInteriorDecoration);
+                double totalIntegralInteriorDecorationScale = 0;
+                for(int x=0;x<listIntegralInteriorDecoration.size();x++){
+                    totalIntegralInteriorDecorationScale += listIntegralInteriorDecoration.get(x).getIntegralInteriorDecorationScale();
+                }
+                SubUnitAndComponentEnStatistics integralInteriorDecorationNum = new SubUnitAndComponentEnStatistics(subUnitEns.get(i).getName(),"整体内装体系",subUnitEnIndustrialization.getIntegralInteriorDecorationNum(),subUnitEnIndustrialization.getIntegralInteriorDecorationAbility(),totalIntegralInteriorDecorationScale);
+                subUnitAndComponentEnStatisticses.add(integralInteriorDecorationNum);
             }
-            SubUnitAndComponentEnStatistics integralWallNum = new SubUnitAndComponentEnStatistics(subUnitEns.get(i).getName(),"整体墙板",subUnitEnIndustrialization.getIntegralWallNum(),subUnitEnIndustrialization.getIntegralWallAbility(),totalIntegralWallScale);
-            subUnitAndComponentEnStatisticses.add(integralWallNum);
-            Specification<SubUnitEnIndustrialization> spIntegrativeExternalWall = this.subUnitEnIndustrializationService.queryAnnual(subUnitEns.get(i).getId(),year,quarter);
-            List<SubUnitEnIndustrialization> listIntegrativeExternalWall = subUnitEnIndustrializationService.findBySepc(spIntegrativeExternalWall);
-            double totalIntegrativeExternalWallScale = 0;
-            for(int x=0;x<listIntegrativeExternalWall.size();x++){
-                totalIntegrativeExternalWallScale += listIntegrativeExternalWall.get(x).getIntegrativeExternalWallScale();
-            }
-            SubUnitAndComponentEnStatistics integrativeExternalWallNum = new SubUnitAndComponentEnStatistics(subUnitEns.get(i).getName(),"结构保温装饰一体化外墙",subUnitEnIndustrialization.getIntegrativeExternalWallNum(),subUnitEnIndustrialization.getIntegrativeExternalWallAbility(),totalIntegrativeExternalWallScale);
-            subUnitAndComponentEnStatisticses.add(integrativeExternalWallNum);
-            Specification<SubUnitEnIndustrialization> spPrebuiltStairs = this.subUnitEnIndustrializationService.queryAnnual(subUnitEns.get(i).getId(),year,quarter);
-            List<SubUnitEnIndustrialization> listPrebuiltStairs = subUnitEnIndustrializationService.findBySepc(spPrebuiltStairs);
-            double totalPrebuiltStairsScale = 0;
-            for(int x=0;x<listPrebuiltStairs.size();x++){
-                totalPrebuiltStairsScale += listPrebuiltStairs.get(x).getPrebuiltStairsScale();
-            }
-            SubUnitAndComponentEnStatistics prebuiltStairsNum = new SubUnitAndComponentEnStatistics(subUnitEns.get(i).getName(),"预制楼梯",subUnitEnIndustrialization.getPrebuiltStairsNum(),subUnitEnIndustrialization.getPrebuiltStairsAbility(),totalPrebuiltStairsScale);
-            subUnitAndComponentEnStatisticses.add(prebuiltStairsNum);
-            Specification<SubUnitEnIndustrialization> spIntegralKitchen = this.subUnitEnIndustrializationService.queryAnnual(subUnitEns.get(i).getId(),year,quarter);
-            List<SubUnitEnIndustrialization> listIntegralKitchen = subUnitEnIndustrializationService.findBySepc(spIntegralKitchen);
-            double totalIntegralKitchenScale = 0;
-            for(int x=0;x<listIntegralKitchen.size();x++){
-                totalIntegralKitchenScale += listIntegralKitchen.get(x).getIntegralKitchenScale();
-            }
-            SubUnitAndComponentEnStatistics integralKitchenNum = new SubUnitAndComponentEnStatistics(subUnitEns.get(i).getName(),"整体厨房",subUnitEnIndustrialization.getIntegralKitchenNum(),subUnitEnIndustrialization.getIntegralKitchenAbility(),totalIntegralKitchenScale);
-            subUnitAndComponentEnStatisticses.add(integralKitchenNum);
-            Specification<SubUnitEnIndustrialization> spIntegralToilet = this.subUnitEnIndustrializationService.queryAnnual(subUnitEns.get(i).getId(),year,quarter);
-            List<SubUnitEnIndustrialization> listIntegralToilet = subUnitEnIndustrializationService.findBySepc(spIntegralToilet);
-            double totalIntegralToiletScale = 0;
-            for(int x=0;x<listIntegralToilet.size();x++){
-                totalIntegralToiletScale += listIntegralToilet.get(x).getIntegralToiletScale();
-            }
-            SubUnitAndComponentEnStatistics integralToiletNum = new SubUnitAndComponentEnStatistics(subUnitEns.get(i).getName(),"整体卫生间",subUnitEnIndustrialization.getIntegralToiletNum(),subUnitEnIndustrialization.getIntegralToiletAbility(),totalIntegralToiletScale);
-            subUnitAndComponentEnStatisticses.add(integralToiletNum);
-            Specification<SubUnitEnIndustrialization> spIntegralInteriorDecoration = this.subUnitEnIndustrializationService.queryAnnual(subUnitEns.get(i).getId(),year,quarter);
-            List<SubUnitEnIndustrialization> listIntegralInteriorDecoration = subUnitEnIndustrializationService.findBySepc(spIntegralInteriorDecoration);
-            double totalIntegralInteriorDecorationScale = 0;
-            for(int x=0;x<listIntegralInteriorDecoration.size();x++){
-                totalIntegralInteriorDecorationScale += listIntegralInteriorDecoration.get(x).getIntegralInteriorDecorationScale();
-            }
-            SubUnitAndComponentEnStatistics integralInteriorDecorationNum = new SubUnitAndComponentEnStatistics(subUnitEns.get(i).getName(),"整体内装体系",subUnitEnIndustrialization.getIntegralInteriorDecorationNum(),subUnitEnIndustrialization.getIntegralInteriorDecorationAbility(),totalIntegralInteriorDecorationScale);
-            subUnitAndComponentEnStatisticses.add(integralInteriorDecorationNum);
         }
         List<ComponentEn> componentEns = componentEnService.findAllT();
         for(int i=0;i<componentEns.size();i++){
             ComponentEnIndustrialization componentEnIndustrialization = componentEnIndustrializationService.getByComponentEnIdAndYearAndQuarter(componentEns.get(i).getId(),year,quarter);
-
-            Specification<ComponentEnIndustrialization> spPrebuiltConcrete = this.componentEnIndustrializationService.queryAnnual(componentEns.get(i).getId(),year,quarter);
-            List<ComponentEnIndustrialization> listPrebuiltConcrete = componentEnIndustrializationService.findBySepc(spPrebuiltConcrete);
-            double totalPrebuiltConcreteScale = 0;
-            for(int x=0;x<listPrebuiltConcrete.size();x++){
-                totalPrebuiltConcreteScale += listPrebuiltConcrete.get(x).getPrebuiltConcreteScale();
+            if(componentEnIndustrialization!=null){
+                Specification<ComponentEnIndustrialization> spPrebuiltConcrete = this.componentEnIndustrializationService.queryAnnual(componentEns.get(i).getId(),year,quarter);
+                List<ComponentEnIndustrialization> listPrebuiltConcrete = componentEnIndustrializationService.findBySepc(spPrebuiltConcrete);
+                double totalPrebuiltConcreteScale = 0;
+                for(int x=0;x<listPrebuiltConcrete.size();x++){
+                    totalPrebuiltConcreteScale += listPrebuiltConcrete.get(x).getPrebuiltConcreteScale();
+                }
+                SubUnitAndComponentEnStatistics prebuiltConcrete = new SubUnitAndComponentEnStatistics(componentEns.get(i).getName(),"预制装配混凝土结构",componentEnIndustrialization.getPrebuiltConcreteNum(),componentEnIndustrialization.getPrebuiltConcreteAbility(),totalPrebuiltConcreteScale);
+                subUnitAndComponentEnStatisticses.add(prebuiltConcrete);
+                Specification<ComponentEnIndustrialization> spPrebuiltSteel = this.componentEnIndustrializationService.queryAnnual(componentEns.get(i).getId(),year,quarter);
+                List<ComponentEnIndustrialization> listPrebuiltSteel = componentEnIndustrializationService.findBySepc(spPrebuiltSteel);
+                double totalPrebuiltSteelScale = 0;
+                for(int x=0;x<listPrebuiltSteel.size();x++){
+                    totalPrebuiltSteelScale += listPrebuiltSteel.get(x).getPrebuiltSteelScale();
+                }
+                SubUnitAndComponentEnStatistics prebuiltSteel = new SubUnitAndComponentEnStatistics(componentEns.get(i).getName(),"钢结构",componentEnIndustrialization.getPrebuiltSteelNum(),componentEnIndustrialization.getPrebuiltSteelAbility(),totalPrebuiltSteelScale);
+                subUnitAndComponentEnStatisticses.add(prebuiltSteel);
+                Specification<ComponentEnIndustrialization> spPrebuiltTimber = this.componentEnIndustrializationService.queryAnnual(componentEns.get(i).getId(),year,quarter);
+                List<ComponentEnIndustrialization> listPrebuiltTimber = componentEnIndustrializationService.findBySepc(spPrebuiltTimber);
+                double totalPrebuiltTimberScale = 0;
+                for(int x=0;x<listPrebuiltTimber.size();x++){
+                    totalPrebuiltTimberScale += listPrebuiltTimber.get(x).getPrebuiltTimberScale();
+                }
+                SubUnitAndComponentEnStatistics prebuiltTimber = new SubUnitAndComponentEnStatistics(componentEns.get(i).getName(),"木结构",componentEnIndustrialization.getPrebuiltTimberNum(),componentEnIndustrialization.getPrebuiltTimberAbility(),totalPrebuiltTimberScale);
+                subUnitAndComponentEnStatisticses.add(prebuiltTimber);
+                Specification<ComponentEnIndustrialization> spPrebuiltOther = this.componentEnIndustrializationService.queryAnnual(componentEns.get(i).getId(),year,quarter);
+                List<ComponentEnIndustrialization> listPrebuiltOther = componentEnIndustrializationService.findBySepc(spPrebuiltOther);
+                double totalPrebuiltOtherScale = 0;
+                for(int x=0;x<listPrebuiltOther.size();x++){
+                    totalPrebuiltOtherScale += listPrebuiltOther.get(x).getPrebuiltOtherScale();
+                }
+                SubUnitAndComponentEnStatistics prebuiltOther = new SubUnitAndComponentEnStatistics(componentEns.get(i).getName(),"其他结构的构件",componentEnIndustrialization.getPrebuiltOtherNum(),componentEnIndustrialization.getPrebuiltOtherAbility(),totalPrebuiltOtherScale);
+                subUnitAndComponentEnStatisticses.add(prebuiltOther);
             }
-            SubUnitAndComponentEnStatistics prebuiltConcrete = new SubUnitAndComponentEnStatistics(componentEns.get(i).getName(),"预制装配混凝土结构",componentEnIndustrialization.getPrebuiltConcreteNum(),componentEnIndustrialization.getPrebuiltConcreteAbility(),totalPrebuiltConcreteScale);
-            subUnitAndComponentEnStatisticses.add(prebuiltConcrete);
-            Specification<ComponentEnIndustrialization> spPrebuiltSteel = this.componentEnIndustrializationService.queryAnnual(componentEns.get(i).getId(),year,quarter);
-            List<ComponentEnIndustrialization> listPrebuiltSteel = componentEnIndustrializationService.findBySepc(spPrebuiltSteel);
-            double totalPrebuiltSteelScale = 0;
-            for(int x=0;x<listPrebuiltSteel.size();x++){
-                totalPrebuiltSteelScale += listPrebuiltSteel.get(x).getPrebuiltSteelScale();
-            }
-            SubUnitAndComponentEnStatistics prebuiltSteel = new SubUnitAndComponentEnStatistics(componentEns.get(i).getName(),"钢结构",componentEnIndustrialization.getPrebuiltSteelNum(),componentEnIndustrialization.getPrebuiltSteelAbility(),totalPrebuiltSteelScale);
-            subUnitAndComponentEnStatisticses.add(prebuiltSteel);
-            Specification<ComponentEnIndustrialization> spPrebuiltTimber = this.componentEnIndustrializationService.queryAnnual(componentEns.get(i).getId(),year,quarter);
-            List<ComponentEnIndustrialization> listPrebuiltTimber = componentEnIndustrializationService.findBySepc(spPrebuiltTimber);
-            double totalPrebuiltTimberScale = 0;
-            for(int x=0;x<listPrebuiltTimber.size();x++){
-                totalPrebuiltTimberScale += listPrebuiltTimber.get(x).getPrebuiltTimberScale();
-            }
-            SubUnitAndComponentEnStatistics prebuiltTimber = new SubUnitAndComponentEnStatistics(componentEns.get(i).getName(),"木结构",componentEnIndustrialization.getPrebuiltTimberNum(),componentEnIndustrialization.getPrebuiltTimberAbility(),totalPrebuiltTimberScale);
-            subUnitAndComponentEnStatisticses.add(prebuiltTimber);
-            Specification<ComponentEnIndustrialization> spPrebuiltOther = this.componentEnIndustrializationService.queryAnnual(componentEns.get(i).getId(),year,quarter);
-            List<ComponentEnIndustrialization> listPrebuiltOther = componentEnIndustrializationService.findBySepc(spPrebuiltOther);
-            double totalPrebuiltOtherScale = 0;
-            for(int x=0;x<listPrebuiltOther.size();x++){
-                totalPrebuiltOtherScale += listPrebuiltOther.get(x).getPrebuiltOtherScale();
-            }
-            SubUnitAndComponentEnStatistics prebuiltOther = new SubUnitAndComponentEnStatistics(componentEns.get(i).getName(),"其他结构的构件",componentEnIndustrialization.getPrebuiltOtherNum(),componentEnIndustrialization.getPrebuiltOtherAbility(),totalPrebuiltOtherScale);
-            subUnitAndComponentEnStatisticses.add(prebuiltOther);
 
         }
 

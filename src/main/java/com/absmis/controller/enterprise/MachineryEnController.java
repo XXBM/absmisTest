@@ -44,13 +44,16 @@ public class MachineryEnController {
         List<MachineryEn> machineryEns = machineryEnService.findAllT();
         List<MachineryEnStatistics> machineryEnStatisticses = new ArrayList<>();
         for(int i=0;i<machineryEns.size();i++){
+            System.out.println(machineryEns.size());
             MachineryEnIndustrialization machineryEnIndustrialization = machineryEnIndustrializationService.getByMachineryEnIdAndYearAndQuarter(machineryEns.get(i).getId(),year,quarter);
-            MachineryEnStatistics integralWall = new MachineryEnStatistics(machineryEns.get(i).getName(),"预制混凝土生产设备",machineryEnIndustrialization.getIntegralWall());
-            machineryEnStatisticses.add(integralWall);
-            MachineryEnStatistics specialTransportEquipment = new MachineryEnStatistics(machineryEns.get(i).getName(),"专用运输设备",machineryEnIndustrialization.getSpecialTransportEquipment());
-            machineryEnStatisticses.add(specialTransportEquipment);
-            MachineryEnStatistics specialConstructionEquipment = new MachineryEnStatistics(machineryEns.get(i).getName(),"专用施工",machineryEnIndustrialization.getSpecialConstructionEquipment());
-            machineryEnStatisticses.add(specialConstructionEquipment);
+            if(machineryEnIndustrialization!=null){
+                MachineryEnStatistics integralWall = new MachineryEnStatistics(machineryEns.get(i).getName(),"预制混凝土生产设备",machineryEnIndustrialization.getIntegralWall());
+                machineryEnStatisticses.add(integralWall);
+                MachineryEnStatistics specialTransportEquipment = new MachineryEnStatistics(machineryEns.get(i).getName(),"专用运输设备",machineryEnIndustrialization.getSpecialTransportEquipment());
+                machineryEnStatisticses.add(specialTransportEquipment);
+                MachineryEnStatistics specialConstructionEquipment = new MachineryEnStatistics(machineryEns.get(i).getName(),"专用施工",machineryEnIndustrialization.getSpecialConstructionEquipment());
+                machineryEnStatisticses.add(specialConstructionEquipment);
+            }
         }
         Map<String, Object> map = new HashMap<String, Object>();
         //查到的总用户数

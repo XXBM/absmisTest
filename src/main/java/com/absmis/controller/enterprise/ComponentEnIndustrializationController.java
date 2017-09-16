@@ -47,12 +47,15 @@ public class ComponentEnIndustrializationController {
         double totalPrebuiltConcretesScale = 0;
         for(int i=0;i<prebuiltConcretes.size();i++){
             ComponentEnIndustrialization componentEnIndustrialization = componentEnIndustrializationService.getByComponentEnIdAndYearAndQuarter(prebuiltConcretes.get(i).getId(),year,quarter);
-            totalPrebuiltConcretesNum += componentEnIndustrialization.getPrebuiltConcreteNum();
-            totalPrebuiltConcretesAbility += componentEnIndustrialization.getPrebuiltConcreteAbility();
-            Specification<ComponentEnIndustrialization> sp = this.componentEnIndustrializationService.queryAnnual(prebuiltConcretes.get(i).getId(),year,quarter);
-            List<ComponentEnIndustrialization> list = componentEnIndustrializationService.findBySepc(sp);
-            for(int x=0;x<list.size();x++){
-                totalPrebuiltConcretesScale += list.get(x).getPrebuiltConcreteScale();
+            System.out.println(componentEnIndustrialization==null);
+            if(componentEnIndustrialization!=null){
+                totalPrebuiltConcretesNum += componentEnIndustrialization.getPrebuiltConcreteNum();
+                totalPrebuiltConcretesAbility += componentEnIndustrialization.getPrebuiltConcreteAbility();
+                Specification<ComponentEnIndustrialization> sp = this.componentEnIndustrializationService.queryAnnual(prebuiltConcretes.get(i).getId(),year,quarter);
+                List<ComponentEnIndustrialization> list = componentEnIndustrializationService.findBySepc(sp);
+                for(int x=0;x<list.size();x++){
+                    totalPrebuiltConcretesScale += list.get(x).getPrebuiltConcreteScale();
+                }
             }
         }
         Specification<ComponentEn> prebuiltSteelSp = this.componentEnService.queryAnnual("prebuiltSteelNum",year,quarter);
@@ -62,12 +65,14 @@ public class ComponentEnIndustrializationController {
         double totalPrebuiltSteelScale = 0;
         for(int i=0;i<prebuiltSteels.size();i++){
             ComponentEnIndustrialization componentEnIndustrialization = componentEnIndustrializationService.getByComponentEnIdAndYearAndQuarter(prebuiltSteels.get(i).getId(),year,quarter);
-            totalPrebuiltSteelNum += componentEnIndustrialization.getPrebuiltSteelNum();
-            totalPrebuiltSteelAbility += componentEnIndustrialization.getPrebuiltSteelAbility();
-            Specification<ComponentEnIndustrialization> sp = this.componentEnIndustrializationService.queryAnnual(prebuiltSteels.get(i).getId(),year,quarter);
-            List<ComponentEnIndustrialization> list = componentEnIndustrializationService.findBySepc(sp);
-            for(int x=0;x<list.size();x++){
-                totalPrebuiltSteelScale += list.get(x).getPrebuiltSteelScale();
+            if(componentEnIndustrialization!=null){
+                totalPrebuiltSteelNum += componentEnIndustrialization.getPrebuiltSteelNum();
+                totalPrebuiltSteelAbility += componentEnIndustrialization.getPrebuiltSteelAbility();
+                Specification<ComponentEnIndustrialization> sp = this.componentEnIndustrializationService.queryAnnual(prebuiltSteels.get(i).getId(),year,quarter);
+                List<ComponentEnIndustrialization> list = componentEnIndustrializationService.findBySepc(sp);
+                for(int x=0;x<list.size();x++){
+                    totalPrebuiltSteelScale += list.get(x).getPrebuiltSteelScale();
+                }
             }
         }
         Specification<ComponentEn> prebuiltTimberSp = this.componentEnService.queryAnnual("prebuiltTimberNum",year,quarter);
@@ -77,12 +82,14 @@ public class ComponentEnIndustrializationController {
         double totalPrebuiltTimberScale = 0;
         for(int i=0;i<prebuiltTimbers.size();i++){
             ComponentEnIndustrialization componentEnIndustrialization = componentEnIndustrializationService.getByComponentEnIdAndYearAndQuarter(prebuiltTimbers.get(i).getId(),year,quarter);
-            totalPrebuiltTimberNum += componentEnIndustrialization.getPrebuiltTimberNum();
-            totalPrebuiltTimberAbility += componentEnIndustrialization.getPrebuiltTimberAbility();
-            Specification<ComponentEnIndustrialization> sp = this.componentEnIndustrializationService.queryAnnual(prebuiltTimbers.get(i).getId(),year,quarter);
-            List<ComponentEnIndustrialization> list = componentEnIndustrializationService.findBySepc(sp);
-            for(int x=0;x<list.size();x++){
-                totalPrebuiltTimberScale += list.get(x).getPrebuiltTimberScale();
+            if(componentEnIndustrialization!=null){
+                totalPrebuiltTimberNum += componentEnIndustrialization.getPrebuiltTimberNum();
+                totalPrebuiltTimberAbility += componentEnIndustrialization.getPrebuiltTimberAbility();
+                Specification<ComponentEnIndustrialization> sp = this.componentEnIndustrializationService.queryAnnual(prebuiltTimbers.get(i).getId(),year,quarter);
+                List<ComponentEnIndustrialization> list = componentEnIndustrializationService.findBySepc(sp);
+                for(int x=0;x<list.size();x++){
+                    totalPrebuiltTimberScale += list.get(x).getPrebuiltTimberScale();
+                }
             }
         }
         Specification<ComponentEn> prebuiltOtherSp = this.componentEnService.queryAnnual("prebuiltOtherNum",year,quarter);
@@ -91,13 +98,15 @@ public class ComponentEnIndustrializationController {
         double totalPrebuiltOtherAbility = 0;
         double totalPrebuiltOtherScale = 0;
         for(int i=0;i<prebuiltOthers.size();i++){
-            ComponentEnIndustrialization subUnitEnIndustrialization = componentEnIndustrializationService.getByComponentEnIdAndYearAndQuarter(prebuiltOthers.get(i).getId(),year,quarter);
-            totalPrebuiltOtherNum += subUnitEnIndustrialization.getPrebuiltOtherNum();
-            totalPrebuiltOtherAbility += subUnitEnIndustrialization.getPrebuiltOtherAbility();
-            Specification<ComponentEnIndustrialization> sp = this.componentEnIndustrializationService.queryAnnual(prebuiltOthers.get(i).getId(),year,quarter);
-            List<ComponentEnIndustrialization> list = componentEnIndustrializationService.findBySepc(sp);
-            for(int x=0;x<list.size();x++){
-                totalPrebuiltOtherScale += list.get(x).getPrebuiltOtherScale();
+            ComponentEnIndustrialization componentEnIndustrialization = componentEnIndustrializationService.getByComponentEnIdAndYearAndQuarter(prebuiltOthers.get(i).getId(),year,quarter);
+            if(componentEnIndustrialization!=null){
+                totalPrebuiltOtherNum += componentEnIndustrialization.getPrebuiltOtherNum();
+                totalPrebuiltOtherAbility += componentEnIndustrialization.getPrebuiltOtherAbility();
+                Specification<ComponentEnIndustrialization> sp = this.componentEnIndustrializationService.queryAnnual(prebuiltOthers.get(i).getId(),year,quarter);
+                List<ComponentEnIndustrialization> list = componentEnIndustrializationService.findBySepc(sp);
+                for(int x=0;x<list.size();x++){
+                    totalPrebuiltOtherScale += list.get(x).getPrebuiltOtherScale();
+                }
             }
         }
         List<SubUnitAndComponentEnInfo> subUnitAndComponentEnInfos = new ArrayList<>();

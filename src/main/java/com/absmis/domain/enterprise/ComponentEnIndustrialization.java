@@ -16,7 +16,7 @@ import java.util.Calendar;
  * @generated
  */
 @Entity
-@Table(uniqueConstraints={@UniqueConstraint(columnNames={"year", "quarter"})})
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"year", "quarter","componentEn_id"})})
 public class ComponentEnIndustrialization implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

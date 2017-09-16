@@ -43,21 +43,27 @@ public class MachineryEnIndustrializationController {
         double totalIntegralWall = 0;
         for(int i=0;i<integralWalls.size();i++){
             MachineryEnIndustrialization machineryEnIndustrialization = machineryEnIndustrializationService.getByMachineryEnIdAndYearAndQuarter(integralWalls.get(i).getId(),year,quarter);
-            totalIntegralWall += machineryEnIndustrialization.getIntegralWall();
+            if(machineryEnIndustrialization!=null){
+                totalIntegralWall += machineryEnIndustrialization.getIntegralWall();
+            }
         }
         Specification<MachineryEn> specialTransportEquipmentSp = this.machineryEnService.queryAnnual("specialTransportEquipment",year,quarter);
         List<MachineryEn> specialTransportEquipments = machineryEnService.findBySepc(specialTransportEquipmentSp);
         double totalSpecialTransportEquipment = 0;
         for(int i=0;i<specialTransportEquipments.size();i++){
             MachineryEnIndustrialization machineryEnIndustrialization = machineryEnIndustrializationService.getByMachineryEnIdAndYearAndQuarter(specialTransportEquipments.get(i).getId(),year,quarter);
-            totalSpecialTransportEquipment += machineryEnIndustrialization.getSpecialTransportEquipment();
+            if(machineryEnIndustrialization!=null){
+                totalSpecialTransportEquipment += machineryEnIndustrialization.getSpecialTransportEquipment();
+            }
         }
         Specification<MachineryEn> specialConstructionEquipmentSp = this.machineryEnService.queryAnnual("specialConstructionEquipment",year,quarter);
         List<MachineryEn> specialConstructionEquipments = machineryEnService.findBySepc(specialConstructionEquipmentSp);
         double totalSpecialConstructionEquipment = 0;
         for(int i=0;i<specialConstructionEquipments.size();i++){
             MachineryEnIndustrialization machineryEnIndustrialization = machineryEnIndustrializationService.getByMachineryEnIdAndYearAndQuarter(specialConstructionEquipments.get(i).getId(),year,quarter);
-            totalSpecialConstructionEquipment += machineryEnIndustrialization.getSpecialConstructionEquipment();
+            if(machineryEnIndustrialization!=null){
+                totalSpecialConstructionEquipment += machineryEnIndustrialization.getSpecialConstructionEquipment();
+            }
         }
         List<MachineryEnInfo> machineryEnInfos = new ArrayList<>();
         MachineryEnInfo integralWallMachineryEnInfo = new MachineryEnInfo("预制混凝土生产设备情况",(double)integralWalls.size(),totalIntegralWall);
