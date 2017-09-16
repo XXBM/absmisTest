@@ -100,6 +100,15 @@ public class SubUnitEnIndustrialization implements Serializable {
     @javax.persistence.JoinColumn(name = "subUnitEn_id")
     private SubUnitEn subUnitEn;
 
+    private boolean submit;
+
+    public boolean isSubmit() {
+        return submit;
+    }
+
+    public void setSubmit(boolean submit) {
+        this.submit = submit;
+    }
 
     @ManyToOne
     @JoinColumn(name = "checkedStatus_id")

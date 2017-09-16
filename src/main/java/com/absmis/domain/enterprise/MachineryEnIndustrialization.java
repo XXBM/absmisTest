@@ -65,6 +65,15 @@ public class MachineryEnIndustrialization implements Serializable {
     @javax.persistence.JoinColumn(name = "machineryEn_id")
     private MachineryEn machineryEn;
 
+    private boolean submit;
+
+    public boolean isSubmit() {
+        return submit;
+    }
+
+    public void setSubmit(boolean submit) {
+        this.submit = submit;
+    }
 
     @ManyToOne
     @JoinColumn(name = "checkedStatus_id")

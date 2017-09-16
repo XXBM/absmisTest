@@ -199,6 +199,7 @@ public class SubUnitEnIndustrializationController {
         storedUser = userService.findByUsername(username);
         subUnitEnIndustrialization.setSubUnitEn((SubUnitEn)storedUser);
         subUnitEnIndustrialization.setQuarterEnd(Utils.getQuarterEnd(subUnitEnIndustrialization.getYear(),subUnitEnIndustrialization.getQuarter()));
+        
         this.subUnitEnIndustrializationService.addSubUnitEnIndustrialization(subUnitEnIndustrialization);
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("subUnitEnIndustrialization", subUnitEnIndustrialization);

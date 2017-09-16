@@ -88,6 +88,15 @@ public class ComponentEnIndustrialization implements Serializable {
     @JoinColumn(name = "componentEn_id")
     private ComponentEn componentEn;
 
+    private boolean submit;
+
+    public boolean isSubmit() {
+        return submit;
+    }
+
+    public void setSubmit(boolean submit) {
+        this.submit = submit;
+    }
 
     @ManyToOne
     @JoinColumn(name = "checkedStatus_id")

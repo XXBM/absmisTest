@@ -72,6 +72,16 @@ public class ConstructionEnIndustrialization implements Serializable {
         this.totalScale = totalScale;
     }
 
+    private boolean submit;
+
+    public boolean isSubmit() {
+        return submit;
+    }
+
+    public void setSubmit(boolean submit) {
+        this.submit = submit;
+    }
+
     @ManyToOne
     @JoinColumn(name = "checkedStatus_id")
     private CheckedStatus checkedStatus;
