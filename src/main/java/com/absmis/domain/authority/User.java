@@ -23,6 +23,7 @@ public abstract class User implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.TABLE)
     protected Long id;
+    @Column(unique = true)
     protected String username;
     protected String password;
     @Temporal(TemporalType.DATE)
