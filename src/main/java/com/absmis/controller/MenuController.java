@@ -8,6 +8,10 @@ public class MenuController {
     public String login() {
         return "login";
     }
+    @RequestMapping("/logout")
+    public String logout() {
+        return "login";
+    }
     @RequestMapping("/index")
     public String index() {
         System.out.print("controller");
