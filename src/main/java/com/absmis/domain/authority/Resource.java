@@ -23,6 +23,16 @@ public class Resource implements Serializable {
      * 菜单路径
      */
     private String url;
+    private String icon;
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
     @JsonIgnore
     @javax.persistence.OneToMany(mappedBy = "resource")
     private Set<RoleAssResource> roleAssResource;
