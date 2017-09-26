@@ -4,6 +4,7 @@ import com.absmis.domain.enterprise.RealEstateEn;
 import com.absmis.service.authority.RoleService;
 import com.absmis.service.enterprise.CheckedStatusService;
 import com.absmis.service.enterprise.RealEstateEnService;
+import groovy.util.logging.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @RestController
 public class RealEstateEnController {
     @Autowired
@@ -77,6 +79,7 @@ public class RealEstateEnController {
     public Map<String, Object> findAllRealEstateEn(@RequestParam(value = "page") Integer page, @RequestParam(value = "rows") Integer size)throws Exception {
         Page<RealEstateEn> list = this.realEstateEnService.findAllT(new PageRequest(page - 1, size));
         Map<String, Object> map = new HashMap<String, Object>();
+
         int total = this.realEstateEnService.findAllT().size();
         map.put("total", total);
         map.put("rows", list.getContent());

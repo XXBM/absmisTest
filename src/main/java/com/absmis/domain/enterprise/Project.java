@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Set;
+import java.util.List;
 
 
 /**
@@ -93,7 +93,7 @@ public abstract class Project implements Serializable {
     //单位工程
     @JsonIgnore
     @javax.persistence.OneToMany(mappedBy = "project")
-    private Set<UnitEngineering> unitEngineerings;
+    private List<UnitEngineering> unitEngineerings;
 
     public Project() {
         super();
@@ -219,11 +219,11 @@ public abstract class Project implements Serializable {
         return projectState;
     }
 
-    public Set<UnitEngineering> getUnitEngineerings() {
+    public List<UnitEngineering> getUnitEngineerings() {
         return unitEngineerings;
     }
 
-    public void setUnitEngineerings(Set<UnitEngineering> unitEngineerings) {
+    public void setUnitEngineerings(List<UnitEngineering> unitEngineerings) {
         this.unitEngineerings = unitEngineerings;
     }
 
