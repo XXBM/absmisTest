@@ -94,6 +94,7 @@ public class UnitEngineeringController {
     )throws Exception {
         System.out.println("unit"+id+"check"+checkedId);
         UnitEngineering unitEngineering = unitEngineeringService.findOne(id);
+        System.out.println("456");
         unitEngineering.setCheckedStatus(checkedStatusService.findOne(checkedId));
         this.unitEngineeringService.update(unitEngineering);
         Map<String, Object> map = new HashMap<String, Object>();
