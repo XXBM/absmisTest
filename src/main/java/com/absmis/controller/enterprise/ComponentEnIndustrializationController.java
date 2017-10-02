@@ -204,6 +204,18 @@ public class ComponentEnIndustrializationController {
         return map;
     }
 
+    @RequestMapping(value = "/getAllComponentEnIndustrializations", method = RequestMethod.GET)
+    public Map<String, Object> getAllComponentEnIndustrialization(@RequestParam(value = "page") Integer page, @RequestParam(value = "rows") Integer size)throws Exception {
+        username = SecurityContextHolder.getContext().getAuthentication().getName();
+        storedUser = userService.findByUsername(username);
+        Page<ComponentEnIndustrialization> list = this.componentEnIndustrializationService.findByComponentEnId(storedUser.getId(),new PageRequest(page - 1, size));
+        Map<String, Object> map = new HashMap<String, Object>();
+        int total = this.componentEnIndustrializationService.findByComponentEnId(storedUser.getId()).size();
+        map.put("total", total);
+        map.put("rows", list.getContent());
+        return map;
+    }
+
     //实现分页 审核查询
     @RequestMapping(value = "/displayAllComponentEnIndustrializationsBySubmit", method = RequestMethod.GET)
     public Map<String, Object> findAllComponentEnIndustrializationBySubmit(@RequestParam(value = "page") Integer page, @RequestParam(value = "rows") Integer size)throws Exception {

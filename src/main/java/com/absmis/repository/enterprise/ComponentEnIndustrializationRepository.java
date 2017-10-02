@@ -15,4 +15,5 @@ public interface ComponentEnIndustrializationRepository extends MyRepository<Com
     ComponentEnIndustrialization getByComponentEnIdAndYearAndQuarter(Long id, Integer year, Integer quarter);
     List<ComponentEnIndustrialization> findBySubmit(Boolean submit);
     Page<ComponentEnIndustrialization> findBySubmit(Boolean submit, Pageable pageable);
+    Page<ComponentEnIndustrialization> findByComponentEnId(Long componentId, Pageable pageable);
 }

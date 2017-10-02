@@ -13,5 +13,7 @@ import java.util.List;
 public interface SubUnitEnIndustrializationRepository extends MyRepository<SubUnitEnIndustrialization, Long> {
     SubUnitEnIndustrialization getBySubUnitEnIdAndYearAndQuarter(Long id, Integer year, Integer quarter);
     List<SubUnitEnIndustrialization> findBySubmit(Boolean submit);
+    List<SubUnitEnIndustrialization> findBySubUnitEnId(Long subUnitEnId);
     Page<SubUnitEnIndustrialization> findBySubmit(Boolean submit, Pageable pageable);
+    Page<SubUnitEnIndustrialization> findBySubUnitEnId(Long subUnitEnId, Pageable pageable);
 }

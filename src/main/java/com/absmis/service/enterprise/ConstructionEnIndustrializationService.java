@@ -43,6 +43,14 @@ public class ConstructionEnIndustrializationService extends BasicService<Constru
     public Page<ConstructionEnIndustrialization> findBySubmit(Boolean submit, Pageable pageable) {
         return this.constructionEnIndustrializationRepository.findBySubmit(submit, pageable);
     }
+
+    public List<ConstructionEnIndustrialization> findByConstructionEnId(Long id){
+        return constructionEnIndustrializationRepository.findByConstructionEnId(id);
+    }
+
+    public Page<ConstructionEnIndustrialization> findByConstructionEnId(Long constructionEnId, Pageable pageable) {
+        return this.constructionEnIndustrializationRepository.findByConstructionEnId(constructionEnId, pageable);
+    }
     public List<ConstructionEnIndustrialization> findBySubmit(Boolean submit) {
         return this.constructionEnIndustrializationRepository.findBySubmit(submit);
     }

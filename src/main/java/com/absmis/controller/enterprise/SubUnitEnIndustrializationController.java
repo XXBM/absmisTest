@@ -226,6 +226,18 @@ public class SubUnitEnIndustrializationController {
         return map;
     }
 
+    @RequestMapping(value = "/getAllSubUnitEnIndustrializations", method = RequestMethod.GET)
+    public Map<String, Object> getAllSubUnitEnIndustrializations(@RequestParam(value = "page") Integer page, @RequestParam(value = "rows") Integer size)throws Exception {
+        username = SecurityContextHolder.getContext().getAuthentication().getName();
+        storedUser = userService.findByUsername(username);
+        Page<SubUnitEnIndustrialization> list = this.subUnitEnIndustrializationService.findBySubUnitEnId(storedUser.getId(),new PageRequest(page - 1, size));
+        Map<String, Object> map = new HashMap<String, Object>();
+        int total = this.subUnitEnIndustrializationService.findBySubUnitEnId(storedUser.getId()).size();
+        map.put("total", total);
+        map.put("rows", list.getContent());
+        return map;
+    }
+
 
     //实现分页 审核查询
     @RequestMapping(value = "/displayAllSubUnitEnIndustrializationsBySubmit", method = RequestMethod.GET)

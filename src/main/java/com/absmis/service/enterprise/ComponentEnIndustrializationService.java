@@ -35,6 +35,10 @@ public class ComponentEnIndustrializationService extends BasicService<ComponentE
     public Page<ComponentEnIndustrialization> findBySubmit(Boolean submit, Pageable pageable) {
         return this.componentEnIndustrializationRepository.findBySubmit(submit, pageable);
     }
+
+    public Page<ComponentEnIndustrialization> findByComponentEnId(Long componentEnId, Pageable pageable) {
+        return this.componentEnIndustrializationRepository.findByComponentEnId(componentEnId, pageable);
+    }
     public List<ComponentEnIndustrialization> findBySubmit(Boolean submit) {
         return this.componentEnIndustrializationRepository.findBySubmit(submit);
     }

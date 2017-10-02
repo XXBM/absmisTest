@@ -34,6 +34,12 @@ public class SubUnitEnIndustrializationService extends BasicService<SubUnitEnInd
     public Page<SubUnitEnIndustrialization> findBySubmit(Boolean submit, Pageable pageable) {
         return this.subUnitEnIndustrializationRepository.findBySubmit(submit, pageable);
     }
+    public List<SubUnitEnIndustrialization> findBySubUnitEnId(Long id){
+        return subUnitEnIndustrializationRepository.findBySubUnitEnId(id);
+    }
+    public Page<SubUnitEnIndustrialization> findBySubUnitEnId(Long subUnitEnId, Pageable pageable) {
+        return this.subUnitEnIndustrializationRepository.findBySubUnitEnId(subUnitEnId, pageable);
+    }
     public List<SubUnitEnIndustrialization> findBySubmit(Boolean submit) {
         return this.subUnitEnIndustrializationRepository.findBySubmit(submit);
     }

@@ -14,5 +14,7 @@ public interface MachineryEnIndustrializationRepository extends MyRepository<Mac
     MachineryEnIndustrialization getByMachineryEnIdAndYearAndQuarter(Long id,Integer year,Integer quarter);
     MachineryEnIndustrialization getByYearAndQuarter(Integer year,Integer quarter);
     List<MachineryEnIndustrialization> findBySubmit(Boolean submit);
+    List<MachineryEnIndustrialization> findByMachineryEnId(Long machineryEnId);
     Page<MachineryEnIndustrialization> findBySubmit(Boolean submit, Pageable pageable);
+    Page<MachineryEnIndustrialization> findByMachineryEnId(Long machineryEnId, Pageable pageable);
 }
