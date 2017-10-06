@@ -54,6 +54,7 @@ public class ProjectByRealEstateEnController {
     public Map<String, Object> addProjectByRealEstateEn(@RequestBody ProjectByRealEstateEn projectByRealEstateEn)throws Exception {
         username = SecurityContextHolder.getContext().getAuthentication().getName();
         storedUser = userService.findByUsername(username);
+        System.out.println(projectByRealEstateEn.getStartingTime().getTime()+"时间问题");
         projectByRealEstateEn.setRealEstateEn((RealEstateEn)storedUser);
         projectByRealEstateEn.setYear(projectByRealEstateEn.getStartingTime().getWeekYear());
         projectByRealEstateEn.setQuarter(Utils.getSeason(projectByRealEstateEn.getStartingTime()));

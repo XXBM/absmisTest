@@ -2,9 +2,7 @@ package com.absmis.domain.enterprise;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Set;
 
 
@@ -28,7 +26,7 @@ public class RealEstateEn extends ConstructionEn {
     private RealEstateEnQualification realEstateEnQualification;
     //项目
     @JsonIgnore
-    @javax.persistence.OneToMany(mappedBy = "realEstateEn")
+    @javax.persistence.OneToMany(mappedBy = "realEstateEn",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<ProjectByRealEstateEn> projectByRealEstateEns;
 
     public RealEstateEn() {

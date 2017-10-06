@@ -5,14 +5,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
 /**
  * <!-- begin-user-doc -->
  * <!--  end-user-doc  -->
- *  项目
+ * 项目
+ *
  * @generated
  */
 
@@ -21,14 +25,23 @@ import java.util.List;
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("Project")
 public abstract class Project implements Serializable {
-    @GeneratedValue(strategy=GenerationType.TABLE)
+    @Transient
+    private SimpleDateFormat sdf;
+    @Transient
+    private String str;
+    @Transient
+    private Date date = null;
+    @Transient
+    private Calendar calendar;
+
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @javax.persistence.Id
     private Long id;
     //项目名称
     private String name;
     //项目开工时间
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Calendar startingTime;
     private Integer year;
     private Integer quarter;
@@ -51,7 +64,7 @@ public abstract class Project implements Serializable {
 
     //项目填报时间
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Calendar fillTime;
     //项目建设地点
     private String site;
@@ -83,7 +96,7 @@ public abstract class Project implements Serializable {
     @JoinColumn(name = "checkedStatus_id")
     private CheckedStatus checkedStatus;
 
-    //TODO 结构形式
+    // 结构形式
     //项目产业化信息
     @Embedded
     private ProjectIndustrialization projectIndustrialization;
@@ -92,12 +105,13 @@ public abstract class Project implements Serializable {
     private Schedule schedule;
     //单位工程
     @JsonIgnore
-    @javax.persistence.OneToMany(mappedBy = "project")
+    @javax.persistence.OneToMany(mappedBy = "project", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<UnitEngineering> unitEngineerings;
 
     public Project() {
         super();
     }
+
     public Project(Long id) {
         this.id = id;
     }
@@ -120,7 +134,16 @@ public abstract class Project implements Serializable {
     }
 
     public void setStartingTime(Calendar startingTime) {
-        this.startingTime = startingTime;
+        sdf = new SimpleDateFormat("yyyy-MM-dd");
+        str = sdf.format(startingTime.getTime());
+        try {
+            date = sdf.parse(str);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        this.startingTime = calendar;
     }
 
     public void setCheckedStatus(CheckedStatus checkedStatus) {
@@ -140,7 +163,16 @@ public abstract class Project implements Serializable {
     }
 
     public void setFillTime(Calendar fillTime) {
-        this.fillTime = fillTime;
+        sdf = new SimpleDateFormat("yyyy-MM-dd");
+        str = sdf.format(fillTime.getTime());
+        try {
+            date = sdf.parse(str);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        this.fillTime = calendar;
     }
 
     public String getSite() {

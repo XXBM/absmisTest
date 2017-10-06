@@ -2,6 +2,8 @@ package com.absmis.domain.enterprise;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import java.util.Set;
 
 
@@ -17,7 +19,7 @@ import java.util.Set;
 public class EstateOwner extends Organization {
     //项目
     @JsonIgnore
-    @javax.persistence.OneToMany(mappedBy = "estateOwner")
+    @javax.persistence.OneToMany(mappedBy = "estateOwner",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<ProjectByEstateOwner> projectByEstateOwners;
 
     public EstateOwner() {

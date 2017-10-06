@@ -23,7 +23,7 @@ public abstract class ConstructionEn extends Organization {
     protected Double cumulant;
     //建筑产业化信息
     @JsonIgnore
-    @javax.persistence.OneToMany(mappedBy = "constructionEn")
+    @javax.persistence.OneToMany(mappedBy = "constructionEn",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     protected Set<ConstructionEnIndustrialization> constructionEnIndustrializations;
 
 

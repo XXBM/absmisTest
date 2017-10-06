@@ -3,6 +3,8 @@ package com.absmis.domain.enterprise;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import java.util.Set;
 
 /**
@@ -16,7 +18,7 @@ import java.util.Set;
 public class ComponentEn extends Organization {
     //建筑产业化信息
     @JsonIgnore
-    @javax.persistence.OneToMany(mappedBy = "componentEn")
+    @javax.persistence.OneToMany(mappedBy = "componentEn",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<ComponentEnIndustrialization> componentEnIndustrializations;
 
     public ComponentEn() {

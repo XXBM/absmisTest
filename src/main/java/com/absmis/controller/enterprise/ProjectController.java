@@ -114,6 +114,7 @@ public class ProjectController {
      */
     @RequestMapping(value = "/findProjectInfoById", method = RequestMethod.GET)
     public Project findProjectById(@RequestParam(value = "id") Long id)throws Exception {
+        System.out.println(projectService.findById(id).getStartingTime().getTime()+"时间问题");
         return projectService.findById(id);
     }
 
