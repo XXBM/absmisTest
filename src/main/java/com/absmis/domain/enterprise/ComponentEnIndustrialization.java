@@ -1,7 +1,9 @@
 package com.absmis.domain.enterprise;
 
 
+import com.absmis.jsonDeserialize.CustomDateSerializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,11 +23,13 @@ public class ComponentEnIndustrialization implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @JsonSerialize(using = CustomDateSerializer.class)
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar declareTime;
     private Integer year;
     private Integer quarter;
+    @JsonSerialize(using = CustomDateSerializer.class)
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar quarterEnd;

@@ -12,6 +12,7 @@ import java.io.Serializable;
 
 @javax.persistence.Entity
 public class DesignerQualification implements Serializable {
+    private static final long serialVersionUID = 2618319012162901983L;
     @javax.persistence.Id
     private Long id;
     private String no;

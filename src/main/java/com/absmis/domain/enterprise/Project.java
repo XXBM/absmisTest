@@ -1,14 +1,15 @@
 package com.absmis.domain.enterprise;
 
+import com.absmis.jsonDeserialize.CustomDateDerializer;
+import com.absmis.jsonDeserialize.CustomDateSerializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 
@@ -25,21 +26,14 @@ import java.util.List;
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("Project")
 public abstract class Project implements Serializable {
-    @Transient
-    private SimpleDateFormat sdf;
-    @Transient
-    private String str;
-    @Transient
-    private Date date = null;
-    @Transient
-    private Calendar calendar;
-
     @GeneratedValue(strategy = GenerationType.TABLE)
     @javax.persistence.Id
     private Long id;
     //项目名称
     private String name;
     //项目开工时间
+    //法一：
+    @JsonDeserialize(using = CustomDateDerializer.class)
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Calendar startingTime;
@@ -63,8 +57,10 @@ public abstract class Project implements Serializable {
     }
 
     //项目填报时间
+    //法二：
+    @JsonSerialize(using = CustomDateSerializer.class)
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar fillTime;
     //项目建设地点
     private String site;
@@ -134,16 +130,7 @@ public abstract class Project implements Serializable {
     }
 
     public void setStartingTime(Calendar startingTime) {
-        sdf = new SimpleDateFormat("yyyy-MM-dd");
-        str = sdf.format(startingTime.getTime());
-        try {
-            date = sdf.parse(str);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        this.startingTime = calendar;
+        this.startingTime = startingTime;
     }
 
     public void setCheckedStatus(CheckedStatus checkedStatus) {
@@ -159,20 +146,11 @@ public abstract class Project implements Serializable {
     }
 
     public Calendar getFillTime() {
-        return fillTime;
+        return this.fillTime;
     }
 
     public void setFillTime(Calendar fillTime) {
-        sdf = new SimpleDateFormat("yyyy-MM-dd");
-        str = sdf.format(fillTime.getTime());
-        try {
-            date = sdf.parse(str);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        this.fillTime = calendar;
+        this.fillTime = fillTime;
     }
 
     public String getSite() {

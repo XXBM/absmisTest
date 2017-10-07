@@ -1,6 +1,8 @@
 package com.absmis.domain.enterprise;
 
+import com.absmis.jsonDeserialize.CustomDateSerializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -22,66 +24,82 @@ import java.util.Calendar;
 @DynamicUpdate(true)
 public class Schedule {
     //项目起止时间
+    @JsonSerialize(using = CustomDateSerializer.class)
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar projectStartTime;
     //项目结束时间
+    @JsonSerialize(using = CustomDateSerializer.class)
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar projectEndTime;
     //取得土地使用权开始时间
+    @JsonSerialize(using = CustomDateSerializer.class)
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar landUseRightStart;
     //取得土地使用权结束时间
+    @JsonSerialize(using = CustomDateSerializer.class)
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar landUseRightEnd;
     //建设用地规划许可证开始时间
+    @JsonSerialize(using = CustomDateSerializer.class)
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar constructionLicenseStart;
     //建设用地规划许可证结束时间
+    @JsonSerialize(using = CustomDateSerializer.class)
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar constructionLicenseEnd;
     //建设工程规划许可证开始时间
+    @JsonSerialize(using = CustomDateSerializer.class)
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar engineeringLicenseStart;
     //建设工程规划许可证结束时间
+    @JsonSerialize(using = CustomDateSerializer.class)
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar engineeringLicenseEnd;
     //组织工程招标及工程施工开始时间
+    @JsonSerialize(using = CustomDateSerializer.class)
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar tenderStart;
     //组织工程招标及工程施工结束时间
+    @JsonSerialize(using = CustomDateSerializer.class)
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar tenderEnd;
     //项目综合验收开始时间
+    @JsonSerialize(using = CustomDateSerializer.class)
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar comprehensiveInspectionAndAcceptanceStart;
     //项目综合验收结束时间
+    @JsonSerialize(using = CustomDateSerializer.class)
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar comprehensiveInspectionAndAcceptanceEnd;
     //项目交付使用开始时间
+    @JsonSerialize(using = CustomDateSerializer.class)
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar deliveryStart;
     //项目交付使用结束时间
+    @JsonSerialize(using = CustomDateSerializer.class)
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar deliveryEnd;
     //施工图设计及审查开始时间
+    @JsonSerialize(using = CustomDateSerializer.class)
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar constructionDrawingStart;
     //施工图设计及审查结束时间
+    @JsonSerialize(using = CustomDateSerializer.class)
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar constructionDrawingEnd;

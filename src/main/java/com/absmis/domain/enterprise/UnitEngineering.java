@@ -1,7 +1,9 @@
 package com.absmis.domain.enterprise;
 
 
+import com.absmis.jsonDeserialize.CustomDateSerializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -23,6 +25,7 @@ public class UnitEngineering implements Serializable {
     //工程名称
     private String name;
     //工程开工时间
+    @JsonSerialize(using = CustomDateSerializer.class)
     @javax.persistence.Temporal(javax.persistence.TemporalType.DATE)
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Calendar startingTime;
